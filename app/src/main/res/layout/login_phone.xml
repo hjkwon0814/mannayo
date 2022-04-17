@@ -24,7 +24,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -36,15 +35,14 @@
         android:layout_marginBottom="40dp"
         android:background="#f1f1f5"
         android:ems="10"
-        android:hint="이메일을 입력하세요."
-        android:inputType="textEmailAddress"
+        android:hint="휴대폰번호를 입력해주세요.(‘-’제외)"
+        android:inputType="phone"
         android:paddingLeft="12dp"
         android:textColor="#999999"
         android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -145,6 +143,8 @@
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button5" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
