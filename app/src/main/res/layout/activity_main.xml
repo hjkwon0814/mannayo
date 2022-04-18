@@ -110,11 +110,11 @@
             android:theme="@style/RadioButtonStyle" />
 
         <RadioButton
-            android:id="@+id/email"
+            android:id="@+id/nickname"
             android:layout_width="150dp"
             android:layout_height="48dp"
             android:gravity="center"
-            android:text="이메일로 찾기"
+            android:text="닉네임으로 찾기"
             android:textColor="#191919"
             android:textSize="13sp"
             android:textStyle="normal"
