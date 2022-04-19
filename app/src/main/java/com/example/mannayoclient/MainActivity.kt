@@ -25,10 +25,7 @@ class MainActivity : AppCompatActivity() {
                 //키보드 바꾸기..
                 R.id.phone -> binding.editphone.hint = "휴대폰번호를 입력해주세요.(‘-’제외)"
 
-
-
             }
         }
-
     }
 }
