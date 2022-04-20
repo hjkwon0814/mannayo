@@ -11,9 +11,20 @@
         <action
             android:id="@+id/action_idFragment_to_pwFragment"
             app:destination="@id/pwFragment" />
+        <action
+            android:id="@+id/action_idFragment_to_idFragment2"
+            app:destination="@id/idFragment2" />
     </fragment>
     <fragment
         android:id="@+id/pwFragment"
         android:name="com.example.mannayoclient.PwFragment"
-        android:label="PwFragment" />
+        android:label="PwFragment" >
+        <action
+            android:id="@+id/action_pwFragment_to_idFragment"
+            app:destination="@id/idFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/idFragment2"
+        android:name="com.example.mannayoclient.IdFragment2"
+        android:label="IdFragment2" />
 </navigation>
