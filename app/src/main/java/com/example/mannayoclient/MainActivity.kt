@@ -34,31 +34,50 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.button2.setOnClickListener {
-            val requestdata = reqdata(
+            val sendNicknameData = SendNicknameRequestData(
                 realname = binding.editTextTextPersonName.text.toString(),
                 nickname = binding.editphone.text.toString()
             )
 
-            val service = retrofit.create(mannayoService::class.java)
-            service.getMyAccount(requestdata).enqueue(object :Callback<resdata>
-            {
-                override fun onFailure(call: Call<resdata>, t: Throwable) {
-                    println("failed")
-                }
+            val sendPhoneNumberData = SendPhoneNumberRequestData(
+                realname = binding.editTextTextPersonName.text.toString(),
+                phoneNumber = binding.editphone.text.toString()
+            )
 
-                override fun onResponse(call: Call<resdata>, response: Response<resdata>) {
-                    if(response.isSuccessful) {
-                        println("***" + requestdata.realname + requestdata.nickname + "***")
-                        println("success")
-                        println(response.body())
-                        val reqresponse = response.body() as resdata
-                        binding.textView4.text = requestdata.realname + "님의 이메일 아이디는 " + reqresponse.email + " 입니다."
-                    }else {
-                        println("Response Failed")
-                        binding.textView4.text = "가입하신 이력이 없습니다."
+            val service = retrofit.create(mannayoService::class.java)
+            if (binding.radioGroup.checkedRadioButtonId == R.id.nickname) {
+                service.getMyAccountByNickname(sendNicknameData).enqueue(object : Callback<resdata> {
+                    override fun onFailure(call: Call<resdata>, t: Throwable) {
+                        binding.textView4.text = "인터넷 연결을 확인해 주세요!!"
                     }
-                }
-            })
+
+                    override fun onResponse(call: Call<resdata>, response: Response<resdata>) {
+                        if (response.isSuccessful) {
+                            val reqresponse = response.body() as resdata
+                            binding.textView4.text =
+                                sendNicknameData.realname + "님의 이메일 아이디는 " + reqresponse.email + " 입니다."
+                        } else {
+                            binding.textView4.text = "가입하신 이력이 없습니다."
+                        }
+                    }
+                })
+            }else if(binding.radioGroup.checkedRadioButtonId == R.id.phone) {
+                service.getMyAccountByPhoneNumber(sendPhoneNumberData).enqueue(object : Callback<resdata> {
+                    override fun onFailure(call: Call<resdata>, t: Throwable) {
+                        binding.textView4.text = "인터넷 연결을 확인해 주세요!!"
+                    }
+
+                    override fun onResponse(call: Call<resdata>, response: Response<resdata>) {
+                        if (response.isSuccessful) {
+                            val reqresponse = response.body() as resdata
+                            binding.textView4.text =
+                                sendPhoneNumberData.realname + "님의 이메일 아이디는 " + reqresponse.email + " 입니다."
+                        } else {
+                            binding.textView4.text = "가입하신 이력이 없습니다."
+                        }
+                    }
+                })
+            }
         }
 
 
@@ -84,15 +103,26 @@ class MainActivity : AppCompatActivity() {
 
 public interface  mannayoService {
     @POST("/members/findMyAccountByNickname")
-    fun getMyAccount(@Body reqdata: reqdata): Call<resdata>
+    fun getMyAccountByNickname(@Body reqdata: SendNicknameRequestData): Call<resdata>
+
+    @POST("/members/findMyAccountByPhoneNumber")
+    fun getMyAccountByPhoneNumber(@Body reqdata: SendPhoneNumberRequestData): Call<resdata>
 }
-data class reqdata (
+data class SendNicknameRequestData (
     @SerializedName("nickName")
     @Expose
     val nickname: String,
     @SerializedName("realName")
     @Expose
     val realname: String
+        )
+data class SendPhoneNumberRequestData (
+    @SerializedName("phoneNumber")
+    @Expose
+    val phoneNumber: String,
+    @SerializedName("realName")
+    @Expose
+    val realname : String
         )
 data class resdata(
     @SerializedName("email")
