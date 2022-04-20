@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                         binding.textView4.text = requestdata.realname + "님의 이메일 아이디는 " + reqresponse.email + " 입니다."
                     }else {
                         println("Response Failed")
-                        binding.textView4.text = requestdata.realname
+                        binding.textView4.text = "가입하신 이력이 없습니다."
                     }
                 }
             })
