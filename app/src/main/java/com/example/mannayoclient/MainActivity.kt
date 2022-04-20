@@ -6,6 +6,8 @@ import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mannayoclient.databinding.ActivityMainBinding
 import com.google.gson.Gson
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import com.google.gson.internal.GsonBuildConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,8 +47,16 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call<resdata>, response: Response<resdata>) {
-                    println("***" + requestdata.realname + requestdata.nickname + "***")
-                    println("success")
+                    if(response.isSuccessful) {
+                        println("***" + requestdata.realname + requestdata.nickname + "***")
+                        println("success")
+                        println(response.body())
+                        val reqresponse = response.body() as resdata
+                        binding.textView4.text = requestdata.realname + "님의 이메일 아이디는 " + reqresponse.email + " 입니다."
+                    }else {
+                        println("Response Failed")
+                        binding.textView4.text = requestdata.realname
+                    }
                 }
             })
         }
@@ -77,9 +87,15 @@ public interface  mannayoService {
     fun getMyAccount(@Body reqdata: reqdata): Call<resdata>
 }
 data class reqdata (
+    @SerializedName("nickName")
+    @Expose
     val nickname: String,
+    @SerializedName("realName")
+    @Expose
     val realname: String
         )
 data class resdata(
+    @SerializedName("email")
+    @Expose
     val email : String
 )
