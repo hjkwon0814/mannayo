@@ -3,8 +3,12 @@ package com.example.mannayoclient
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.ActivityMainBinding
+import com.example.mannayoclient.databinding.IdFragBinding
 import com.google.gson.Gson
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -15,6 +19,57 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+class IdFragment : Fragment(R.layout.id_frag){
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val binding2 = IdFragBinding.bind(view)
+        binding2.radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
+            when (checkedId) {
+
+
+                R.id.nickname -> {
+                    binding2.editphone.hint = "닉네임을 입력해주세요."
+                    binding2.editphone.inputType =
+                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL
+                }
+                R.id.phone -> {
+                    binding2.editphone.hint = "휴대폰번호를 입력해주세요.(‘-’제외)"
+                    binding2.editphone.inputType = InputType.TYPE_CLASS_PHONE
+                }
+            }
+        }
+
+        binding2.pwbutton.setOnClickListener {
+            findNavController().navigate(R.id.action_idFragment_to_pwFragment)
+        }
+
+    }
+}
+class PwFragment : Fragment(R.layout.pw_frag) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val binding3 = IdFragBinding.bind(view)
+        binding3.radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
+            when (checkedId) {
+                R.id.email -> {binding3.editphone.hint = "이메일을 입력하세요."
+                    binding3.editphone.inputType =
+                        InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS}
+                R.id.phone -> {binding3.editphone.hint = "휴대폰번호를 입력해주세요.(‘-’제외)"
+                    binding3.editphone.inputType = InputType.TYPE_CLASS_PHONE}
+
+
+            }
+        }
+
+        binding3.idbutton.setOnClickListener {
+            findNavController().navigate(R.id.action_idFragment_to_pwFragment)
+        }
+
+    }
+
+}
 
 
 class MainActivity : AppCompatActivity() {

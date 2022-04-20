@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav"
+    app:startDestination="@id/idFragment">
+
+    <fragment
+        android:id="@+id/idFragment"
+        android:name="com.example.mannayoclient.IdFragment"
+        android:label="IdFragment" >
+        <action
+            android:id="@+id/action_idFragment_to_pwFragment"
+            app:destination="@id/pwFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pwFragment"
+        android:name="com.example.mannayoclient.PwFragment"
+        android:label="PwFragment" />
+</navigation>
