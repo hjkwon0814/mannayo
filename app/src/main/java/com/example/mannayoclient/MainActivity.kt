@@ -5,6 +5,7 @@ import android.text.InputType
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.ActivityMainBinding
 import com.example.mannayoclient.databinding.IdFragBinding
@@ -13,11 +14,13 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.*
+
 class IdFragment : Fragment(R.layout.id_frag){
+    lateinit var binding2: IdFragBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding2 = IdFragBinding.bind(view)
+        binding2 = IdFragBinding.bind(view)
 
         binding2.radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             when (checkedId) {
@@ -35,16 +38,19 @@ class IdFragment : Fragment(R.layout.id_frag){
             }
         }
 
+
         binding2.pwbutton.setOnClickListener {
-            findNavController().navigate(R.id.action_idFragment_to_pwFragment)
-        }
+                findNavController().navigate(R.id.action_idFragment_to_pwFragment)
+         }
         binding2.submit.setOnClickListener {
             findNavController().navigate(R.id.action_idFragment_to_idFragment2)
         }
 
+        }
+
       }
 
-    }
+
 
 class PwFragment : Fragment(R.layout.pw_frag) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -83,7 +89,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
+
         setContentView(binding.root)
+
 
 
 
