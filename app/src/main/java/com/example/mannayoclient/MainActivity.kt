@@ -17,6 +17,8 @@ import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.*
 
+
+
 class IdFragment : Fragment(R.layout.id_frag){
     lateinit var binding2: IdFragBinding
     lateinit var mainActivity: MainActivity
@@ -141,8 +143,6 @@ class PWFragment2 : Fragment(R.layout.pw2_frag) {
         binding4.idbutton.setOnClickListener {
             mainActivity.onFragmentChange(0)
         }
-
-
     }
 
 }
@@ -154,7 +154,7 @@ class LoginFragment : Fragment(R.layout.login_frag)  {
 
         binding5 = LoginFragBinding.bind(view)
 
-        binding5.textView2.setOnClickListener {
+        binding5.submit.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_idFragment)
         }
 
@@ -178,19 +178,13 @@ class MainActivity : AppCompatActivity() {
                 replace(R.id.fragment, PwFragment::class.java, null)
             }
         }
-
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-
         setContentView(binding.root)
-
-
-
     }
+
 }
 
 
