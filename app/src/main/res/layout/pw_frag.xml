@@ -10,9 +10,9 @@
 
     <EditText
         android:id="@+id/editPhone2"
-        android:layout_width="316dp"
+        android:layout_width="312dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="10dp"
         android:background="#f1f1f5"
         android:ems="10"
         android:hint="휴대폰번호를 입력해주세요.(‘-’제외)"
@@ -21,17 +21,16 @@
         android:textColor="#999999"
         android:textSize="14sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editName"
+        />
 
     <EditText
         android:id="@+id/editName"
-        android:layout_width="316dp"
+        android:layout_width="312dp"
         android:layout_height="52dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
         android:background="#f1f1f5"
         android:ems="10"
         android:hint="이름을 입력해주세요."
@@ -40,17 +39,15 @@
         android:textColor="#999999"
         android:textSize="14sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/editPhone2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <TextView
         android:id="@+id/pwComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="83dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="83dp"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="6sp"
         android:text="비밀번호를 잃어버리셨나요?\n하단의 정보를 상세히 입력하세요."
@@ -65,12 +62,9 @@
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="41dp"
-        android:layout_marginEnd="66dp"
+        android:layout_marginTop="38dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editName"
         app:layout_constraintTop_toBottomOf="@+id/pwComment">
 
         <RadioButton
@@ -103,7 +97,6 @@
         android:id="@+id/idbutton"
         android:layout_width="156dp"
         android:layout_height="48dp"
-        android:layout_marginStart="25dp"
         android:background="@drawable/rectangle_16_2"
         android:text="아이디 찾기"
         app:layout_constraintBaseline_toBaselineOf="@+id/pwbutton"
@@ -116,11 +109,8 @@
         android:layout_width="156dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="40dp"
         android:background="@drawable/rectangle_16"
         android:text="비밀번호 찾기"
-        app:layout_constraintBottom_toTopOf="@+id/pwComment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/idbutton"
         app:layout_constraintTop_toTopOf="parent" />
@@ -129,9 +119,6 @@
         android:id="@+id/submit"
         android:layout_width="312dp"
         android:layout_height="52dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="172dp"
         android:background="#ffa463"
         android:gravity="center"
         android:stateListAnimator="@null"
@@ -139,9 +126,10 @@
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPhone2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

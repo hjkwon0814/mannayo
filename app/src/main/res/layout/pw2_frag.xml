@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="683dp"
+    android:background="#ffffff"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/idbutton"
+        android:layout_width="156dp"
+        android:layout_height="48dp"
+        android:background="@drawable/rectangle_16_2"
+        android:text="아이디 찾기"
+        app:layout_constraintBaseline_toBaselineOf="@+id/pwbutton"
+        app:layout_constraintEnd_toStartOf="@+id/pwbutton"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/pwbutton"
+        android:layout_width="156dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rectangle_16"
+        android:text="비밀번호 찾기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/idbutton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/pwComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="6sp"
+        android:text="다른 아이디나 사이트에서 사용한 적 없는\n 안전한 비밀번호로 변경해주세요."
+        android:textColor="#767676"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="112dp" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="312dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="40dp"
+        android:background="#ffa463"
+        android:gravity="center"
+        android:stateListAnimator="@null"
+        android:text="확인"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPw2" />
+
+    <EditText
+        android:id="@+id/editPw"
+        android:layout_width="312dp"
+        android:layout_height="52dp"
+        android:background="#f1f1f5"
+        android:ems="10"
+        android:layout_marginTop="40dp"
+        android:hint="새 비밀번호를 입력해주세요."
+        android:inputType="textPersonName"
+        android:paddingStart="12dp"
+        android:textColor="#999999"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pwComment" />
+
+    <EditText
+        android:id="@+id/editPw2"
+        android:layout_width="312dp"
+        android:layout_height="52dp"
+        android:background="#f1f1f5"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:hint="비밀번호를 다시 한번 입력해주세요."
+        android:inputType="phone"
+        android:paddingStart="12dp"
+        android:textColor="#999999"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPw" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="312dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="24dp"
+        android:text="  •  8~12자로 영문, 숫자, 특수문자를 사용하실 수 있습니다."
+        android:textColor="#767676"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/submit"
+        app:layout_constraintTop_toBottomOf="@+id/submit" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="312dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="3dp"
+        android:text="  •  한글과 공백은 사용하실 수 없습니다."
+        android:textColor="#767676"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="312dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="3dp"
+        android:text="  •  영문 대소문자를 구분하니 꼭 확인해주세요."
+        android:textColor="#767676"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="새 비밀번호를 설정해주세요."
+        app:layout_constraintBottom_toTopOf="@+id/pwComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
