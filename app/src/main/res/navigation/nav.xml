@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/PWFragment2"
-        android:name="com.example.mannayoclient.PWFragment2"
+        android:name="com.example.mannayoclient.PwFragment2"
         android:label="PWFragment2" />
     <fragment
         android:id="@+id/loginFragment"

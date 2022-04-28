@@ -48,31 +48,4 @@ class MainActivity : AppCompatActivity() {
 
 
 
-public interface  mannayoService {
-    @POST("/members/findMyAccountByNickname")
-    fun getMyAccountByNickname(@Body reqdata: SendNicknameRequestData): Call<resdata>
 
-    @POST("/members/findMyAccountByPhoneNumber")
-    fun getMyAccountByPhoneNumber(@Body reqdata: SendPhoneNumberRequestData): Call<resdata>
-}
-data class SendNicknameRequestData (
-    @SerializedName("nickName")
-    @Expose
-    val nickname: String,
-    @SerializedName("realName")
-    @Expose
-    val realname: String
-        )
-data class SendPhoneNumberRequestData (
-    @SerializedName("phoneNumber")
-    @Expose
-    val phoneNumber: String,
-    @SerializedName("realName")
-    @Expose
-    val realname : String
-        )
-data class resdata(
-    @SerializedName("email")
-    @Expose
-    val email : String
-)

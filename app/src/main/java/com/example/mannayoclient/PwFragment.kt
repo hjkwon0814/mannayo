@@ -37,7 +37,7 @@ class PwFragment : Fragment(R.layout.pw_frag) {
             mainActivity.onFragmentChange(0)
         }
 
-        binding.submit.setOnClickListener {
+        binding.imageView2.setOnClickListener {
             findNavController().navigate(R.id.action_pwFragment_to_PWFragment2)
         }
 

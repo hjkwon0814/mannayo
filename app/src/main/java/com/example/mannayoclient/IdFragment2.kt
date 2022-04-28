@@ -20,6 +20,8 @@ class IdFragment2 : Fragment(R.layout.id2_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = Id2FragBinding.bind(view)
 
+        binding.loginEmail.text = arguments?.getString("email")
+
         binding.pwbutton.setOnClickListener {
             mainActivity.onFragmentChange(1)
         }
