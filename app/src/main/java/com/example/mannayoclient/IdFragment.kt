@@ -27,7 +27,7 @@ class IdFragment : Fragment(R.layout.id_frag) {
             when (checkedId) {
 
 
-                R.id.findEmail -> {
+                R.id.findNickname -> {
                     binding.editPhone.hint = "닉네임을 입력해주세요."
                     binding.editPhone.inputType =
                         InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL

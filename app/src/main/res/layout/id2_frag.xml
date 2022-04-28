@@ -15,6 +15,12 @@
         android:layout_marginStart="25dp"
         android:background="@drawable/rectangle_16"
         android:text="아이디 찾기"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:textColor="#ffa463"
+        android:gravity="center"
+        android:padding="3dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/pwbutton"
         app:layout_constraintEnd_toStartOf="@+id/pwbutton"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -26,27 +32,17 @@
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="25dp"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:textColor="#767676"
         android:background="@drawable/rectangle_16_2"
         android:text="비밀번호 찾기"
+        android:gravity="center"
+        android:padding="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/idbutton"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="312dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="32dp"
-        android:background="#ffa463"
-        android:gravity="center"
-        android:stateListAnimator="@null"
-        android:text="로그인 하러 가기"
-        android:textColor="#ffffff"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
     <TextView
         android:id="@+id/loginEmail"
@@ -59,15 +55,15 @@
         android:gravity="center"
         android:lineSpacingExtra="4sp"
         android:paddingStart="12dp"
-        android:text="email"
+        android:text="mannayo22@naver.com"
         android:textColor="#191919"
+        android:fontFamily="@font/noto_sans_kr"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pwbutton"
-        tools:text="mannayo22@naver.com" />
+        app:layout_constraintTop_toBottomOf="@+id/pwbutton" />
 
     <TextView
         android:id="@+id/successComment"
@@ -78,11 +74,23 @@
         android:textStyle="normal"
         android:textSize="16sp"
         android:textColor="#191919"
+        android:fontFamily="@font/noto_sans_kr_medium"
         android:lineSpacingExtra="4sp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pwbutton" />
+
+    <ImageView
+        android:id="@+id/join_sumbit"
+        android:layout_width="314dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmail"
+        app:srcCompat="@drawable/component_7" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
