@@ -4,10 +4,12 @@ import android.content.Context
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.IdFragBinding
+import com.example.mannayoclient.databinding.ToolbarBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
@@ -30,6 +32,8 @@ class IdFragment : Fragment(R.layout.id_frag) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         val retrofit = Retrofit.Builder()
             .baseUrl("http://192.168.0.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
@@ -38,6 +42,10 @@ class IdFragment : Fragment(R.layout.id_frag) {
         val service = retrofit.create(mannayoService::class.java)
 
         binding = IdFragBinding.bind(view)
+
+        //제목 변경
+        val title = mainActivity.findViewById<TextView>(R.id.textview)
+        title.setText("계정 찾기")
 
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             when (checkedId) {
@@ -56,8 +64,11 @@ class IdFragment : Fragment(R.layout.id_frag) {
                 }
             }
         }
-        binding.pwbutton.setOnClickListener {
+        /*binding.pwbutton.setOnClickListener {
             mainActivity.onFragmentChange(1)
+        }*/
+        binding.pwbutton.setOnClickListener {
+            findNavController().navigate(R.id.action_idFragment_to_pwFragment)
         }
 
 

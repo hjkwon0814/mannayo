@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.PwFragBinding
@@ -21,6 +22,10 @@ class PwFragment : Fragment(R.layout.pw_frag) {
 
         val binding = PwFragBinding.bind(view)
 
+        //제목 변경
+        val title = mainActivity.findViewById<TextView>(R.id.textview)
+        title.setText("계정 찾기")
+
         binding.radioGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
             when (checkedId) {
                 R.id.findEmail -> {binding.editPhone2.hint = "이메일을 입력하세요."
@@ -33,9 +38,14 @@ class PwFragment : Fragment(R.layout.pw_frag) {
             }
         }
 
-        binding.idbutton.setOnClickListener {
+        /*binding.idbutton.setOnClickListener {
             mainActivity.onFragmentChange(0)
+        }*/
+
+        binding.idbutton.setOnClickListener {
+            findNavController().navigate(R.id.action_pwFragment_to_idFragment)
         }
+
 
         binding.imageView2.setOnClickListener {
             findNavController().navigate(R.id.action_pwFragment_to_PWFragment2)

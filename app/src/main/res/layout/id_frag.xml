@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
 
-    <EditText
+    <com.example.mannayoclient.TextClear
         android:id="@+id/editPhone"
         android:layout_width="312dp"
         android:layout_height="52dp"
@@ -19,7 +19,6 @@
         android:hint="휴대폰번호를 입력해주세요.(‘-’제외)"
         android:inputType="phone"
         android:paddingLeft="12dp"
-        android:textColorHint="#999999"
         android:textColor="#191919"
         android:textSize="14sp"
         android:textStyle="normal"
@@ -28,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editName" />
 
 
-    <EditText
+    <com.example.mannayoclient.TextClear
         android:id="@+id/editName"
         android:layout_width="312dp"
         android:layout_height="52dp"
@@ -39,7 +38,6 @@
         android:hint="이름을 입력해주세요."
         android:inputType="textPersonName"
         android:paddingStart="12dp"
-        android:textColorHint="#999999"
         android:textColor="#191919"
         android:textSize="14sp"
         android:textStyle="normal"

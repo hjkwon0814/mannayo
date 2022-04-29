@@ -13,9 +13,19 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
         binding = LoginFragBinding.bind(view)
 
+        //아이디/비밀번호 찾기
         binding.idPw.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_idFragment)
         }
+
+        //회원가입 >
+        binding.joinButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
+        }
+        binding.joinButton2.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
+        }
+
 
     }
 }

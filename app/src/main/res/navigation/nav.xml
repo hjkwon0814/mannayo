@@ -12,6 +12,11 @@
         <action
             android:id="@+id/action_idFragment_to_idFragment2"
             app:destination="@id/idFragment2" />
+        <action
+            android:id="@+id/action_idFragment_to_pwFragment"
+            app:destination="@id/pwFragment"
+            app:popUpTo="@id/idFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/pwFragment"
@@ -19,7 +24,12 @@
         android:label="PwFragment" >
         <action
             android:id="@+id/action_pwFragment_to_PWFragment2"
-            app:destination="@id/PWFragment2" />
+            app:destination="@id/pwFragment2" />
+        <action
+            android:id="@+id/action_pwFragment_to_idFragment"
+            app:destination="@id/idFragment"
+            app:popUpTo="@id/pwFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/idFragment2"
@@ -32,9 +42,9 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/PWFragment2"
+        android:id="@+id/pwFragment2"
         android:name="com.example.mannayoclient.PwFragment2"
-        android:label="PWFragment2" />
+        android:label="PwFragment2" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.mannayoclient.LoginFragment"
@@ -42,5 +52,20 @@
         <action
             android:id="@+id/action_loginFragment_to_idFragment"
             app:destination="@id/idFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_joinFragment"
+            app:destination="@id/joinFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/joinFragment"
+        android:name="com.example.mannayoclient.JoinFragment"
+        android:label="JoinFragment" >
+        <action
+            android:id="@+id/action_joinFragment_to_join2Fragment"
+            app:destination="@id/join2Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/join2Fragment"
+        android:name="com.example.mannayoclient.JoinFragment2"
+        android:label="Join2Fragment" />
 </navigation>

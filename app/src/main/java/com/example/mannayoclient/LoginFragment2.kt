@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.mannayoclient.databinding.Id2FragBinding
+import com.example.mannayoclient.databinding.Login2FragBinding
 
-class IdFragment2 : Fragment(R.layout.id2_frag) {
-    lateinit var binding: Id2FragBinding
+
+class LoginFragment2: Fragment(R.layout.login2_frag) {
+    lateinit var binding: Login2FragBinding
     lateinit var mainActivity: MainActivity
 
 
@@ -17,19 +18,14 @@ class IdFragment2 : Fragment(R.layout.id2_frag) {
         mainActivity = context as MainActivity
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-        binding = Id2FragBinding.bind(view)
 
-        //제목 변경
-        val title = mainActivity.findViewById<TextView>(R.id.textview)
-        title.setText("계정 찾기")
+        binding = Login2FragBinding.bind(view)
 
-        binding.loginEmail.text = arguments?.getString("email")
 
-        binding.pwbutton.setOnClickListener {
-            mainActivity.onFragmentChange(1)
-        }
+
+
+
 
     }
 }

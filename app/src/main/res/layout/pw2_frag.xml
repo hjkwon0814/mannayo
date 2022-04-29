@@ -41,7 +41,7 @@
         android:textSize="14sp"
         android:textStyle="normal"/>
 
-    <EditText
+    <com.example.mannayoclient.TextClear
         android:id="@+id/editPw"
         android:layout_width="312dp"
         android:layout_height="52dp"
@@ -53,14 +53,13 @@
         android:layout_marginTop="40dp"
         android:inputType="textPersonName"
         android:paddingStart="12dp"
-        android:textColorHint="#999999"
         android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <EditText
+    <com.example.mannayoclient.TextClear
         android:id="@+id/editPw2"
         android:layout_width="312dp"
         android:layout_height="52dp"
@@ -70,7 +69,6 @@
         android:hint="비밀번호를 다시 한번 입력해주세요."
         android:inputType="phone"
         android:paddingStart="12dp"
-        android:textColorHint="#999999"
         android:textColor="#191919"
         android:textSize="14sp"
         android:textStyle="normal"

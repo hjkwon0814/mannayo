@@ -1,24 +1,16 @@
 package com.example.mannayoclient
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.mannayoclient.databinding.Pw2FragBinding
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.databinding.JoinFragBinding
 
-class PwFragment2 : Fragment(R.layout.pw2_frag) {
-    lateinit var binding: Pw2FragBinding
-
-
+class JoinFragment : Fragment(R.layout.join_frag) {
+    lateinit var binding: JoinFragBinding
     lateinit var mainActivity: MainActivity
-
 
 
     override fun onAttach(context: Context) {
@@ -26,22 +18,20 @@ class PwFragment2 : Fragment(R.layout.pw2_frag) {
         mainActivity = context as MainActivity
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-        binding = Pw2FragBinding.bind(view)
+
+        binding = JoinFragBinding.bind(view)
 
         //제목 변경
         val title = mainActivity.findViewById<TextView>(R.id.textview)
-        title.setText("계정 찾기")
+        title.setText("회원가입")
 
 
 
 
-        binding.idbutton.setOnClickListener {
-            mainActivity.onFragmentChange(0)
+        binding.joinSubmit.setOnClickListener {
+            findNavController().navigate(R.id.action_joinFragment_to_join2Fragment)
         }
 
-
     }
-
 }
