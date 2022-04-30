@@ -34,7 +34,6 @@ class JoinFragment : Fragment(R.layout.join_frag) {
         binding.joinSubmit.setOnClickListener {
             findNavController().navigate(R.id.action_joinFragment_to_join2Fragment)
         }
-
     }
 }
 

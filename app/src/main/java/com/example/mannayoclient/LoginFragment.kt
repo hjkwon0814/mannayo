@@ -9,12 +9,18 @@ import com.example.mannayoclient.databinding.LoginFragBinding
 
 class LoginFragment : Fragment(R.layout.login_frag) {
     lateinit var binding: LoginFragBinding
+    lateinit var mainActivity: MainActivity
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mainActivity = context as MainActivity
+
         binding = LoginFragBinding.bind(view)
 
+
+        val title = mainActivity.findViewById<TextView>(R.id.textview)
+        title.setText("로그인")
 
         //아이디/비밀번호 찾기
         binding.idPw.setOnClickListener {
