@@ -1,9 +1,12 @@
 package com.example.mannayoclient
 
+import android.app.DatePickerDialog
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
@@ -20,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
 import java.time.LocalDate
+import java.util.*
 
 class JoinFragment : Fragment(R.layout.join_frag) {
     lateinit var binding: JoinFragBinding
@@ -40,7 +44,12 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
         val service = retrofit.create(mannayoService::class.java)
 
-
+        binding.editTextDate.setOnClickListener {
+            val today = GregorianCalendar()
+            val year: Int = today.get(Calendar.YEAR)
+            val month: Int = today.get(Calendar.MONTH)
+            val date : Int = today.get(Calendar.DATE)
+        }
 
 
 
