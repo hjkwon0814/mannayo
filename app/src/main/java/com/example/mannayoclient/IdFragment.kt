@@ -95,8 +95,17 @@ class IdFragment : Fragment(R.layout.id_frag) {
                                     bundle
                                 )
                             } else {
-                                Toast.makeText(mainActivity, "이름,닉네임과 일치하는 이메일이 없습니다!", Toast.LENGTH_SHORT)
-                                    .show()
+                                if(binding.editName.text.isNullOrEmpty()) {
+                                    Toast.makeText(mainActivity, "이름을 입력하세요!", Toast.LENGTH_SHORT)
+                                        .show()
+                                }else if(binding.editPhone.text.isNullOrEmpty()) {
+                                    Toast.makeText(mainActivity, "닉네임을 입력하세요!", Toast.LENGTH_SHORT)
+                                        .show()
+                                }else {
+                                    Toast.makeText(mainActivity, "이름,닉네임과 일치하는 이메일이 없습니다!", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+
                             }
                         }
                     })
@@ -130,14 +139,6 @@ class IdFragment : Fragment(R.layout.id_frag) {
             }
         }
     }
-}
-
-public interface  mannayoService {
-    @POST("/members/findMyAccountByNickname")
-    fun getMyAccountByNickname(@Body reqdata: SendNicknameRequestData): Call<resdata>
-
-    @POST("/members/findMyAccountByPhoneNumber")
-    fun getMyAccountByPhoneNumber(@Body reqdata: SendPhoneNumberRequestData): Call<resdata>
 }
 
 data class SendNicknameRequestData (
