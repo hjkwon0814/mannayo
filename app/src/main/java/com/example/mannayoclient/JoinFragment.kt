@@ -1,14 +1,19 @@
 package com.example.mannayoclient
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.util.TypedValue
+import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.DatePicker
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,20 +25,21 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
-import java.time.LocalDate
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class JoinFragment : Fragment(R.layout.join_frag) {
     lateinit var binding: JoinFragBinding
     lateinit var mainActivity: MainActivity
 
 
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mainActivity = context as MainActivity
     }
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = JoinFragBinding.bind(view)
@@ -44,11 +50,108 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
         val service = retrofit.create(mannayoService::class.java)
 
-        binding.editTextDate.setOnClickListener {
-            val today = GregorianCalendar()
-            val year: Int = today.get(Calendar.YEAR)
-            val month: Int = today.get(Calendar.MONTH)
-            val date : Int = today.get(Calendar.DATE)
+
+        //EditText 외에 다른곳을 누르면 키보드 내려가기 (MainActivity에서 설정하였으나 JoinFragment에서는 먹히지 않아 따로 다시 작성함)
+        fun hideKeyboard() {
+            val mInputMethodManager =
+                requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            mInputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
+        }
+
+        binding.layout.setOnClickListener{
+            hideKeyboard()
+      }
+
+
+       //이메일 콤보박스
+        val items = resources.getStringArray(R.array.my_array)
+
+        val myAapter = object : ArrayAdapter<String>(requireContext(), R.layout.item_spinner) {
+
+            @SuppressLint("CutPasteId")
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+
+                val v = super.getView(position, convertView, parent)
+
+                if (position == count) {
+                    (v.findViewById<View>(R.id.tvItemSpinner) as TextView).text = ""
+                    (v.findViewById<View>(R.id.tvItemSpinner) as TextView).hint = getItem(count)
+                }
+
+                return v
+            }
+
+            override fun getCount(): Int {
+                return super.getCount() - 1
+            }
+
+        }
+
+
+        myAapter.addAll(items.toMutableList())
+
+        myAapter.add("선택")
+
+        binding.spinner.adapter = myAapter
+
+        binding.spinner.setSelection(myAapter.count)
+
+
+        fun dipToPixels(dipValue: Float): Float {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            dipValue,
+            resources.displayMetrics
+    )
+}
+        binding.spinner.dropDownVerticalOffset = dipToPixels(52f).toInt()
+
+
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+
+                when (position) {
+                    0 -> {
+
+                    }
+                    1 -> {
+
+                    }
+                    //...
+                    else -> {
+
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                Log.d("MyTag", "onNothingSelected")
+            }
+        }
+
+
+
+        //달력 그림 클릭시 날짜선택하기
+       binding.dateclick.setOnClickListener{
+
+           val birth = GregorianCalendar()
+            val year: Int = birth.get(Calendar.YEAR)
+            val month: Int = birth.get(Calendar.MONTH)
+            val date : Int = birth.get(Calendar.DATE)
+
+            val dlg = DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
+                override fun onDateSet(view: DatePicker?, year: Int, month: Int, date: Int
+                ) {
+
+                    val selectedMonth = SimpleDateFormat("MM", Locale.getDefault()).format(birth.time)
+                    val selectedDate = SimpleDateFormat("dd", Locale.getDefault()).format(birth.time)
+                    binding.editTextDate.setText("${year}")
+                    binding.editTextDate2.setText(selectedMonth)
+                    binding.editTextDate3.setText(selectedDate)
+
+                }
+            }, year, month, date)
+           dlg.show()
         }
 
 

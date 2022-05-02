@@ -36,10 +36,13 @@ class PwFragment2 : Fragment(R.layout.pw2_frag) {
 
 
 
-
         binding.idbutton.setOnClickListener {
-            mainActivity.onFragmentChange(0)
+            findNavController().navigate(R.id.action_pwFragment2_to_idFragment)
         }
+
+        /*binding.idbutton.setOnClickListener {
+            mainActivity.onFragmentChange(0)
+        }*/
 
 
     }

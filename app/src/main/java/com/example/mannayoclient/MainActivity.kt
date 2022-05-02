@@ -2,21 +2,12 @@ package com.example.mannayoclient
 
 import android.content.Context
 import android.os.Bundle
-import android.text.InputType
-import android.text.TextUtils.replace
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import android.view.*
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.*
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-import retrofit2.Call
-import retrofit2.http.*
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -41,6 +32,16 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+    //EditText 외에 다른곳을 누르면 키보드 내려가기
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE)as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken,0)
+        return true
+    }
+
+
 
 }
 

@@ -26,7 +26,9 @@ class JoinFragment2: Fragment(R.layout.join2_frag) {
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("회원가입")
 
-
+        binding.joinSumbit.setOnClickListener {
+            findNavController().navigate(R.id.action_join2Fragment_to_loginFragment)
+        }
 
 
 
