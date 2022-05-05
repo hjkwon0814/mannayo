@@ -12,6 +12,7 @@
         layout="@layout/toolbar" />
 
 
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

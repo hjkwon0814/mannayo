@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,11 +23,22 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/login_state"
         app:layout_constraintEnd_toEndOf="@+id/login_pw" />
 
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="312dp"
+        android:layout_height="2dp"
+        android:background="#ed1c24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/login_pw" />
+
     <RadioButton
         android:id="@+id/login_state"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="2dp"
         android:checked="true"
         android:fontFamily="@font/noto_sans_kr"
         android:gravity="center"
@@ -34,7 +48,7 @@
         android:textStyle="normal"
         android:theme="@style/RadioButtonStyle"
         app:layout_constraintStart_toStartOf="@+id/login_pw"
-        app:layout_constraintTop_toBottomOf="@+id/login_pw" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.example.mannayoclient.TextClear
         android:id="@+id/login_id"
@@ -77,14 +91,15 @@
         android:layout_width="46dp"
         android:layout_height="25dp"
         android:layout_marginStart="4dp"
+        android:layout_marginTop="191dp"
         android:fontFamily="@font/noto_sans_kr"
         android:gravity="center_horizontal"
         android:text="회원가입"
         android:textColor="#191919"
         android:textSize="12sp"
         android:textStyle="normal"
-        app:layout_constraintBaseline_toBaselineOf="@+id/join_text"
-        app:layout_constraintStart_toEndOf="@+id/join_text" />
+        app:layout_constraintStart_toEndOf="@+id/join_text"
+        app:layout_constraintTop_toBottomOf="@+id/google_text" />
 
     <ImageView
         android:id="@+id/google_image"
@@ -102,6 +117,7 @@
         android:id="@+id/join_text"
         android:layout_width="122dp"
         android:layout_height="25dp"
+        android:layout_marginTop="123dp"
         android:layout_marginEnd="63dp"
         android:layout_marginBottom="40dp"
         android:fontFamily="@font/noto_sans_kr"
@@ -112,16 +128,19 @@
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/google_image" />
 
     <ImageView
         android:id="@+id/join_button2"
         android:layout_width="18dp"
         android:layout_height="25dp"
+        android:layout_marginTop="260dp"
         android:layout_marginBottom="34dp"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/join_button"
+        app:layout_constraintTop_toBottomOf="@+id/login_submit"
         app:srcCompat="@drawable/expand_right" />
 
     <ImageView
@@ -138,11 +157,11 @@
         android:id="@+id/login_submit"
         android:layout_width="314dp"
         android:layout_height="57dp"
-        android:layout_marginTop="80dp"
         android:scaleType="centerCrop"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_pw"
+        app:layout_constraintTop_toBottomOf="@+id/login_state"
         app:srcCompat="@drawable/component_11" />
 
     <ImageView
@@ -154,6 +173,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_submit"
         app:srcCompat="@drawable/google_text" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="228dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="12.2dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/login_pw"
+        app:layout_constraintTop_toBottomOf="@+id/login_pw"
+        app:srcCompat="@drawable/pw_id" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

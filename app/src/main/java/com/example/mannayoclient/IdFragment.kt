@@ -3,13 +3,14 @@ package com.example.mannayoclient
 import android.content.Context
 import android.os.Bundle
 import android.text.InputType
+import android.text.method.Touch.scrollTo
 import android.view.View
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.IdFragBinding
-import com.example.mannayoclient.databinding.ToolbarBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
@@ -17,12 +18,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.POST
+
 
 class IdFragment : Fragment(R.layout.id_frag) {
     lateinit var binding: IdFragBinding
     lateinit var mainActivity: MainActivity
+    private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,6 +43,7 @@ class IdFragment : Fragment(R.layout.id_frag) {
         val service = retrofit.create(mannayoService::class.java)
 
         binding = IdFragBinding.bind(view)
+
 
         //제목 변경
         val title = mainActivity.findViewById<TextView>(R.id.textview)
@@ -139,6 +141,7 @@ class IdFragment : Fragment(R.layout.id_frag) {
             }
         }
     }
+
 }
 
 data class SendNicknameRequestData (
