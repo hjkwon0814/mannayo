@@ -50,6 +50,9 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
         val service = retrofit.create(mannayoService::class.java)
 
+        binding.editTextDate.setEnabled(false)
+        binding.editTextDate2.setEnabled(false)
+        binding.editTextDate3.setEnabled(false)
 
         //EditText 외에 다른곳을 누르면 키보드 내려가기 (MainActivity에서 설정하였으나 JoinFragment에서는 먹히지 않아 따로 다시 작성함)
         fun hideKeyboard() {
@@ -142,7 +145,7 @@ class JoinFragment : Fragment(R.layout.join_frag) {
             val dlg = DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
                 override fun onDateSet(view: DatePicker?, year: Int, month: Int, date: Int
                 ) {
-
+                    val selectedYear = SimpleDateFormat("yyyy", Locale.getDefault()).format(birth.time)
                     val selectedMonth = SimpleDateFormat("MM", Locale.getDefault()).format(birth.time)
                     val selectedDate = SimpleDateFormat("dd", Locale.getDefault()).format(birth.time)
                     binding.editTextDate.setText("${year}")
