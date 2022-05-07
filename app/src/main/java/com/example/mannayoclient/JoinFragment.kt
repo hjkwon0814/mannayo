@@ -8,13 +8,11 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.JoinFragBinding
@@ -27,6 +25,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.regex.Pattern
 
 
 class JoinFragment : Fragment(R.layout.join_frag) {
@@ -164,6 +163,11 @@ class JoinFragment : Fragment(R.layout.join_frag) {
         title.setText("회원가입")
 
         binding.joinSubmit.setOnClickListener {
+
+
+
+
+
             val request = signUpRequest(
                 email = binding.editTextTextEmailAddress.text.toString(),
                 password = binding.editTextTextPassword.text.toString(),
@@ -175,18 +179,31 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 accountTypeEnum = "MEMBER",
                 loginTypeEnum = "EMAIL"
             )
-            if(binding.editTextTextPassword.text.toString() != binding.editTextTextPassword2.text.toString()) {
-                Toast.makeText(mainActivity, "비밀번호가 다릅니다!!!", Toast.LENGTH_SHORT)
-                    .show()
-            }else if(!binding.editTextTextEmailAddress.text.isNullOrEmpty() && !binding.editTextTextPassword.text.isNullOrEmpty()
+
+            //비밀번호 체크하는 함수 (숫자, 문자, 특수문자 포함 8~12자리 이내)
+            fun isPasswordFormat(password: String): Boolean {
+                return password.matches("^.*(?=^.{8,12}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$".toRegex())
+            }
+
+            //한글 이름 2~4자 이내, 영문 이름 2~10자 이내 : 띄어쓰기(\s)가 들어가며 First, Last Name 형식, 한글 또는 영문 사용하기(혼용X)
+            fun isNameFormat(name: String): Boolean {
+                return name.matches("^[가-힣]{2,4}|[a-zA-Z]{2,10}\\s[a-zA-Z]{2,10}\$".toRegex())
+            }
+
+            if(!binding.editTextTextEmailAddress.text.isNullOrEmpty() && !binding.editTextTextPassword.text.isNullOrEmpty()
                 && !binding.editTextTextPassword2.text.isNullOrEmpty() && !binding.editTextTextPersonName.text.isNullOrEmpty()
                 && !binding.editTextDate.text.isNullOrEmpty() && !binding.editTextDate2.text.isNullOrEmpty() && !binding.editTextDate3.text.isNullOrEmpty()
                 && !binding.editTextNumber.text.isNullOrEmpty()) {
                 service.signUp(request).enqueue(object : Callback<resSignUpData> {
-                    override fun onResponse(call: Call<resSignUpData>, response: Response<resSignUpData>) {
+
+                    override fun onResponse(
+                        call: Call<resSignUpData>,
+                        response: Response<resSignUpData>
+                    ) {
                         val reqresponse = response.body() as resSignUpData
 
                         if (response.isSuccessful && reqresponse.response == "성공") {
+                            //버튼 색깔 바꾸기
                             findNavController().navigate(R.id.action_joinFragment_to_join2Fragment)
                         } else {
 
@@ -199,6 +216,7 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                     }
 
                 })
+
             }else if(binding.editTextTextEmailAddress.text.isNullOrEmpty()) {
                 Toast.makeText(mainActivity, "이메일을 입력하세요!", Toast.LENGTH_SHORT)
                     .show()
@@ -220,6 +238,20 @@ class JoinFragment : Fragment(R.layout.join_frag) {
             }else if(binding.editTextNumber.text.isNullOrEmpty()) {
                 Toast.makeText(mainActivity, "휴대전화번호 입력하세요!", Toast.LENGTH_SHORT)
                     .show()
+            }
+            else if(binding.editTextTextPassword.text.toString() != binding.editTextTextPassword2.text.toString()) {
+                Toast.makeText(mainActivity, "비밀번호가 다릅니다!!!", Toast.LENGTH_SHORT)
+                    .show()
+                binding.view2.visibility = View.VISIBLE
+                binding.textView6.visibility = View.VISIBLE
+
+            } else if (!isPasswordFormat(binding.editTextTextPassword.text.toString())) {
+                binding.view.visibility = View.VISIBLE
+                binding.textView4.visibility = View.VISIBLE
+
+            } else if (!isNameFormat(binding.editTextTextPersonName.text.toString())){
+                binding.view3.visibility = View.VISIBLE
+                binding.textView8.visibility = View.VISIBLE
             }
 
         }
