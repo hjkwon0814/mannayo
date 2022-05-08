@@ -200,7 +200,6 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                         val reqresponse = response.body() as resSignUpData
 
                         if (response.isSuccessful && reqresponse.response == "성공") {
-                            //버튼 색깔 바꾸기
                             findNavController().navigate(R.id.action_joinFragment_to_join2Fragment)
                         } else {
 

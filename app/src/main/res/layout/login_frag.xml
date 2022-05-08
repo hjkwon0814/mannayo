@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="683dp"
+    android:layout_height="match_parent"
     android:background="#ffffff"
     tools:context=".MainActivity">
 
@@ -91,15 +91,14 @@
         android:layout_width="46dp"
         android:layout_height="25dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="191dp"
         android:fontFamily="@font/noto_sans_kr"
         android:gravity="center_horizontal"
         android:text="회원가입"
         android:textColor="#191919"
         android:textSize="12sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toEndOf="@+id/join_text"
-        app:layout_constraintTop_toBottomOf="@+id/google_text" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/join_text"
+        app:layout_constraintStart_toEndOf="@+id/join_text" />
 
     <ImageView
         android:id="@+id/google_image"
@@ -184,6 +183,12 @@
         app:layout_constraintTop_toBottomOf="@+id/login_pw"
         app:srcCompat="@drawable/pw_id" />
 
+    <View
+        android:id="@+id/view4"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/join_button2"
+        app:layout_constraintStart_toEndOf="@+id/join_text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
