@@ -34,6 +34,9 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         binding.joinButton2.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
         }
+        binding.view4.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
+        }
 
 
     }

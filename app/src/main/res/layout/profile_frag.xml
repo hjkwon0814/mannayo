@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="155dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:srcCompat="@drawable/component_50" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:srcCompat="@drawable/component_38" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="25dp"
+        android:background="null"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:gravity="center"
+        android:hint="닉네임"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="4sp"
+        android:textColor="#191919"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName2"
+        app:srcCompat="@drawable/edit_fill" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0/7"
+        android:fontFamily="@font/noto_sans_kr"
+        android:textStyle="normal"
+        android:textSize="12sp"
+        android:textColor="#191919"
+        android:lineSpacingExtra="8sp"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="254dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="46dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView26"
+        app:srcCompat="@drawable/component_62" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="200dp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
+        app:srcCompat="@drawable/rectangle_23" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="-12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangle_9_1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:gravity="center_horizontal"
+        android:textColor="#191919"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView26"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="프로필 설정" />
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView26"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/expand_left" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
