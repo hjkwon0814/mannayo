@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:paddingTop="18dp"
-    android:layout_height="match_parent">
+    android:layout_height="238dp">
 
     <ImageView
         android:id="@+id/imageView10"
@@ -38,7 +38,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageArea"
-        tools:text="이름" />
+        android:text="이름" />
 
     <TextView
         android:id="@+id/detailArea"
@@ -52,7 +52,7 @@
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@+id/titleArea"
         app:layout_constraintTop_toBottomOf="@+id/titleArea"
-        tools:text="음식점 설명" />
+        android:text="음식점 설명" />
 
     <TextView
         android:id="@+id/textView28"
@@ -66,7 +66,7 @@
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="@+id/detailArea"
         app:layout_constraintTop_toBottomOf="@+id/detailArea"
-        tools:text="영업 정보" />
+        android:text="영업 정보" />
 
     <TextView
         android:id="@+id/timeArea"
@@ -80,7 +80,7 @@
         android:textStyle="normal"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView28"
         app:layout_constraintStart_toEndOf="@+id/textView28"
-        tools:text="영업 정보 상세" />
+        android:text="영업 정보 상세" />
 
     <TextView
         android:id="@+id/gradeArea"
@@ -94,7 +94,7 @@
         android:textStyle="normal"
         app:layout_constraintBaseline_toBaselineOf="@+id/titleArea"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="평점" />
+        android:text="평점" />
 
     <ImageView
         android:id="@+id/imageView43"
@@ -115,5 +115,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView43"
         app:srcCompat="@drawable/component_65" />
+
+    <ImageView
+        android:id="@+id/heartArea"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageArea"
+        app:layout_constraintTop_toTopOf="@+id/imageView10"
+        app:srcCompat="@drawable/favorite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
