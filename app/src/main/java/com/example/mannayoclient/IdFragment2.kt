@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.Id2FragBinding
 
 class IdFragment2 : Fragment(R.layout.id2_frag) {
@@ -29,6 +30,10 @@ class IdFragment2 : Fragment(R.layout.id2_frag) {
 
         binding.pwbutton.setOnClickListener {
             mainActivity.onFragmentChange(1)
+        }
+
+        binding.joinSumbit.setOnClickListener {
+            findNavController().navigate(R.id.action_idFragment2_to_loginFragment)
         }
 
     }

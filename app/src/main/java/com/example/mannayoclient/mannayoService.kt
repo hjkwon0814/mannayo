@@ -2,7 +2,9 @@ package com.example.mannayoclient
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface mannayoService {
     @POST("/members/findMyAccountByNickname")
@@ -13,4 +15,7 @@ interface mannayoService {
 
     @POST("/signup")
     fun signUp(@Body reqdata : signUpRequest): Call<resSignUpData>
+
+    @GET("/signin")
+    fun signIn(@Query("email") email :String, @Query("password") password : String) : Call<ReceiveLoginOK>
 }

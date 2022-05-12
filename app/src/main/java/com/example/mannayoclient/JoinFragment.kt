@@ -164,10 +164,6 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
         binding.joinSubmit.setOnClickListener {
 
-
-
-
-
             val request = signUpRequest(
                 email = binding.editTextTextEmailAddress.text.toString(),
                 password = binding.editTextTextPassword.text.toString(),

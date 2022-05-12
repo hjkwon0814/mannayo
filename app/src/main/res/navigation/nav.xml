@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_loginFragment_to_joinFragment"
             app:destination="@id/joinFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainHomeFragment2"
+            app:destination="@id/mainHomeFragment2" />
     </fragment>
     <fragment
         android:id="@+id/joinFragment"
@@ -76,4 +79,8 @@
             android:id="@+id/action_join2Fragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mainHomeFragment2"
+        android:name="com.example.mannayoclient.MainHomeFragment"
+        android:label="MainHomeFragment" />
 </navigation>
