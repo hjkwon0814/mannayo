@@ -8,11 +8,15 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.JoinFragBinding
@@ -38,6 +42,9 @@ class JoinFragment : Fragment(R.layout.join_frag) {
         super.onAttach(context)
         mainActivity = context as MainActivity
     }
+
+
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -162,6 +169,7 @@ class JoinFragment : Fragment(R.layout.join_frag) {
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("회원가입")
 
+        binding.joinSubmit.isVisible = false
         binding.joinSubmit.setOnClickListener {
 
             val request = signUpRequest(
@@ -253,6 +261,8 @@ class JoinFragment : Fragment(R.layout.join_frag) {
     }
 
 
+
+
 }
 
 data class signUpRequest(
@@ -308,3 +318,4 @@ data class resSignUpData(
 
 
 )
+

@@ -4,7 +4,9 @@ import android.content.Context
 import android.os.Bundle
 import android.text.InputType
 import android.text.method.Touch.scrollTo
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
@@ -43,7 +45,6 @@ class IdFragment : Fragment(R.layout.id_frag) {
         val service = retrofit.create(mannayoService::class.java)
 
         binding = IdFragBinding.bind(view)
-
 
         //제목 변경
         val title = mainActivity.findViewById<TextView>(R.id.textview)

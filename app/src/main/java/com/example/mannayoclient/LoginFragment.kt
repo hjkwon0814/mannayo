@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.databinding.ActivityMainBinding
 import com.example.mannayoclient.databinding.LoginFragBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -19,6 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class LoginFragment : Fragment(R.layout.login_frag) {
     lateinit var binding: LoginFragBinding
     lateinit var mainActivity: MainActivity
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,7 +48,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         binding.joinButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
         }
-        binding.joinButton2.setOnClickListener {
+        binding.joinButton2.setOnClickListener{
             findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
         }
         binding.view4.setOnClickListener {
@@ -54,34 +56,12 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         }
 
         binding.loginSubmit.setOnClickListener{
-            println("반응")
-            service.signIn(binding.loginId.text.toString(), binding.loginPw.text.toString())
-                .enqueue(object : Callback<ReceiveLoginOK> {
-                override fun onResponse(
-                    call: Call<ReceiveLoginOK>,
-                    response: Response<ReceiveLoginOK>
-                ) {
-                    val receive = response.body() as ReceiveLoginOK
-                    if(response.isSuccessful && receive.success) {
-                        findNavController().navigate(R.id.action_loginFragment_to_mainHomeFragment2)
-                        Toast.makeText(mainActivity, "로그인 성공!!", Toast.LENGTH_SHORT)
-                            .show()
-                    }else {
-                        Toast.makeText(mainActivity, "로그인 실패!!", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
-
-                override fun onFailure(call: Call<ReceiveLoginOK>, t: Throwable) {
-                    Toast.makeText(mainActivity, "서버연결 실패!!", Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-            })
+            findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
         }
 
-
-
+        binding.imageView.setOnClickListener{
+            findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
+        }
 
     }
 }
