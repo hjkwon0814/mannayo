@@ -1,6 +1,7 @@
 package com.example.mannayoclient
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
@@ -25,10 +26,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun onActivityChange() {
+        val intent = Intent(this, SecondActivity::class.java)
+        startActivity(intent)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
     }
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/completion"
         android:layout_width="160dp"
         android:layout_height="100dp"
         android:layout_marginTop="155dp"
@@ -18,8 +18,8 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="108dp"
+        android:layout_height="108dp"
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +31,7 @@
         android:layout_width="200dp"
         android:layout_height="48dp"
         android:layout_marginTop="25dp"
+        android:background="@null"
         android:ems="10"
         android:fontFamily="@font/noto_sans_kr_medium"
         android:gravity="center"
@@ -40,6 +41,8 @@
         android:textColor="#191919"
         android:textSize="16sp"
         android:textStyle="normal"
+        android:maxLength="7"
+        android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
@@ -57,15 +60,15 @@
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0/7"
         android:fontFamily="@font/noto_sans_kr"
-        android:textStyle="normal"
-        android:textSize="12sp"
-        android:textColor="#191919"
-        android:lineSpacingExtra="8sp"
         android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        android:lineSpacingExtra="8sp"
+        android:text="0/7"
+        android:textColor="#191919"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -111,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="프로필 설정" />
+        android:text="프로필 설정" />
 
     <ImageView
         android:id="@+id/imageView27"
@@ -122,5 +125,13 @@
         app:layout_constraintStart_toStartOf="@+id/imageView26"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/expand_left" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:srcCompat="@drawable/component_73" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

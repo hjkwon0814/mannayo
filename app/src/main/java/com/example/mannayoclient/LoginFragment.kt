@@ -38,6 +38,12 @@ class LoginFragment : Fragment(R.layout.login_frag) {
             findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
         }
 
+        binding.loginSubmit.setOnClickListener{
+            mainActivity.onActivityChange()
+        }
+
+
+
 
     }
 }

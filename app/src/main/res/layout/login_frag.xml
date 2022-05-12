@@ -10,6 +10,18 @@
     android:background="#ffffff"
     tools:context=".MainActivity">
 
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="228dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="14.2dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@+id/view3"
+        app:srcCompat="@drawable/pw_id" />
+
+
     <TextView
         android:id="@+id/id_pw"
         android:layout_width="wrap_content"
@@ -28,17 +40,17 @@
         android:id="@+id/view3"
         android:layout_width="312dp"
         android:layout_height="2dp"
+        android:visibility="gone"
         android:background="#ed1c24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/login_pw" />
 
     <RadioButton
         android:id="@+id/login_state"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="2.4dp"
         android:checked="true"
         android:fontFamily="@font/noto_sans_kr"
         android:gravity="center"
@@ -48,7 +60,7 @@
         android:textStyle="normal"
         android:theme="@style/RadioButtonStyle"
         app:layout_constraintStart_toStartOf="@+id/login_pw"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView20" />
 
     <com.example.mannayoclient.TextClear
         android:id="@+id/login_id"

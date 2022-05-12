@@ -41,7 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="한성대학교 상상관" />
+            android:text="한성대학교 상상관" />
 
         <ImageView
             android:id="@+id/imageView33"
@@ -75,20 +75,19 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/joinscroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="144dp"
         android:layout_weight="1"
         android:fillViewport="true"
-        android:layout_marginTop="144dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -117,6 +116,7 @@
                 android:padding="5dp"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.461"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14"
                 app:srcCompat="@drawable/rectangle_42" />
@@ -265,18 +265,18 @@
                 android:id="@+id/imageView38"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                app:layout_constraintStart_toStartOf="@+id/textView23"
                 app:layout_constraintTop_toBottomOf="@+id/textView23"
                 app:srcCompat="@drawable/star_fill"
-                app:layout_constraintStart_toStartOf="@+id/textView23"
                 tools:layout_editor_absoluteX="63dp" />
 
             <ImageView
                 android:id="@+id/imageView40"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
+                app:layout_constraintStart_toStartOf="@+id/textView25"
                 app:layout_constraintTop_toBottomOf="@+id/textView25"
                 app:srcCompat="@drawable/star_fill"
-                app:layout_constraintStart_toStartOf="@+id/textView25"
                 tools:layout_editor_absoluteX="63dp" />
 
             <TextView
@@ -313,6 +313,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView15"
                 app:layout_constraintTop_toTopOf="@+id/textView24"
                 app:srcCompat="@drawable/component_52" />
+
             <ImageView
                 android:id="@+id/imageView42"
                 android:layout_width="46dp"
@@ -337,7 +338,293 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView37"
                 tools:text="이름" />
 
-           
+            <ImageView
+                android:id="@+id/imageView46"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView13"
+                app:layout_constraintTop_toTopOf="@+id/imageView13"
+                app:srcCompat="@drawable/shallow_pan_of_food" />
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:shadowColor="#14000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageView46"
+                app:layout_constraintStart_toStartOf="@+id/imageView46"
+                app:layout_constraintTop_toBottomOf="@+id/imageView46"
+                tools:text="한식" />
+
+            <ImageView
+                android:id="@+id/imageView47"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="42dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView46"
+                app:layout_constraintTop_toTopOf="@+id/imageView46"
+                app:srcCompat="@drawable/steaming_bowl" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:shadowColor="#14000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageView47"
+                app:layout_constraintStart_toStartOf="@+id/imageView47"
+                app:layout_constraintTop_toBottomOf="@+id/imageView47"
+                tools:text="분식" />
+
+            <ImageView
+                android:id="@+id/imageView48"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView50"
+                app:layout_constraintTop_toTopOf="@+id/imageView52"
+                app:srcCompat="@drawable/shortcake" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:shadowColor="#14000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageView48"
+                app:layout_constraintStart_toStartOf="@+id/imageView48"
+                app:layout_constraintTop_toBottomOf="@+id/imageView48"
+                tools:text="디저트" />
+
+            <ImageView
+                android:id="@+id/imageView49"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView52"
+                app:layout_constraintEnd_toEndOf="@+id/imageView46"
+                app:layout_constraintStart_toStartOf="@+id/imageView46"
+                app:layout_constraintTop_toTopOf="@+id/imageView52"
+                app:srcCompat="@drawable/pizza" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:shadowColor="#14000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
+                app:layout_constraintEnd_toEndOf="@+id/imageView49"
+                app:layout_constraintStart_toStartOf="@+id/imageView49"
+                tools:text="양식" />
+
+            <ImageView
+                android:id="@+id/imageView50"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="42dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView54"
+                app:layout_constraintTop_toTopOf="@+id/imageView47"
+                app:srcCompat="@drawable/sushi" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:shadowColor="#14000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageView50"
+                app:layout_constraintStart_toStartOf="@+id/imageView50"
+                app:layout_constraintTop_toBottomOf="@+id/imageView50"
+                tools:text="일식" />
+
+            <ImageView
+                android:id="@+id/imageView51"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView54"
+                app:layout_constraintTop_toTopOf="@+id/imageView48"
+                app:srcCompat="@drawable/beer_mug" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:shadowColor="#14000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageView51"
+                app:layout_constraintStart_toStartOf="@+id/imageView51"
+                app:layout_constraintTop_toBottomOf="@+id/imageView51"
+                tools:text="술집" />
+
+            <ImageView
+                android:id="@+id/imageView52"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="68dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView47"
+                app:layout_constraintTop_toBottomOf="@+id/imageView47"
+                app:srcCompat="@drawable/hamburger" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:shadowColor="#14000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageView52"
+                app:layout_constraintStart_toStartOf="@+id/imageView52"
+                app:layout_constraintTop_toBottomOf="@+id/imageView52"
+                tools:text="패스트푸드" />
+
+            <ImageView
+                android:id="@+id/imageView54"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="45dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView13"
+                app:layout_constraintTop_toTopOf="@+id/imageView50"
+                app:srcCompat="@drawable/dumpling" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:shadowColor="#14000000"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageView54"
+                app:layout_constraintStart_toStartOf="@+id/imageView54"
+                app:layout_constraintTop_toBottomOf="@+id/imageView54"
+                tools:text="중식" />
+
+            <View
+                android:id="@+id/Hansik"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView29"
+                app:layout_constraintEnd_toEndOf="@+id/imageView46"
+                app:layout_constraintStart_toStartOf="@+id/imageView46" />
+
+            <View
+                android:id="@+id/Bunsik"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                app:layout_constraintEnd_toEndOf="@+id/imageView47"
+                app:layout_constraintStart_toStartOf="@+id/imageView47" />
+
+            <View
+                android:id="@+id/Japanese"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                app:layout_constraintEnd_toEndOf="@+id/imageView50"
+                app:layout_constraintStart_toStartOf="@+id/imageView50" />
+
+            <View
+                android:id="@+id/Chinese"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView30"
+                app:layout_constraintEnd_toEndOf="@+id/imageView54"
+                app:layout_constraintStart_toStartOf="@+id/imageView54" />
+
+            <View
+                android:id="@+id/Western"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView31"
+                app:layout_constraintEnd_toEndOf="@+id/imageView49"
+                app:layout_constraintStart_toStartOf="@+id/imageView49" />
+
+            <View
+                android:id="@+id/Fast"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView16"
+                app:layout_constraintEnd_toEndOf="@+id/imageView52"
+                app:layout_constraintStart_toStartOf="@+id/imageView52" />
+
+            <View
+                android:id="@+id/Dessert"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView32"
+                app:layout_constraintEnd_toEndOf="@+id/imageView48"
+                app:layout_constraintStart_toStartOf="@+id/imageView48" />
+
+            <View
+                android:id="@+id/Beer"
+                android:layout_width="60dp"
+                android:layout_height="85dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView33"
+                app:layout_constraintEnd_toEndOf="@+id/imageView51"
+                app:layout_constraintStart_toStartOf="@+id/imageView51" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -353,8 +640,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-
 
 
         <ImageView
@@ -473,7 +758,14 @@
             tools:text="오늘뭐먹지" />
 
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
