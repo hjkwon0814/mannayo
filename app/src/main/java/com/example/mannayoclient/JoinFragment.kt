@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.mannayoclient.RetrofitClient.service
 import com.example.mannayoclient.databinding.JoinFragBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -55,6 +54,15 @@ class JoinFragment : Fragment(R.layout.join_frag) {
         binding.editTextDate.setEnabled(false)
         binding.editTextDate2.setEnabled(false)
         binding.editTextDate3.setEnabled(false)
+
+        val BASE_URL = "http://192.168.0.2:8080"
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service: mannayoService = retrofit.create(mannayoService::class.java)
 
         //EditText 외에 다른곳을 누르면 키보드 내려가기 (MainActivity에서 설정하였으나 JoinFragment에서는 먹히지 않아 따로 다시 작성함)
         fun hideKeyboard() {

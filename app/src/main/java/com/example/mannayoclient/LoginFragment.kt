@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.mannayoclient.RetrofitClient.service
 import com.example.mannayoclient.databinding.ActivityMainBinding
 import com.example.mannayoclient.databinding.LoginFragBinding
 import com.google.gson.annotations.Expose
@@ -34,6 +33,15 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         mainActivity = context as MainActivity
 
         binding = LoginFragBinding.bind(view)
+
+        val BASE_URL = "http://192.168.0.2:8080"
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service: mannayoService = retrofit.create(mannayoService::class.java)
 
         sharedPreferences = mainActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()

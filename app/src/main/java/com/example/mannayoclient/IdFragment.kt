@@ -12,7 +12,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.mannayoclient.RetrofitClient.service
 import com.example.mannayoclient.databinding.IdFragBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -38,6 +37,15 @@ class IdFragment : Fragment(R.layout.id_frag) {
 
 
         binding = IdFragBinding.bind(view)
+
+        val BASE_URL = "http://192.168.0.2:8080"
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service: mannayoService = retrofit.create(mannayoService::class.java)
 
         //제목 변경
         val title = mainActivity.findViewById<TextView>(R.id.textview)

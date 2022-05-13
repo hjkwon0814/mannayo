@@ -107,7 +107,7 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="카테고리" />
+                android:text="카테고리" />
 
             <ImageView
                 android:id="@+id/imageView13"
@@ -133,7 +133,7 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/textView14"
                 app:layout_constraintTop_toBottomOf="@+id/imageView13"
-                tools:text="키워드 추천" />
+                android:text="키워드 추천" />
 
             <ImageView
                 android:id="@+id/imageView14"
@@ -175,7 +175,7 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/textView15"
-                tools:text="오늘 뭐먹지?" />
+                android:text="오늘 뭐먹지?" />
 
             <ImageView
                 android:id="@+id/imageView18"
@@ -259,7 +259,7 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/imageView15"
                 app:layout_constraintTop_toBottomOf="@+id/imageView36"
-                tools:text="이름" />
+                android:text="이름" />
 
             <ImageView
                 android:id="@+id/imageView38"
@@ -290,7 +290,7 @@
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView38"
                 app:layout_constraintStart_toEndOf="@+id/imageView38"
-                tools:text="평점" />
+                android:text="평점" />
 
             <TextView
                 android:id="@+id/textView26"
@@ -303,7 +303,7 @@
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView40"
                 app:layout_constraintStart_toEndOf="@+id/imageView40"
-                tools:text="평점" />
+                android:text="평점" />
 
             <ImageView
                 android:id="@+id/imageView39"
@@ -336,7 +336,7 @@
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/imageView16"
                 app:layout_constraintTop_toBottomOf="@+id/imageView37"
-                tools:text="이름" />
+                android:text="이름" />
 
             <ImageView
                 android:id="@+id/imageView46"
@@ -365,7 +365,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView46"
                 app:layout_constraintStart_toStartOf="@+id/imageView46"
                 app:layout_constraintTop_toBottomOf="@+id/imageView46"
-                tools:text="한식" />
+                android:text="한식" />
 
             <ImageView
                 android:id="@+id/imageView47"
@@ -393,7 +393,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView47"
                 app:layout_constraintStart_toStartOf="@+id/imageView47"
                 app:layout_constraintTop_toBottomOf="@+id/imageView47"
-                tools:text="분식" />
+                android:text="분식" />
 
             <ImageView
                 android:id="@+id/imageView48"
@@ -420,7 +420,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView48"
                 app:layout_constraintStart_toStartOf="@+id/imageView48"
                 app:layout_constraintTop_toBottomOf="@+id/imageView48"
-                tools:text="디저트" />
+                android:text="디저트" />
 
             <ImageView
                 android:id="@+id/imageView49"
@@ -449,7 +449,7 @@
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
                 app:layout_constraintEnd_toEndOf="@+id/imageView49"
                 app:layout_constraintStart_toStartOf="@+id/imageView49"
-                tools:text="양식" />
+                android:text="양식" />
 
             <ImageView
                 android:id="@+id/imageView50"
@@ -477,7 +477,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView50"
                 app:layout_constraintStart_toStartOf="@+id/imageView50"
                 app:layout_constraintTop_toBottomOf="@+id/imageView50"
-                tools:text="일식" />
+                android:text="일식" />
 
             <ImageView
                 android:id="@+id/imageView51"
@@ -504,7 +504,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView51"
                 app:layout_constraintStart_toStartOf="@+id/imageView51"
                 app:layout_constraintTop_toBottomOf="@+id/imageView51"
-                tools:text="술집" />
+                android:text="술집" />
 
             <ImageView
                 android:id="@+id/imageView52"
@@ -532,7 +532,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView52"
                 app:layout_constraintStart_toStartOf="@+id/imageView52"
                 app:layout_constraintTop_toBottomOf="@+id/imageView52"
-                tools:text="패스트푸드" />
+                android:text="패스트푸드" />
 
             <ImageView
                 android:id="@+id/imageView54"
@@ -560,7 +560,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView54"
                 app:layout_constraintStart_toStartOf="@+id/imageView54"
                 app:layout_constraintTop_toBottomOf="@+id/imageView54"
-                tools:text="중식" />
+                android:text="중식" />
 
             <View
                 android:id="@+id/Hansik"
@@ -694,7 +694,7 @@
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView20"
-            tools:text="메인홈" />
+            android:text="메인홈" />
 
         <TextView
             android:id="@+id/textView21"
@@ -709,7 +709,7 @@
             android:textStyle="normal"
             app:layout_constraintStart_toEndOf="@+id/textView20"
             app:layout_constraintTop_toBottomOf="@+id/imageView25"
-            tools:text="게시판" />
+            android:text="게시판" />
 
         <TextView
             android:id="@+id/textView22"
@@ -724,7 +724,7 @@
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView30"
-            tools:text="찜" />
+            android:text="찜" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -738,7 +738,7 @@
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView31"
-            tools:text="MY" />
+            android:text="MY" />
 
         <TextView
             android:id="@+id/text"
@@ -755,7 +755,7 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
             app:layout_constraintEnd_toStartOf="@+id/textView22"
             app:layout_constraintStart_toEndOf="@+id/textView21"
-            tools:text="오늘뭐먹지" />
+            android:text="오늘뭐먹지" />
 
 
 
