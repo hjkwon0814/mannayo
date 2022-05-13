@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.RetrofitClient.service
 import com.example.mannayoclient.databinding.IdFragBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -35,14 +36,6 @@ class IdFragment : Fragment(R.layout.id_frag) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.2:8080")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service = retrofit.create(mannayoService::class.java)
 
         binding = IdFragBinding.bind(view)
 

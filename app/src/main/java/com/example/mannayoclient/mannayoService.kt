@@ -18,4 +18,5 @@ interface mannayoService {
 
     @GET("/signin")
     fun signIn(@Query("email") email :String, @Query("password") password : String) : Call<ReceiveLoginOK>
+
 }

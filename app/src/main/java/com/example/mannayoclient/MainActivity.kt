@@ -8,6 +8,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.mannayoclient.databinding.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,6 +52,23 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
+
+}
+
+object RetrofitClient {
+    // retrofit client 선언
+
+    // BASE_URL을 private const 변수로 저장
+    private const val BASE_URL = "192.168.43.198:8080"
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val service: mannayoService = retrofit.create(mannayoService::class.java)
 }
 
 

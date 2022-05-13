@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.RetrofitClient.service
 import com.example.mannayoclient.databinding.ActivityMainBinding
 import com.example.mannayoclient.databinding.LoginFragBinding
 import com.google.gson.annotations.Expose
@@ -36,12 +37,6 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
         sharedPreferences = mainActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.2:8080")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service = retrofit.create(mannayoService::class.java)
 
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("로그인")
@@ -68,6 +63,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
         binding.loginSubmit.setOnClickListener{
             login(service)
+
         }
 
     }
@@ -90,12 +86,18 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                             editor.putString("password", binding.loginPw.text.toString())
                             editor.commit()
                         }
-                        findNavController().navigate(R.id.action_loginFragment_to_mainHomeFragment2)
+
+                        if(receive.nickname.equals("null")) {
+                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                        }else {
+                            findNavController().navigate(R.id.action_loginFragment_to_mainHomeFragment2)
+                        }
                         Toast.makeText(mainActivity, "로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
                     }else {
                         Toast.makeText(mainActivity, receive.data, Toast.LENGTH_SHORT)
                             .show()
+
                     }
                 }
 
@@ -106,6 +108,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
             })
     }
+
 
     private fun autologin(service : mannayoService, email: String, password: String) {
         service.signIn(email, password)
@@ -125,7 +128,11 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                             editor.putString("password", binding.loginPw.text.toString())
                             editor.commit()
                         }
-                        findNavController().navigate(R.id.action_loginFragment_to_mainHomeFragment2)
+                        if(receive.nickname.equals("null")) {
+                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                        }else {
+                            findNavController().navigate(R.id.action_loginFragment_to_mainHomeFragment2)
+                        }
                         Toast.makeText(mainActivity, "자동 로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
                     }else {
@@ -167,5 +174,9 @@ data class ReceiveLoginOK (
 
     @SerializedName("data")
     @Expose
-    val data : String
+    val data : String,
+
+    @SerializedName("nickname")
+    @Expose
+    val nickname : String
     )

@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.RetrofitClient.service
 import com.example.mannayoclient.databinding.JoinFragBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -49,12 +50,7 @@ class JoinFragment : Fragment(R.layout.join_frag) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = JoinFragBinding.bind(view)
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.2:8080")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        val service = retrofit.create(mannayoService::class.java)
 
         binding.editTextDate.setEnabled(false)
         binding.editTextDate2.setEnabled(false)
@@ -169,11 +165,10 @@ class JoinFragment : Fragment(R.layout.join_frag) {
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("회원가입")
 
-        binding.joinSubmit.isVisible = false
         binding.joinSubmit.setOnClickListener {
 
             val request = signUpRequest(
-                email = binding.editTextTextEmailAddress.text.toString(),
+                email = binding.editTextTextEmailAddress.text.toString() + "@" + binding.spinner.selectedItem.toString(),
                 password = binding.editTextTextPassword.text.toString(),
                 realname = binding.editTextTextPersonName.text.toString(),
                 birth = binding.editTextDate.text.toString() + "-" + binding.editTextDate2.text.toString() + "-" + binding.editTextDate3.text.toString(),
