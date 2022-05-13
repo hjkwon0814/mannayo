@@ -22,7 +22,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
 
         //완료누르면 메인홈으로
         binding.completion.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_mainHomeFragment)
+
         }
 
 

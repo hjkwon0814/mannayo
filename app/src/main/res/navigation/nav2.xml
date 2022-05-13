@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav2"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/mainHomeFragment">
 
     <fragment
         android:id="@+id/mainHomeFragment"
@@ -11,14 +11,9 @@
         <action
             android:id="@+id/action_mainHomeFragment_to_categoryListFragment"
             app:destination="@id/categoryListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.mannayoclient.ProfileFragment"
-        android:label="ProfileFragment" >
         <action
-            android:id="@+id/action_profileFragment_to_mainHomeFragment"
-            app:destination="@id/mainHomeFragment" />
+            android:id="@+id/action_mainHomeFragment_to_categoryListFragment2"
+            app:destination="@id/categoryListFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryListFragment"

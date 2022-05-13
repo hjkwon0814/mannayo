@@ -85,9 +85,17 @@
     <fragment
         android:id="@+id/mainHomeFragment2"
         android:name="com.example.mannayoclient.MainHomeFragment"
-        android:label="MainHomeFragment" />
+        android:label="MainHomeFragment" >
+        <action
+            android:id="@+id/action_mainHomeFragment2_to_categoryListFragment2"
+            app:destination="@id/categoryListFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment2"
         android:name="com.example.mannayoclient.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/categoryListFragment2"
+        android:name="com.example.mannayoclient.categorylist.CategoryListFragment"
+        android:label="CategoryListFragment" />
 </navigation>

@@ -98,7 +98,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         if(receive.nickname.equals("null")) {
                             findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
                         }else {
-                            findNavController().navigate(R.id.action_loginFragment_to_mainHomeFragment2)
+                            mainActivity.onActivityChange()
                         }
                         Toast.makeText(mainActivity, "로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
@@ -139,7 +139,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         if(receive.nickname.equals("null")) {
                             findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
                         }else {
-                            findNavController().navigate(R.id.action_loginFragment_to_mainHomeFragment2)
+                            mainActivity.onActivityChange()
                         }
                         Toast.makeText(mainActivity, "자동 로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
