@@ -49,8 +49,9 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("로그인")
 
-
-        if(!sharedPreferences.getString("email","").toString().isNullOrEmpty() && !sharedPreferences.getString("password","").toString().isNullOrEmpty()) {
+        println(sharedPreferences.getString("email","").toString())
+        if(!sharedPreferences.getString("email",null).toString().isNullOrEmpty() && !sharedPreferences.getString("password",null).toString().isNullOrEmpty()) {
+            println("y?")
             autologin(service, sharedPreferences.getString("email","").toString() ,sharedPreferences.getString("password","").toString())
         }
 
@@ -126,16 +127,11 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                     response: Response<ReceiveLoginOK>
                 ) {
                     val receive = response.body() as ReceiveLoginOK
-                    println(receive.code)
+                    println("auto" + receive.code)
                     println(receive.response)
                     println(receive.success)
                     println(receive.data)
                     if(response.isSuccessful && receive.success) {
-                        if(binding.loginState.isChecked) {
-                            editor.putString("email", binding.loginId.text.toString())
-                            editor.putString("password", binding.loginPw.text.toString())
-                            editor.commit()
-                        }
                         if(receive.nickname.equals("null")) {
                             findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
                         }else {
