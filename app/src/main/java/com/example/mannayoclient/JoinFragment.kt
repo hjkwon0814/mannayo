@@ -73,10 +73,10 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
         binding.layout.setOnClickListener{
             hideKeyboard()
-      }
+        }
 
 
-       //이메일 콤보박스
+        //이메일 콤보박스
         val items = resources.getStringArray(R.array.my_array)
 
         val myAapter = object : ArrayAdapter<String>(requireContext(), R.layout.item_spinner) {
@@ -111,12 +111,12 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
 
         fun dipToPixels(dipValue: Float): Float {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            dipValue,
-            resources.displayMetrics
-    )
-}
+            return TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dipValue,
+                resources.displayMetrics
+            )
+        }
         binding.spinner.dropDownVerticalOffset = dipToPixels(52f).toInt()
 
 
@@ -145,26 +145,31 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
 
         //달력 그림 클릭시 날짜선택하기
-       binding.dateclick.setOnClickListener{
+        binding.dateclick.setOnClickListener{
 
-           val birth = GregorianCalendar()
+            val birth = GregorianCalendar()
             val year: Int = birth.get(Calendar.YEAR)
             val month: Int = birth.get(Calendar.MONTH)
-            val date : Int = birth.get(Calendar.DATE)
+            val date : Int = birth.get(Calendar.DAY_OF_MONTH)
+
 
             val dlg = DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
-                override fun onDateSet(view: DatePicker?, year: Int, month: Int, date: Int
+                @SuppressLint("SetTextI18n")
+                override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayofMonth: Int
                 ) {
-                    val selectedYear = SimpleDateFormat("yyyy", Locale.getDefault()).format(birth.time)
+                    birth.set(Calendar.YEAR, year)
+                    birth.set(Calendar.MONTH, month)
+                    birth.set(Calendar.DAY_OF_MONTH, dayofMonth)
                     val selectedMonth = SimpleDateFormat("MM", Locale.getDefault()).format(birth.time)
                     val selectedDate = SimpleDateFormat("dd", Locale.getDefault()).format(birth.time)
+
                     binding.editTextDate.setText("${year}")
                     binding.editTextDate2.setText(selectedMonth)
                     binding.editTextDate3.setText(selectedDate)
 
                 }
             }, year, month, date)
-           dlg.show()
+            dlg.show()
         }
 
 
@@ -197,10 +202,60 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 return name.matches("^[가-힣]{2,4}|[a-zA-Z]{2,10}\\s[a-zA-Z]{2,10}\$".toRegex())
             }
 
-            if(!binding.editTextTextEmailAddress.text.isNullOrEmpty() && !binding.editTextTextPassword.text.isNullOrEmpty()
+            if (binding.editTextTextPassword.text.toString() != binding.editTextTextPassword2.text.toString() && !binding.editTextTextPassword.text.isNullOrEmpty() &&
+                !binding.editTextTextPassword2.text.isNullOrEmpty()) {
+                Toast.makeText(mainActivity, "비밀번호가 일치하지 않습니다!", Toast.LENGTH_SHORT)
+                    .show()
+
+                binding.view2.visibility = View.VISIBLE
+                binding.textView6.visibility = View.VISIBLE
+
+                binding.view.visibility = View.GONE
+                binding.textView4.visibility = View.GONE
+
+                binding.view3.visibility = View.GONE
+                binding.textView8.visibility = View.GONE
+
+
+            } else if (!isPasswordFormat(binding.editTextTextPassword.text.toString()) && !binding.editTextTextPassword.text.isNullOrEmpty()) {
+                Toast.makeText(mainActivity, "비밀번호가 올바르지 않은 형식입니다.!", Toast.LENGTH_SHORT)
+                    .show()
+
+                binding.view.visibility = View.VISIBLE
+                binding.textView4.visibility = View.VISIBLE
+
+                binding.view2.visibility = View.GONE
+                binding.textView6.visibility = View.GONE
+
+                binding.view3.visibility = View.GONE
+                binding.textView8.visibility = View.GONE
+
+            } else if (!isNameFormat(binding.editTextTextPersonName.text.toString()) && !binding.editTextTextPersonName.text.isNullOrEmpty()){
+                Toast.makeText(mainActivity, "이름이이 올바르지 않은 형식니다.!", Toast.LENGTH_SHORT)
+                    .show()
+
+                binding.view3.visibility = View.VISIBLE
+                binding.textView8.visibility = View.VISIBLE
+
+                binding.view.visibility = View.GONE
+                binding.textView4.visibility = View.GONE
+
+                binding.view2.visibility = View.GONE
+                binding.textView6.visibility = View.GONE
+
+            } else if(!binding.editTextTextEmailAddress.text.isNullOrEmpty() && !binding.editTextTextPassword.text.isNullOrEmpty()
                 && !binding.editTextTextPassword2.text.isNullOrEmpty() && !binding.editTextTextPersonName.text.isNullOrEmpty()
                 && !binding.editTextDate.text.isNullOrEmpty() && !binding.editTextDate2.text.isNullOrEmpty() && !binding.editTextDate3.text.isNullOrEmpty()
                 && !binding.editTextNumber.text.isNullOrEmpty()) {
+
+                binding.view.visibility = View.GONE
+                binding.textView4.visibility = View.GONE
+
+                binding.view2.visibility = View.GONE
+                binding.textView6.visibility = View.GONE
+
+                binding.view3.visibility = View.GONE
+                binding.textView8.visibility = View.GONE
                 service.signUp(request).enqueue(object : Callback<resSignUpData> {
 
                     override fun onResponse(
@@ -245,20 +300,6 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 Toast.makeText(mainActivity, "휴대전화번호 입력하세요!", Toast.LENGTH_SHORT)
                     .show()
             }
-            else if(binding.editTextTextPassword.text.toString() != binding.editTextTextPassword2.text.toString()) {
-                Toast.makeText(mainActivity, "비밀번호가 다릅니다!!!", Toast.LENGTH_SHORT)
-                    .show()
-                binding.view2.visibility = View.VISIBLE
-                binding.textView6.visibility = View.VISIBLE
-
-            } else if (!isPasswordFormat(binding.editTextTextPassword.text.toString())) {
-                binding.view.visibility = View.VISIBLE
-                binding.textView4.visibility = View.VISIBLE
-
-            } else if (!isNameFormat(binding.editTextTextPersonName.text.toString())){
-                binding.view3.visibility = View.VISIBLE
-                binding.textView8.visibility = View.VISIBLE
-            }
 
         }
     }
@@ -267,6 +308,9 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
 
 }
+
+
+
 
 data class signUpRequest(
     @SerializedName("email")

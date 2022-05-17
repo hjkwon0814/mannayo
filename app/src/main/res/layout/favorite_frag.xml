@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView40"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/noto_sans_kr"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="-2sp"
+        android:text="내가 찜한 가게들"
+        android:textColor="#191919"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
+        style="@style/MySearchViewStyle"
+        android:layout_width="312dp"
+        android:layout_height="40dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:textColor="#191919"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView40"
+        android:layout_marginTop="40dp"
+        app:queryHint="가게 이름을 입력해주세요" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="409dp"
+        android:layout_height="546dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="184dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

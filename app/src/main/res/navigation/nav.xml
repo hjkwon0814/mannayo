@@ -40,6 +40,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_idFragment2_to_pwFragment"
+            app:destination="@id/pwFragment" />
     </fragment>
     <fragment
         android:id="@+id/pwFragment2"
@@ -48,6 +51,9 @@
         <action
             android:id="@+id/action_pwFragment2_to_idFragment"
             app:destination="@id/idFragment" />
+        <action
+            android:id="@+id/action_pwFragment2_to_pwFragment3"
+            app:destination="@id/pwFragment3" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -98,4 +104,12 @@
         android:id="@+id/categoryListFragment2"
         android:name="com.example.mannayoclient.categorylist.CategoryListFragment"
         android:label="CategoryListFragment" />
+    <fragment
+        android:id="@+id/pwFragment3"
+        android:name="com.example.mannayoclient.PwFragment3"
+        android:label="PwFragment3" >
+        <action
+            android:id="@+id/action_pwFragment3_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

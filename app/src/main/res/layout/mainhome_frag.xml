@@ -4,7 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#f8f8fa"
     android:layout_height="match_parent">
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/aa"
@@ -72,6 +75,24 @@
             app:layout_constraintStart_toStartOf="@+id/imageView32"
             app:srcCompat="@drawable/expand_left" />
 
+        <androidx.appcompat.widget.SearchView
+            style="@style/MySearchViewStyle"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:focusable="false"
+            app:iconifiedByDefault="false"
+            android:fontFamily="@font/noto_sans_kr"
+            android:textStyle="normal"
+            android:textSize="13sp"
+            android:focusableInTouchMode="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:queryHint="검색어 입력"
+            android:background="@drawable/rectangle_18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -82,6 +103,7 @@
         android:layout_marginTop="144dp"
         android:layout_weight="1"
         android:fillViewport="true"
+        android:layout_marginBottom="-27dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -102,12 +124,12 @@
                 android:layout_marginTop="14dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="4sp"
+                android:text="카테고리"
                 android:textColor="#191919"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="카테고리" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView13"
@@ -128,12 +150,12 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="4sp"
+                android:text="키워드 추천"
                 android:textColor="#191919"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/textView14"
-                app:layout_constraintTop_toBottomOf="@+id/imageView13"
-                android:text="키워드 추천" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView13" />
 
             <ImageView
                 android:id="@+id/imageView14"
@@ -170,12 +192,12 @@
                 android:layout_marginTop="166dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="4sp"
+                android:text="오늘 뭐먹지?"
                 android:textColor="#191919"
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
-                app:layout_constraintTop_toBottomOf="@+id/textView15"
-                android:text="오늘 뭐먹지?" />
+                app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
             <ImageView
                 android:id="@+id/imageView18"
@@ -254,12 +276,12 @@
                 android:layout_marginStart="18dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="8sp"
+                android:text="이름"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/imageView15"
-                app:layout_constraintTop_toBottomOf="@+id/imageView36"
-                android:text="이름" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView36" />
 
             <ImageView
                 android:id="@+id/imageView38"
@@ -285,12 +307,12 @@
                 android:layout_height="24dp"
                 android:fontFamily="@font/noto_sans_kr"
                 android:lineSpacingExtra="9sp"
+                android:text="평점"
                 android:textColor="#191919"
                 android:textSize="11sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView38"
-                app:layout_constraintStart_toEndOf="@+id/imageView38"
-                android:text="평점" />
+                app:layout_constraintStart_toEndOf="@+id/imageView38" />
 
             <TextView
                 android:id="@+id/textView26"
@@ -298,12 +320,12 @@
                 android:layout_height="24dp"
                 android:fontFamily="@font/noto_sans_kr"
                 android:lineSpacingExtra="9sp"
+                android:text="평점"
                 android:textColor="#191919"
                 android:textSize="11sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView40"
-                app:layout_constraintStart_toEndOf="@+id/imageView40"
-                android:text="평점" />
+                app:layout_constraintStart_toEndOf="@+id/imageView40" />
 
             <ImageView
                 android:id="@+id/imageView39"
@@ -331,12 +353,12 @@
                 android:layout_marginStart="18dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="8sp"
+                android:text="이름"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="@+id/imageView16"
-                app:layout_constraintTop_toBottomOf="@+id/imageView37"
-                android:text="이름" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView37" />
 
             <ImageView
                 android:id="@+id/imageView46"
@@ -359,13 +381,13 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
+                android:text="한식"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView46"
                 app:layout_constraintStart_toStartOf="@+id/imageView46"
-                app:layout_constraintTop_toBottomOf="@+id/imageView46"
-                android:text="한식" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView46" />
 
             <ImageView
                 android:id="@+id/imageView47"
@@ -387,13 +409,13 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
+                android:text="분식"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView47"
                 app:layout_constraintStart_toStartOf="@+id/imageView47"
-                app:layout_constraintTop_toBottomOf="@+id/imageView47"
-                android:text="분식" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView47" />
 
             <ImageView
                 android:id="@+id/imageView48"
@@ -414,13 +436,13 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
+                android:text="디저트"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView48"
                 app:layout_constraintStart_toStartOf="@+id/imageView48"
-                app:layout_constraintTop_toBottomOf="@+id/imageView48"
-                android:text="디저트" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView48" />
 
             <ImageView
                 android:id="@+id/imageView49"
@@ -443,13 +465,13 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
+                android:text="양식"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
                 app:layout_constraintEnd_toEndOf="@+id/imageView49"
-                app:layout_constraintStart_toStartOf="@+id/imageView49"
-                android:text="양식" />
+                app:layout_constraintStart_toStartOf="@+id/imageView49" />
 
             <ImageView
                 android:id="@+id/imageView50"
@@ -471,13 +493,13 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
+                android:text="일식"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView50"
                 app:layout_constraintStart_toStartOf="@+id/imageView50"
-                app:layout_constraintTop_toBottomOf="@+id/imageView50"
-                android:text="일식" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView50" />
 
             <ImageView
                 android:id="@+id/imageView51"
@@ -498,13 +520,13 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
+                android:text="술집"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView51"
                 app:layout_constraintStart_toStartOf="@+id/imageView51"
-                app:layout_constraintTop_toBottomOf="@+id/imageView51"
-                android:text="술집" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView51" />
 
             <ImageView
                 android:id="@+id/imageView52"
@@ -526,13 +548,13 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
+                android:text="패스트푸드"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView52"
                 app:layout_constraintStart_toStartOf="@+id/imageView52"
-                app:layout_constraintTop_toBottomOf="@+id/imageView52"
-                android:text="패스트푸드" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView52" />
 
             <ImageView
                 android:id="@+id/imageView54"
@@ -554,13 +576,13 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="4"
+                android:text="중식"
                 android:textColor="#191919"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/imageView54"
                 app:layout_constraintStart_toStartOf="@+id/imageView54"
-                app:layout_constraintTop_toBottomOf="@+id/imageView54"
-                android:text="중식" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView54" />
 
             <View
                 android:id="@+id/Hansik"
@@ -627,43 +649,70 @@
                 app:layout_constraintStart_toStartOf="@+id/imageView51" />
 
 
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
 
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#ffffff"
-        android:elevation="4dp"
+        android:layout_height="97dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
 
         <ImageView
-            android:id="@+id/imageView31"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="30dp"
+            android:id="@+id/imageView25"
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:layout_marginBottom="-32dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/user_fill" />
+            app:srcCompat="@drawable/rectangle_36" />
+
 
         <ImageView
             android:id="@+id/imageView30"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginRight="40dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView31"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/favorite_fill" />
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/component_51" />
+
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="0sp"
+            android:text="오늘뭐먹지"
+            android:textColor="#767676"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView25"
+            android:id="@+id/imageView20"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView25"
+            app:srcCompat="@drawable/home_fill" />
+
+        <ImageView
+            android:id="@+id/imageView26"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="40dp"
@@ -672,99 +721,83 @@
             app:srcCompat="@drawable/edit_fill" />
 
         <ImageView
-            android:id="@+id/imageView20"
+            android:id="@+id/imageView31"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/home_fill" />
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:fontFamily="@font/noto_sans_kr"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="0sp"
-            android:textColor="#767676"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView20"
-            android:text="메인홈" />
-
-        <TextView
-            android:id="@+id/textView21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:fontFamily="@font/noto_sans_kr"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="0sp"
-            android:textColor="#767676"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            app:layout_constraintStart_toEndOf="@+id/textView20"
-            app:layout_constraintTop_toBottomOf="@+id/imageView25"
-            android:text="게시판" />
-
-        <TextView
-            android:id="@+id/textView22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="100dp"
-            android:fontFamily="@font/noto_sans_kr"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="0sp"
-            android:textColor="#767676"
-            android:textSize="12sp"
-            android:textStyle="normal"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView30"
-            android:text="찜" />
+            app:layout_constraintTop_toTopOf="@id/imageView25"
+            app:srcCompat="@drawable/user_fill" />
+
+
+        <ImageView
+            android:id="@+id/imageView56"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="40dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView31"
+            app:layout_constraintTop_toTopOf="@id/imageView25"
+            app:srcCompat="@drawable/favorite_fill" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="33dp"
+            android:fontFamily="@font/noto_sans_kr"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="0sp"
+            android:text="메인홈"
+            android:textColor="#767676"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/imageView20"
+            app:layout_constraintStart_toStartOf="@+id/imageView20"
+            app:layout_constraintTop_toBottomOf="@+id/imageView20" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="0sp"
+            android:text="게시판"
+            android:textColor="#767676"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/imageView26"
+            app:layout_constraintStart_toStartOf="@+id/imageView26"
+            app:layout_constraintTop_toBottomOf="@+id/imageView26" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="0sp"
+            android:text="찜"
+            android:textColor="#767676"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/imageView56"
+            app:layout_constraintStart_toStartOf="@+id/imageView56"
+            app:layout_constraintTop_toBottomOf="@+id/imageView56" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_kr"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="0sp"
             android:textColor="#767676"
             android:textSize="12sp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView31"
+            app:layout_constraintStart_toStartOf="@+id/imageView31"
             app:layout_constraintTop_toBottomOf="@+id/imageView31"
-            android:text="MY" />
-
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="29dp"
-            android:layout_marginEnd="40dp"
-            android:fontFamily="@font/noto_sans_kr"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="0sp"
-            android:textColor="#767676"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
-            app:layout_constraintEnd_toStartOf="@+id/textView22"
-            app:layout_constraintStart_toEndOf="@+id/textView21"
-            android:text="오늘뭐먹지" />
-
-
+            tools:text="MY" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
 
 
 

@@ -13,11 +13,11 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/photo"
         app:srcCompat="@drawable/component_50" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/photo"
         android:layout_width="108dp"
         android:layout_height="108dp"
         android:layout_marginTop="48dp"
@@ -45,7 +45,7 @@
         android:maxLines="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintTop_toBottomOf="@+id/photo" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -127,11 +127,11 @@
         app:srcCompat="@drawable/expand_left" />
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/photo_button"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintBottom_toBottomOf="@+id/photo"
+        app:layout_constraintEnd_toEndOf="@+id/photo"
         app:srcCompat="@drawable/component_73" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

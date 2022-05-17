@@ -40,9 +40,11 @@ class PwFragment2 : Fragment(R.layout.pw2_frag) {
             findNavController().navigate(R.id.action_pwFragment2_to_idFragment)
         }
 
-        /*binding.idbutton.setOnClickListener {
-            mainActivity.onFragmentChange(0)
-        }*/
+
+        binding.goPw3.setOnClickListener {
+            findNavController().navigate(R.id.action_pwFragment2_to_pwFragment3)
+        }
+
 
 
     }

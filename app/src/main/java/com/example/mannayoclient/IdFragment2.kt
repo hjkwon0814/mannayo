@@ -29,7 +29,7 @@ class IdFragment2 : Fragment(R.layout.id2_frag) {
         binding.loginEmail.text = arguments?.getString("email")
 
         binding.pwbutton.setOnClickListener {
-            mainActivity.onFragmentChange(1)
+            findNavController().navigate(R.id.action_idFragment2_to_pwFragment)
         }
 
         binding.joinSumbit.setOnClickListener {

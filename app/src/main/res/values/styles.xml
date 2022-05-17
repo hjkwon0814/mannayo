@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="MySearchViewStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="searchIcon"
+            android:width="22dp"
+            android:height="22dp">@drawable/search</item>
+    </style>
+</resources>

@@ -34,6 +34,13 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
         rv.layoutManager = LinearLayoutManager(requireContext())
 
+        rvAdapter.itemClick = object : CategoryRVAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+
+                findNavController().navigate(R.id.action_categoryListFragment_to_mainStoreFragment)
+            }
+
+        }
 
 
 

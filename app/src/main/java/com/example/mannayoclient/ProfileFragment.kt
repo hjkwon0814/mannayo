@@ -18,6 +18,11 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
         binding = ProfileFragBinding.bind(view)
 
 
+        binding.photoButton.setOnClickListener(){
+
+        }
+
+
 
 
         //완료누르면 메인홈으로
