@@ -1,5 +1,7 @@
 package com.example.mannayoclient
 
+import com.example.mannayoclient.categorylist.restaurantImage
+import com.example.mannayoclient.categorylist.restaurantInfo
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,5 +20,11 @@ interface mannayoService {
 
     @GET("/signin")
     fun signIn(@Query("email") email :String, @Query("password") password : String) : Call<ReceiveLoginOK>
+
+    @GET("/restaurant/type")
+    fun getRestaurantList(@Query("type") type : String) : Call<List<restaurantInfo>>
+
+    @GET("/restaurant/image")
+    fun getRestaurantImage(@Query("id") id : Long) : Call<restaurantImage>
 
 }

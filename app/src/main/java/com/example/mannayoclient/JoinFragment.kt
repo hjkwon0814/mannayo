@@ -55,15 +55,6 @@ class JoinFragment : Fragment(R.layout.join_frag) {
         binding.editTextDate2.setEnabled(false)
         binding.editTextDate3.setEnabled(false)
 
-        val BASE_URL = "http://192.168.0.2:8080"
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service: mannayoService = retrofit.create(mannayoService::class.java)
-
         //EditText 외에 다른곳을 누르면 키보드 내려가기 (MainActivity에서 설정하였으나 JoinFragment에서는 먹히지 않아 따로 다시 작성함)
         fun hideKeyboard() {
             val mInputMethodManager =
@@ -256,7 +247,7 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
                 binding.view3.visibility = View.GONE
                 binding.textView8.visibility = View.GONE
-                service.signUp(request).enqueue(object : Callback<resSignUpData> {
+                retrofitService.service.signUp(request).enqueue(object : Callback<resSignUpData> {
 
                     override fun onResponse(
                         call: Call<resSignUpData>,

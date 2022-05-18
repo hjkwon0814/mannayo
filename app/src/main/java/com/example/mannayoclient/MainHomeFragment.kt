@@ -17,38 +17,47 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = MainhomeFragBinding.bind(view)
 
+        val bundle = Bundle()
 
 
         binding.Hansik.setOnClickListener(){
-            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment)
+            bundle.putString("categorization", "HANSIK")
+            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
         }
 
         binding.Bunsik.setOnClickListener(){
-            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment)
+            bundle.putString("categorization", "BUNSIK")
+            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
         }
 
         binding.Japanese.setOnClickListener(){
-            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment)
+            bundle.putString("categorization", "ILSIK")
+            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
         }
 
         binding.Chinese.setOnClickListener(){
-            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment)
+            bundle.putString("categorization", "JUNGSIK")
+            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
         }
 
         binding.Western.setOnClickListener(){
-            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment)
+            bundle.putString("categorization", "YANGSIK")
+            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
         }
 
         binding.Fast.setOnClickListener(){
-            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment)
+            bundle.putString("categorization", "FASTFOOD")
+            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
         }
 
         binding.Dessert.setOnClickListener(){
-            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment)
+            bundle.putString("categorization", "CAFE_DESSERT")
+            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
         }
 
         binding.Beer.setOnClickListener(){
-            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment)
+            bundle.putString("categorization", "SULJIP")
+            findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
         }
 
 

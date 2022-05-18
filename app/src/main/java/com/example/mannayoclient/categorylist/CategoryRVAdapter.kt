@@ -11,7 +11,7 @@ import com.example.mannayoclient.IdFragment
 import com.example.mannayoclient.PwFragment
 import com.example.mannayoclient.R
 
-class CategoryRVAdapter(val items : ArrayList<CategoryModel>) : RecyclerView.Adapter<CategoryRVAdapter.Viewholder>(){
+class CategoryRVAdapter(private val items : List<CategoryModel>) : RecyclerView.Adapter<CategoryRVAdapter.Viewholder>(){
 
     interface ItemClick {
         fun onClick(view : View, position: Int)
@@ -56,8 +56,6 @@ class CategoryRVAdapter(val items : ArrayList<CategoryModel>) : RecyclerView.Ada
 
             val category_grade = itemView.findViewById<TextView>(R.id.gradeArea)
             category_grade.text = item.grade
-
-
 
 
 

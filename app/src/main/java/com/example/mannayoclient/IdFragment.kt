@@ -38,15 +38,6 @@ class IdFragment : Fragment(R.layout.id_frag) {
 
         binding = IdFragBinding.bind(view)
 
-        val BASE_URL = "http://192.168.0.2:8080"
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service: mannayoService = retrofit.create(mannayoService::class.java)
-
         //제목 변경
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("계정 찾기")
@@ -82,7 +73,7 @@ class IdFragment : Fragment(R.layout.id_frag) {
                     realname = binding.editName.text.toString(),
                     nickname = binding.editPhone.text.toString()
                 )
-                service.getMyAccountByNickname(sendNicknameData)
+                retrofitService.service.getMyAccountByNickname(sendNicknameData)
                     .enqueue(object : Callback<resdata> {
                         override fun onFailure(call: Call<resdata>, t: Throwable) {
                             Toast.makeText(mainActivity, "인터넷 연결을 확인해 주세요!", Toast.LENGTH_SHORT)
@@ -118,7 +109,7 @@ class IdFragment : Fragment(R.layout.id_frag) {
                     realname = binding.editName.text.toString(),
                     phoneNumber = binding.editPhone.text.toString()
                 )
-                service.getMyAccountByPhoneNumber(sendPhoneNumberData)
+                retrofitService.service.getMyAccountByPhoneNumber(sendPhoneNumberData)
                     .enqueue(object : Callback<resdata> {
                         override fun onFailure(call: Call<resdata>, t: Throwable) {
                             Toast.makeText(mainActivity, "인터넷 연결을 확인해 주세요!", Toast.LENGTH_SHORT)

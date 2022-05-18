@@ -34,14 +34,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
         binding = LoginFragBinding.bind(view)
 
-        val BASE_URL = "http://192.168.0.2:8080"
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service: mannayoService = retrofit.create(mannayoService::class.java)
 
         sharedPreferences = mainActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
@@ -52,7 +45,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         println(sharedPreferences.getString("email","").toString())
         if(!sharedPreferences.getString("email",null).toString().isNullOrEmpty() && !sharedPreferences.getString("password",null).toString().isNullOrEmpty()) {
             println("y?")
-            autologin(service, sharedPreferences.getString("email","").toString() ,sharedPreferences.getString("password","").toString())
+            autologin(retrofitService.service, sharedPreferences.getString("email","").toString() ,sharedPreferences.getString("password","").toString())
         }
 
         //아이디/비밀번호 찾기
@@ -71,7 +64,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         }
 
         binding.loginSubmit.setOnClickListener{
-            login(service)
+            login(retrofitService.service)
 
         }
 
