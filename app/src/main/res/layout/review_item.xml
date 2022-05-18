@@ -9,21 +9,26 @@
         android:id="@+id/imageView59"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        app:srcCompat="@drawable/user"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="48dp" />
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user" />
 
     <TextView
+        android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/noto_sans_kr_medium"
         android:lineSpacingExtra="6sp"
         android:text="닉네임일곱글자"
         android:textColor="#191919"
         android:textSize="14sp"
         android:textStyle="normal"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="64dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView59"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,8 +38,9 @@
         android:textColor="#191919"
         android:textSize="12sp"
         android:textStyle="normal"
-        tools:layout_editor_absoluteX="191dp"
-        tools:layout_editor_absoluteY="64dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView21"
+        app:layout_constraintTop_toTopOf="@+id/textView21"
+        tools:layout_editor_absoluteX="182dp" />
 
     <TextView
         android:layout_width="272dp"
@@ -55,16 +61,16 @@
         android:textColor="#191919"
         android:textSize="12sp"
         android:textStyle="normal"
-        tools:layout_editor_absoluteX="298dp"
-        tools:layout_editor_absoluteY="72dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView63"
+        tools:layout_editor_absoluteX="111dp" />
 
     <ImageView
         android:id="@+id/imageView63"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        app:srcCompat="@drawable/star_fill"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="243dp" />
+        app:layout_constraintStart_toStartOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/textView21"
+        app:srcCompat="@drawable/star_fill" />
 
     <ImageView
         android:id="@+id/imageView64"

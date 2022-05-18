@@ -3,22 +3,17 @@ package com.example.mannayoclient
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.text.InputType
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.mannayoclient.databinding.ActivityMainBinding
 import com.example.mannayoclient.databinding.LoginFragBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginFragment : Fragment(R.layout.login_frag) {
     lateinit var binding: LoginFragBinding
@@ -47,6 +42,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
             println("y?")
             autologin(retrofitService.service, sharedPreferences.getString("email","").toString() ,sharedPreferences.getString("password","").toString())
         }
+
 
         //아이디/비밀번호 찾기
         binding.idPw.setOnClickListener {
@@ -90,7 +86,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         }
 
                         if(receive.nickname.equals("null")) {
-                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
                         }else {
                             mainActivity.onActivityChange()
                         }
@@ -126,7 +122,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                     println(receive.data)
                     if(response.isSuccessful && receive.success) {
                         if(receive.nickname.equals("null")) {
-                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
                         }else {
                             mainActivity.onActivityChange()
                         }
