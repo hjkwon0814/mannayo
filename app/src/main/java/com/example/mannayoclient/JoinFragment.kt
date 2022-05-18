@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
 import android.view.MotionEvent
@@ -36,7 +38,15 @@ class JoinFragment : Fragment(R.layout.join_frag) {
     lateinit var binding: JoinFragBinding
     lateinit var mainActivity: MainActivity
 
-
+    lateinit var editTextEmail: EditText
+    lateinit var editTextEmailDotCom: Spinner
+    lateinit var editTextPassword: EditText
+    lateinit var editTextPasswordRe: EditText
+    lateinit var editTextName: EditText
+    lateinit var editTextYear: EditText
+    lateinit var editTextMonth: EditText
+    lateinit var editTextDate: EditText
+    lateinit var editTextPhone: EditText
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,18 +59,21 @@ class JoinFragment : Fragment(R.layout.join_frag) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = JoinFragBinding.bind(view)
-
-
         binding.editTextDate.setEnabled(false)
         binding.editTextDate2.setEnabled(false)
         binding.editTextDate3.setEnabled(false)
 
-        //EditText 외에 다른곳을 누르면 키보드 내려가기 (MainActivity에서 설정하였으나 JoinFragment에서는 먹히지 않아 따로 다시 작성함)
-        fun hideKeyboard() {
-            val mInputMethodManager =
-                requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            mInputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
-        }
+
+        editTextEmail = binding.editTextTextEmailAddress
+        editTextEmailDotCom = binding.spinner
+        editTextPassword = binding.editTextTextPassword
+        editTextPasswordRe = binding.editTextTextPassword2
+        editTextName = binding.editTextTextPersonName
+        editTextYear = binding.editTextDate
+        editTextMonth = binding.editTextDate2
+        editTextDate = binding.editTextDate3
+        editTextPhone = binding.editTextNumber
+
 
         binding.layout.setOnClickListener{
             hideKeyboard()
@@ -183,15 +196,7 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 loginTypeEnum = "EMAIL"
             )
 
-            //비밀번호 체크하는 함수 (숫자, 문자, 특수문자 포함 8~12자리 이내)
-            fun isPasswordFormat(password: String): Boolean {
-                return password.matches("^.*(?=^.{8,12}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$".toRegex())
-            }
 
-            //한글 이름 2~4자 이내, 영문 이름 2~10자 이내 : 띄어쓰기(\s)가 들어가며 First, Last Name 형식, 한글 또는 영문 사용하기(혼용X)
-            fun isNameFormat(name: String): Boolean {
-                return name.matches("^[가-힣]{2,4}|[a-zA-Z]{2,10}\\s[a-zA-Z]{2,10}\$".toRegex())
-            }
 
             if (binding.editTextTextPassword.text.toString() != binding.editTextTextPassword2.text.toString() && !binding.editTextTextPassword.text.isNullOrEmpty() &&
                 !binding.editTextTextPassword2.text.isNullOrEmpty()) {
@@ -208,7 +213,11 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 binding.textView8.visibility = View.GONE
 
 
-            } else if (!isPasswordFormat(binding.editTextTextPassword.text.toString()) && !binding.editTextTextPassword.text.isNullOrEmpty()) {
+            }else  {
+                binding.view2.visibility = View.GONE
+                binding.textView6.visibility = View.GONE
+            }
+            if (!isPasswordFormat(binding.editTextTextPassword.text.toString()) && !binding.editTextTextPassword.text.isNullOrEmpty()) {
                 Toast.makeText(mainActivity, "비밀번호가 올바르지 않은 형식입니다.!", Toast.LENGTH_SHORT)
                     .show()
 
@@ -221,8 +230,9 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 binding.view3.visibility = View.GONE
                 binding.textView8.visibility = View.GONE
 
-            } else if (!isNameFormat(binding.editTextTextPersonName.text.toString()) && !binding.editTextTextPersonName.text.isNullOrEmpty()){
-                Toast.makeText(mainActivity, "이름이이 올바르지 않은 형식니다.!", Toast.LENGTH_SHORT)
+            }
+            if (!isNameFormat(binding.editTextTextPersonName.text.toString()) && !binding.editTextTextPersonName.text.isNullOrEmpty()){
+                Toast.makeText(mainActivity, "이름이 올바르지 않은 형식니다.!", Toast.LENGTH_SHORT)
                     .show()
 
                 binding.view3.visibility = View.VISIBLE
@@ -234,10 +244,14 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 binding.view2.visibility = View.GONE
                 binding.textView6.visibility = View.GONE
 
-            } else if(!binding.editTextTextEmailAddress.text.isNullOrEmpty() && !binding.editTextTextPassword.text.isNullOrEmpty()
+            }
+            if(!binding.editTextTextEmailAddress.text.isNullOrEmpty() && !binding.editTextTextPassword.text.isNullOrEmpty()
                 && !binding.editTextTextPassword2.text.isNullOrEmpty() && !binding.editTextTextPersonName.text.isNullOrEmpty()
                 && !binding.editTextDate.text.isNullOrEmpty() && !binding.editTextDate2.text.isNullOrEmpty() && !binding.editTextDate3.text.isNullOrEmpty()
-                && !binding.editTextNumber.text.isNullOrEmpty()) {
+                && !binding.editTextNumber.text.isNullOrEmpty() && !isNameFormat(binding.editTextTextPersonName.text.toString())
+                && !binding.editTextTextPersonName.text.isNullOrEmpty() && !isPasswordFormat(binding.editTextTextPassword.text.toString())
+                && !binding.editTextTextPassword.text.isNullOrEmpty() && !isPasswordFormat(binding.editTextTextPassword.text.toString())
+                && !binding.editTextTextPassword.text.isNullOrEmpty()) {
 
                 binding.view.visibility = View.GONE
                 binding.textView4.visibility = View.GONE
@@ -269,33 +283,51 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
                 })
 
-            }else if(binding.editTextTextEmailAddress.text.isNullOrEmpty()) {
-                Toast.makeText(mainActivity, "이메일을 입력하세요!", Toast.LENGTH_SHORT)
-                    .show()
-            }else if(binding.editTextTextPassword.text.isNullOrEmpty()) {
-                Toast.makeText(mainActivity, "비밀번호를 입력하세요!", Toast.LENGTH_SHORT)
-                    .show()
-            }else if(binding.editTextTextPersonName.text.isNullOrEmpty()) {
-                Toast.makeText(mainActivity, "이름을 입력하세요!", Toast.LENGTH_SHORT)
-                    .show()
-            }else if(binding.editTextDate.text.isNullOrEmpty()) {
-                Toast.makeText(mainActivity, "년도를 입력하세요!", Toast.LENGTH_SHORT)
-                    .show()
-            }else if(binding.editTextDate2.text.isNullOrEmpty()) {
-                Toast.makeText(mainActivity, "월을 입력하세요!", Toast.LENGTH_SHORT)
-                    .show()
-            }else if(binding.editTextDate3.text.isNullOrEmpty()) {
-                Toast.makeText(mainActivity, "일을 입력하세요!", Toast.LENGTH_SHORT)
-                    .show()
-            }else if(binding.editTextNumber.text.isNullOrEmpty()) {
-                Toast.makeText(mainActivity, "휴대전화번호 입력하세요!", Toast.LENGTH_SHORT)
-                    .show()
             }
 
         }
     }
 
 
+    fun buttonWatcher() {
+        editTextEmail.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if(editTextEmail.text.toString() != "" && editTextEmailDotCom.selectedItem.toString() != ""
+                    && editTextPassword.toString() != "" && editTextPasswordRe.toString() != "" && editTextName.toString() != ""
+                    && editTextYear.toString() != "" &&editTextMonth.toString() != "" && editTextDate.toString() != ""
+                    && editTextPhone.toString() != "")
+
+                    return
+
+            }
+
+        })
+    }
+
+    //비밀번호 체크하는 함수 (숫자, 문자, 특수문자 포함 8~12자리 이내)
+    fun isPasswordFormat(password: String): Boolean {
+        return password.matches("^.*(?=^.{8,12}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*\$".toRegex())
+    }
+
+    //한글 이름 2~4자 이내, 영문 이름 2~10자 이내 : 띄어쓰기(\s)가 들어가며 First, Last Name 형식, 한글 또는 영문 사용하기(혼용X)
+    fun isNameFormat(name: String): Boolean {
+        return name.matches("^[가-힣]{2,4}|[a-zA-Z]{2,10}\\s[a-zA-Z]{2,10}\$".toRegex())
+    }
+
+    //EditText 외에 다른곳을 누르면 키보드 내려가기 (MainActivity에서 설정하였으나 JoinFragment에서는 먹히지 않아 따로 다시 작성함)
+    fun hideKeyboard() {
+        val mInputMethodManager =
+            requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        mInputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
+    }
 
 
 }
