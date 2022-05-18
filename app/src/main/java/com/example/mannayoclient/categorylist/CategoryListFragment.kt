@@ -17,22 +17,31 @@ import com.example.mannayoclient.mannayoService
 import com.example.mannayoclient.retrofitService
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.URL
 import java.time.LocalDateTime
 import java.time.LocalTime
 
 
 class CategoryListFragment : Fragment(R.layout.category_list_frag) {
     lateinit var binding: CategoryListFragBinding
+    val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
         binding = CategoryListFragBinding.bind(view)
+
+
 
         val categorization = arguments?.getString("categorization").toString()
         val items = ArrayList<CategoryModel>()
@@ -56,26 +65,31 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                 val receive = response.body() as List<restaurantInfo>
                 if(response.isSuccessful) {
                     for(it in receive) {
-                        items.add(CategoryModel(it.name, it.address, it.starttime+"~"+it.endtime, it.point.toString()))
-                        retrofitService.service.getRestaurantImage(it.id).enqueue(object :Callback<restaurantImage> {
+                        retrofitService.service.getRestaurantImage(it.id).enqueue(object :Callback<ResponseBody> {
                             override fun onResponse(
-                                call: Call<restaurantImage>,
-                                response: Response<restaurantImage>
+                                call: Call<ResponseBody>,
+                                response: Response<ResponseBody>
                             ) {
-                                val receiveimage = response.body() as restaurantImage
+                                val receiveimage = response.body()?.byteStream()
                                 if(response.isSuccessful) {
-                                    val category_image = view.findViewById<ImageView>(R.id.imageArea)
-                                    category_image.setImageBitmap(byteArrayToBitmap(receiveimage.image))
+                                    coroutineScope.launch {
+                                        val originalDeferred = coroutineScope.async(Dispatchers.IO) {
+                                            BitmapFactory.decodeStream(receiveimage)
+                                        }
+                                        val originalBitmap = originalDeferred.await()
+                                        items.add(CategoryModel(it.name, it.address, it.starttime+"~"+it.endtime, it.point.toString(),originalBitmap))
+                                        rv.adapter = rvAdapter
+                                    }
                                 }
                             }
 
-                            override fun onFailure(call: Call<restaurantImage>, t: Throwable) {
-
+                            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                                Log.e("imageTest","${t.message}")
                             }
 
                         })
                     }
-                    rv.adapter = rvAdapter
+
                 }
             }
 
@@ -90,9 +104,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
     }
 
-    fun byteArrayToBitmap(image : ByteArray) : Bitmap {
-        return BitmapFactory.decodeByteArray(image,0,image.size)
-    }
+
 }
 
 
@@ -105,6 +117,10 @@ data class restaurantInfo (
     @SerializedName("name")
     @Expose
     val name : String,
+
+    @SerializedName("type")
+    @Expose
+    val type : String,
 
     @SerializedName("starttime")
     @Expose
@@ -124,5 +140,7 @@ data class restaurantInfo (
         )
 
 data class restaurantImage(
-    val image : ByteArray
+    @SerializedName("image")
+    @Expose
+    val image : String
 )

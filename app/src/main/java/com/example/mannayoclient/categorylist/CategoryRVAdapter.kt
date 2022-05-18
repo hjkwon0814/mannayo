@@ -57,7 +57,8 @@ class CategoryRVAdapter(private val items : List<CategoryModel>) : RecyclerView.
             val category_grade = itemView.findViewById<TextView>(R.id.gradeArea)
             category_grade.text = item.grade
 
-
+            val category_image= itemView.findViewById<ImageView>(R.id.imageArea)
+            category_image.setImageBitmap(item.image)
 
         }
 
