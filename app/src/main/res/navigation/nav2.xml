@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_categoryListFragment_to_mainStoreFragment"
             app:destination="@id/mainStoreFragment" />
+        <action
+            android:id="@+id/action_categoryListFragment_self"
+            app:destination="@id/categoryListFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainStoreFragment"

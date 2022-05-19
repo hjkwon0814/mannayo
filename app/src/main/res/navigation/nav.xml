@@ -65,12 +65,6 @@
         <action
             android:id="@+id/action_loginFragment_to_joinFragment"
             app:destination="@id/joinFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_mainHomeFragment2"
-            app:destination="@id/mainHomeFragment2" />
-        <action
-            android:id="@+id/action_loginFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/joinFragment"
@@ -91,11 +85,7 @@
     <fragment
         android:id="@+id/mainHomeFragment2"
         android:name="com.example.mannayoclient.MainHomeFragment"
-        android:label="MainHomeFragment" >
-        <action
-            android:id="@+id/action_mainHomeFragment2_to_categoryListFragment2"
-            app:destination="@id/categoryListFragment2" />
-    </fragment>
+        android:label="MainHomeFragment" />
     <fragment
         android:id="@+id/categoryListFragment2"
         android:name="com.example.mannayoclient.categorylist.CategoryListFragment"

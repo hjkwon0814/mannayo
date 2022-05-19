@@ -42,6 +42,29 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         binding = CategoryListFragBinding.bind(view)
 
 
+        binding.review.setOnClickListener{
+
+            binding.review.setImageResource(R.drawable.component_68)
+            binding.grade.setImageResource(R.drawable.component_74)
+            binding.favorite.setImageResource(R.drawable.component_71)
+
+        }
+
+        binding.grade.setOnClickListener{
+
+            binding.review.setImageResource(R.drawable.component_67)
+            binding.grade.setImageResource(R.drawable.component_70)
+            binding.favorite.setImageResource(R.drawable.component_71)
+        }
+
+        binding.favorite.setOnClickListener{
+
+            binding.review.setImageResource(R.drawable.component_67)
+            binding.grade.setImageResource(R.drawable.component_74)
+            binding.favorite.setImageResource(R.drawable.component_72)
+        }
+
+
 
         val categorization = arguments?.getString("categorization").toString()
         val items = ArrayList<CategoryModel>()

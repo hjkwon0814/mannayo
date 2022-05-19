@@ -86,7 +86,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         }
 
                         if(receive.nickname.equals("null")) {
-                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+
                         }else {
                             mainActivity.onActivityChange()
                         }
@@ -122,7 +122,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                     println(receive.data)
                     if(response.isSuccessful && receive.success) {
                         if(receive.nickname.equals("null")) {
-                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment)
+
                         }else {
                             mainActivity.onActivityChange()
                         }
