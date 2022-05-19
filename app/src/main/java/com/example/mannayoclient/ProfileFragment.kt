@@ -164,10 +164,10 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                     if (data?.extras?.get("data") != null) {
                         val bitmap = data?.extras?.get("data") as Bitmap
 
-                        val filename = newFileName()
-                        val uri = saveImageFile(filename, "image/jpg", bitmap)
+                        //val filename = newFileName()
+                        //val uri = saveImageFile(filename, "image/jpg", bitmap)
 
-                        binding.photo.setImageURI(uri)
+                        binding.photo.setImageBitmap(bitmap)
                     }
                 }
                 FLAG_REQ_GALLERY -> {
