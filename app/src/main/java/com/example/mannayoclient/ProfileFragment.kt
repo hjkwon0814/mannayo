@@ -112,7 +112,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
     }
 
     private fun openCallery() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        val intent = Intent(Intent.ACTION_PICK)
         intent.setType("image/*")
         startActivityForResult(intent, FLAG_REQ_GALLERY)
     }
