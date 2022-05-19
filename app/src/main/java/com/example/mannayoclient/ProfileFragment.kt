@@ -7,6 +7,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -103,7 +104,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
             if(isPermitted(STORAGE_PERMISSION)) {
                 openCallery()
             }else {
-                ActivityCompat.requestPermissions(requireActivity(), CAMERA_PERMISSION, FLAG_PERM_STORAGE)
+                ActivityCompat.requestPermissions(requireActivity(), STORAGE_PERMISSION, FLAG_PERM_STORAGE)
             }
             alertDialog.dismiss()
         }
@@ -111,8 +112,8 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
     }
 
     private fun openCallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = MediaStore.Images.Media.CONTENT_TYPE
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.setType("image/*")
         startActivityForResult(intent, FLAG_REQ_GALLERY)
     }
 
@@ -167,12 +168,19 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                         val filename = newFileName()
                         val uri = saveImageFile(filename, "image/jpg", bitmap)
 
-                        binding.photo.setImageURI(uri)
+                        binding.photo.setImageBitmap(bitmap)
                     }
                 }
                 FLAG_REQ_GALLERY -> {
                     val uri =data?.data
-                    binding.photo.setImageURI(uri)
+                    try {
+                        val contentResolver = requireActivity().contentResolver
+                        val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+                        binding.photo.setImageBitmap(bitmap)
+                    }catch (e:Exception) {
+                        e.printStackTrace()
+                    }
+
                 }
             }
         }
