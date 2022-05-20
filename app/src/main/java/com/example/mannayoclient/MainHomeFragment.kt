@@ -28,7 +28,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         binding.Bunsik.setOnClickListener(){
             bundle.putString("categorization", "BUNSIK")
             findNavController().navigate(R.id.action_mainHomeFragment_to_categoryListFragment, bundle)
-        }
+    }
 
         binding.Japanese.setOnClickListener(){
             bundle.putString("categorization", "ILSIK")

@@ -12,6 +12,9 @@
     android:layout_height="match_parent">
 
 
+
+
+
     <ImageView
         android:id="@+id/imageView53"
         android:layout_width="match_parent"
@@ -22,11 +25,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/r_recyclerView"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/rectangle_55"
         android:paddingTop="85dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="146dp"
@@ -39,8 +43,8 @@
         android:layout_height="1dp"
         android:layout_marginTop="-10dp"
         android:background="#767676"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="@+id/r_recyclerView"
+        app:layout_constraintStart_toStartOf="@+id/r_recyclerView"
         app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
     <TextView
@@ -56,8 +60,18 @@
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recyclerView"
+        app:layout_constraintTop_toTopOf="@+id/r_recyclerView"
         android:text="상세 메뉴" />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_recyclerView" />
+
 
     <ImageView
         android:id="@+id/imageView55"

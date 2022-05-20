@@ -2,20 +2,16 @@ package com.example.mannayoclient
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.SyncStateContract.Helpers.insert
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -27,7 +23,6 @@ import com.example.mannayoclient.databinding.ProfileFragBinding
 import java.io.FileOutputStream
 import java.lang.Exception
 import java.text.SimpleDateFormat
-import java.util.jar.Manifest
 
 
 class ProfileFragment : Fragment(R.layout.profile_frag) {
@@ -58,7 +53,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
 
         //완료누르면 메인홈으로
         binding.completion.setOnClickListener {
-
+            findNavController().navigate(R.id.action_profileFragment_to_mainHomeFragment)
         }
 
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/idFragment"
@@ -83,14 +83,6 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mainHomeFragment2"
-        android:name="com.example.mannayoclient.MainHomeFragment"
-        android:label="MainHomeFragment" />
-    <fragment
-        android:id="@+id/categoryListFragment2"
-        android:name="com.example.mannayoclient.categorylist.CategoryListFragment"
-        android:label="CategoryListFragment" />
-    <fragment
         android:id="@+id/pwFragment3"
         android:name="com.example.mannayoclient.PwFragment3"
         android:label="PwFragment3" >
@@ -99,7 +91,7 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.mannayoclient.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:id="@+id/stroreReviewFragment"
+        android:name="com.example.mannayoclient.stroereviewlist.StroreReviewFragment"
+        android:label="StroreReviewFragment" />
 </navigation>
