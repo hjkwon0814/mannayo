@@ -33,11 +33,15 @@ class MainStoreFragment: Fragment(R.layout.mainstore_frag) {
 
         rv.layoutManager = LinearLayoutManager(requireContext())
 
+        //메뉴
         binding.menuButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainStoreFragment_to_storeMenuFragment)
         }
 
-
+        //리뷰
+        binding.reviewButton.setOnClickListener {
+            findNavController().navigate(R.id.  action_mainStoreFragment_to_storeReviewFragment)
+        }
 
 
     }

@@ -90,8 +90,4 @@
             android:id="@+id/action_pwFragment3_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/stroreReviewFragment"
-        android:name="com.example.mannayoclient.stroereviewlist.StroreReviewFragment"
-        android:label="StroreReviewFragment" />
 </navigation>
