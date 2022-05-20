@@ -3,20 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:paddingBottom="13.2dp"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageView59"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view6"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user" />
 
     <TextView
-        android:id="@+id/textView21"
+        android:id="@+id/r_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -31,78 +32,73 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/r_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/noto_sans_kr"
         android:lineSpacingExtra="8sp"
         android:text="22.04.27"
         android:textColor="#191919"
         android:textSize="12sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/textView21"
-        app:layout_constraintTop_toTopOf="@+id/textView21"
-        tools:layout_editor_absoluteX="182dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/r_name"
+        app:layout_constraintStart_toEndOf="@+id/r_name"
+        app:layout_constraintTop_toTopOf="@+id/r_name" />
 
     <TextView
-        android:layout_width="272dp"
+        android:id="@+id/r_content"
+        android:layout_width="315dp"
         android:layout_height="67dp"
+        android:layout_marginTop="20dp"
         android:lineSpacingExtra="7sp"
         android:text="너무 맛있고 좋아요! 인테리어도 너무 깔끔하고 이쁘고 사장님도 친절합니다. 모든 메뉴가 다 맛있어보여서 다음에 또 오고싶네요!!"
         android:textColor="#000000"
         android:textSize="13sp"
         android:textStyle="normal"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="94dp" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView45"
+        app:layout_constraintStart_toStartOf="@+id/imageView45"
+        app:layout_constraintTop_toBottomOf="@+id/imageView45" />
 
     <TextView
+        android:id="@+id/r_grade"
         android:layout_width="18dp"
         android:layout_height="18dp"
+        android:layout_marginStart="4dp"
         android:lineSpacingExtra="8sp"
         android:text="5.0"
         android:textColor="#191919"
         android:textSize="12sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/imageView63"
-        tools:layout_editor_absoluteX="111dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView63" />
 
     <ImageView
         android:id="@+id/imageView63"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        app:layout_constraintStart_toStartOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/textView21"
+        app:layout_constraintStart_toStartOf="@+id/r_name"
+        app:layout_constraintTop_toBottomOf="@+id/r_name"
         app:srcCompat="@drawable/star_fill" />
 
     <ImageView
-        android:id="@+id/imageView64"
-        android:layout_width="166dp"
-        android:layout_height="166dp"
-        app:srcCompat="@drawable/component_63"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="302dp" />
+        android:id="@+id/imageView45"
+        android:layout_width="315dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView59"
+        app:layout_constraintTop_toBottomOf="@+id/imageView63"
+        app:srcCompat="@drawable/component_101" />
 
-    <ImageView
-        android:id="@+id/imageView65"
-        android:layout_width="166dp"
-        android:layout_height="166dp"
-        app:srcCompat="@drawable/component_63"
-        tools:layout_editor_absoluteX="219dp"
-        tools:layout_editor_absoluteY="302dp" />
-
-    <ImageView
-        android:id="@+id/imageView66"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        app:srcCompat="@drawable/edit_fill"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="558dp" />
-
-    <ImageView
-        android:id="@+id/imageView67"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:srcCompat="@drawable/close_ring_duotone"
-        tools:layout_editor_absoluteX="212dp"
-        tools:layout_editor_absoluteY="558dp" />
+    <View
+        android:id="@+id/view6"
+        android:layout_width="320dp"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="13.2dp"
+        android:background="#dbdbdb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_content" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

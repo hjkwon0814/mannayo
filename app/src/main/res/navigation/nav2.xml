@@ -38,4 +38,12 @@
         android:id="@+id/storeMenuFragment"
         android:name="com.example.mannayoclient.storemenulist.StoreMenuFragment"
         android:label="StoreMenuFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.mannayoclient.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_mainHomeFragment"
+            app:destination="@id/mainHomeFragment" />
+    </fragment>
 </navigation>

@@ -18,7 +18,7 @@ class StoreMenuFragment : Fragment(R.layout.storemenu_frag){
         super.onViewCreated(view, savedInstanceState)
         binding = StoremenuFragBinding.bind(view)
 
-        val rv : RecyclerView = binding.recyclerView
+        //val rv : RecyclerView = binding.recyclerView
 
         val items = ArrayList<StoreMenuModel>()
 
@@ -30,9 +30,9 @@ class StoreMenuFragment : Fragment(R.layout.storemenu_frag){
 
 
         val rvAdapter = StoreMenuRVAdapter(items)
-        rv.adapter = rvAdapter
+        //rv.adapter = rvAdapter
 
-        rv.layoutManager = LinearLayoutManager(requireContext())
+        //rv.layoutManager = LinearLayoutManager(requireContext())
 
 
 
