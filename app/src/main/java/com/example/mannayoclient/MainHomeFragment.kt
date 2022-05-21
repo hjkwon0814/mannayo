@@ -1,16 +1,20 @@
 package com.example.mannayoclient
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.CategoryListFragBinding
 import com.example.mannayoclient.databinding.MainhomeFragBinding
 
 class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
     lateinit var binding: MainhomeFragBinding
+    lateinit var activity: SecondActivity
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -18,7 +22,14 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         binding = MainhomeFragBinding.bind(view)
 
         val bundle = Bundle()
+        activity = context as SecondActivity
 
+        val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val nickname = shared.getString("nickname","null")
+
+        if(nickname == "null") {
+            findNavController().navigate(R.id.action_mainHomeFragment_to_profileFragment)
+        }
 
         binding.Hansik.setOnClickListener(){
             bundle.putString("categorization", "HANSIK")
@@ -70,4 +81,6 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
 
     }
+
+
 }

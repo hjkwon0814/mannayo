@@ -69,6 +69,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
         val id = sharedPreferences.getString("id", "0")?.toLongOrNull()
 
 
+        println(id)
 
 
 
@@ -79,19 +80,44 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
         //완료누르면 메인홈으로
         binding.completion.setOnClickListener {
 
+            path = binding.photo.getTag(0).toString()
+            //creating a file
+            val file = File(path)
+            var fileName = id.toString()
+            fileName += ".png"
+
+            var requestBody : RequestBody = RequestBody.create(MediaType.parse("image/*"),file)
+            var body : MultipartBody.Part = MultipartBody.Part.createFormData("uploaded_file",fileName,requestBody)
 
             retrofitService.service.setNickname(id ,binding.editTextTextPersonName2.text.toString()).enqueue(object : Callback<ReceiveOK> {
                 override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
                     if(response.isSuccessful) {
+                        println("닉네임등록 성공")
+                        retrofitService.service.setMyProfileImage(id, body).enqueue(object : Callback<ReceiveOK> {
+                            override fun onResponse(
+                                call: Call<ReceiveOK>,
+                                response: Response<ReceiveOK>
+                            ) {
+                                val receive = response.body() as ReceiveOK
+                                if(response.isSuccessful) {
+                                    println("프로필 등록 성공")
+                                }
+                            }
 
+                            override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                                println("프로필등록 실패")
+                            }
+
+                        })
                     }
                 }
 
                 override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
-
+                    println("닉네임등록 실패")
                 }
 
             })
+
         }
 
 
@@ -198,10 +224,9 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                 FLAG_REQ_CAMERA -> {
                     if (data?.extras?.get("data") != null) {
                         val bitmap = data?.extras?.get("data") as Bitmap
-
-//                        val filename = newFileName()
-//                        val uri = saveImageFile(filename, "image/jpg", bitmap)
-
+                        val filename = newFileName()
+                        val uri = saveImageFile(filename, "image/jpg", bitmap)
+                        binding.photo.setTag(0,uri)
                         binding.photo.setImageBitmap(bitmap)
                     }
                 }
