@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/mainHomeFragment2">
+    app:startDestination="@id/mainHomeFragment">
 
     <fragment
         android:id="@+id/idFragment"
@@ -65,9 +65,7 @@
         <action
             android:id="@+id/action_loginFragment_to_joinFragment"
             app:destination="@id/joinFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_profileFragment2"
-            app:destination="@id/profileFragment2" />
+
     </fragment>
     <fragment
         android:id="@+id/joinFragment"
@@ -93,18 +91,8 @@
             android:id="@+id/action_pwFragment3_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
-<<<<<<< HEAD
-        android:id="@+id/mainHomeFragment2"
-        android:name="com.example.mannayoclient.MainHomeFragment"
-        android:label="MainHomeFragment" />
-=======
-        android:id="@+id/stroreReviewFragment"
-        android:name="com.example.mannayoclient.stroereviewlist.StroreReviewFragment"
-        android:label="StroreReviewFragment" />
-    <fragment
-        android:id="@+id/profileFragment2"
-        android:name="com.example.mannayoclient.ProfileFragment"
-        android:label="ProfileFragment" />
->>>>>>> 71d375e6730ea874d0e5b29d0f23ea822e51c698
+
+
+
+
 </navigation>
