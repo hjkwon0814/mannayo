@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/mainHomeFragment2">
 
     <fragment
         android:id="@+id/idFragment"
@@ -90,4 +90,8 @@
             android:id="@+id/action_pwFragment3_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mainHomeFragment2"
+        android:name="com.example.mannayoclient.MainHomeFragment"
+        android:label="MainHomeFragment" />
 </navigation>
