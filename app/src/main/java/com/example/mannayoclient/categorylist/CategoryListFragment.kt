@@ -88,29 +88,41 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                 val receive = response.body() as List<restaurantInfo>
                 if(response.isSuccessful) {
                     for(it in receive) {
-                        retrofitService.service.getRestaurantImage(it.id).enqueue(object :Callback<ResponseBody> {
-                            override fun onResponse(
-                                call: Call<ResponseBody>,
-                                response: Response<ResponseBody>
-                            ) {
-                                val receiveimage = response.body()?.byteStream()
-                                if(response.isSuccessful) {
-                                    coroutineScope.launch {
-                                        val originalDeferred = coroutineScope.async(Dispatchers.IO) {
-                                            BitmapFactory.decodeStream(receiveimage)
+                        if(!it.imageAddress.equals("")) {
+                            retrofitService.service.getRestaurantImage(it.id)
+                                .enqueue(object : Callback<ResponseBody> {
+                                    override fun onResponse(
+                                        call: Call<ResponseBody>,
+                                        response: Response<ResponseBody>
+                                    ) {
+                                        val receiveimage = response.body()?.byteStream()
+                                        if (response.isSuccessful) {
+                                            coroutineScope.launch {
+                                                val originalDeferred =
+                                                    coroutineScope.async(Dispatchers.IO) {
+                                                        BitmapFactory.decodeStream(receiveimage)
+                                                    }
+                                                val originalBitmap = originalDeferred.await()
+                                                items.add(
+                                                    CategoryModel(
+                                                        it.name,
+                                                        it.address,
+                                                        it.starttime + "~" + it.endtime,
+                                                        it.point.toString(),
+                                                        originalBitmap
+                                                    )
+                                                )
+                                                rv.adapter = rvAdapter
+                                            }
                                         }
-                                        val originalBitmap = originalDeferred.await()
-                                        items.add(CategoryModel(it.name, it.address, it.starttime+"~"+it.endtime, it.point.toString(),originalBitmap))
-                                        rv.adapter = rvAdapter
                                     }
-                                }
-                            }
 
-                            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                                Log.e("imageTest","${t.message}")
-                            }
+                                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                                        Log.e("imageTest", "${t.message}")
+                                    }
 
-                        })
+                                })
+                        }
                     }
 
                 }
@@ -160,6 +172,10 @@ data class restaurantInfo (
     @SerializedName("address")
     @Expose
     val address : String,
+
+    @SerializedName("imageAddress")
+    @Expose
+    val imageAddress: String
         )
 
 data class restaurantImage(
