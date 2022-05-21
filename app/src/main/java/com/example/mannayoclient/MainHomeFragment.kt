@@ -61,6 +61,11 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
 
+        binding.heart.setOnClickListener(){
+            findNavController().navigate(R.id.action_mainHomeFragment_to_favoritistFragment)
+        }
+
+
 
 
 

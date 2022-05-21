@@ -26,52 +26,90 @@
         tools:srcCompat="@tools:sample/avatars" />
 
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/r_recyclerView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:paddingTop="85dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="146dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView53" />
+        android:background="@drawable/rectangle_55"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <View
-        android:id="@+id/view5"
-        android:layout_width="272dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="-10dp"
-        android:background="#767676"
-        app:layout_constraintEnd_toEndOf="@+id/r_recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/r_recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:lineSpacingExtra="4sp"
+            android:text="대표메뉴"
+            android:textColor="#191919"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view5" />
 
-    <TextView
-        android:id="@+id/textView38"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_kr"
-        android:gravity="center_horizontal"
-        android:lineSpacingExtra="-6sp"
-        android:textColor="#191919"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/r_recyclerView"
-        android:text="상세 메뉴" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="154dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="272dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="-10dp"
+            android:background="#767676"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+            app:layout_constraintStart_toStartOf="@+id/recyclerView"
+            app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/noto_sans_kr"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="-6sp"
+            android:text="상세 메뉴"
+            android:textColor="#191919"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyclerView" />
 
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:lineSpacingExtra="4sp"
+            android:text="메뉴"
+            android:textColor="#191919"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/textView40"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/r_recyclerView" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="78dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/imageView55"

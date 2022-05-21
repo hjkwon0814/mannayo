@@ -125,7 +125,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
             .setTitle("프로필 설정")
 
         val alertDialog = mBuilder.show()
-        alertDialog.findViewById<ImageView>(R.id.camera)?.setOnClickListener{
+        alertDialog.findViewById<View>(R.id.camera)?.setOnClickListener{
             if(isPermitted(CAMERA_PERMISSION)){
                 openCamera()
             }else {
@@ -133,7 +133,8 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
             }
             alertDialog.dismiss()
         }
-        alertDialog.findViewById<ImageView>(R.id.gallery)?.setOnClickListener{
+
+        alertDialog.findViewById<View>(R.id.gallery)?.setOnClickListener{
             if(isPermitted(STORAGE_PERMISSION)) {
                 openCallery()
             }else {

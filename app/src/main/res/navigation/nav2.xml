@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_mainHomeFragment_to_categoryListFragment2"
             app:destination="@id/categoryListFragment" />
+        <action
+            android:id="@+id/action_mainHomeFragment_to_favoritistFragment"
+            app:destination="@id/favoritistFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryListFragment"
@@ -33,6 +36,9 @@
         <action
             android:id="@+id/action_mainStoreFragment_to_storeMenuFragment"
             app:destination="@id/storeMenuFragment" />
+        <action
+            android:id="@+id/action_mainStoreFragment_to_storeReviewFragment"
+            app:destination="@id/storeReviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/storeMenuFragment"
@@ -46,4 +52,16 @@
             android:id="@+id/action_profileFragment_to_mainHomeFragment"
             app:destination="@id/mainHomeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favoritistFragment"
+        android:name="com.example.mannayoclient.favoritist.favoritistFragment"
+        android:label="favoritistFragment" >
+        <action
+            android:id="@+id/action_favoritistFragment_to_mainStoreFragment"
+            app:destination="@id/mainStoreFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storeReviewFragment"
+        android:name="com.example.mannayoclient.storereviewlist.StoreReviewFragment"
+        android:label="StoreReviewFragment" />
 </navigation>

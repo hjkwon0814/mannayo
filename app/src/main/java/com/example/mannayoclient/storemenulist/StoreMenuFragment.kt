@@ -18,21 +18,25 @@ class StoreMenuFragment : Fragment(R.layout.storemenu_frag){
         super.onViewCreated(view, savedInstanceState)
         binding = StoremenuFragBinding.bind(view)
 
-        //val rv : RecyclerView = binding.recyclerView
+        val rv : RecyclerView = binding.recyclerView
+        val rv2 : RecyclerView = binding.recyclerView2
 
         val items = ArrayList<StoreMenuModel>()
 
         //test 용
         items.add(StoreMenuModel("a"))
         items.add(StoreMenuModel("b"))
-        items.add(StoreMenuModel("c"))
-        items.add(StoreMenuModel("a"))
+
 
 
         val rvAdapter = StoreMenuRVAdapter(items)
-        //rv.adapter = rvAdapter
+        rv.adapter = rvAdapter
 
-        //rv.layoutManager = LinearLayoutManager(requireContext())
+        rv.layoutManager = LinearLayoutManager(requireContext())
+
+        rv2.adapter = rvAdapter
+
+        rv2.layoutManager = LinearLayoutManager(requireContext())
 
 
 

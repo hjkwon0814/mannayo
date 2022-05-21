@@ -1,4 +1,4 @@
-package com.example.mannayoclient.stroereviewlist
+package com.example.mannayoclient.storereviewlist
 
 import android.os.Bundle
 import android.view.View
@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 import com.example.mannayoclient.databinding.StorereviewFragBinding
 
-
-class StroreReviewFragment : Fragment(R.layout.storereview_frag){
+class StoreReviewFragment : Fragment(R.layout.storereview_frag){
     lateinit var binding: StorereviewFragBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -17,19 +16,19 @@ class StroreReviewFragment : Fragment(R.layout.storereview_frag){
         super.onViewCreated(view, savedInstanceState)
         binding = StorereviewFragBinding.bind(view)
 
-        val rv : RecyclerView = binding.rRecyclerView
+        val rv : RecyclerView = binding.recyclerView
 
         val items = ArrayList<StoreReviewModel>()
 
         //test 용
-        items.add(StoreReviewModel("a","a","a","a"))
         items.add(StoreReviewModel("a"))
         items.add(StoreReviewModel("a"))
+        items.add(StoreReviewModel("a"))
 
 
 
 
-        val rvAdapter = StorereviewRVAdapter(items)
+        val rvAdapter = StoreReviewRVAdapter(items)
         rv.adapter = rvAdapter
 
         rv.layoutManager = LinearLayoutManager(requireContext())
