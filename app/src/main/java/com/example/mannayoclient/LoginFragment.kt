@@ -82,11 +82,12 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         if(binding.loginState.isChecked) {
                             editor.putString("email", binding.loginId.text.toString())
                             editor.putString("password", binding.loginPw.text.toString())
+                            editor.putString("id",receive.id.toString())
                             editor.commit()
                         }
 
                         if(receive.nickname.equals("null")) {
-
+                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
                         }else {
                             mainActivity.onActivityChange()
                         }
@@ -116,13 +117,11 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                     response: Response<ReceiveLoginOK>
                 ) {
                     val receive = response.body() as ReceiveLoginOK
-                    println("auto" + receive.code)
-                    println(receive.response)
-                    println(receive.success)
-                    println(receive.data)
                     if(response.isSuccessful && receive.success) {
                         if(receive.nickname.equals("null")) {
-
+                            editor.putString("id", receive.id.toString())
+                            editor.commit()
+                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
                         }else {
                             mainActivity.onActivityChange()
                         }
@@ -171,5 +170,9 @@ data class ReceiveLoginOK (
 
     @SerializedName("nickname")
     @Expose
-    val nickname : String
+    val nickname : String,
+
+    @SerializedName("id")
+    @Expose
+    val id : Long
     )

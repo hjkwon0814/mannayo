@@ -2,6 +2,7 @@ package com.example.mannayoclient
 
 import com.example.mannayoclient.categorylist.restaurantImage
 import com.example.mannayoclient.categorylist.restaurantInfo
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -25,5 +26,12 @@ interface mannayoService {
     @GET("/restaurant/profileimage")
     @Streaming
     fun getRestaurantImage(@Query("id") id : Long) : Call<ResponseBody>
+
+    @POST("/members/inputnickname")
+    fun setNickname(@Query("id") id: Long?, @Query("nickname") nickname:String) : Call<ReceiveOK>
+
+    @Multipart
+    @POST("/members/profileimage")
+    fun setMyProfileImage(@Query("id") id : Long?, @Part Image : MultipartBody.Part) : Call<ReceiveOK>
 
 }

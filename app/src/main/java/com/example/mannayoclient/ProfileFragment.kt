@@ -3,8 +3,11 @@ package com.example.mannayoclient
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -15,11 +18,21 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.ProfileFragBinding
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -27,6 +40,9 @@ import java.text.SimpleDateFormat
 
 class ProfileFragment : Fragment(R.layout.profile_frag) {
     lateinit var binding: ProfileFragBinding
+    lateinit var mainActivity: MainActivity
+    lateinit var sharedPreferences: SharedPreferences
+    lateinit var path: String
 
     val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
     val STORAGE_PERMISSION = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -38,22 +54,44 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
     val FLAG_REQ_CAMERA = 101
     val FLAG_REQ_GALLERY = 102
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
         binding = ProfileFragBinding.bind(view)
 
+        mainActivity = context as MainActivity
 
-        binding.photoButton.setOnClickListener(){
+
+
+        sharedPreferences = mainActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val id = sharedPreferences.getString("id", "0")?.toLongOrNull()
+
+
+
+
+
+
+        binding.photoButton.setOnClickListener() {
             showDialg()
         }
-
-
-
-
         //완료누르면 메인홈으로
         binding.completion.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_mainHomeFragment)
+
+
+            retrofitService.service.setNickname(id ,binding.editTextTextPersonName2.text.toString()).enqueue(object : Callback<ReceiveOK> {
+                override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                    if(response.isSuccessful) {
+
+                    }
+                }
+
+                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                }
+
+            })
         }
 
 
@@ -95,6 +133,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
             }
             alertDialog.dismiss()
         }
+
         alertDialog.findViewById<View>(R.id.gallery)?.setOnClickListener{
             if(isPermitted(STORAGE_PERMISSION)) {
                 openCallery()
@@ -160,8 +199,8 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                     if (data?.extras?.get("data") != null) {
                         val bitmap = data?.extras?.get("data") as Bitmap
 
-                        //val filename = newFileName()
-                        //val uri = saveImageFile(filename, "image/jpg", bitmap)
+//                        val filename = newFileName()
+//                        val uri = saveImageFile(filename, "image/jpg", bitmap)
 
                         binding.photo.setImageBitmap(bitmap)
                     }
@@ -216,4 +255,19 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
         }
     }
 
+
 }
+
+data class ReceiveOK (
+    @SerializedName("success")
+    @Expose
+    val success : Boolean,
+
+    @SerializedName("code")
+    @Expose
+    val code : Int,
+
+    @SerializedName("msg")
+    @Expose
+    val response: String,
+)
