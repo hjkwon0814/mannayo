@@ -245,13 +245,14 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 binding.textView6.visibility = View.GONE
 
             }
+
             if(!binding.editTextTextEmailAddress.text.isNullOrEmpty() && !binding.editTextTextPassword.text.isNullOrEmpty()
                 && !binding.editTextTextPassword2.text.isNullOrEmpty() && !binding.editTextTextPersonName.text.isNullOrEmpty()
                 && !binding.editTextDate.text.isNullOrEmpty() && !binding.editTextDate2.text.isNullOrEmpty() && !binding.editTextDate3.text.isNullOrEmpty()
-                && !binding.editTextNumber.text.isNullOrEmpty() && !isNameFormat(binding.editTextTextPersonName.text.toString())
-                && !binding.editTextTextPersonName.text.isNullOrEmpty() && !isPasswordFormat(binding.editTextTextPassword.text.toString())
-                && !binding.editTextTextPassword.text.isNullOrEmpty() && !isPasswordFormat(binding.editTextTextPassword.text.toString())
-                && !binding.editTextTextPassword.text.isNullOrEmpty()) {
+                && !binding.editTextNumber.text.isNullOrEmpty() && isNameFormat(binding.editTextTextPersonName.text.toString())
+                && !binding.editTextTextPersonName.text.isNullOrEmpty() && isPasswordFormat(binding.editTextTextPassword.text.toString())
+                && !binding.editTextTextPassword.text.isNullOrEmpty() && !binding.editTextTextPassword.text.isNullOrEmpty()
+                && binding.editTextTextPassword.text.toString() == binding.editTextTextPassword2.text.toString()) {
 
                 binding.view.visibility = View.GONE
                 binding.textView4.visibility = View.GONE

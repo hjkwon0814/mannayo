@@ -63,7 +63,7 @@
             android:background="#f1f1f5"
             android:ems="10"
             android:fontFamily="@font/noto_sans_kr"
-            android:hint="8~12자내로 영문, 숫자, 특수문자 사용 가능합니다."
+            android:hint="8~12자내의 영문, 숫자, 특수문자를 모두 포함해야합니다."
             android:inputType="textPassword"
             android:paddingLeft="12dp"
             android:textColor="#191919"
