@@ -27,8 +27,8 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val nickname = shared.getString("nickname","null")
 
-        if(nickname == "null") {
-            findNavController().navigate(R.id.action_mainHomeFragment_to_profileFragment)
+        if(nickname.equals("null")) {
+            activity.FragmentView()
         }
 
         binding.Hansik.setOnClickListener(){

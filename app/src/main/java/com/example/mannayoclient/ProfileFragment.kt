@@ -40,7 +40,7 @@ import java.text.SimpleDateFormat
 
 class ProfileFragment : Fragment(R.layout.profile_frag) {
     lateinit var binding: ProfileFragBinding
-    lateinit var mainActivity: MainActivity
+    lateinit var mainActivity: SecondActivity
     lateinit var sharedPreferences: SharedPreferences
     lateinit var path: String
 
@@ -61,16 +61,12 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = ProfileFragBinding.bind(view)
 
-        mainActivity = context as MainActivity
+        mainActivity = context as SecondActivity
 
 
 
         sharedPreferences = mainActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val id = sharedPreferences.getString("id", "0")?.toLongOrNull()
-
-
-        println(id)
-
 
 
 
@@ -156,6 +152,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                 openCamera()
             }else {
                 ActivityCompat.requestPermissions(requireActivity(), CAMERA_PERMISSION, FLAG_PERM_CAMERA)
+                ActivityCompat.requestPermissions(requireActivity(), STORAGE_PERMISSION, FLAG_PERM_STORAGE)
             }
             alertDialog.dismiss()
         }
@@ -226,7 +223,6 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                         val bitmap = data?.extras?.get("data") as Bitmap
                         val filename = newFileName()
                         val uri = saveImageFile(filename, "image/jpg", bitmap)
-                        binding.photo.setTag(0,uri)
                         binding.photo.setImageBitmap(bitmap)
                     }
                 }

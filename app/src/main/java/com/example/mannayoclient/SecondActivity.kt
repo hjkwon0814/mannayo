@@ -8,4 +8,9 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
     }
+
+    fun FragmentView() {
+        val transaction = supportFragmentManager.beginTransaction().replace(R.id.fragment, ProfileFragment())
+        transaction.commit()
+    }
 }

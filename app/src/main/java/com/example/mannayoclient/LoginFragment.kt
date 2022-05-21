@@ -83,11 +83,13 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                             editor.putString("email", binding.loginId.text.toString())
                             editor.putString("password", binding.loginPw.text.toString())
                             editor.putString("id",receive.id.toString())
+                            editor.putString("nickname", receive.nickname)
+                            println(receive.nickname)
                             editor.commit()
                         }
 
                         if(receive.nickname.equals("null")) {
-                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                            mainActivity.onActivityChange()
                         }else {
                             mainActivity.onActivityChange()
                         }
@@ -118,13 +120,10 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                 ) {
                     val receive = response.body() as ReceiveLoginOK
                     if(response.isSuccessful && receive.success) {
-                        if(receive.nickname.equals("null")) {
                             editor.putString("id", receive.id.toString())
+                            editor.putString("nickname", receive.nickname)
                             editor.commit()
-                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
-                        }else {
                             mainActivity.onActivityChange()
-                        }
                         Toast.makeText(mainActivity, "자동 로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
                     }else {
