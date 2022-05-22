@@ -38,7 +38,10 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("로그인")
 
-        if(sharedPreferences.getString("email",null) != null && sharedPreferences.getString("password",null) != null) {
+        val email = sharedPreferences.getString("email", null)
+        val pass = sharedPreferences.getString("password",null)
+
+        if(!email.isNullOrEmpty() && !pass.isNullOrEmpty()) {
             autologin(retrofitService.service, sharedPreferences.getString("email","").toString() ,sharedPreferences.getString("password","").toString())
         }
 
