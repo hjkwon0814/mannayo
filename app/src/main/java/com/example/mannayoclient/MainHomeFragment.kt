@@ -1,20 +1,32 @@
 package com.example.mannayoclient
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.categorylist.CategoryModel
 import com.example.mannayoclient.databinding.CategoryListFragBinding
 import com.example.mannayoclient.databinding.MainhomeFragBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
     lateinit var binding: MainhomeFragBinding
     lateinit var activity: SecondActivity
+    val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -26,9 +38,34 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val nickname = shared.getString("nickname","null")
-
+        val id = shared.getString("id","0")?.toLong()
         if(nickname.equals("null")) {
             activity.FragmentView()
+        }else {
+            retrofitService.service.getMyProfileImage(id)
+                .enqueue(object : Callback<ResponseBody> {
+                    override fun onResponse(
+                        call: Call<ResponseBody>,
+                        response: Response<ResponseBody>
+                    ) {
+                        val receiveimage = response.body()?.byteStream()
+                        if (response.isSuccessful) {
+                            coroutineScope.launch {
+                                val originalDeferred =
+                                    coroutineScope.async(Dispatchers.IO) {
+                                        BitmapFactory.decodeStream(receiveimage)
+                                    }
+                                val originalBitmap = originalDeferred.await()
+                                binding.imageView36.setImageBitmap(originalBitmap)
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                        Log.e("imageTest", "${t.message}")
+                    }
+
+                })
         }
 
         binding.Hansik.setOnClickListener(){

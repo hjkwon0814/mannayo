@@ -84,21 +84,15 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                             editor.putString("password", binding.loginPw.text.toString())
                             editor.putString("id",receive.id.toString())
                             editor.putString("nickname", receive.nickname)
-                            println(receive.nickname)
                             editor.commit()
                         }
+                        mainActivity.onActivityChange()
 
-                        if(receive.nickname.equals("null")) {
-                            mainActivity.onActivityChange()
-                        }else {
-                            mainActivity.onActivityChange()
-                        }
                         Toast.makeText(mainActivity, "로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
                     }else {
-                        Toast.makeText(mainActivity, receive.data, Toast.LENGTH_SHORT)
-                            .show()
-
+                        binding.bottomline.visibility = View.VISIBLE
+                        binding.alarm.visibility = View.VISIBLE
                     }
                 }
 
@@ -127,8 +121,8 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         Toast.makeText(mainActivity, "자동 로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
                     }else {
-                        Toast.makeText(mainActivity, receive.data, Toast.LENGTH_SHORT)
-                            .show()
+                        binding.bottomline.visibility = View.VISIBLE
+                        binding.alarm.visibility = View.VISIBLE
                     }
                 }
 

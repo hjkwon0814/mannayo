@@ -122,6 +122,18 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                                     }
 
                                 })
+                        }else {
+                            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.component_101)
+                            items.add(
+                                CategoryModel(
+                                    it.name,
+                                    it.address,
+                                    it.starttime + "~" + it.endtime,
+                                    it.point.toString(),
+                                    bitmap
+                                )
+                            )
+                            rv.adapter = rvAdapter
                         }
                     }
 
