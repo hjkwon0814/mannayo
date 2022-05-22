@@ -87,7 +87,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         }
 
                         if(receive.nickname.equals("null")) {
-                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                           // findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
                         }else {
                             mainActivity.onActivityChange()
                         }
@@ -121,7 +121,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         if(receive.nickname.equals("null")) {
                             editor.putString("id", receive.id.toString())
                             editor.commit()
-                            findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                            //findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
                         }else {
                             mainActivity.onActivityChange()
                         }

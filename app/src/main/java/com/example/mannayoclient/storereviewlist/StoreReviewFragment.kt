@@ -3,6 +3,7 @@ package com.example.mannayoclient.storereviewlist
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
@@ -32,6 +33,10 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag){
         rv.adapter = rvAdapter
 
         rv.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.reviewbutton.setOnClickListener{
+            findNavController().navigate(R.id.action_storeReviewFragment_to_reviewWriteFragment)
+        }
 
 
 

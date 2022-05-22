@@ -5,4 +5,7 @@
             android:width="22dp"
             android:height="22dp">@drawable/search</item>
     </style>
+    <style name="CustomRatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/star_rating_bar</item>
+    </style>
 </resources>
