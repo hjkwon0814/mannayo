@@ -33,6 +33,18 @@ import java.util.*
 class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
     lateinit var binding: ReviewwriteFragBinding
 
+    val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
+    val STORAGE_PERMISSION = arrayOf(
+        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
+
+    val FLAG_PERM_CAMERA = 98
+    val FLAG_PERM_STORAGE = 99
+
+    val FLAG_REQ_CAMERA = 101
+    val FLAG_REQ_GALLERY = 102
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,11 +52,112 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
         binding = ReviewwriteFragBinding.bind(view)
 
         binding.photoButton2.setOnClickListener {
-            //showDialg()
+            showDialg()
         }
 
 
     }
 
+    private fun showDialg() {
+        val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.photo_dialog, null)
+        val mBuilder = AlertDialog.Builder(requireContext())
+            .setView(mDialogView)
+
+        val alertDialog = mBuilder.show()
+        alertDialog.findViewById<View>(R.id.camera)?.setOnClickListener {
+            if (isPermitted(CAMERA_PERMISSION)) {
+                openCamera()
+            } else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    CAMERA_PERMISSION,
+                    FLAG_PERM_CAMERA
+                )
+            }
+            alertDialog.dismiss()
+        }
+        alertDialog.findViewById<View>(R.id.gallery)?.setOnClickListener {
+            if (isPermitted(STORAGE_PERMISSION)) {
+                openCallery()
+            } else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    STORAGE_PERMISSION,
+                    FLAG_PERM_STORAGE
+                )
+            }
+            alertDialog.dismiss()
+        }
+
+    }
+
+    private fun openCallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = MediaStore.Images.Media.CONTENT_TYPE
+        startActivityForResult(intent, FLAG_REQ_GALLERY)
+    }
+
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, FLAG_REQ_CAMERA)
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                FLAG_REQ_CAMERA -> {
+                    if (data?.extras?.get("data") != null) {
+                        val bitmap = data?.extras?.get("data") as Bitmap
+
+
+                        binding.photoButton2.setImageBitmap(bitmap)
+                    }
+                }
+                FLAG_REQ_GALLERY -> {
+                    val uri = data?.data
+                    binding.photoButton2.setImageURI(uri)
+                }
+            }
+        }
+    }
+
+    private fun isPermitted(permissions: Array<String>): Boolean {
+
+        for (permission in permissions) {
+            val result = ContextCompat.checkSelfPermission(
+                requireContext(),
+                permission
+            )
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                return false
+            }
+        }
+        return true
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            FLAG_PERM_CAMERA -> {
+                var checked = true
+                for (grant in grantResults) {
+                    if (grant != PackageManager.PERMISSION_GRANTED) {
+                        checked = false
+                        break
+                    }
+                }
+                if (checked) {
+                    openCamera()
+                }
+            }
+        }
+    }
+
 
 }
+
