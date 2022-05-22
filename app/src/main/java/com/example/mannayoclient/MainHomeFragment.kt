@@ -144,6 +144,10 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
             findNavController().navigate(R.id.action_mainHomeFragment_to_alarmFragment)
         }
 
+        binding.map.setOnClickListener() {
+            findNavController().navigate(R.id.action_mainHomeFragment_to_mapFragment)
+        }
+
     }
 
 }

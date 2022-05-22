@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_mainHomeFragment_to_alarmFragment"
             app:destination="@id/alarmFragment" />
+        <action
+            android:id="@+id/action_mainHomeFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
 
     </fragment>
     <fragment
@@ -97,4 +100,12 @@
         android:id="@+id/alarmFragment"
         android:name="com.example.mannayoclient.alarmlist.AlarmFragment"
         android:label="AlarmFragment" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.mannayoclient.MapFragment"
+        android:label="MapFragment" >
+        <action
+            android:id="@+id/action_mapFragment_to_mainStoreFragment"
+            app:destination="@id/mainStoreFragment" />
+    </fragment>
 </navigation>
