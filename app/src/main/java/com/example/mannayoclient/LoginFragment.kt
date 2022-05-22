@@ -39,10 +39,19 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         title.setText("로그인")
 
         val email = sharedPreferences.getString("email", null)
-        val pass = sharedPreferences.getString("password",null)
+        val pass = sharedPreferences.getString("password", null)
+        println(email)
+        println(pass)
+        println(!email.isNullOrEmpty())
+        println(!pass.isNullOrEmpty())
 
-        if(!email.isNullOrEmpty() && !pass.isNullOrEmpty()) {
-            autologin(retrofitService.service, sharedPreferences.getString("email","").toString() ,sharedPreferences.getString("password","").toString())
+        if (!email.isNullOrEmpty() && !pass.isNullOrEmpty()) {
+            println("yyyy")
+            autologin(
+                retrofitService.service,
+                sharedPreferences.getString("email", null).toString(),
+                sharedPreferences.getString("password", null).toString()
+            )
         }
 
 
@@ -54,21 +63,21 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         binding.joinButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
         }
-        binding.joinButton2.setOnClickListener{
+        binding.joinButton2.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
         }
         binding.view4.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_joinFragment)
         }
 
-        binding.loginSubmit.setOnClickListener{
+        binding.loginSubmit.setOnClickListener {
             login(retrofitService.service)
 
         }
 
     }
 
-    private fun login(service : mannayoService) {
+    private fun login(service: mannayoService) {
         service.signIn(binding.loginId.text.toString(), binding.loginPw.text.toString())
             .enqueue(object : Callback<ReceiveLoginOK> {
                 override fun onResponse(
@@ -80,26 +89,26 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                     println(receive.response)
                     println(receive.success)
                     println(receive.data)
-                    if(response.isSuccessful && receive.success) {
-                        if(binding.loginState.isChecked) {
+                    if (response.isSuccessful && receive.success) {
+                        if (binding.loginState.isChecked) {
                             editor.putString("email", binding.loginId.text.toString())
                             editor.putString("password", binding.loginPw.text.toString())
-                            editor.putString("id",receive.id.toString())
+                            editor.putString("id", receive.id.toString())
                             editor.putString("nickname", receive.nickname)
                             editor.commit()
                         }
                         mainActivity.onActivityChange()
 
 
-                        if(receive.nickname.equals("null")) {
-                           // findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
-                        }else {
+                        if (receive.nickname.equals("null")) {
+                            // findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                        } else {
                             mainActivity.onActivityChange()
                         }
 
                         Toast.makeText(mainActivity, "로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
-                    }else {
+                    } else {
 
                     }
                 }
@@ -113,7 +122,8 @@ class LoginFragment : Fragment(R.layout.login_frag) {
     }
 
 
-    private fun autologin(service : mannayoService, email: String, password: String) {
+    private fun autologin(service: mannayoService, email: String, password: String) {
+        println("auto = " + email + password)
         service.signIn(email, password)
             .enqueue(object : Callback<ReceiveLoginOK> {
                 override fun onResponse(
@@ -121,15 +131,16 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                     response: Response<ReceiveLoginOK>
                 ) {
                     val receive = response.body() as ReceiveLoginOK
-                    if(response.isSuccessful && receive.success) {
-                            editor.putString("id", receive.id.toString())
-                            editor.putString("nickname", receive.nickname)
-                            editor.commit()
+                    if (response.isSuccessful && receive.success) {
+                        editor.putString("id", receive.id.toString())
+                        editor.putString("nickname", receive.nickname)
+                        editor.commit()
+                        mainActivity.onActivityChange()
 
-                            //findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
-                        }else {
-                            mainActivity.onActivityChange()
-                            Toast.makeText(mainActivity, "자동 로그인 성공!!", Toast.LENGTH_SHORT)
+                        //findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                    } else {
+                        mainActivity.onActivityChange()
+                        Toast.makeText(mainActivity, "자동 로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
@@ -143,7 +154,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
     }
 }
 
-data class SendLoginData (
+data class SendLoginData(
     @SerializedName("email")
     @Expose
     val email: String,
@@ -152,14 +163,14 @@ data class SendLoginData (
     val password: String
 )
 
-data class ReceiveLoginOK (
+data class ReceiveLoginOK(
     @SerializedName("success")
     @Expose
-    val success : Boolean,
+    val success: Boolean,
 
     @SerializedName("code")
     @Expose
-    val code : Int,
+    val code: Int,
 
     @SerializedName("msg")
     @Expose
@@ -167,13 +178,13 @@ data class ReceiveLoginOK (
 
     @SerializedName("data")
     @Expose
-    val data : String,
+    val data: String,
 
     @SerializedName("nickname")
     @Expose
-    val nickname : String,
+    val nickname: String,
 
     @SerializedName("id")
     @Expose
-    val id : Long
-    )
+    val id: Long
+)
