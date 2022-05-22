@@ -38,9 +38,9 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("로그인")
 
-        println(sharedPreferences.getString("email","").toString())
-        if(!sharedPreferences.getString("email",null).toString().isNullOrEmpty() && !sharedPreferences.getString("password",null).toString().isNullOrEmpty()) {
-            println("y?")
+        val email = sharedPreferences.getString("email","").toString()
+        if(!sharedPreferences.getString("email","").toString().isNullOrEmpty() && !sharedPreferences.getString("password","").toString().isNullOrEmpty()) {
+            println(email)
             autologin(retrofitService.service, sharedPreferences.getString("email","").toString() ,sharedPreferences.getString("password","").toString())
         }
 
@@ -131,6 +131,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                             mainActivity.onActivityChange()
                         Toast.makeText(mainActivity, "자동 로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
+                        println(sharedPreferences.getString("id", "").toString())
                     }
                 }
 
