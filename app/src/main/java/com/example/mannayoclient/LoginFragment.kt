@@ -91,8 +91,8 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         Toast.makeText(mainActivity, "로그인 성공!!", Toast.LENGTH_SHORT)
                             .show()
                     }else {
-                        binding.bottomline.visibility = View.VISIBLE
-                        binding.alarm.visibility = View.VISIBLE
+//                        binding.bottomline.visibility = View.VISIBLE
+//                        binding.alarm.visibility = View.VISIBLE
                     }
                 }
 
