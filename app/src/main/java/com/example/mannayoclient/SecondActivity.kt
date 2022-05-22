@@ -29,9 +29,4 @@ class SecondActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun test() {
-        val transaction = supportFragmentManager.beginTransaction().replace(R.id.fragment, CategoryListFragment())
-        transaction.commit()
-
-    }
 }

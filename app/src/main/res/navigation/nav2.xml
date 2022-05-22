@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainHomeFragment_to_advertiseFragment"
             app:destination="@id/advertiseFragment" />
+        <action
+            android:id="@+id/action_mainHomeFragment_to_todayFragment"
+            app:destination="@id/todayFragment" />
 
     </fragment>
     <fragment
@@ -79,4 +82,12 @@
         android:id="@+id/writeFragment"
         android:name="com.example.mannayoclient.WriteFragment"
         android:label="WriteFragment" />
+    <fragment
+        android:id="@+id/todayFragment"
+        android:name="com.example.mannayoclient.todaylist.TodayFragment"
+        android:label="TodayFragment" >
+        <action
+            android:id="@+id/action_todayFragment_to_writeFragment"
+            app:destination="@id/writeFragment" />
+    </fragment>
 </navigation>

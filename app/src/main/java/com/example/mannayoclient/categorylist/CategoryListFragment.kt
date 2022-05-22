@@ -47,7 +47,6 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
 
         binding.review.setOnClickListener{
-            activity.test()
             binding.review.setImageResource(R.drawable.component_68)
             binding.grade.setImageResource(R.drawable.component_74)
             binding.favorite.setImageResource(R.drawable.component_71)
@@ -55,14 +54,12 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         }
 
         binding.grade.setOnClickListener{
-            activity.test()
             binding.review.setImageResource(R.drawable.component_67)
             binding.grade.setImageResource(R.drawable.component_70)
             binding.favorite.setImageResource(R.drawable.component_71)
         }
 
         binding.favorite.setOnClickListener{
-            activity.test()
             binding.review.setImageResource(R.drawable.component_67)
             binding.grade.setImageResource(R.drawable.component_74)
             binding.favorite.setImageResource(R.drawable.component_72)

@@ -42,7 +42,7 @@ class TodayFragment : Fragment(R.layout.today_frag) {
         }
 
         binding.write.setOnClickListener {
-            //findNavController().navigate(R.id.)
+            findNavController().navigate(R.id.action_todayFragment_to_writeFragment)
         }
 
 

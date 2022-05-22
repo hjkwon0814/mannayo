@@ -689,7 +689,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView30"
+            android:id="@+id/today"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:layout_marginBottom="15dp"
