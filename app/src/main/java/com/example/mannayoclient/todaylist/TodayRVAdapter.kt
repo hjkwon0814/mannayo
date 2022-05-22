@@ -7,12 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 
-class TodayRVAdapter  (private val items : List<TodayModel>) : RecyclerView.Adapter<TodayRVAdapter.Viewholder>(){
+class TodayRVAdapter(private val items: List<TodayModel>) :
+    RecyclerView.Adapter<TodayRVAdapter.Viewholder>() {
 
     interface ItemClick {
-        fun onClick(view : View, position: Int)
+        fun onClick(view: View, position: Int)
     }
-    var itemClick : ItemClick? = null
+
+    var itemClick: ItemClick? = null
 
 
     override fun onCreateViewHolder(
@@ -26,8 +28,8 @@ class TodayRVAdapter  (private val items : List<TodayModel>) : RecyclerView.Adap
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
 
         if (itemClick != null) {
-            holder.itemView.setOnClickListener{
-                    v -> itemClick?.onClick(v, position)
+            holder.itemView.setOnClickListener { v ->
+                itemClick?.onClick(v, position)
             }
         }
         holder.bindItems(items[position])
@@ -37,7 +39,7 @@ class TodayRVAdapter  (private val items : List<TodayModel>) : RecyclerView.Adap
         return items.size
     }
 
-    inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    inner class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(item: TodayModel) {
 

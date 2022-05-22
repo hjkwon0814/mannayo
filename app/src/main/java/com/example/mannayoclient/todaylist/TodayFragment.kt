@@ -12,7 +12,7 @@ import com.example.mannayoclient.advertiselist.AdvertiseRVAdapter
 import com.example.mannayoclient.databinding.AdvertiseFragBinding
 import com.example.mannayoclient.databinding.TodayFragBinding
 
-class TodayFragment  : Fragment(R.layout.today_frag){
+class TodayFragment : Fragment(R.layout.today_frag) {
     lateinit var binding: TodayFragBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -20,7 +20,7 @@ class TodayFragment  : Fragment(R.layout.today_frag){
         super.onViewCreated(view, savedInstanceState)
         binding = TodayFragBinding.bind(view)
 
-        val rv : RecyclerView = binding.rv
+        val rv: RecyclerView = binding.rv
 
         val items = ArrayList<TodayModel>()
 
@@ -28,10 +28,6 @@ class TodayFragment  : Fragment(R.layout.today_frag){
         items.add(TodayModel("a"))
         items.add(TodayModel("a"))
         items.add(TodayModel("a"))
-
-
-
-
 
 
         val rvAdapter = TodayRVAdapter(items)
@@ -45,10 +41,9 @@ class TodayFragment  : Fragment(R.layout.today_frag){
             }
         }
 
-        binding.write.setOnClickListener{
+        binding.write.setOnClickListener {
             //findNavController().navigate(R.id.)
         }
-
 
 
     }

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
+import com.example.mannayoclient.SecondActivity
 import com.example.mannayoclient.databinding.CategoryItemBinding
 import com.example.mannayoclient.databinding.CategoryListFragBinding
 import com.example.mannayoclient.mannayoService
@@ -34,6 +35,7 @@ import java.time.LocalTime
 
 class CategoryListFragment : Fragment(R.layout.category_list_frag) {
     lateinit var binding: CategoryListFragBinding
+    lateinit var activity: SecondActivity
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,9 +43,11 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = CategoryListFragBinding.bind(view)
 
+        activity = context as SecondActivity
+
 
         binding.review.setOnClickListener{
-            findNavController().navigate(R.id.action_categoryListFragment_self)
+            activity.test()
             binding.review.setImageResource(R.drawable.component_68)
             binding.grade.setImageResource(R.drawable.component_74)
             binding.favorite.setImageResource(R.drawable.component_71)
@@ -51,14 +55,14 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         }
 
         binding.grade.setOnClickListener{
-            findNavController().navigate(R.id.action_categoryListFragment_self)
+            activity.test()
             binding.review.setImageResource(R.drawable.component_67)
             binding.grade.setImageResource(R.drawable.component_70)
             binding.favorite.setImageResource(R.drawable.component_71)
         }
 
         binding.favorite.setOnClickListener{
-            findNavController().navigate(R.id.action_categoryListFragment_self)
+            activity.test()
             binding.review.setImageResource(R.drawable.component_67)
             binding.grade.setImageResource(R.drawable.component_74)
             binding.favorite.setImageResource(R.drawable.component_72)

@@ -24,7 +24,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class favoritistFragment: Fragment(R.layout.favoritist_frag) {
+class favoritistFragment : Fragment(R.layout.favoritist_frag) {
     lateinit var binding: FavoritistFragBinding
 
 

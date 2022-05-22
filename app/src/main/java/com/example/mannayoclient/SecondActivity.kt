@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.categorylist.CategoryListFragment
 import java.util.jar.Manifest
 
 class SecondActivity : AppCompatActivity() {
@@ -26,5 +27,11 @@ class SecondActivity : AppCompatActivity() {
     fun FragmentViewFromProfileToMainHome() {
         val transaction = supportFragmentManager.beginTransaction().replace(R.id.fragment, MainHomeFragment())
         transaction.commit()
+    }
+
+    fun test() {
+        val transaction = supportFragmentManager.beginTransaction().replace(R.id.fragment, CategoryListFragment())
+        transaction.commit()
+
     }
 }

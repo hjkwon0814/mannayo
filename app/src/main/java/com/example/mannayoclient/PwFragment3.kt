@@ -24,11 +24,5 @@ class PwFragment3 : Fragment(R.layout.pw3_frag) {
         }
 
 
-
-
-
-
-
-
     }
 }
