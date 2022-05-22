@@ -140,7 +140,10 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
 
-    }
+        binding.alarm.setOnClickListener() {
+            findNavController().navigate(R.id.action_mainHomeFragment_to_alarmFragment)
+        }
 
+    }
 
 }

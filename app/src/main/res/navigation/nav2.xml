@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mainHomeFragment_to_todayFragment"
             app:destination="@id/todayFragment" />
+        <action
+            android:id="@+id/action_mainHomeFragment_to_alarmFragment"
+            app:destination="@id/alarmFragment" />
 
     </fragment>
     <fragment
@@ -90,4 +93,8 @@
             android:id="@+id/action_todayFragment_to_writeFragment"
             app:destination="@id/writeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/alarmFragment"
+        android:name="com.example.mannayoclient.alarmlist.AlarmFragment"
+        android:label="AlarmFragment" />
 </navigation>
