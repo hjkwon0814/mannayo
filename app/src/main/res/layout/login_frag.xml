@@ -87,30 +87,6 @@
         app:layout_constraintTop_toBottomOf="@+id/login_id" />
 
     <TextView
-        android:id="@+id/alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_kr"
-        android:lineSpacingExtra="8sp"
-        android:text="올바르지 않은 형식입니다."
-        android:textColor="#ed1c24"
-        android:textSize="12sp"
-        android:visibility="gone"
-        android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="@+id/login_pw"
-        app:layout_constraintTop_toBottomOf="@+id/bottomline" />
-
-    <View
-        android:id="@+id/bottomline"
-        android:layout_width="312dp"
-        android:layout_height="2dp"
-        android:background="#ed1c24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/login_pw" />
-
-    <TextView
         android:id="@+id/join_button"
         android:layout_width="46dp"
         android:layout_height="25dp"
