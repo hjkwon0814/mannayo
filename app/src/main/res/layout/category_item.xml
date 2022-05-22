@@ -120,9 +120,10 @@
         android:id="@+id/heartArea"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:button="@null"
+        android:background="@drawable/mycheck"
         android:layout_marginEnd="24dp"
         android:layout_marginTop="16dp"
-        android:button="@drawable/favorite"
         app:layout_constraintEnd_toEndOf="@+id/imageArea"
         app:layout_constraintTop_toTopOf="@+id/imageView10"/>
 

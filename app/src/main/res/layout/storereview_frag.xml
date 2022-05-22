@@ -64,15 +64,7 @@
         app:layout_constraintTop_toTopOf="@+id/recyclerView"
         android:text="리뷰" />
 
-    <ImageView
-        android:id="@+id/imageView55"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/expand_left" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -87,4 +79,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/component_90" />
+
+    <ImageView
+        android:id="@+id/imageView55"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/expand_left" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/mycheck"
+        android:button="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="296dp"
+        tools:layout_editor_absoluteY="18dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
