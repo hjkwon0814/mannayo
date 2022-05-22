@@ -14,12 +14,14 @@
         <action
             android:id="@+id/action_mainHomeFragment_to_favoritistFragment"
             app:destination="@id/favoritistFragment" />
+
         <action
             android:id="@+id/action_mainHomeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_mainHomeFragment_to_advertiseFragment"
             app:destination="@id/advertiseFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/categoryListFragment"
@@ -47,10 +49,6 @@
         android:id="@+id/storeMenuFragment"
         android:name="com.example.mannayoclient.storemenulist.StoreMenuFragment"
         android:label="StoreMenuFragment" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.mannayoclient.ProfileFragment"
-        android:label="ProfileFragment" />
     <fragment
         android:id="@+id/favoritistFragment"
         android:name="com.example.mannayoclient.favoritist.favoritistFragment"
