@@ -21,6 +21,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.ReviewwriteFragBinding
 import com.example.mannayoclient.databinding.SearchFragBinding
 import com.google.gson.annotations.Expose
@@ -39,6 +40,8 @@ import java.util.concurrent.locks.ReentrantLock
 class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
     lateinit var binding: ReviewwriteFragBinding
     lateinit var activity : SecondActivity
+    var path: Uri? = null
+    var realPath : String? = null
 
     val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
     val STORAGE_PERMISSION = arrayOf(
@@ -77,13 +80,16 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
                     val receive = response.body() as ReceiveOK
                     if(response.isSuccessful && receive.success) {
                         Toast.makeText(activity,"리뷰 작성 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_reviewWriteFragment_to_storeReviewFragment)
                     } else {
                         Toast.makeText(activity,"리뷰 작성 실패되었습니다.", Toast.LENGTH_SHORT).show()
+
                     }
                 }
 
                 override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
                     Toast.makeText(activity,"서버와 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show()
+
                 }
 
             })
@@ -142,15 +148,21 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
             when (requestCode) {
                 FLAG_REQ_CAMERA -> {
                     if (data?.extras?.get("data") != null) {
-                        val bitmap = data?.extras?.get("data") as Bitmap
-
-
-                        binding.photoButton2.setImageBitmap(bitmap)
+                        val myBitmap = data?.extras?.get("data") as Bitmap
+                        if(myBitmap != null) {
+                            val imagePath = getImageUri(activity, myBitmap)
+                            path = imagePath
+                            realPath = getRealPathFromURI(path!!)
+                            binding.photoButton2.setImageBitmap(myBitmap)
+                        }
                     }
                 }
                 FLAG_REQ_GALLERY -> {
                     val uri = data?.data
-                    binding.photoButton2.setImageURI(uri)
+                    // 이미지 뷰에 선택한 이미지 출력
+                    val imageview: ImageView = binding.photoButton2
+                    imageview.setImageURI(uri)
+                    realPath = getRealPathFromURI(uri!!)
                 }
             }
         }
@@ -189,6 +201,31 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
                 }
             }
         }
+    }
+
+    fun getImageUri(inContext : Context?, inImage: Bitmap?): Uri? {
+        val btyes = ByteArrayOutputStream()
+        if(inImage != null) {
+            inImage.compress(Bitmap.CompressFormat.JPEG, 100, btyes)
+        }
+        val path = MediaStore.Images.Media.insertImage(inContext?.contentResolver, inImage, "Title" + " - " + Calendar.getInstance().time,null)
+        return Uri.parse(path)
+    }
+
+    fun getRealPathFromURI(contentURI : Uri) : String? {
+        val result : String?
+        val cursor : Cursor? = requireActivity().contentResolver.query(contentURI,null,null,null,null)
+
+        if(cursor == null) {
+            result = contentURI?.path
+        } else {
+            cursor.moveToFirst()
+            val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+            result = cursor.getString(idx)
+            cursor.close()
+        }
+
+        return result
     }
 
 

@@ -75,7 +75,11 @@
     <fragment
         android:id="@+id/reviewWriteFragment"
         android:name="com.example.mannayoclient.ReviewWriteFragment"
-        android:label="ReviewWriteFragment" />
+        android:label="ReviewWriteFragment" >
+        <action
+            android:id="@+id/action_reviewWriteFragment_to_storeReviewFragment"
+            app:destination="@id/storeReviewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/advertiseFragment"
         android:name="com.example.mannayoclient.advertiselist.AdvertiseFragment"

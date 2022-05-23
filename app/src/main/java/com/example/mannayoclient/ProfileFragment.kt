@@ -87,8 +87,10 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
         }
         //완료누르면 메인홈으로
         binding.completion.setOnClickListener {
+            println(realPath)
             //creating a file
             if(realPath != null) {
+                println("add image")
                 file = File(realPath)
                 if(!binding.editTextTextPersonName2.text.isNullOrEmpty()) {
                     sendNickNameAndImage(id, realPath)
@@ -99,6 +101,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                     Toast.makeText(activity, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
                 }
             } else {
+                println("only nickname")
                 if(!binding.editTextTextPersonName2.text.isNullOrEmpty()) {
                     sendNickNameOnly(id, binding.editTextTextPersonName2.text.toString())
                     editor.putString("nickname", binding.editTextTextPersonName2.text.toString())
@@ -218,9 +221,9 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                 FLAG_REQ_CAMERA -> {
                     val myBitmap = data?.extras?.get("data") as Bitmap
                     if(myBitmap != null) {
-                        val uri = data?.data
                         val imagePath = getImageUri(mainActivity, myBitmap)
                         path = imagePath
+                        realPath = getRealPathFromURI(path!!)
                         binding.photo.setImageBitmap(myBitmap)
                     }
                 }
