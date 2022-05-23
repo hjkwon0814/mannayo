@@ -8,7 +8,8 @@ class StoreReviewModel   (
     var date: String = "",
     var grade: String = "",
     var content: String = "",
-    var image: Bitmap
+    var image: Bitmap,
+    var memberImage :Bitmap
 
 
 

@@ -50,6 +50,8 @@ class StoreReviewRVAdapter (val items : ArrayList<StoreReviewModel>) : RecyclerV
             val r_image = itemView.findViewById<ImageView>(R.id.imageView45)
             r_image.setImageBitmap(item.image)
 
+            val r_member_image = itemView.findViewById<ImageView>(R.id.imageView59)
+            r_member_image.setImageBitmap(item.memberImage)
 
         }
 

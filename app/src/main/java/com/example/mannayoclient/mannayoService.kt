@@ -40,6 +40,10 @@ interface mannayoService {
     fun getMyProfileImage(@Path("id") id : Long?) : Call<ResponseBody>
 
     @GET("/reviews")
-    fun getReviewList() :Call<ReviewList>
+    fun getReviewList() :Call<List<ReviewList>>
+
+    @GET("/reviews/image/{id}")
+    @Streaming
+    fun getReviewImage(@Path("id") id : Long?) : Call<ResponseBody>
 
 }
