@@ -60,6 +60,8 @@ class CategoryRVAdapter(private val items : List<CategoryModel>) : RecyclerView.
             val category_image= itemView.findViewById<ImageView>(R.id.imageArea)
             category_image.setImageBitmap(item.image)
 
+            val restId = item.restaurantId
+
         }
 
     }

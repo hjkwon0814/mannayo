@@ -38,78 +38,78 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
 
         val items = ArrayList<StoreReviewModel>()
 
-        retrofitService.service.getReviewList().enqueue(object : Callback<List<ReviewList>> {
-            override fun onResponse(
-                call: Call<List<ReviewList>>,
-                response: Response<List<ReviewList>>
-            ) {
-                val receive = response.body() as List<ReviewList>
-                if (response.isSuccessful) {
-                    for(i in receive) {
-                        if(!i.image.isNullOrEmpty()) {
-                            retrofitService.service.getReviewImage(i.id).enqueue(object :Callback<ResponseBody> {
-                                override fun onResponse(
-                                    call: Call<ResponseBody>,
-                                    response: Response<ResponseBody>
-                                ) {
-                                    val receiveimage = response.body()?.byteStream()
-                                    coroutineScope.launch {
-                                        val originalDeferred =
-                                            coroutineScope.async(Dispatchers.IO) {
-                                                BitmapFactory.decodeStream(receiveimage)
-                                            }
-                                        image = originalDeferred.await()
-                                    }
-                                }
-                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
-                                }
-
-                            })
-                        }else {
-                            image = BitmapFactory.decodeResource(
-                                resources,
-                                R.drawable.component_101
-                            )
-                        }
-
-                        if(!i.memberImage.isNullOrEmpty()) {
-                            retrofitService.service.getMyProfileImage(i.memberId).enqueue(object :Callback<ResponseBody> {
-                                override fun onResponse(
-                                    call: Call<ResponseBody>,
-                                    response: Response<ResponseBody>
-                                ) {
-                                    val receiveimage = response.body()?.byteStream()
-                                    coroutineScope.launch {
-                                        val originalDeferred =
-                                            coroutineScope.async(Dispatchers.IO) {
-                                                BitmapFactory.decodeStream(receiveimage)
-                                            }
-                                        memberimage = originalDeferred.await()
-                                    }
-                                }
-                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
-                                }
-
-                            })
-                        }else{
-                            memberimage = BitmapFactory.decodeResource(
-                                resources,
-                                R.drawable.component_38
-                            )
-                        }
-
-                        items.add(StoreReviewModel(i.memberNickname, i.writeDate, i.starPoint.toString(), i.content, image, memberimage))
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<List<ReviewList>>, t: Throwable) {
-
-            }
-
-        })
+//        retrofitService.service.getReviewList().enqueue(object : Callback<List<ReviewList>> {
+//            override fun onResponse(
+//                call: Call<List<ReviewList>>,
+//                response: Response<List<ReviewList>>
+//            ) {
+//                val receive = response.body() as List<ReviewList>
+//                if (response.isSuccessful) {
+//                    for(i in receive) {
+//                        if(!i.image.isNullOrEmpty()) {
+//                            retrofitService.service.getReviewImage(i.id).enqueue(object :Callback<ResponseBody> {
+//                                override fun onResponse(
+//                                    call: Call<ResponseBody>,
+//                                    response: Response<ResponseBody>
+//                                ) {
+//                                    val receiveimage = response.body()?.byteStream()
+//                                    coroutineScope.launch {
+//                                        val originalDeferred =
+//                                            coroutineScope.async(Dispatchers.IO) {
+//                                                BitmapFactory.decodeStream(receiveimage)
+//                                            }
+//                                        image = originalDeferred.await()
+//                                    }
+//                                }
+//                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//
+//                                }
+//
+//                            })
+//                        }else {
+//                            image = BitmapFactory.decodeResource(
+//                                resources,
+//                                R.drawable.component_101
+//                            )
+//                        }
+//
+//                        if(!i.memberImage.isNullOrEmpty()) {
+//                            retrofitService.service.getMyProfileImage(i.memberId).enqueue(object :Callback<ResponseBody> {
+//                                override fun onResponse(
+//                                    call: Call<ResponseBody>,
+//                                    response: Response<ResponseBody>
+//                                ) {
+//                                    val receiveimage = response.body()?.byteStream()
+//                                    coroutineScope.launch {
+//                                        val originalDeferred =
+//                                            coroutineScope.async(Dispatchers.IO) {
+//                                                BitmapFactory.decodeStream(receiveimage)
+//                                            }
+//                                        memberimage = originalDeferred.await()
+//                                    }
+//                                }
+//                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//
+//                                }
+//
+//                            })
+//                        }else{
+//                            memberimage = BitmapFactory.decodeResource(
+//                                resources,
+//                                R.drawable.component_38
+//                            )
+//                        }
+//
+//                        items.add(StoreReviewModel(i.memberNickname, i.writeDate, i.starPoint.toString(), i.content, image, memberimage))
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<List<ReviewList>>, t: Throwable) {
+//
+//            }
+//
+//        })
 
 
         val rvAdapter = StoreReviewRVAdapter(items)

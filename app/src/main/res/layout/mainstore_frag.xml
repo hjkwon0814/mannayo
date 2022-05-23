@@ -84,7 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/restaurantName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -94,10 +94,11 @@
                 android:textColor="#191919"
                 android:textSize="26sp"
                 android:textStyle="bold"
+                android:text="크로플각 돈암점"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView58"
-                tools:text="크로플각 돈암점" />
+                />
 
             <ImageView
                 android:id="@+id/imageView61"
@@ -107,7 +108,7 @@
                 android:layout_marginRight="4dp"
                 app:layout_constraintEnd_toStartOf="@+id/textView34"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/textView27"
+                app:layout_constraintStart_toEndOf="@+id/restaurantName"
                 app:layout_constraintTop_toTopOf="@+id/imageView58"
                 app:srcCompat="@drawable/star_fill" />
 
@@ -122,12 +123,13 @@
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView61"
-                app:layout_constraintEnd_toStartOf="@+id/textView27"
+                app:layout_constraintEnd_toStartOf="@+id/restaurantName"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/imageView61"
                 app:layout_constraintTop_toTopOf="@+id/imageView61" />
 
             <TextView
+                android:id="@+id/restaurantAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -172,7 +174,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
             <TextView
-                android:id="@+id/textView36"
+                android:id="@+id/restaurantTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -186,6 +188,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView35" />
 
             <TextView
+                android:id="@+id/restaurantNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr"
@@ -195,7 +198,7 @@
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="@+id/textView37"
-                app:layout_constraintStart_toStartOf="@+id/textView36" />
+                app:layout_constraintStart_toStartOf="@+id/restaurantTime" />
 
             <ImageView
                 android:id="@+id/imageView62"

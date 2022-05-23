@@ -1,5 +1,6 @@
 package com.example.mannayoclient.categorylist
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -45,6 +46,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
         activity = context as SecondActivity
 
+        val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val edit = shared.edit()
 
         binding.review.setOnClickListener {
             binding.review.setImageResource(R.drawable.component_68)
@@ -76,6 +79,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         rv.layoutManager = LinearLayoutManager(requireContext())
         rvAdapter.itemClick = object : CategoryRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
+                edit.putString("restaurantId", items[position].restaurantId.toString())
+                edit.commit()
                 findNavController().navigate(R.id.action_categoryListFragment_to_mainStoreFragment)
             }
         }
@@ -110,7 +115,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                                                             it.address,
                                                             it.starttime + "~" + it.endtime,
                                                             it.point.toString(),
-                                                            originalBitmap
+                                                            originalBitmap,
+                                                            it.id
                                                         )
                                                     )
                                                     rv.adapter = rvAdapter
@@ -137,7 +143,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                                         it.address,
                                         it.starttime + "~" + it.endtime,
                                         it.point.toString(),
-                                        bitmap
+                                        bitmap,
+                                        it.id
                                     )
                                 )
                                 rv.adapter = rvAdapter

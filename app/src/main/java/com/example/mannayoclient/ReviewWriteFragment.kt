@@ -32,6 +32,7 @@ import java.util.*
 
 class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
     lateinit var binding: ReviewwriteFragBinding
+    lateinit var activity : SecondActivity
 
     val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
     val STORAGE_PERMISSION = arrayOf(
@@ -50,11 +51,17 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = ReviewwriteFragBinding.bind(view)
+        activity = context as SecondActivity
+
+        val sharedPreferences = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
 
         binding.photoButton2.setOnClickListener {
             showDialg()
         }
 
+        binding.completion.setOnClickListener {
+
+        }
 
     }
 

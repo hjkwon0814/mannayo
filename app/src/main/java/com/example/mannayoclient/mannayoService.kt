@@ -2,6 +2,7 @@ package com.example.mannayoclient
 
 import com.example.mannayoclient.categorylist.restaurantImage
 import com.example.mannayoclient.categorylist.restaurantInfo
+import com.example.mannayoclient.mainmenulist.restaurantDetailInfo
 import com.example.mannayoclient.storereviewlist.ReviewList
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
@@ -28,6 +29,9 @@ interface mannayoService {
     @Streaming
     fun getRestaurantImage(@Query("id") id : Long) : Call<ResponseBody>
 
+    @GET("/restaurant/detail/{restaurantId}")
+    fun getRestaurantDatailInfo(@Path("restaurantId") id :Long?) : Call<restaurantDetailInfo>
+
     @POST("/members/inputnickname")
     fun setNickname(@Query("id") id: Long?, @Query("nickname") nickname:String) : Call<ReceiveOK>
 
@@ -40,7 +44,7 @@ interface mannayoService {
     fun getMyProfileImage(@Path("id") id : Long?) : Call<ResponseBody>
 
     @GET("/reviews")
-    fun getReviewList() :Call<List<ReviewList>>
+    fun getReviewList(@Query("restaurantId") id: Long?) :Call<List<ReviewList>>
 
     @GET("/reviews/image/{id}")
     @Streaming
