@@ -16,14 +16,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
-    fun onFragmentChange(index:Int) {
-        when(index){
-            0->supportFragmentManager.commit{
+    fun onFragmentChange(index: Int) {
+        when (index) {
+            0 -> supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace(R.id.fragment, IdFragment::class.java, null)
 
             }
-            1->supportFragmentManager.commit{
+            1 -> supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace(R.id.fragment, PwFragment::class.java, null)
             }
@@ -35,11 +35,11 @@ class MainActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
 
     }
@@ -47,14 +47,11 @@ class MainActivity : AppCompatActivity() {
 
     //EditText 외에 다른곳을 누르면 키보드 내려가기
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE)as InputMethodManager
-        imm.hideSoftInputFromWindow(currentFocus?.windowToken,0)
+        val imm: InputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         return true
     }
-
-
-
-
 
 
 }

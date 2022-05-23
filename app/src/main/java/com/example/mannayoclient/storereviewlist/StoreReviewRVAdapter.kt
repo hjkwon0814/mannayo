@@ -3,6 +3,7 @@ package com.example.mannayoclient.storereviewlist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
@@ -45,6 +46,9 @@ class StoreReviewRVAdapter (val items : ArrayList<StoreReviewModel>) : RecyclerV
 
             val r_content = itemView.findViewById<TextView>(R.id.r_content)
             r_content.text = item.content
+
+            val r_image = itemView.findViewById<ImageView>(R.id.imageView45)
+            r_image.setImageBitmap(item.image)
 
 
         }

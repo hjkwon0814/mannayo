@@ -10,7 +10,7 @@ import com.example.mannayoclient.R
 import com.example.mannayoclient.databinding.AdvertiseFragBinding
 
 
-class AdvertiseFragment : Fragment(R.layout.advertise_frag){
+class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
     lateinit var binding: AdvertiseFragBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -18,7 +18,7 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag){
         super.onViewCreated(view, savedInstanceState)
         binding = AdvertiseFragBinding.bind(view)
 
-        val rv : RecyclerView = binding.rv
+        val rv: RecyclerView = binding.rv
 
         val items = ArrayList<AdvertiseModel>()
 
@@ -26,8 +26,6 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag){
         items.add(AdvertiseModel("a"))
         items.add(AdvertiseModel("a"))
         items.add(AdvertiseModel("a"))
-
-
 
 
         val rvAdapter = AdvertiseRVAdapter(items)
@@ -41,10 +39,9 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag){
             }
         }
 
-        binding.write.setOnClickListener{
+        binding.write.setOnClickListener {
             findNavController().navigate(R.id.action_advertiseFragment_to_writeFragment)
         }
-
 
 
     }

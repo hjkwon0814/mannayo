@@ -2,6 +2,7 @@ package com.example.mannayoclient
 
 import com.example.mannayoclient.categorylist.restaurantImage
 import com.example.mannayoclient.categorylist.restaurantInfo
+import com.example.mannayoclient.storereviewlist.ReviewList
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -37,5 +38,8 @@ interface mannayoService {
     @GET("/members/profileimage/{id}")
     @Streaming
     fun getMyProfileImage(@Path("id") id : Long?) : Call<ResponseBody>
+
+    @GET("/reviews")
+    fun getReviewList() :Call<ReviewList>
 
 }

@@ -8,12 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 
-class AdvertiseRVAdapter (private val items : List<AdvertiseModel>) : RecyclerView.Adapter<AdvertiseRVAdapter.Viewholder>(){
+class AdvertiseRVAdapter(private val items: List<AdvertiseModel>) :
+    RecyclerView.Adapter<AdvertiseRVAdapter.Viewholder>() {
 
     interface ItemClick {
-        fun onClick(view : View, position: Int)
+        fun onClick(view: View, position: Int)
     }
-    var itemClick : ItemClick? = null
+
+    var itemClick: ItemClick? = null
 
 
     override fun onCreateViewHolder(
@@ -27,8 +29,8 @@ class AdvertiseRVAdapter (private val items : List<AdvertiseModel>) : RecyclerVi
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
 
         if (itemClick != null) {
-            holder.itemView.setOnClickListener{
-                    v -> itemClick?.onClick(v, position)
+            holder.itemView.setOnClickListener { v ->
+                itemClick?.onClick(v, position)
             }
         }
         holder.bindItems(items[position])
@@ -38,12 +40,12 @@ class AdvertiseRVAdapter (private val items : List<AdvertiseModel>) : RecyclerVi
         return items.size
     }
 
-    inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    inner class Viewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(item: AdvertiseModel) {
 
             val nickname = itemView.findViewById<TextView>(R.id.nickname)
-             nickname.text = item.nickname
+            nickname.text = item.nickname
 
             val date = itemView.findViewById<TextView>(R.id.date)
             date.text = item.date
