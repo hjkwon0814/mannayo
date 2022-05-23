@@ -23,12 +23,18 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.mannayoclient.databinding.ReviewwriteFragBinding
 import com.example.mannayoclient.databinding.SearchFragBinding
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.locks.ReentrantLock
 
 class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
     lateinit var binding: ReviewwriteFragBinding
@@ -60,7 +66,27 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
         }
 
         binding.completion.setOnClickListener {
+            val request = review(
+                memberId = sharedPreferences.getString("id", null)?.toLong(),
+                restaurantId = sharedPreferences.getString("restaurantId", null)?.toLong(),
+                content = binding.editTextTextPersonName3.text.toString(),
+                starPoint = binding.ratingBar.rating
+            )
+            retrofitService.service.setReview(request).enqueue(object : Callback<ReceiveOK> {
+                override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                    val receive = response.body() as ReceiveOK
+                    if(response.isSuccessful && receive.success) {
+                        Toast.makeText(activity,"리뷰 작성 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(activity,"리뷰 작성 실패되었습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                }
 
+                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                    Toast.makeText(activity,"서버와 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show()
+                }
+
+            })
         }
 
     }
@@ -167,4 +193,22 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
 
 
 }
+
+data class review(
+    @SerializedName("memberId")
+    @Expose
+    val memberId : Long?,
+
+    @SerializedName("restaurantId")
+    @Expose
+    val restaurantId : Long?,
+
+    @SerializedName("content")
+    @Expose
+    val content : String,
+
+    @SerializedName("starPoint")
+    @Expose
+    val starPoint : Float
+)
 

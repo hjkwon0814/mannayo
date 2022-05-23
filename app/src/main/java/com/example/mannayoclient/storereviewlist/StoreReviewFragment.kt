@@ -1,5 +1,6 @@
 package com.example.mannayoclient.storereviewlist
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -9,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
+import com.example.mannayoclient.SecondActivity
 import com.example.mannayoclient.categorylist.CategoryModel
 import com.example.mannayoclient.databinding.StorereviewFragBinding
 import com.example.mannayoclient.retrofitService
@@ -25,6 +27,7 @@ import retrofit2.Response
 
 class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
     lateinit var binding: StorereviewFragBinding
+    lateinit var activity : SecondActivity
     lateinit var image : Bitmap
     lateinit var memberimage: Bitmap
     val coroutineScope = CoroutineScope(Dispatchers.Main)
@@ -34,82 +37,86 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = StorereviewFragBinding.bind(view)
 
+        activity = context as SecondActivity
+        val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+
         val rv: RecyclerView = binding.recyclerView
 
         val items = ArrayList<StoreReviewModel>()
+        val restauratId = shared.getString("restaurantId",null)?.toLong()
 
-//        retrofitService.service.getReviewList().enqueue(object : Callback<List<ReviewList>> {
-//            override fun onResponse(
-//                call: Call<List<ReviewList>>,
-//                response: Response<List<ReviewList>>
-//            ) {
-//                val receive = response.body() as List<ReviewList>
-//                if (response.isSuccessful) {
-//                    for(i in receive) {
-//                        if(!i.image.isNullOrEmpty()) {
-//                            retrofitService.service.getReviewImage(i.id).enqueue(object :Callback<ResponseBody> {
-//                                override fun onResponse(
-//                                    call: Call<ResponseBody>,
-//                                    response: Response<ResponseBody>
-//                                ) {
-//                                    val receiveimage = response.body()?.byteStream()
-//                                    coroutineScope.launch {
-//                                        val originalDeferred =
-//                                            coroutineScope.async(Dispatchers.IO) {
-//                                                BitmapFactory.decodeStream(receiveimage)
-//                                            }
-//                                        image = originalDeferred.await()
-//                                    }
-//                                }
-//                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//
-//                                }
-//
-//                            })
-//                        }else {
-//                            image = BitmapFactory.decodeResource(
-//                                resources,
-//                                R.drawable.component_101
-//                            )
-//                        }
-//
-//                        if(!i.memberImage.isNullOrEmpty()) {
-//                            retrofitService.service.getMyProfileImage(i.memberId).enqueue(object :Callback<ResponseBody> {
-//                                override fun onResponse(
-//                                    call: Call<ResponseBody>,
-//                                    response: Response<ResponseBody>
-//                                ) {
-//                                    val receiveimage = response.body()?.byteStream()
-//                                    coroutineScope.launch {
-//                                        val originalDeferred =
-//                                            coroutineScope.async(Dispatchers.IO) {
-//                                                BitmapFactory.decodeStream(receiveimage)
-//                                            }
-//                                        memberimage = originalDeferred.await()
-//                                    }
-//                                }
-//                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//
-//                                }
-//
-//                            })
-//                        }else{
-//                            memberimage = BitmapFactory.decodeResource(
-//                                resources,
-//                                R.drawable.component_38
-//                            )
-//                        }
-//
-//                        items.add(StoreReviewModel(i.memberNickname, i.writeDate, i.starPoint.toString(), i.content, image, memberimage))
-//                    }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<List<ReviewList>>, t: Throwable) {
-//
-//            }
-//
-//        })
+        retrofitService.service.getReviewList(restauratId).enqueue(object : Callback<List<ReviewList>> {
+            override fun onResponse(
+                call: Call<List<ReviewList>>,
+                response: Response<List<ReviewList>>
+            ) {
+                val receive = response.body() as List<ReviewList>
+                if (response.isSuccessful) {
+                    for(i in receive) {
+                        if(!i.image.isNullOrEmpty()) {
+                            retrofitService.service.getReviewImage(i.id).enqueue(object :Callback<ResponseBody> {
+                                override fun onResponse(
+                                    call: Call<ResponseBody>,
+                                    response: Response<ResponseBody>
+                                ) {
+                                    val receiveimage = response.body()?.byteStream()
+                                    coroutineScope.launch {
+                                        val originalDeferred =
+                                            coroutineScope.async(Dispatchers.IO) {
+                                                BitmapFactory.decodeStream(receiveimage)
+                                            }
+                                        image = originalDeferred.await()
+                                    }
+                                }
+                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+                                }
+
+                            })
+                        }else {
+                            image = BitmapFactory.decodeResource(
+                                resources,
+                                R.drawable.component_101
+                            )
+                        }
+
+                        if(!i.memberImage.isNullOrEmpty()) {
+                            retrofitService.service.getMyProfileImage(i.memberId).enqueue(object :Callback<ResponseBody> {
+                                override fun onResponse(
+                                    call: Call<ResponseBody>,
+                                    response: Response<ResponseBody>
+                                ) {
+                                    val receiveimage = response.body()?.byteStream()
+                                    coroutineScope.launch {
+                                        val originalDeferred =
+                                            coroutineScope.async(Dispatchers.IO) {
+                                                BitmapFactory.decodeStream(receiveimage)
+                                            }
+                                        memberimage = originalDeferred.await()
+                                    }
+                                }
+                                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+                                }
+
+                            })
+                        }else{
+                            memberimage = BitmapFactory.decodeResource(
+                                resources,
+                                R.drawable.component_38
+                            )
+                        }
+
+                        items.add(StoreReviewModel(i.memberNickname, i.writeDate, i.starPoint.toString(), i.content, image, memberimage))
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<ReviewList>>, t: Throwable) {
+
+            }
+
+        })
 
 
         val rvAdapter = StoreReviewRVAdapter(items)

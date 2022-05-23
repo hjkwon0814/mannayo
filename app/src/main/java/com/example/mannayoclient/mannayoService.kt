@@ -50,4 +50,6 @@ interface mannayoService {
     @Streaming
     fun getReviewImage(@Path("id") id : Long?) : Call<ResponseBody>
 
+    @POST("/reviews")
+    fun setReview(@Body review: review) : Call<ReceiveOK>
 }
