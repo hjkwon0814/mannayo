@@ -54,7 +54,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
             R.drawable.component_38
         )
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.component_38)
-        var store: StoreReviewModel = StoreReviewModel("0", "0", "0", "0", image, memberimage)
+        var store: StoreReviewModel = StoreReviewModel("0", "0", "0", "0", image)
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
 
@@ -95,25 +95,20 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                 image = originalDeferred.await()
                                                 items.add(StoreReviewModel(i.memberNickname, i.writeDate,i.starPoint.toString(),i.content, image))
                                             }
-
                                         }
-
                                         override fun onFailure(
                                             call: Call<ResponseBody>,
                                             t: Throwable
                                         ) {
-
                                         }
-
                                     })
-                            } else {
+                                } else {
                                 image = BitmapFactory.decodeResource(
                                     resources,
                                     R.drawable.component_101
                                 )
                             }
                         }
-
                     }
                 }
 

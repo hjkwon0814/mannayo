@@ -54,6 +54,10 @@ interface mannayoService {
     @Streaming
     fun getReviewImage(@Path("id") id : Long?) : Call<ResponseBody>
 
+    @GET("/reviews/imagelist/{id}")
+    @Streaming
+    fun getReviewImageList(@Path("id") id : Long?) : Call<List<ResponseBody>>
+
     @POST("/reviews")
     fun setReview(@Body review: review) : Call<ReceiveOK>
 }
