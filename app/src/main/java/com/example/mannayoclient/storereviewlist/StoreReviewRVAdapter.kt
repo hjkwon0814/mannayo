@@ -51,9 +51,6 @@ class StoreReviewRVAdapter (val items : ArrayList<StoreReviewModel>) : RecyclerV
             val r_image = itemView.findViewById<ImageView>(R.id.imageView45)
             Glide.with(itemView).load(item.image).into(r_image)
 
-            val r_member_image = itemView.findViewById<ImageView>(R.id.imageView59)
-            Glide.with(itemView).load(item.memberImage).into(r_member_image)
-
         }
 
     }

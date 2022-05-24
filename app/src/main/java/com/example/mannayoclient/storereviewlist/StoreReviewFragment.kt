@@ -93,6 +93,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                         BitmapFactory.decodeStream(receiveimage)
                                                     }
                                                 image = originalDeferred.await()
+                                                items.add(StoreReviewModel(i.memberNickname, i.writeDate,i.starPoint.toString(),i.content, image))
                                             }
 
                                         }
@@ -111,43 +112,6 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                     R.drawable.component_101
                                 )
                             }
-
-                            if (!i.memberImage.isNullOrEmpty()) {
-                                retrofitService.service.getMyProfileImage(i.memberId)
-                                    .enqueue(object : Callback<ResponseBody> {
-                                        override fun onResponse(
-                                            call: Call<ResponseBody>,
-                                            response: Response<ResponseBody>
-                                        ) {
-                                            val receiveimage = response.body()?.byteStream()
-                                            coroutineScope.launch {
-                                                val originalDeferred =
-                                                    coroutineScope.async(Dispatchers.IO) {
-                                                        BitmapFactory.decodeStream(receiveimage)
-                                                    }
-                                                memberimage = originalDeferred.await()
-                                                items.add(StoreReviewModel(i.memberNickname,i.writeDate,i.starPoint.toString(),i.content,image,memberimage))
-                                                rv.adapter = rvAdapter
-                                            }
-
-
-                                        }
-
-                                        override fun onFailure(
-                                            call: Call<ResponseBody>,
-                                            t: Throwable
-                                        ) {
-
-                                        }
-
-                                    })
-                            } else {
-                                memberimage = BitmapFactory.decodeResource(
-                                    resources,
-                                    R.drawable.component_38
-                                )
-                            }
-
                         }
 
                     }
