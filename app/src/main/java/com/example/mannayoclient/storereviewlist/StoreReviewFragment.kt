@@ -4,8 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
+import androidx.core.net.toUri
+import androidx.core.view.drawToBitmap
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +28,9 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.util.*
+import kotlin.collections.ArrayList
 
 class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
     lateinit var binding: StorereviewFragBinding
@@ -46,6 +53,9 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
             resources,
             R.drawable.component_38
         )
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.component_38)
+        var store: StoreReviewModel = StoreReviewModel("0", "0", "0", "0", image, memberimage)
+
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
 
         val rv: RecyclerView = binding.recyclerView
@@ -56,7 +66,6 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         val rvAdapter = StoreReviewRVAdapter(items)
         rv.adapter = rvAdapter
 
-        println("a")
         rv.layoutManager = LinearLayoutManager(requireContext())
         retrofitService.service.getReviewList(restaurantId)
             .enqueue(object : Callback<List<ReviewList>> {
@@ -64,10 +73,10 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                     call: Call<List<ReviewList>>,
                     response: Response<List<ReviewList>>
                 ) {
-                    println("b")
                     val receive = response.body() as List<ReviewList>
                     println(receive)
                     if (response.isSuccessful) {
+                        var count = 0
                         for (i in receive) {
                             println("c")
                             if (!i.image.isNullOrEmpty()) {
@@ -85,6 +94,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                     }
                                                 image = originalDeferred.await()
                                             }
+
                                         }
 
                                         override fun onFailure(
@@ -116,7 +126,11 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                         BitmapFactory.decodeStream(receiveimage)
                                                     }
                                                 memberimage = originalDeferred.await()
+                                                items.add(StoreReviewModel(i.memberNickname,i.writeDate,i.starPoint.toString(),i.content,image,memberimage))
+                                                rv.adapter = rvAdapter
                                             }
+
+
                                         }
 
                                         override fun onFailure(
@@ -133,22 +147,9 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                     R.drawable.component_38
                                 )
                             }
-                            println(i.memberId)
-                            println(i.writeDate)
-                            println(i.starPoint)
-                            println(i.content)
-                            items.add(
-                                StoreReviewModel(
-                                    i.memberNickname,
-                                    i.writeDate,
-                                    i.starPoint.toString(),
-                                    i.content,
-                                    image,
-                                    memberimage
-                                )
-                            )
-                            rv.adapter = rvAdapter
+
                         }
+
                     }
                 }
 
@@ -162,8 +163,13 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
             findNavController().navigate(R.id.action_storeReviewFragment_to_reviewWriteFragment)
         }
 
-
     }
+
+
+}
+
+suspend fun image() {
+
 }
 
 data class ReviewList(

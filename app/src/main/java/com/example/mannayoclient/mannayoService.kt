@@ -39,6 +39,10 @@ interface mannayoService {
     @POST("/members/profileimage")
     fun setMyProfileImage(@Query("id") id : Long?, @Part Image : MultipartBody.Part) : Call<ReceiveOK>
 
+    @Multipart
+    @POST("/reviews/reviewimage")
+    fun setReviewImage(@Query("id") id : Long?, @Part Image : MultipartBody.Part) : Call<ReceiveOK>
+
     @GET("/members/profileimage/{id}")
     @Streaming
     fun getMyProfileImage(@Path("id") id : Long?) : Call<ResponseBody>

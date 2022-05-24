@@ -77,7 +77,7 @@ class MainStoreFragment: Fragment(R.layout.mainstore_frag) {
 
         //리뷰
         binding.reviewButton.setOnClickListener {
-            findNavController().navigate(R.id.  action_mainStoreFragment_to_storeReviewFragment)
+            findNavController().navigate(R.id.action_mainStoreFragment_to_storeReviewFragment)
         }
 
 

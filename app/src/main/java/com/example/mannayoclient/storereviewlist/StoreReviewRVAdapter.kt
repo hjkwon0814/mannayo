@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mannayoclient.R
 
 
@@ -48,10 +49,10 @@ class StoreReviewRVAdapter (val items : ArrayList<StoreReviewModel>) : RecyclerV
             r_content.text = item.content
 
             val r_image = itemView.findViewById<ImageView>(R.id.imageView45)
-            r_image.setImageBitmap(item.image)
+            Glide.with(itemView).load(item.image).into(r_image)
 
             val r_member_image = itemView.findViewById<ImageView>(R.id.imageView59)
-            r_member_image.setImageBitmap(item.memberImage)
+            Glide.with(itemView).load(item.memberImage).into(r_member_image)
 
         }
 

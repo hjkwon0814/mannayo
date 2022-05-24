@@ -26,6 +26,9 @@ import com.example.mannayoclient.databinding.ReviewwriteFragBinding
 import com.example.mannayoclient.databinding.SearchFragBinding
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +45,7 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
     lateinit var activity : SecondActivity
     var path: Uri? = null
     var realPath : String? = null
-
+    var file: File? = null
     val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
     val STORAGE_PERMISSION = arrayOf(
         android.Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -68,6 +71,8 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
             showDialg()
         }
 
+
+
         binding.completion.setOnClickListener {
             val request = review(
                 memberId = sharedPreferences.getString("id", null)?.toLong(),
@@ -79,8 +84,34 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
                 override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
                     val receive = response.body() as ReceiveOK
                     if(response.isSuccessful && receive.success) {
-                        Toast.makeText(activity,"리뷰 작성 완료되었습니다.", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(R.id.action_reviewWriteFragment_to_storeReviewFragment)
+                        if(realPath != null) {
+                            file = File(realPath)
+                            var requestBody : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file)
+                            var body : MultipartBody.Part = MultipartBody.Part.createFormData("multipartFile",file?.name,requestBody)
+                            retrofitService.service.setReviewImage(receive.response.toLong(),body).enqueue(object : Callback<ReceiveOK> {
+                                override fun onResponse(
+                                    call: Call<ReceiveOK>,
+                                    response: Response<ReceiveOK>
+                                ) {
+                                    val receive = response.body() as ReceiveOK
+                                    if(response.isSuccessful && receive.success) {
+                                        Toast.makeText(
+                                            activity,
+                                            "리뷰 작성 완료되었습니다.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        findNavController().navigate(R.id.action_reviewWriteFragment_to_storeReviewFragment)
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                                }
+
+                            })
+
+                        }
+
                     } else {
                         Toast.makeText(activity,"리뷰 작성 실패되었습니다.", Toast.LENGTH_SHORT).show()
 
@@ -228,6 +259,16 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
         return result
     }
 
+    fun sendReviewAndImage(id : Long? ,path : String?, request: review) {
+        var requestBody : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file)
+        var body : MultipartBody.Part = MultipartBody.Part.createFormData("multipartFile",file?.name,requestBody)
+
+    }
+
+    fun sendNickNameOnly(id : Long?, nickname : String) {
+
+    }
+
 
 }
 
@@ -248,4 +289,5 @@ data class review(
     @Expose
     val starPoint : Float
 )
+
 

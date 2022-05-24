@@ -1,6 +1,7 @@
 package com.example.mannayoclient.storereviewlist
 
 import android.graphics.Bitmap
+import android.net.Uri
 
 class StoreReviewModel   (
 

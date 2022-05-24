@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object retrofitService {
-    private const val BASE_URL = "http://192.168.0.2:8080"
+    private const val BASE_URL = "http://ec2-13-125-241-219.ap-northeast-2.compute.amazonaws.com:8080"
 
     val gson : Gson = GsonBuilder()
         .setLenient()
