@@ -24,7 +24,7 @@ interface mannayoService {
     fun signIn(@Query("email") email :String, @Query("password") password : String) : Call<ReceiveLoginOK>
 
     @GET("/restaurant/type")
-    fun getRestaurantList(@Query("type") type : String, @Query("memberId") memberId : Long?) : Call<List<restaurantInfo>>
+    fun getRestaurantList(@Query("type") type : String?, @Query("memberId") memberId : Long?) : Call<List<restaurantInfo>>
 
     @GET("/restaurant/profileimage")
     @Streaming

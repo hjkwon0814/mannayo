@@ -51,27 +51,10 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         val memberId = shared.getString("id",null)?.toLong()
         edit.putString("Jjim", "false")
 
-        binding.review.setOnClickListener {
-            binding.review.setImageResource(R.drawable.component_68)
-            binding.grade.setImageResource(R.drawable.component_74)
-            binding.favorite.setImageResource(R.drawable.component_71)
-
-        }
-
-        binding.grade.setOnClickListener {
-            binding.review.setImageResource(R.drawable.component_67)
-            binding.grade.setImageResource(R.drawable.component_70)
-            binding.favorite.setImageResource(R.drawable.component_71)
-        }
-
-        binding.favorite.setOnClickListener {
-            binding.review.setImageResource(R.drawable.component_67)
-            binding.grade.setImageResource(R.drawable.component_74)
-            binding.favorite.setImageResource(R.drawable.component_72)
-        }
 
 
-        val categorization = arguments?.getString("categorization").toString()
+
+        val categorization = shared.getString("categorization", null)
         val items = ArrayList<CategoryModel>()
 
 
@@ -90,7 +73,6 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
             override fun onHeartClick(view: View, position: Int) {
                 edit.putString("restaurantId", items[position].restaurantId.toString())
                 edit.commit()
-                println("heartclick =" + items[position].Check)
                 if(items[position].Check) {// 체크 박스 확인 true
                     items[position].Check = false
                     println("heartclick2 =" + items[position].Check)
@@ -163,10 +145,12 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                                                             it.point.toString(),
                                                             originalBitmap,
                                                             it.id,
-                                                            it.isJjim
+                                                            it.isJjim,
+                                                            it.countReview,
+                                                            it.countJjim
                                                         )
                                                     )
-                                                    println("restaurantIsJJim =" + it.isJjim)
+                                                    items.sortBy { it.countReview }
                                                     rvAdapter.notifyDataSetChanged()
                                                 }
                                             }
@@ -193,10 +177,13 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                                         it.point.toString(),
                                         bitmap,
                                         it.id,
-                                        it.isJjim
+                                        it.isJjim,
+                                        it.countReview,
+                                        it.countJjim
                                     )
                                 )
-                                rv.adapter = rvAdapter
+                                items.sortBy { it.countReview }
+                                rvAdapter.notifyDataSetChanged()
                             }
                         }
 
@@ -211,18 +198,35 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
             })
 
 
+
+        binding.review.setOnClickListener {
+            items.sortBy { it.countReview}
+            rvAdapter.notifyDataSetChanged()
+            binding.review.setImageResource(R.drawable.component_68)
+            binding.grade.setImageResource(R.drawable.component_74)
+            binding.favorite.setImageResource(R.drawable.component_71)
+
+        }
+
+        binding.grade.setOnClickListener {
+            items.sortBy { it.grade }
+            rvAdapter.notifyDataSetChanged()
+            binding.review.setImageResource(R.drawable.component_67)
+            binding.grade.setImageResource(R.drawable.component_70)
+            binding.favorite.setImageResource(R.drawable.component_71)
+        }
+
+        binding.favorite.setOnClickListener {
+            items.sortBy { it.countJjim }
+            rvAdapter.notifyDataSetChanged()
+            binding.review.setImageResource(R.drawable.component_67)
+            binding.grade.setImageResource(R.drawable.component_74)
+            binding.favorite.setImageResource(R.drawable.component_72)
+        }
     }
 
 
 }
-
-class SortByReview : Comparable<StoreReviewModel>{
-    override fun compareTo(other: StoreReviewModel): Int {
-        return 0
-    }
-
-}
-
 
 data class restaurantInfo(
     @SerializedName("id")
@@ -259,7 +263,15 @@ data class restaurantInfo(
 
     @SerializedName("isJjim")
     @Expose
-    val isJjim: Boolean
+    val isJjim: Boolean,
+
+    @SerializedName("countReview")
+    @Expose
+    val countReview: Long,
+
+    @SerializedName("countJjim")
+    @Expose
+    val countJjim: Long
 )
 
 data class restaurantImage(

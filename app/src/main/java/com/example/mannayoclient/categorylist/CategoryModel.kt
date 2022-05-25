@@ -10,5 +10,7 @@ class CategoryModel (
     var grade: String = "",
     var image : Bitmap,
     var restaurantId: Long,
-    var Check: Boolean
+    var Check: Boolean,
+    var countReview: Long,
+    var countJjim: Long
         )

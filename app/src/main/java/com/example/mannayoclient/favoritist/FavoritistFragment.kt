@@ -92,7 +92,9 @@ class favoritistFragment : Fragment(R.layout.favoritist_frag) {
                                                             it.point.toString(),
                                                             originalBitmap,
                                                             it.id,
-                                                            it.isJjim
+                                                            it.isJjim,
+                                                            it.countReview,
+                                                            it.countJjim
                                                         )
                                                     )
                                                     println("restaurantIsJJim =" + it.isJjim)
@@ -122,7 +124,9 @@ class favoritistFragment : Fragment(R.layout.favoritist_frag) {
                                         it.point.toString(),
                                         bitmap,
                                         it.id,
-                                        it.isJjim
+                                        it.isJjim,
+                                        it.countReview,
+                                        it.countJjim
                                     )
                                 )
                                 rv.adapter = rvAdapter

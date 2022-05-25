@@ -71,6 +71,10 @@ class CategoryRVAdapter(private val items : List<CategoryModel>) : RecyclerView.
             val checking = itemView.findViewById<CheckBox>(R.id.heartArea)
             checking.isChecked = item.Check
 
+            val countReview = item.countReview
+
+            val countJjim = item.countJjim
+
         }
 
     }
