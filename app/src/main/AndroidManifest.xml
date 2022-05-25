@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Mannayoclient"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MyPageActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReviewWriteActivity"
             android:exported="false" />
         <activity
