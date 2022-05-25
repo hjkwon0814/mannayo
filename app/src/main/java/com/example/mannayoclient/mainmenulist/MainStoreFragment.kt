@@ -5,13 +5,10 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentResultOwner
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mannayoclient.CategoryActivity
 import com.example.mannayoclient.R
-import com.example.mannayoclient.SecondActivity
 import com.example.mannayoclient.databinding.MainstoreFragBinding
 import com.example.mannayoclient.retrofitService
 import com.google.gson.annotations.Expose
@@ -27,7 +24,7 @@ import retrofit2.Response
 
 class MainStoreFragment : Fragment(R.layout.mainstore_frag) {
     lateinit var binding: MainstoreFragBinding
-    lateinit var activity: CategoryActivity
+    lateinit var activity: MainStoreActivity
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
 
@@ -36,7 +33,7 @@ class MainStoreFragment : Fragment(R.layout.mainstore_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = MainstoreFragBinding.bind(view)
 
-        activity = context as CategoryActivity
+        activity = context as MainStoreActivity
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val id = shared.getString("restaurantId", null)?.toLong()

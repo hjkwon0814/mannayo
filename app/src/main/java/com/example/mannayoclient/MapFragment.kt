@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.MapFragBinding
+import com.example.mannayoclient.mainmenulist.MainStoreActivity
 
 class MapFragment : Fragment(R.layout.map_frag) {
     lateinit var binding: MapFragBinding
@@ -17,7 +17,7 @@ class MapFragment : Fragment(R.layout.map_frag) {
 
 
         binding.goStore.setOnClickListener() {
-            startActivity(Intent(requireContext(),MainStoreActivity::class.java))
+            startActivity(Intent(requireContext(), MainStoreActivity::class.java))
         }
 
 

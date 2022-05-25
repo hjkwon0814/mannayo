@@ -1,4 +1,4 @@
-package com.example.mannayoclient.favoritist
+/*package com.example.mannayoclient.favoritist
 
 import android.content.Context
 import android.graphics.BitmapFactory
@@ -51,7 +51,7 @@ class favoritistFragment : Fragment(R.layout.favoritist_frag) {
         rv.layoutManager = LinearLayoutManager(requireContext())
         rvAdapter.itemClick = object : CategoryRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                findNavController().navigate(R.id.action_favoritistFragment_to_mainStoreFragment)
+                //findNavController().navigate(R.id.action_favoritistFragment_to_mainStoreFragment)
             }
 
             override fun onHeartClick(view: View, position: Int) {
@@ -145,4 +145,4 @@ class favoritistFragment : Fragment(R.layout.favoritist_frag) {
 
 
     }
-}
+}*/

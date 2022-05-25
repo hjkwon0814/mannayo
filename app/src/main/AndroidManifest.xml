@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Mannayoclient"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainStoreActivity"
+            android:name=".mainmenulist.MainStoreActivity"
             android:exported="false" />
         <activity
             android:name=".FavoritistActivity"

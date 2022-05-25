@@ -1,4 +1,4 @@
-package com.example.mannayoclient
+package com.example.mannayoclient.mainmenulist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

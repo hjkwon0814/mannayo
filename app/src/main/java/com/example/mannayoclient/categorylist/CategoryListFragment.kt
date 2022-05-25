@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.*
 import com.example.mannayoclient.databinding.CategoryListFragBinding
+import com.example.mannayoclient.mainmenulist.MainStoreActivity
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.CoroutineScope
@@ -57,7 +58,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                 edit.putString("restaurantId", items[position].restaurantId.toString())
                 edit.putString("Jjim", items[position].Check.toString())
                 edit.commit()
-                startActivity(Intent(requireContext(),MainStoreActivity::class.java))
+                startActivity(Intent(requireContext(), MainStoreActivity::class.java))
             }
 
             override fun onHeartClick(view: View, position: Int) {
