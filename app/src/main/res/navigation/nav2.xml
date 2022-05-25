@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mainHomeFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+        <action
+            android:id="@+id/action_mainHomeFragment_to_mypageFragment"
+            app:destination="@id/mypageFragment" />
 
     </fragment>
     <fragment
@@ -100,4 +103,8 @@
             android:id="@+id/action_mapFragment_to_mainStoreFragment"
             app:destination="@id/mainStoreFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mypageFragment"
+        android:name="com.example.mannayoclient.MypageFragment"
+        android:label="MypageFragment" />
 </navigation>
