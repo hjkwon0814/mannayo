@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/store_nav"
+    app:startDestination="@id/mainStoreFragment">
+
+    <fragment
+        android:id="@+id/mainStoreFragment"
+        android:name="com.example.mannayoclient.mainmenulist.MainStoreFragment"
+        android:label="MainStoreFragment" >
+        <action
+            android:id="@+id/action_mainStoreFragment_to_storeMenuFragment"
+            app:destination="@id/storeMenuFragment" />
+        <action
+            android:id="@+id/action_mainStoreFragment_to_storeReviewFragment"
+            app:destination="@id/storeReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storeMenuFragment"
+        android:name="com.example.mannayoclient.storemenulist.StoreMenuFragment"
+        android:label="StoreMenuFragment" />
+    <fragment
+        android:id="@+id/storeReviewFragment"
+        android:name="com.example.mannayoclient.storereviewlist.StoreReviewFragment"
+        android:label="StoreReviewFragment" />
+</navigation>

@@ -16,10 +16,16 @@
         android:theme="@style/Theme.Mannayoclient"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MainStoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FavoritistActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".CategoryActivity"
+            android:name=".categorylist.CategoryActivity"
             android:exported="false" />
         <activity
             android:name=".InformationActivity"

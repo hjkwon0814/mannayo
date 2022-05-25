@@ -1,7 +1,8 @@
-package com.example.mannayoclient
+package com.example.mannayoclient.categorylist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.mannayoclient.R
 
 class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

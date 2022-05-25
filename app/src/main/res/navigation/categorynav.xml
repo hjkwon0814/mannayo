@@ -7,13 +7,5 @@
     <fragment
         android:id="@+id/categoryListFragment2"
         android:name="com.example.mannayoclient.categorylist.CategoryListFragment"
-        android:label="CategoryListFragment" >
-        <action
-            android:id="@+id/action_categoryListFragment2_to_mainStoreFragment2"
-            app:destination="@id/mainStoreFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/mainStoreFragment2"
-        android:name="com.example.mannayoclient.mainmenulist.MainStoreFragment"
-        android:label="MainStoreFragment" />
+        android:label="CategoryListFragment" />
 </navigation>

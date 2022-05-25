@@ -2,21 +2,14 @@ package com.example.mannayoclient
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.categorylist.CategoryActivity
 import com.example.mannayoclient.databinding.MainhomeFragBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
     lateinit var binding: MainhomeFragBinding
@@ -40,7 +33,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Hansik.setOnClickListener() {
             bundle.putString("categorization", "HANSIK")
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
             /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
@@ -49,7 +42,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Bunsik.setOnClickListener() {
             bundle.putString("categorization", "BUNSIK")
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
             /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
@@ -58,7 +51,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Japanese.setOnClickListener() {
             bundle.putString("categorization", "ILSIK")
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
             /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
@@ -67,7 +60,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Chinese.setOnClickListener() {
             bundle.putString("categorization", "JUNGSIK")
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
             /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
@@ -76,7 +69,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Western.setOnClickListener() {
             bundle.putString("categorization", "YANGSIK")
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
             /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
@@ -85,7 +78,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Fast.setOnClickListener() {
             bundle.putString("categorization", "FASTFOOD")
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
             /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
@@ -94,7 +87,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Dessert.setOnClickListener() {
             bundle.putString("categorization", "CAFE_DESSERT")
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
             /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
@@ -103,7 +96,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Beer.setOnClickListener() {
             bundle.putString("categorization", "SULJIP")
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
             /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
@@ -112,7 +105,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
 
         binding.heart.setOnClickListener() {
-            findNavController().navigate(R.id.action_mainHomeFragment_to_favoritistFragment)
+            startActivity(Intent(requireContext(),FavoritistActivity::class.java))
         }
 
         binding.board.setOnClickListener() {

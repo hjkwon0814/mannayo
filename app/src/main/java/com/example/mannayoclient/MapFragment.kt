@@ -1,5 +1,6 @@
 package com.example.mannayoclient
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -16,7 +17,7 @@ class MapFragment : Fragment(R.layout.map_frag) {
 
 
         binding.goStore.setOnClickListener() {
-            findNavController().navigate(R.id.action_mapFragment_to_mainStoreFragment)
+            startActivity(Intent(requireContext(),MainStoreActivity::class.java))
         }
 
 
