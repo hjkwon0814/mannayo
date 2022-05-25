@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav4"
+    app:startDestination="@id/categoryListFragment2">
+
+    <fragment
+        android:id="@+id/categoryListFragment2"
+        android:name="com.example.mannayoclient.categorylist.CategoryListFragment"
+        android:label="CategoryListFragment" >
+        <action
+            android:id="@+id/action_categoryListFragment2_to_mainStoreFragment2"
+            app:destination="@id/mainStoreFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainStoreFragment2"
+        android:name="com.example.mannayoclient.mainmenulist.MainStoreFragment"
+        android:label="MainStoreFragment" />
+</navigation>

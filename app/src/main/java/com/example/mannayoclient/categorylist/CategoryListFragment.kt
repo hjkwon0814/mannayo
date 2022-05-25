@@ -36,7 +36,7 @@ import java.time.LocalTime
 
 class CategoryListFragment : Fragment(R.layout.category_list_frag) {
     lateinit var binding: CategoryListFragBinding
-    lateinit var activity: SecondActivity
+    lateinit var activity: CategoryActivity
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +44,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = CategoryListFragBinding.bind(view)
 
-        activity = context as SecondActivity
+        activity = context as CategoryActivity
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val edit = shared.edit()
@@ -84,7 +84,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                 edit.putString("restaurantId", items[position].restaurantId.toString())
                 edit.putString("Jjim", items[position].Check.toString())
                 edit.commit()
-                findNavController().navigate(R.id.action_categoryListFragment_to_mainStoreFragment)
+                findNavController().navigate(R.id.action_categoryListFragment2_to_mainStoreFragment2)
             }
 
             override fun onHeartClick(view: View, position: Int) {
