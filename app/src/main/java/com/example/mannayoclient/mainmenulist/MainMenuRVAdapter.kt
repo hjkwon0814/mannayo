@@ -3,8 +3,10 @@ package com.example.mannayoclient.mainmenulist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mannayoclient.R
 
 
@@ -36,6 +38,9 @@ class MainMenuRVAdapter (val items : ArrayList<MainMenuModel>) : RecyclerView.Ad
 
             val mainmenu_title = itemView.findViewById<TextView>(R.id.mainmenu_text)
             mainmenu_title.text = item.title
+
+            val mainmenu_image = itemView.findViewById<ImageView>(R.id.mainmenu_image)
+            Glide.with(itemView).load(item.image).into(mainmenu_image)
 
         }
 

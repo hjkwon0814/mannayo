@@ -25,6 +25,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         activity = context as SecondActivity
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val edit = shared.edit()
         val nickname = shared.getString("nickname", "null")
         val id = shared.getString("id", "0")?.toLong()
         if (nickname.equals("null")) {
@@ -101,6 +102,56 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
             )*/
+            edit.putString("categorization", "HANSIK")
+            edit.commit()
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+        }
+
+        binding.Bunsik.setOnClickListener() {
+            edit.putString("categorizion", "BUNSIK")
+            edit.commit()
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+        }
+
+        binding.Japanese.setOnClickListener() {
+            edit.putString("categorization", "ILSIK")
+            edit.commit()
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+
+        }
+
+        binding.Chinese.setOnClickListener() {
+            edit.putString("categorization", "JUNGSIK")
+            edit.commit()
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+
+        }
+
+        binding.Western.setOnClickListener() {
+            edit.putString("categorization", "YANGSIK")
+            edit.commit()
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+
+        }
+
+        binding.Fast.setOnClickListener() {
+            edit.putString("categorization", "FASTFOOD")
+            edit.commit()
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+
+        }
+
+        binding.Dessert.setOnClickListener() {
+            edit.putString("categorization", "CAFE_DESSERT")
+            edit.commit()
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+
+        }
+
+        binding.Beer.setOnClickListener() {
+            edit.putString("categorization", "SULJIP")
+            edit.commit()
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
         }
 
 

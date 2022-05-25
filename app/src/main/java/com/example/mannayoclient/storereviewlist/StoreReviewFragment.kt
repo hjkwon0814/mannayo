@@ -36,7 +36,6 @@ import kotlin.collections.ArrayList
 class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
     lateinit var binding: StorereviewFragBinding
     lateinit var activity: SecondActivity
-    lateinit var image: Bitmap
     lateinit var memberimage: Bitmap
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
@@ -46,16 +45,10 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         binding = StorereviewFragBinding.bind(view)
 
         activity = context as SecondActivity
-        image = BitmapFactory.decodeResource(
+        memberimage = BitmapFactory.decodeResource(
             resources,
             R.drawable.component_101
         )
-        memberimage = BitmapFactory.decodeResource(
-            resources,
-            R.drawable.component_38
-        )
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.component_38)
-        var store: StoreReviewModel = StoreReviewModel("0", "0", "0", "0", image)
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
 
@@ -68,6 +61,10 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         rv.adapter = rvAdapter
 
         rv.layoutManager = LinearLayoutManager(requireContext())
+
+        binding.reviewbutton.setOnClickListener {
+             onActivityChange()
+        }
         retrofitService.service.getReviewList(restaurantId)
             .enqueue(object : Callback<List<ReviewList>> {
                 override fun onResponse(
@@ -77,7 +74,6 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                     val receive = response.body() as List<ReviewList>
                     println(receive)
                     if (response.isSuccessful) {
-                        var count = 0
                         for (i in receive) {
                             println("c")
                             if (!i.image.isNullOrEmpty()) {
@@ -93,7 +89,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                     coroutineScope.async(Dispatchers.IO) {
                                                         BitmapFactory.decodeStream(receiveimage)
                                                     }
-                                                image = originalDeferred.await()
+                                                val image = originalDeferred.await()
                                                 items.add(
                                                     StoreReviewModel(
                                                         i.memberNickname,
@@ -103,6 +99,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                         image
                                                     )
                                                 )
+                                                rv.adapter = rvAdapter
                                             }
                                         }
 
@@ -110,35 +107,39 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                             call: Call<ResponseBody>,
                                             t: Throwable
                                         ) {
+
                                         }
                                     })
-                            } else {
-                                image = BitmapFactory.decodeResource(
-                                    resources,
-                                    R.drawable.component_101
+                            }else {
+                                items.add(
+                                    StoreReviewModel(
+                                        i.memberNickname,
+                                        i.writeDate,
+                                        i.starPoint.toString(),
+                                        i.content,
+                                        memberimage
+                                    )
                                 )
+                                rv.adapter = rvAdapter
                             }
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<List<ReviewList>>, t: Throwable) {
-
                 }
-
             })
 
         binding.reviewbutton.setOnClickListener {
             startActivity(Intent(requireContext(), ReviewWriteActivity::class.java))
         }
-
     }
 
-
-}
-
-suspend fun image() {
-
+    fun onActivityChange() {
+        val intent = Intent(activity, ReviewWriteActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+    }
 }
 
 data class ReviewList(

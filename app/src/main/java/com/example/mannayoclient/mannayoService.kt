@@ -2,6 +2,7 @@ package com.example.mannayoclient
 
 import com.example.mannayoclient.categorylist.restaurantImage
 import com.example.mannayoclient.categorylist.restaurantInfo
+import com.example.mannayoclient.mainmenulist.menu
 import com.example.mannayoclient.mainmenulist.restaurantDetailInfo
 import com.example.mannayoclient.storereviewlist.ReviewList
 import okhttp3.MultipartBody
@@ -23,7 +24,7 @@ interface mannayoService {
     fun signIn(@Query("email") email :String, @Query("password") password : String) : Call<ReceiveLoginOK>
 
     @GET("/restaurant/type")
-    fun getRestaurantList(@Query("type") type : String) : Call<List<restaurantInfo>>
+    fun getRestaurantList(@Query("type") type : String?, @Query("memberId") memberId : Long?) : Call<List<restaurantInfo>>
 
     @GET("/restaurant/profileimage")
     @Streaming
@@ -54,10 +55,22 @@ interface mannayoService {
     @Streaming
     fun getReviewImage(@Path("id") id : Long?) : Call<ResponseBody>
 
-    @GET("/reviews/imagelist/{id}")
-    @Streaming
-    fun getReviewImageList(@Path("id") id : Long?) : Call<List<ResponseBody>>
-
     @POST("/reviews")
     fun setReview(@Body review: review) : Call<ReceiveOK>
+
+    @GET("/menu/{id}")
+    fun getMenu(@Path("id") id: Long?) : Call<List<menu>>
+
+    @GET("/menu/image/{id}")
+    @Streaming
+    fun getMenuImage(@Path("id") id: Long?) : Call<ResponseBody>
+
+    @POST("/jjim")
+    fun setJjim(@Query("memberid") memberid :Long?, @Query("restaurantid") restaurantid : Long?) : Call<ReceiveOK>
+
+    @DELETE("/jjim/delete")
+    fun deleteJjim(@Query("memberid") memberid :Long?, @Query("restaurantid") restaurantid : Long?) : Call<ReceiveOK>
+
+    @GET("/restaurant/restaurantJjim")
+    fun getRestaurantJjimList(@Query("memberId") memberId : Long?) : Call<List<restaurantInfo>>
 }

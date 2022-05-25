@@ -9,5 +9,8 @@ class CategoryModel (
     var open_time: String = "",
     var grade: String = "",
     var image : Bitmap,
-    var restaurantId: Long
+    var restaurantId: Long,
+    var Check: Boolean,
+    var countReview: Long,
+    var countJjim: Long
         )
