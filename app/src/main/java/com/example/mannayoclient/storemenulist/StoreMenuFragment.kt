@@ -10,7 +10,7 @@ import com.example.mannayoclient.R
 import com.example.mannayoclient.databinding.StoremenuFragBinding
 
 
-class StoreMenuFragment : Fragment(R.layout.storemenu_frag){
+class StoreMenuFragment : Fragment(R.layout.storemenu_frag) {
     lateinit var binding: StoremenuFragBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -18,15 +18,18 @@ class StoreMenuFragment : Fragment(R.layout.storemenu_frag){
         super.onViewCreated(view, savedInstanceState)
         binding = StoremenuFragBinding.bind(view)
 
-        val rv : RecyclerView = binding.recyclerView
-        val rv2 : RecyclerView = binding.recyclerView2
+        val rv: RecyclerView = binding.recyclerView
+        val rv2: RecyclerView = binding.recyclerView2
 
         val items = ArrayList<StoreMenuModel>()
+        val items2 = ArrayList<StoreMenuModel>()
 
         //test 용
         items.add(StoreMenuModel("a"))
         items.add(StoreMenuModel("b"))
 
+        items2.add(StoreMenuModel("c"))
+        items2.add(StoreMenuModel("d"))
 
 
         val rvAdapter = StoreMenuRVAdapter(items)
@@ -34,11 +37,11 @@ class StoreMenuFragment : Fragment(R.layout.storemenu_frag){
 
         rv.layoutManager = LinearLayoutManager(requireContext())
 
-        rv2.adapter = rvAdapter
+
+        val rvAdapter2 = StoreMenuRVAdapter(items2)
+        rv2.adapter = rvAdapter2
 
         rv2.layoutManager = LinearLayoutManager(requireContext())
-
-
 
 
     }

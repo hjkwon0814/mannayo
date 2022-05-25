@@ -128,6 +128,10 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                 override fun onFailure(call: Call<List<ReviewList>>, t: Throwable) {
                 }
             })
+
+        binding.reviewbutton.setOnClickListener {
+            //startActivity(Intent(requireContext(), Activity::class.java))
+        }
     }
 }
 
