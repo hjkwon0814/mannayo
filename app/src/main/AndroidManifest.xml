@@ -22,7 +22,7 @@
             android:name=".CategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".MyPageActivity"
+            android:name=".InformationActivity"
             android:exported="false" />
         <activity
             android:name=".ReviewWriteActivity"

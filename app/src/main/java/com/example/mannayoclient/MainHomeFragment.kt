@@ -115,6 +115,10 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
             findNavController().navigate(R.id.action_mainHomeFragment_to_mapFragment)
         }
 
+        binding.mypage.setOnClickListener() {
+            findNavController().navigate(R.id.action_mainHomeFragment_to_mypageFragment)
+        }
+
     }
 
 }
