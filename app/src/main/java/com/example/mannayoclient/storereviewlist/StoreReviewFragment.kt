@@ -93,16 +93,25 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                         BitmapFactory.decodeStream(receiveimage)
                                                     }
                                                 image = originalDeferred.await()
-                                                items.add(StoreReviewModel(i.memberNickname, i.writeDate,i.starPoint.toString(),i.content, image))
+                                                items.add(
+                                                    StoreReviewModel(
+                                                        i.memberNickname,
+                                                        i.writeDate,
+                                                        i.starPoint.toString(),
+                                                        i.content,
+                                                        image
+                                                    )
+                                                )
                                             }
                                         }
+
                                         override fun onFailure(
                                             call: Call<ResponseBody>,
                                             t: Throwable
                                         ) {
                                         }
                                     })
-                                } else {
+                            } else {
                                 image = BitmapFactory.decodeResource(
                                     resources,
                                     R.drawable.component_101
@@ -119,7 +128,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
             })
 
         binding.reviewbutton.setOnClickListener {
-            findNavController().navigate(R.id.action_storeReviewFragment_to_reviewWriteFragment)
+            //startActivity(Intent(requireContext(), Activity::class.java))
         }
 
     }
