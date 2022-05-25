@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Mannayoclient"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyPageActivity"
             android:exported="false" />
         <activity

@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyPageActivity">
+    tools:context=".CategoryActivity">
 
-    <ImageView
-        android:id="@+id/imageView83"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/close_round" />
+        app:navGraph="@navigation/categorynav" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

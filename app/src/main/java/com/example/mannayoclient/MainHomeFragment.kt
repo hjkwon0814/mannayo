@@ -1,6 +1,7 @@
 package com.example.mannayoclient
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -39,66 +40,74 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         binding.Hansik.setOnClickListener() {
             bundle.putString("categorization", "HANSIK")
-            findNavController().navigate(
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
-            )
+            )*/
         }
 
         binding.Bunsik.setOnClickListener() {
             bundle.putString("categorization", "BUNSIK")
-            findNavController().navigate(
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
-            )
+            )*/
         }
 
         binding.Japanese.setOnClickListener() {
             bundle.putString("categorization", "ILSIK")
-            findNavController().navigate(
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
-            )
+            )*/
         }
 
         binding.Chinese.setOnClickListener() {
             bundle.putString("categorization", "JUNGSIK")
-            findNavController().navigate(
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
-            )
+            )*/
         }
 
         binding.Western.setOnClickListener() {
             bundle.putString("categorization", "YANGSIK")
-            findNavController().navigate(
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
-            )
+            )*/
         }
 
         binding.Fast.setOnClickListener() {
             bundle.putString("categorization", "FASTFOOD")
-            findNavController().navigate(
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
-            )
+            )*/
         }
 
         binding.Dessert.setOnClickListener() {
             bundle.putString("categorization", "CAFE_DESSERT")
-            findNavController().navigate(
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
-            )
+            )*/
         }
 
         binding.Beer.setOnClickListener() {
             bundle.putString("categorization", "SULJIP")
-            findNavController().navigate(
+            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            /*findNavController().navigate(
                 R.id.action_mainHomeFragment_to_categoryListFragment,
                 bundle
-            )
+            )*/
         }
 
 

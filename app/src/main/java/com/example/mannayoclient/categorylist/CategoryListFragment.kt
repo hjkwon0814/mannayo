@@ -11,12 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mannayoclient.R
-import com.example.mannayoclient.SecondActivity
-import com.example.mannayoclient.databinding.CategoryItemBinding
+import com.example.mannayoclient.*
 import com.example.mannayoclient.databinding.CategoryListFragBinding
-import com.example.mannayoclient.mannayoService
-import com.example.mannayoclient.retrofitService
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.CoroutineScope
@@ -36,7 +32,7 @@ import java.time.LocalTime
 
 class CategoryListFragment : Fragment(R.layout.category_list_frag) {
     lateinit var binding: CategoryListFragBinding
-    lateinit var activity: SecondActivity
+    lateinit var activity: CategoryActivity
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +40,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = CategoryListFragBinding.bind(view)
 
-        activity = context as SecondActivity
+        activity = context as CategoryActivity
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val edit = shared.edit()
@@ -81,7 +77,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
             override fun onClick(view: View, position: Int) {
                 edit.putString("restaurantId", items[position].restaurantId.toString())
                 edit.commit()
-                findNavController().navigate(R.id.action_categoryListFragment_to_mainStoreFragment)
+                findNavController().navigate(R.id.action_categoryListFragment2_to_mainStoreFragment2)
             }
         }
 
