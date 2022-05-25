@@ -26,8 +26,14 @@ class FavoritistActivity : AppCompatActivity() {
         rv.layoutManager = LinearLayoutManager(this)
         rvAdapter.itemClick = object : CategoryRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                //findNavController().navigate(R.id.action_favoritistFragment_to_mainStoreFragment)
+                TODO("Not yet implemented")
             }
+
+            override fun onHeartClick(view: View, position: Int) {
+                TODO("Not yet implemented")
+            }
+
+
         }
 
     }
