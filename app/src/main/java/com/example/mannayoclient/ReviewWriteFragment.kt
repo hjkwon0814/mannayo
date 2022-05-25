@@ -100,7 +100,7 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
                                             "리뷰 작성 완료되었습니다.",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                       // findNavController().navigate(R.id.action_reviewWriteFragment_to_storeReviewFragment)
+                                        onActivityChange()
                                     }
                                 }
 
@@ -111,7 +111,7 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
                             })
 
                         }
-                        findNavController().navigate(R.id.action_reviewWriteFragment_to_storeReviewFragment)
+                        onActivityChange()
                     } else {
                         Toast.makeText(activity,"리뷰 작성 실패되었습니다.", Toast.LENGTH_SHORT).show()
                     }
@@ -260,15 +260,13 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
         return result
     }
 
-    fun sendReviewAndImage(id : Long? ,path : String?, request: review) {
-        var requestBody : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file)
-        var body : MultipartBody.Part = MultipartBody.Part.createFormData("multipartFile",file?.name,requestBody)
-
+    fun onActivityChange() {
+        val intent = Intent(activity, SecondActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 
-    fun sendNickNameOnly(id : Long?, nickname : String) {
 
-    }
 
 
 }

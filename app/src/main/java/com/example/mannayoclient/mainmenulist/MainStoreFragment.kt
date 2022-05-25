@@ -39,6 +39,10 @@ class MainStoreFragment : Fragment(R.layout.mainstore_frag) {
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val id = shared.getString("restaurantId", null)?.toLong()
+        val check = shared.getString("Jjim", null)?.toBoolean()
+        if(check!!) {
+            binding.checkBox.isChecked = check
+        }
 
         println(id)
         retrofitService.service.getRestaurantDatailInfo(id)
@@ -92,7 +96,7 @@ class MainStoreFragment : Fragment(R.layout.mainstore_frag) {
                                             bitMenuImage
                                         )
                                     )
-                                    rv.adapter = rvAdapter
+                                    rvAdapter.notifyDataSetChanged()
                                 }
                             }
                         }

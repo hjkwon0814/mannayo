@@ -49,6 +49,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val edit = shared.edit()
         val memberId = shared.getString("id",null)?.toLong()
+        edit.putString("Jjim", "false")
 
         binding.review.setOnClickListener {
             binding.review.setImageResource(R.drawable.component_68)
@@ -81,6 +82,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         rvAdapter.itemClick = object : CategoryRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 edit.putString("restaurantId", items[position].restaurantId.toString())
+                edit.putString("Jjim", items[position].Check.toString())
                 edit.commit()
                 findNavController().navigate(R.id.action_categoryListFragment_to_mainStoreFragment)
             }

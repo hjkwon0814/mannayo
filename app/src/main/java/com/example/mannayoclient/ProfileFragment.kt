@@ -96,7 +96,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                     sendNickNameAndImage(id, realPath)
                     editor.putString("nickname", binding.editTextTextPersonName2.text.toString())
                     editor.commit()
-                    mainActivity.FragmentViewFromProfileToMainHome()
+                    onActivityChange()
                 }else {
                     Toast.makeText(activity, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
                 }
@@ -106,7 +106,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
                     sendNickNameOnly(id, binding.editTextTextPersonName2.text.toString())
                     editor.putString("nickname", binding.editTextTextPersonName2.text.toString())
                     editor.commit()
-                    mainActivity.FragmentViewFromProfileToMainHome()
+                    onActivityChange()
                 }else {
                     Toast.makeText(activity, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
                 }
@@ -347,6 +347,12 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
             }
 
         })
+    }
+
+    fun onActivityChange() {
+        val intent = Intent(mainActivity, SecondActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 
 

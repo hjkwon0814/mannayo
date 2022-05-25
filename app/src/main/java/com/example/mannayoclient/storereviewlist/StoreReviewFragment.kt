@@ -63,7 +63,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         rv.layoutManager = LinearLayoutManager(requireContext())
 
         binding.reviewbutton.setOnClickListener {
-            findNavController().navigate(R.id.action_storeReviewFragment_to_reviewWriteFragment)
+             onActivityChange()
         }
         retrofitService.service.getReviewList(restaurantId)
             .enqueue(object : Callback<List<ReviewList>> {
@@ -133,6 +133,12 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         binding.reviewbutton.setOnClickListener {
             startActivity(Intent(requireContext(), ReviewWriteActivity::class.java))
         }
+    }
+
+    fun onActivityChange() {
+        val intent = Intent(activity, ReviewWriteActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 }
 

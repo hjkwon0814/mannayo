@@ -70,4 +70,7 @@ interface mannayoService {
 
     @DELETE("/jjim/delete")
     fun deleteJjim(@Query("memberid") memberid :Long?, @Query("restaurantid") restaurantid : Long?) : Call<ReceiveOK>
+
+    @GET("/restaurant/restaurantJjim")
+    fun getRestaurantJjimList(@Query("memberId") memberId : Long?) : Call<List<restaurantInfo>>
 }
