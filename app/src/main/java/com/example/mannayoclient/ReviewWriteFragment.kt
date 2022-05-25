@@ -111,11 +111,12 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
                             })
 
                         }
-
+                        findNavController().navigate(R.id.action_reviewWriteFragment_to_storeReviewFragment)
                     } else {
                         Toast.makeText(activity,"리뷰 작성 실패되었습니다.", Toast.LENGTH_SHORT).show()
-
                     }
+
+
                 }
 
                 override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {

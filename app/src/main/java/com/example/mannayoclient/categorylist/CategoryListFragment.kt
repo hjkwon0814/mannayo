@@ -48,6 +48,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val edit = shared.edit()
+        val memberId = shared.getString("id",null)?.toLong()
 
         binding.review.setOnClickListener {
             binding.review.setImageResource(R.drawable.component_68)
@@ -85,7 +86,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
             }
         }
 
-        retrofitService.service.getRestaurantList(categorization)
+
+        retrofitService.service.getRestaurantList(categorization,memberId)
             .enqueue(object : Callback<List<restaurantInfo>> {
                 override fun onResponse(
                     call: Call<List<restaurantInfo>>,
