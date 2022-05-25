@@ -67,19 +67,7 @@
     <fragment
         android:id="@+id/storeReviewFragment"
         android:name="com.example.mannayoclient.storereviewlist.StoreReviewFragment"
-        android:label="StoreReviewFragment" >
-        <action
-            android:id="@+id/action_storeReviewFragment_to_reviewWriteFragment"
-            app:destination="@id/reviewWriteFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/reviewWriteFragment"
-        android:name="com.example.mannayoclient.ReviewWriteFragment"
-        android:label="ReviewWriteFragment" >
-        <action
-            android:id="@+id/action_reviewWriteFragment_to_storeReviewFragment"
-            app:destination="@id/storeReviewFragment" />
-    </fragment>
+        android:label="StoreReviewFragment" />
     <fragment
         android:id="@+id/advertiseFragment"
         android:name="com.example.mannayoclient.advertiselist.AdvertiseFragment"

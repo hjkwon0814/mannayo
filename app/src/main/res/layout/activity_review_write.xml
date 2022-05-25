@@ -6,88 +6,17 @@
     android:background="#ffffff"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView64"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/expand_left" />
+        app:navGraph="@navigation/nav3" />
 
-
-    <TextView
-        android:id="@+id/textView42"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:fontFamily="@font/noto_sans_kr"
-        android:gravity="center_horizontal"
-        android:lineSpacingExtra="-4sp"
-        android:text="크로플각 돈암점"
-        android:textColor="#191919"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="320dp"
-        android:layout_height="160dp"
-        android:background="#f1f1f5"
-        android:ems="10"
-        android:fontFamily="@font/noto_sans_kr"
-        android:gravity="top"
-        android:layout_marginTop="154dp"
-        android:hint="솔직한 리뷰를 작성해주세요."
-        android:inputType="textMultiLine"
-        android:lineSpacingExtra="6sp"
-        android:paddingStart="12dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="16dp"
-        android:textColor="#191919"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView64" />
-
-
-    <ImageView
-        android:id="@+id/completion"
-        android:layout_width="160dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="145dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
-        app:srcCompat="@drawable/component_50" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:numStars="5"
-        android:stepSize="0.5"
-        style="@style/CustomRatingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView42" />
-
-    <ImageView
-        android:id="@+id/photo_button2"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
-        app:srcCompat="@drawable/component_116" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

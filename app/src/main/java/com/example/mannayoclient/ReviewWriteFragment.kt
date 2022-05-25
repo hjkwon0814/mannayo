@@ -42,7 +42,7 @@ import java.util.concurrent.locks.ReentrantLock
 
 class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
     lateinit var binding: ReviewwriteFragBinding
-    lateinit var activity : SecondActivity
+    lateinit var activity : ReviewWriteActivity
     var path: Uri? = null
     var realPath : String? = null
     var file: File? = null
@@ -63,7 +63,7 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = ReviewwriteFragBinding.bind(view)
-        activity = context as SecondActivity
+        activity = context as ReviewWriteActivity
 
         val sharedPreferences = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
 
@@ -100,7 +100,7 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
                                             "리뷰 작성 완료되었습니다.",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        findNavController().navigate(R.id.action_reviewWriteFragment_to_storeReviewFragment)
+                                       // findNavController().navigate(R.id.action_reviewWriteFragment_to_storeReviewFragment)
                                     }
                                 }
 

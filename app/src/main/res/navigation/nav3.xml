@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav3"
+    app:startDestination="@id/reviewWriteFragment">
+
+    <fragment
+        android:id="@+id/reviewWriteFragment"
+        android:name="com.example.mannayoclient.ReviewWriteFragment"
+        android:label="ReviewWriteFragment" />
+</navigation>

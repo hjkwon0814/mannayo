@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
+import com.example.mannayoclient.ReviewWriteActivity
 import com.example.mannayoclient.SecondActivity
 import com.example.mannayoclient.databinding.StorereviewFragBinding
 import com.example.mannayoclient.retrofitService
@@ -128,7 +129,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
             })
 
         binding.reviewbutton.setOnClickListener {
-            //startActivity(Intent(requireContext(), Activity::class.java))
+            startActivity(Intent(requireContext(), ReviewWriteActivity::class.java))
         }
 
     }
