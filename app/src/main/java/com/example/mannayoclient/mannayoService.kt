@@ -64,4 +64,10 @@ interface mannayoService {
     @GET("/menu/image/{id}")
     @Streaming
     fun getMenuImage(@Path("id") id: Long?) : Call<ResponseBody>
+
+    @POST("/jjim")
+    fun setJjim(@Query("memberid") memberid :Long?, @Query("restaurantid") restaurantid : Long?) : Call<ReceiveOK>
+
+    @DELETE("/jjim/delete")
+    fun deleteJjim(@Query("memberid") memberid :Long?, @Query("restaurantid") restaurantid : Long?) : Call<ReceiveOK>
 }

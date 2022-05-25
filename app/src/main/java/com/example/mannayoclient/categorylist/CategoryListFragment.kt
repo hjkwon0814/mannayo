@@ -6,17 +6,17 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mannayoclient.R
-import com.example.mannayoclient.SecondActivity
+import com.example.mannayoclient.*
 import com.example.mannayoclient.databinding.CategoryItemBinding
 import com.example.mannayoclient.databinding.CategoryListFragBinding
-import com.example.mannayoclient.mannayoService
-import com.example.mannayoclient.retrofitService
+import com.example.mannayoclient.storereviewlist.StoreReviewModel
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.coroutines.CoroutineScope
@@ -84,6 +84,48 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                 edit.commit()
                 findNavController().navigate(R.id.action_categoryListFragment_to_mainStoreFragment)
             }
+
+            override fun onHeartClick(view: View, position: Int) {
+                edit.putString("restaurantId", items[position].restaurantId.toString())
+                edit.commit()
+                println("heartclick =" + items[position].Check)
+                if(items[position].Check) {// 체크 박스 확인 true
+                    items[position].Check = false
+                    println("heartclick2 =" + items[position].Check)
+                    retrofitService.service.deleteJjim(shared.getString("id",null)?.toLong(),shared.getString("restaurantId", null)?.toLong()).enqueue(object : Callback<ReceiveOK> {
+                        override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                            val receive = response.body() as ReceiveOK
+                            if(response.isSuccessful && receive.success) {
+                                Toast.makeText(activity,"찜 등록 해제 되었습니다.", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                        }
+
+                    })
+                }
+                else if(!items[position].Check) { //false
+                    items[position].Check = true
+                    println("heartclick3 =" + items[position].Check)
+                    retrofitService.service.setJjim(shared.getString("id",null)?.toLong(),shared.getString("restaurantId", null)?.toLong()).enqueue(object : Callback<ReceiveOK> {
+                        override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                            val receive = response.body() as ReceiveOK
+                            if(response.isSuccessful && receive.success) {
+                                Toast.makeText(activity,"찜 등록 되었습니다.", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                        }
+                    })
+
+                }
+
+            }
+
         }
 
 
@@ -118,10 +160,12 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                                                             it.starttime + "~" + it.endtime,
                                                             it.point.toString(),
                                                             originalBitmap,
-                                                            it.id
+                                                            it.id,
+                                                            it.isJjim
                                                         )
                                                     )
-                                                    rv.adapter = rvAdapter
+                                                    println("restaurantIsJJim =" + it.isJjim)
+                                                    rvAdapter.notifyDataSetChanged()
                                                 }
                                             }
                                         }
@@ -146,7 +190,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                                         it.starttime + "~" + it.endtime,
                                         it.point.toString(),
                                         bitmap,
-                                        it.id
+                                        it.id,
+                                        it.isJjim
                                     )
                                 )
                                 rv.adapter = rvAdapter
@@ -166,6 +211,13 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
     }
 
+
+}
+
+class SortByReview : Comparable<StoreReviewModel>{
+    override fun compareTo(other: StoreReviewModel): Int {
+        return 0
+    }
 
 }
 
@@ -201,7 +253,11 @@ data class restaurantInfo(
 
     @SerializedName("imageAddress")
     @Expose
-    val imageAddress: String
+    val imageAddress: String,
+
+    @SerializedName("isJjim")
+    @Expose
+    val isJjim: Boolean
 )
 
 data class restaurantImage(

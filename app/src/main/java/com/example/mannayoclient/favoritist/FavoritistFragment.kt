@@ -45,6 +45,10 @@ class favoritistFragment : Fragment(R.layout.favoritist_frag) {
             override fun onClick(view: View, position: Int) {
                 findNavController().navigate(R.id.action_favoritistFragment_to_mainStoreFragment)
             }
+
+            override fun onHeartClick(view: View, position: Int) {
+                TODO("Not yet implemented")
+            }
         }
 
 

@@ -3,6 +3,7 @@ package com.example.mannayoclient.categorylist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.commit
@@ -15,6 +16,7 @@ class CategoryRVAdapter(private val items : List<CategoryModel>) : RecyclerView.
 
     interface ItemClick {
         fun onClick(view : View, position: Int)
+        fun onHeartClick(view :View, position: Int)
     }
     var itemClick : ItemClick? = null
 
@@ -33,6 +35,9 @@ class CategoryRVAdapter(private val items : List<CategoryModel>) : RecyclerView.
             holder.itemView.setOnClickListener{
                 v -> itemClick?.onClick(v, position)
             }
+            holder.itemView.findViewById<CheckBox>(R.id.heartArea).setOnClickListener {
+               v -> itemClick?.onHeartClick(v, position)
+            }
         }
         holder.bindItems(items[position])
     }
@@ -41,7 +46,8 @@ class CategoryRVAdapter(private val items : List<CategoryModel>) : RecyclerView.
         return items.size
     }
 
-    inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView){
+
+    class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         fun bindItems(item: CategoryModel) {
 
@@ -61,6 +67,9 @@ class CategoryRVAdapter(private val items : List<CategoryModel>) : RecyclerView.
             category_image.setImageBitmap(item.image)
 
             val restId = item.restaurantId
+
+            val checking = itemView.findViewById<CheckBox>(R.id.heartArea)
+            checking.isChecked = item.Check
 
         }
 
