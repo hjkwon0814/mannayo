@@ -18,6 +18,7 @@ import com.example.mannayoclient.R
 import com.example.mannayoclient.ReviewWriteActivity
 import com.example.mannayoclient.SecondActivity
 import com.example.mannayoclient.databinding.StorereviewFragBinding
+import com.example.mannayoclient.mainmenulist.MainStoreActivity
 import com.example.mannayoclient.retrofitService
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -35,7 +36,7 @@ import kotlin.collections.ArrayList
 
 class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
     lateinit var binding: StorereviewFragBinding
-    lateinit var activity: SecondActivity
+    lateinit var activity: MainStoreActivity
     lateinit var memberimage: Bitmap
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
@@ -44,7 +45,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = StorereviewFragBinding.bind(view)
 
-        activity = context as SecondActivity
+        activity = context as MainStoreActivity
         memberimage = BitmapFactory.decodeResource(
             resources,
             R.drawable.component_101

@@ -78,7 +78,7 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
 
         sharedPreferences = mainActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        val id = sharedPreferences.getString("id", "0")?.toLongOrNull()
+        val id = sharedPreferences.getString("id", null)?.toLongOrNull()
 
 
 
