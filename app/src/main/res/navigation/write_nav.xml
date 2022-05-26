@@ -5,6 +5,6 @@
     app:startDestination="@id/writeFragment2">
     <fragment
         android:id="@+id/writeFragment2"
-        android:name="com.example.mannayoclient.WriteFragment"
+        android:name="com.example.mannayoclient.writelist.WriteFragment"
         android:label="WriteFragment" />
 </navigation>

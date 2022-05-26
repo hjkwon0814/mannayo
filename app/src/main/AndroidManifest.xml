@@ -34,7 +34,7 @@
             android:name=".ReviewWriteActivity"
             android:exported="false" />
         <activity
-            android:name=".WriteActivity"
+            android:name=".writelist.WriteActivity"
             android:exported="false" />
         <activity
             android:name=".SecondActivity"

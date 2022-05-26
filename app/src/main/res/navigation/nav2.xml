@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/writeFragment"
-        android:name="com.example.mannayoclient.WriteFragment"
+        android:name="com.example.mannayoclient.writelist.WriteFragment"
         android:label="WriteFragment" />
     <fragment
         android:id="@+id/todayFragment"

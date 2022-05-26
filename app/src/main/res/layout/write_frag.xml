@@ -5,42 +5,23 @@
     android:layout_width="match_parent"
     android:background="#ffffff"
     android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_marginTop="65dp"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView65"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/close_round" />
 
-    <ImageView
-        android:id="@+id/imageView67"
-        android:layout_width="70dp"
-        android:layout_height="22dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView65"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView65"
-        app:srcCompat="@drawable/write" />
 
-    <ImageView
-        android:id="@+id/imageView68"
-        android:layout_width="66dp"
-        android:layout_height="33dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView67"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView67"
-        app:srcCompat="@drawable/component_114" />
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/editTextTextPersonName4"
         android:layout_width="312dp"
         android:layout_height="48dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="24dp"
         android:background="#ffffff"
         android:ems="10"
         android:fontFamily="@font/noto_sans_kr"
@@ -52,7 +33,201 @@
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView67" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/votetLayout"
+            android:layout_width="312dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:background="@drawable/votebox"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4">
+
+            <com.example.mannayoclient.TextClear
+                android:id="@+id/vote_title"
+                android:layout_width="312dp"
+                android:layout_height="48dp"
+                android:background="@null"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_kr"
+                android:hint="투표 제목"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="7sp"
+                android:paddingLeft="12dp"
+                android:textColor="#191919"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view12"
+                android:layout_width="312dp"
+                android:layout_height="0.8dp"
+                android:background="#dbdbdb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vote_title" />
+
+            <TextView
+                android:id="@+id/plus"
+                android:layout_width="288dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/votebox"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="center_vertical"
+                android:lineSpacingExtra="8sp"
+                android:paddingLeft="12dp"
+                android:text="항목 추가"
+                android:textColor="#767676"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vote_recyclerView" />
+
+            <ImageView
+                android:id="@+id/imageView85"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/plus"
+                app:layout_constraintEnd_toEndOf="@+id/plus"
+                app:layout_constraintTop_toTopOf="@+id/plus"
+                app:srcCompat="@drawable/add_round_fill" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vote_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/vote_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="-12dp"
+            android:layout_marginEnd="-12dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/votetLayout"
+            app:layout_constraintTop_toTopOf="@+id/votetLayout"
+            app:srcCompat="@drawable/close_ring" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imageLayout"
+            android:layout_width="312dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:background="@drawable/vote_imagebox"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/votetLayout">
+
+
+            <EditText
+                android:id="@+id/editTextTextPersonName6"
+                android:layout_width="162dp"
+                android:layout_height="120dp"
+                android:background="@null"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans_kr"
+                android:gravity="top"
+                android:hint="사진에 대한 설명"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="9sp"
+                android:textColor="#767676"
+                android:textSize="11sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/w_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/w_image"
+                app:layout_constraintTop_toTopOf="@+id/w_image" />
+
+            <ImageView
+                android:id="@+id/w_image"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/write_image" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/image_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="-12dp"
+            android:visibility="gone"
+            android:layout_marginEnd="-12dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageLayout"
+            app:layout_constraintTop_toTopOf="@+id/imageLayout"
+            app:srcCompat="@drawable/close_ring" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/imageView65"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/close_round" />
+
+        <ImageView
+            android:id="@+id/imageView67"
+            android:layout_width="70dp"
+            android:layout_height="22dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView65"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView65"
+            app:srcCompat="@drawable/write" />
+
+        <ImageView
+            android:id="@+id/imageView68"
+            android:layout_width="66dp"
+            android:layout_height="33dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView67"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView67"
+            app:srcCompat="@drawable/component_114" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
 
     <ImageView
         android:id="@+id/plus_image"
@@ -72,178 +247,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/plus_image"
         app:layout_constraintStart_toEndOf="@+id/plus_image"
         app:srcCompat="@drawable/vote" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/votetLayout"
-        android:layout_width="312dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:paddingBottom="20dp"
-        android:visibility="gone"
-        android:background="@drawable/votebox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4">
-
-        <com.example.mannayoclient.TextClear
-            android:id="@+id/vote_title"
-            android:layout_width="312dp"
-            android:layout_height="48dp"
-            android:background="@null"
-            android:ems="10"
-            android:fontFamily="@font/noto_sans_kr"
-            android:hint="투표 제목"
-            android:inputType="textEmailAddress"
-            android:lineSpacingExtra="7sp"
-            android:paddingLeft="12dp"
-            android:textColor="#191919"
-            android:textSize="13sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/view12"
-            android:layout_width="312dp"
-            android:layout_height="0.8dp"
-            android:background="#dbdbdb"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vote_title" />
-
-        <com.example.mannayoclient.TextClear
-            android:id="@+id/vote1"
-            android:layout_width="288dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/votebox"
-            android:ems="10"
-            android:fontFamily="@font/noto_sans_kr"
-            android:hint="항목 입력"
-            android:inputType="textPersonName"
-            android:lineSpacingExtra="8sp"
-            android:paddingLeft="12dp"
-            android:textColor="#191919"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vote_title" />
-
-        <com.example.mannayoclient.TextClear
-            android:id="@+id/vote2"
-            android:layout_width="288dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/votebox"
-            android:ems="10"
-            android:fontFamily="@font/noto_sans_kr"
-            android:hint="항목 입력"
-            android:inputType="textPersonName"
-            android:lineSpacingExtra="8sp"
-            android:paddingLeft="12dp"
-            android:textColor="#191919"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vote1" />
-
-        <TextView
-            android:id="@+id/plus"
-            android:layout_width="288dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/votebox"
-            android:fontFamily="@font/noto_sans_kr"
-            android:gravity="center_vertical"
-            android:lineSpacingExtra="8sp"
-            android:paddingLeft="12dp"
-            android:text="항목 추가"
-            android:textColor="#767676"
-            android:textSize="12sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/vote2" />
-
-        <ImageView
-            android:id="@+id/imageView85"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/plus"
-            app:layout_constraintEnd_toEndOf="@+id/plus"
-            app:layout_constraintTop_toTopOf="@+id/plus"
-            app:srcCompat="@drawable/add_round_fill" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/vote_clear"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="-12dp"
-        android:layout_marginEnd="-12dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/votetLayout"
-        app:layout_constraintTop_toTopOf="@+id/votetLayout"
-        app:srcCompat="@drawable/close_ring" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/imageLayout"
-        android:layout_width="312dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="24dp"
-        android:visibility="gone"
-        android:background="@drawable/vote_imagebox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/votetLayout">
-
-
-        <EditText
-            android:id="@+id/editTextTextPersonName6"
-            android:layout_width="162dp"
-            android:layout_height="120dp"
-            android:background="@null"
-            android:ems="10"
-            android:fontFamily="@font/noto_sans_kr"
-            android:gravity="top"
-            android:hint="사진에 대한 설명"
-            android:inputType="textMultiLine"
-            android:lineSpacingExtra="9sp"
-            android:textColor="#767676"
-            android:textSize="11sp"
-            android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@+id/w_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/w_image"
-            app:layout_constraintTop_toTopOf="@+id/w_image" />
-
-        <ImageView
-            android:id="@+id/w_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/write_image" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/image_clear"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="-12dp"
-        android:visibility="gone"
-        android:layout_marginEnd="-12dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageLayout"
-        app:layout_constraintTop_toTopOf="@+id/imageLayout"
-        app:srcCompat="@drawable/close_ring" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
