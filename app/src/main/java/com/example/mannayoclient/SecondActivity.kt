@@ -23,16 +23,16 @@ class SecondActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, STORAGE_PERMISSION, FLAG_PERM_STORAGE)
     }
 
-
-    override fun onBackPressed() {
-        val currentTime = System.currentTimeMillis()
-        val intervalTime = currentTime - backPressedTime
-        if (intervalTime in 0..TIME_INTERVAL) finish()
-        else {
-            backPressedTime = currentTime
-            Toast.makeText(this,"뒤로 가기 버튼을 한번 더 클릭하면 종료됩니다.", Toast.LENGTH_SHORT).show()
-        }
-    }
+//
+//    override fun onBackPressed() {
+//        val currentTime = System.currentTimeMillis()
+//        val intervalTime = currentTime - backPressedTime
+//        if (intervalTime in 0..TIME_INTERVAL) finish()
+//        else {
+//            backPressedTime = currentTime
+//            Toast.makeText(this,"뒤로 가기 버튼을 한번 더 클릭하면 종료됩니다.", Toast.LENGTH_SHORT).show()
+//        }
+//    }
 
     fun FragmentView() {
         val transaction = supportFragmentManager.beginTransaction().replace(R.id.fragment, ProfileFragment())
