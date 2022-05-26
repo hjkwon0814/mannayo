@@ -4,11 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
-import com.example.mannayoclient.WriteActivity
+import com.example.mannayoclient.writelist.WriteActivity
 import com.example.mannayoclient.databinding.AdvertiseFragBinding
 
 
