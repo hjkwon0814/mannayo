@@ -11,6 +11,7 @@ object retrofitService {
       private const val BASE_URL = "http://58.225.185.45:8080"
 
 
+
     val gson : Gson = GsonBuilder()
         .setLenient()
         .create()
