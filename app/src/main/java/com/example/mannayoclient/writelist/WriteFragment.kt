@@ -1,5 +1,6 @@
 package com.example.mannayoclient.writelist
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
@@ -38,6 +39,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     val FLAG_REQ_GALLERY = 102
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
@@ -88,7 +90,10 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
 
         binding.plus.setOnClickListener {
+            val plus = WriteModel()
+            items.add(plus)
 
+            binding.voteRecyclerView.adapter?.notifyDataSetChanged()
 
         }
 
