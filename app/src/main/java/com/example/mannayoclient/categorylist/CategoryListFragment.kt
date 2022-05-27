@@ -43,8 +43,6 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         edit.putString("Jjim", "false")
 
 
-
-
         val categorization = shared.getString("categorization", null)
         val items = ArrayList<CategoryModel>()
 
@@ -83,7 +81,6 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                 }
                 else if(!items[position].Check) { //false
                     items[position].Check = true
-                    println("heartclick3 =" + items[position].Check)
                     retrofitService.service.setJjim(shared.getString("id",null)?.toLong(),shared.getString("restaurantId", null)?.toLong()).enqueue(object : Callback<ReceiveOK> {
                         override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
                             val receive = response.body() as ReceiveOK
@@ -141,7 +138,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
                                                             it.countJjim
                                                         )
                                                     )
-                                                    items.sortBy { it.countReview }
+                                                    items.sortByDescending { it.countReview }
                                                     rvAdapter.notifyDataSetChanged()
                                                 }
                                             }
@@ -191,7 +188,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
 
         binding.review.setOnClickListener {
-            items.sortBy { it.countReview}
+            items.sortByDescending { it.countReview}
+            println(items.get(0).countReview.toString() + " " + items.get(1).countReview.toString() + " " + items.get(2).countReview.toString())
             rvAdapter.notifyDataSetChanged()
             binding.review.setImageResource(R.drawable.component_68)
             binding.grade.setImageResource(R.drawable.component_74)
@@ -200,7 +198,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         }
 
         binding.grade.setOnClickListener {
-            items.sortBy { it.grade }
+            items.sortByDescending { it.grade }
+            println(items.get(0).grade.toString() + " " + items.get(1).grade.toString() + " " + items.get(2).grade.toString())
             rvAdapter.notifyDataSetChanged()
             binding.review.setImageResource(R.drawable.component_67)
             binding.grade.setImageResource(R.drawable.component_70)
@@ -208,7 +207,8 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         }
 
         binding.favorite.setOnClickListener {
-            items.sortBy { it.countJjim }
+            items.sortByDescending { it.countJjim }
+            println(items.get(0).countJjim.toString() + " " + items.get(1).countJjim.toString() + " " + items.get(2).countJjim.toString())
             rvAdapter.notifyDataSetChanged()
             binding.review.setImageResource(R.drawable.component_67)
             binding.grade.setImageResource(R.drawable.component_74)

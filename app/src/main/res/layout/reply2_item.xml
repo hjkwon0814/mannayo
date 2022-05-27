@@ -7,16 +7,16 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/reply_image"
+        android:id="@+id/reply2_image"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/reply"
+        app:layout_constraintStart_toStartOf="@+id/reply2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/component_92" />
 
     <TextView
-        android:id="@+id/reply_name"
+        android:id="@+id/reply2_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -25,12 +25,12 @@
         android:textColor="#191919"
         android:textSize="14sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/reply_image"
-        app:layout_constraintStart_toEndOf="@+id/reply_image"
-        app:layout_constraintTop_toTopOf="@+id/reply_image" />
+        app:layout_constraintBottom_toBottomOf="@+id/reply2_image"
+        app:layout_constraintStart_toEndOf="@+id/reply2_image"
+        app:layout_constraintTop_toTopOf="@+id/reply2_image" />
 
     <TextView
-        android:id="@+id/replay_date"
+        android:id="@+id/reply2_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_kr"
@@ -39,12 +39,12 @@
         android:textColor="#191919"
         android:textSize="11sp"
         android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/reply_name"
-        app:layout_constraintEnd_toEndOf="@+id/reply"
-        app:layout_constraintTop_toTopOf="@+id/reply_name" />
+        app:layout_constraintBottom_toBottomOf="@+id/reply2_name"
+        app:layout_constraintEnd_toEndOf="@+id/reply2"
+        app:layout_constraintTop_toTopOf="@+id/reply2_name" />
 
     <TextView
-        android:id="@+id/reply"
+        android:id="@+id/reply2"
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_kr"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginLeft="23dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reply_name"
+        app:layout_constraintTop_toBottomOf="@+id/reply2_name"
         android:text="소시지 오므라이스 맛있어요!!" />
 
     <View
@@ -64,15 +64,15 @@
         android:background="#dbdbdb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reply" />
+        app:layout_constraintTop_toBottomOf="@+id/reply2" />
 
     <ImageView
         android:id="@+id/imageView97"
         android:layout_width="15dp"
         android:layout_height="20dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/reply_image"
-        app:layout_constraintEnd_toStartOf="@+id/reply"
+        app:layout_constraintBottom_toBottomOf="@+id/reply2_image"
+        app:layout_constraintEnd_toStartOf="@+id/reply2"
         app:srcCompat="@drawable/reply" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

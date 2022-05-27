@@ -34,5 +34,47 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
 
 
 
+        //Reply
+        val rv2: RecyclerView = binding.replyRecyclerView
+
+        val list = ArrayList<TodayReplyModel>()
+
+        //test 용
+        list.add(TodayReplyModel(TodayReplyModel.reply1,"a","a","a"))
+        list.add(TodayReplyModel(TodayReplyModel.reply2,"a","a","a"))
+        list.add(TodayReplyModel(TodayReplyModel.reply1,"a","a","a"))
+        list.add(TodayReplyModel(TodayReplyModel.reply2,"a","a","a"))
+        list.add(TodayReplyModel(TodayReplyModel.reply2,"a","a","a"))
+
+
+
+        val adpater = TodayReplyRVAdapter(list)
+        rv2.layoutManager = LinearLayoutManager(requireContext())
+        rv2.adapter = adpater
+
+
+        /*투포있으면 투표창 보이게 없으면 안보이게
+        binding.voteConstraintLayout.visibility = View.VISIBLE //보이게
+        binding.voteConstraintLayout.visibility = View.GONE    //안보이게 */
+
+
+        /*이미지있으면 이미지창 보이게 없으면 안보이게
+        binding.imageview.visibility = View.VISIBLE //보이게
+        binding.imageview.visibility = View.GONE   //안보이게 */
+
+        /*작성자일 떄 수정, 삭제 버튼 보이고 신고 버튼 안보이게
+          아니면 수정, 삭제 버튼은 안보이고 신고 버튼은 보이게
+        binding.correction.visibility = View.VISIBLE
+        binding.delete.visibility = View.VISIBLE
+        binding.singo.visibility = View.GONE //작성자
+        binding.correction.visibility = View.GONE
+        binding.delete.visibility = View.GONE
+        binding.singo.visibility = View.VISIBLE //작성자xxxx */
+
+
+
+        ///////체크박스 하나만 클릭 가능하게 + 튜표하기 클릭이벤트처리 미완성
+
+
     }
 }

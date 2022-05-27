@@ -41,7 +41,7 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
         }
 
         binding.write.setOnClickListener {
-            startActivity(Intent(requireContext(), WriteActivity::class.java))
+            startActivity(Intent(requireContext(), WriteActivity::class.java).putExtra("타입","ADVERTISE_BOARD"))
         }
 
 

@@ -34,78 +34,9 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
         binding.Hansik.setOnClickListener() {
-            bundle.putString("categorization", "HANSIK")
-            startActivity(Intent(requireContext(), CategoryActivity::class.java))
-            /*findNavController().navigate(
-                R.id.action_mainHomeFragment_to_categoryListFragment,
-                bundle
-            )*/
-        }
-
-        binding.Bunsik.setOnClickListener() {
-            bundle.putString("categorization", "BUNSIK")
-            startActivity(Intent(requireContext(), CategoryActivity::class.java))
-            /*findNavController().navigate(
-                R.id.action_mainHomeFragment_to_categoryListFragment,
-                bundle
-            )*/
-        }
-
-        binding.Japanese.setOnClickListener() {
-            bundle.putString("categorization", "ILSIK")
-            startActivity(Intent(requireContext(), CategoryActivity::class.java))
-            /*findNavController().navigate(
-                R.id.action_mainHomeFragment_to_categoryListFragment,
-                bundle
-            )*/
-        }
-
-        binding.Chinese.setOnClickListener() {
-            bundle.putString("categorization", "JUNGSIK")
-            startActivity(Intent(requireContext(), CategoryActivity::class.java))
-            /*findNavController().navigate(
-                R.id.action_mainHomeFragment_to_categoryListFragment,
-                bundle
-            )*/
-        }
-
-        binding.Western.setOnClickListener() {
-            bundle.putString("categorization", "YANGSIK")
-            startActivity(Intent(requireContext(), CategoryActivity::class.java))
-            /*findNavController().navigate(
-                R.id.action_mainHomeFragment_to_categoryListFragment,
-                bundle
-            )*/
-        }
-
-        binding.Fast.setOnClickListener() {
-            bundle.putString("categorization", "FASTFOOD")
-            startActivity(Intent(requireContext(), CategoryActivity::class.java))
-            /*findNavController().navigate(
-                R.id.action_mainHomeFragment_to_categoryListFragment,
-                bundle
-            )*/
-        }
-
-        binding.Dessert.setOnClickListener() {
-            bundle.putString("categorization", "CAFE_DESSERT")
-            startActivity(Intent(requireContext(), CategoryActivity::class.java))
-            /*findNavController().navigate(
-                R.id.action_mainHomeFragment_to_categoryListFragment,
-                bundle
-            )*/
-        }
-
-        binding.Beer.setOnClickListener() {
-            bundle.putString("categorization", "SULJIP")
-            startActivity(Intent(requireContext(), CategoryActivity::class.java))
-            /*findNavController().navigate(
-                R.id.action_mainHomeFragment_to_categoryListFragment,
-                bundle
-            )*/
             edit.putString("categorization", "HANSIK")
             edit.commit()
-            startActivity(Intent(requireContext(),CategoryActivity::class.java))
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
         }
 
         binding.Bunsik.setOnClickListener() {
