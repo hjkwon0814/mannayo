@@ -2,6 +2,7 @@ package com.example.mannayoclient
 
 import com.example.mannayoclient.categorylist.restaurantImage
 import com.example.mannayoclient.categorylist.restaurantInfo
+import com.example.mannayoclient.dto.Board
 import com.example.mannayoclient.mainmenulist.menu
 import com.example.mannayoclient.mainmenulist.restaurantDetailInfo
 import com.example.mannayoclient.storereviewlist.ReviewList
@@ -11,6 +12,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface mannayoService {
+
     @POST("/members/findMyAccountByNickname")
     fun getMyAccountByNickname(@Body reqdata: SendNicknameRequestData): Call<resdata>
 
@@ -43,6 +45,14 @@ interface mannayoService {
     @Multipart
     @POST("/reviews/reviewimage")
     fun setReviewImage(@Query("id") id : Long?, @Part Image : MultipartBody.Part) : Call<ReceiveOK>
+
+    //write board
+    @Multipart
+    @POST("/board/boardimages")
+    fun setBoardImage(@Query("id") id:Long?, @Part Image : MultipartBody.Part) : Call<ReceiveOK>
+
+    @POST("/board")
+    fun setBoard(@Body board:Board) :Call<ReceiveOK>
 
     @GET("/members/profileimage/{id}")
     @Streaming

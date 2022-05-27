@@ -3,8 +3,12 @@ package com.example.mannayoclient.writelist
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
+import android.content.Intent.getIntent
+import android.content.Intent.getIntentOld
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -12,6 +16,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -19,15 +25,30 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
+import com.example.mannayoclient.ReceiveOK
+import com.example.mannayoclient.SecondActivity
+import com.example.mannayoclient.advertiselist.AdvertiseFragment
 import com.example.mannayoclient.databinding.WriteFragBinding
+import com.example.mannayoclient.dto.Board
+import com.example.mannayoclient.retrofitService
 import com.example.mannayoclient.storemenulist.StoreMenuModel
 import com.example.mannayoclient.storemenulist.StoreMenuRVAdapter
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class WriteFragment : Fragment(R.layout.write_frag) {
     lateinit var binding: WriteFragBinding
-
+    lateinit var writeActivity: WriteActivity
     val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
     val STORAGE_PERMISSION = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
@@ -38,13 +59,21 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     val FLAG_REQ_CAMERA = 101
     val FLAG_REQ_GALLERY = 102
 
+    var path: Uri? = null
+    var realPath : String? = null
+    var file: File? = null
+
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        var isVote:Boolean = false
 
         super.onViewCreated(view, savedInstanceState)
         binding = WriteFragBinding.bind(view)
+        writeActivity = context as WriteActivity
 
+
+        val sharedPreferences = writeActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
 
         val rv: RecyclerView = binding.voteRecyclerView
 
@@ -64,6 +93,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
 
         binding.plusVote.setOnClickListener{
+            isVote = true
             binding.votetLayout.visibility = View.VISIBLE
             binding.voteClear.visibility = View.VISIBLE
         }
@@ -95,6 +125,62 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
             binding.voteRecyclerView.adapter?.notifyDataSetChanged()
 
+        }
+
+        binding.ok.setOnClickListener {
+
+            val request = Board(
+                memberId = sharedPreferences.getString("id",null)?.toLong(),
+//                title =  binding.title.text.toString(),
+                title = "test",
+                contents = binding.context.text.toString(),
+                isVote = isVote,
+//                type = getIntent().getStringExtra("타입").toString()
+                type = "ADVERTISE_BOARD"
+            )
+
+            retrofitService.service.setBoard(request).enqueue(object : Callback<ReceiveOK>{
+                override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                    val receive = response.body() as ReceiveOK
+                    if(response.isSuccessful && receive.success){
+                        if(realPath != null){
+                            file = File(realPath)
+                            println(realPath)
+                            var requestBody : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file)
+                            var body : MultipartBody.Part = MultipartBody.Part.createFormData("multipartFile",file?.name,requestBody)
+                            retrofitService.service.setBoardImage(receive.response.toLong(),body).enqueue(object : Callback<ReceiveOK>{
+                                override fun onResponse(
+                                    call: Call<ReceiveOK>,
+                                    response: Response<ReceiveOK>
+                                ) {
+                                    val receive = response.body() as ReceiveOK
+                                    if(response.isSuccessful && receive.success){
+                                        Toast.makeText(
+                                            writeActivity,
+                                            "글쓰기 완료",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        onActivityChange()
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                                }
+
+                            })
+                        }
+                        onActivityChange()
+                    }else{
+                        Toast.makeText(writeActivity,"글쓰기 실패", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                    Toast.makeText(writeActivity,"서버와 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show()
+                }
+
+            })
         }
 
 
@@ -182,13 +268,19 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
                         //val filename = newFileName()
                         //val uri = saveImageFile(filename, "image/jpg", bitmap)
+                        if(bitmap != null){
+                            val imagePath = getImageUri(writeActivity, bitmap)
+                            path = imagePath
+                            realPath = getRealPathFromURI(path!!)
+                            binding.wImage.setImageBitmap(bitmap)
+                        }
 
-                        binding.wImage.setImageBitmap(bitmap)
                     }
                 }
                 FLAG_REQ_GALLERY -> {
                     val uri =data?.data
                     binding.wImage.setImageURI(uri)
+                    realPath = getRealPathFromURI(uri!!)
                 }
             }
         }
@@ -227,5 +319,36 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                 }
             }
         }
+    }
+
+    fun getImageUri(inContext : Context?, inImage: Bitmap?): Uri? {
+        val btyes = ByteArrayOutputStream()
+        if(inImage != null) {
+            inImage.compress(Bitmap.CompressFormat.JPEG, 100, btyes)
+        }
+        val path = MediaStore.Images.Media.insertImage(inContext?.contentResolver, inImage, "Title" + " - " + Calendar.getInstance().time,null)
+        return Uri.parse(path)
+    }
+
+    fun getRealPathFromURI(contentURI : Uri) : String? {
+        val result : String?
+        val cursor : Cursor? = requireActivity().contentResolver.query(contentURI,null,null,null,null)
+
+        if(cursor == null) {
+            result = contentURI?.path
+        } else {
+            cursor.moveToFirst()
+            val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+            result = cursor.getString(idx)
+            cursor.close()
+        }
+
+        return result
+    }
+
+    fun onActivityChange() {
+        val intent = Intent(activity, SecondActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 }

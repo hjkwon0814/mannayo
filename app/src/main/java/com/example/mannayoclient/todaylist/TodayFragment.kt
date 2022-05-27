@@ -40,7 +40,7 @@ class TodayFragment : Fragment(R.layout.today_frag) {
         }
 
         binding.write.setOnClickListener {
-            startActivity(Intent(requireContext(), WriteActivity::class.java))
+            startActivity(Intent(requireContext(), WriteActivity::class.java).putExtra("타입","TODAY_EAT_BOARD"))
         }
 
 
