@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.categorylist.CategoryActivity
 import com.example.mannayoclient.databinding.MainhomeFragBinding
+import com.example.mannayoclient.todaylist.TodayActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
@@ -164,7 +165,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
         binding.today.setOnClickListener() {
-            findNavController().navigate(R.id.action_mainHomeFragment_to_todayFragment)
+            startActivity(Intent(requireContext(),TodayActivity::class.java))
         }
 
 

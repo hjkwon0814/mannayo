@@ -20,8 +20,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 import com.example.mannayoclient.databinding.WriteFragBinding
-import com.example.mannayoclient.storemenulist.StoreMenuModel
-import com.example.mannayoclient.storemenulist.StoreMenuRVAdapter
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 

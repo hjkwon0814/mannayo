@@ -1,23 +1,20 @@
-package com.example.mannayoclient.writelist
+package com.example.mannayoclient.todaylist.today_detail
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.mannayoclient.R
-import com.example.mannayoclient.todaylist.today_detail.TodayVoteModel
 
-class WriteRVAdapter(val items: ArrayList<WriteModel>) : RecyclerView.Adapter<WriteRVAdapter.Viewholder>(){
+class TodayVoteRVAdapter  (val items : ArrayList<TodayVoteModel>) : RecyclerView.Adapter<TodayVoteRVAdapter.Viewholder>(){
 
     //아이템 가져오기
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): Viewholder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.write_item, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.vote_item, parent, false)
         return Viewholder(v)
     }
 
@@ -34,9 +31,10 @@ class WriteRVAdapter(val items: ArrayList<WriteModel>) : RecyclerView.Adapter<Wr
 
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        fun bindItems(item: WriteModel) {
+        fun bindItems(item: TodayVoteModel) {
 
-
+            val vote_title = itemView.findViewById<TextView>(R.id.choice)
+            vote_title.text = item.title
 
         }
 
