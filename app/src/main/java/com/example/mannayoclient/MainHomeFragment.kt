@@ -21,7 +21,6 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         super.onViewCreated(view, savedInstanceState)
         binding = MainhomeFragBinding.bind(view)
 
-        val bundle = Bundle()
         activity = context as SecondActivity
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)

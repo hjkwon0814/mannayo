@@ -189,8 +189,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
         binding.review.setOnClickListener {
             items.sortByDescending { it.countReview}
-            println(items.get(0).countReview.toString() + " " + items.get(1).countReview.toString() + " " + items.get(2).countReview.toString())
-            rvAdapter.notifyDataSetChanged()
+            rv.adapter = rvAdapter
             binding.review.setImageResource(R.drawable.component_68)
             binding.grade.setImageResource(R.drawable.component_74)
             binding.favorite.setImageResource(R.drawable.component_71)
@@ -199,8 +198,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
         binding.grade.setOnClickListener {
             items.sortByDescending { it.grade }
-            println(items.get(0).grade.toString() + " " + items.get(1).grade.toString() + " " + items.get(2).grade.toString())
-            rvAdapter.notifyDataSetChanged()
+            rv.adapter = rvAdapter
             binding.review.setImageResource(R.drawable.component_67)
             binding.grade.setImageResource(R.drawable.component_70)
             binding.favorite.setImageResource(R.drawable.component_71)
@@ -208,8 +206,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
         binding.favorite.setOnClickListener {
             items.sortByDescending { it.countJjim }
-            println(items.get(0).countJjim.toString() + " " + items.get(1).countJjim.toString() + " " + items.get(2).countJjim.toString())
-            rvAdapter.notifyDataSetChanged()
+            rv.adapter = rvAdapter
             binding.review.setImageResource(R.drawable.component_67)
             binding.grade.setImageResource(R.drawable.component_74)
             binding.favorite.setImageResource(R.drawable.component_72)
