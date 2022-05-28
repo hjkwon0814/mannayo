@@ -1,10 +1,12 @@
 package com.example.mannayoclient.todaylist
 
+import android.graphics.Bitmap
+
 class TodayModel  (
-    var nickname: String = "",
-    var mainText: String = "",
-    var date: String = "",
-    var image: String = "",
-    var like : String = "",
-    var chat : String = ""
+    var nickname: String,
+    var mainText: String,
+    var date: String,
+    var image: Bitmap,
+    var like : Long,
+    var chat : Long
 )

@@ -3,8 +3,10 @@ package com.example.mannayoclient.todaylist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mannayoclient.R
 
 class TodayRVAdapter(private val items: List<TodayModel>) :
@@ -52,14 +54,14 @@ class TodayRVAdapter(private val items: List<TodayModel>) :
             val mainText = itemView.findViewById<TextView>(R.id.main_text)
             mainText.text = item.mainText
 
-            val image = itemView.findViewById<TextView>(R.id.image)
-            image.text = item.image
+            val image = itemView.findViewById<ImageView>(R.id.imageView74)
+            Glide.with(itemView).load(item.image).into(image)
 
             val like = itemView.findViewById<TextView>(R.id.like)
-            like.text = item.like
+            like.text = item.like.toString()
 
-            val chat = itemView.findViewById<TextView>(R.id.chat)
-            chat.text = item.chat
+            val comment = itemView.findViewById<TextView>(R.id.chat)
+            comment.text = item.chat.toString()
 
 
         }

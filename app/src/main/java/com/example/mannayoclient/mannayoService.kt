@@ -78,4 +78,11 @@ interface mannayoService {
 
     @GET("/restaurant/restaurantJjim")
     fun getRestaurantJjimList(@Query("memberId") memberId : Long?) : Call<List<restaurantInfo>>
+
+    @GET("/board")
+    fun getBoardList(@Query("boardType") boardType : String?) : Call<List<BoardResponseDto>>
+
+    @GET("/board/image/{boardId}")
+    @Streaming
+    fun getBoardImage(@Path("boardId") boardId: Long?) : Call<ResponseBody>
 }

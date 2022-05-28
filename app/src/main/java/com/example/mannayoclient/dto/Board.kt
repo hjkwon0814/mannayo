@@ -23,7 +23,7 @@ data class Board (
 
     @SerializedName("type")
     @Expose
-    val type:String
+    val type:String?
 )
 
 

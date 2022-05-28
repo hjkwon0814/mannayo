@@ -73,10 +73,6 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
         val items = ArrayList<WriteModel>()
 
-        //test 용
-        items.add(WriteModel())
-        items.add(WriteModel())
-
 
         val rvAdapter = WriteRVAdapter(items)
         rv.adapter = rvAdapter
@@ -130,7 +126,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                 contents = binding.context.text.toString(),
                 isVote = isVote,
 //                type = getIntent().getStringExtra("타입").toString()
-                type = "ADVERTISE_BOARD"
+                type = sharedPreferences.getString("boardType", null)
             )
 
             retrofitService.service.setBoard(request).enqueue(object : Callback<ReceiveOK>{
