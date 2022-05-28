@@ -22,6 +22,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.JoinFragBinding
+import com.example.mannayoclient.dto.resSignUpData
+import com.example.mannayoclient.dto.signUpRequest
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call

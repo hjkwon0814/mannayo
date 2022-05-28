@@ -24,12 +24,6 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
 
         val items = ArrayList<AdvertiseModel>()
 
-        //test 용
-        items.add(AdvertiseModel("a"))
-        items.add(AdvertiseModel("a"))
-        items.add(AdvertiseModel("a"))
-
-
         val rvAdapter = AdvertiseRVAdapter(items)
         rv.adapter = rvAdapter
 

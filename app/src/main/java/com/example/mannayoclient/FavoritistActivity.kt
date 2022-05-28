@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.categorylist.CategoryModel
 import com.example.mannayoclient.categorylist.CategoryRVAdapter
 import com.example.mannayoclient.databinding.ActivityFavoritistBinding
+import com.example.mannayoclient.dto.ReceiveOK
 import com.example.mannayoclient.dto.restaurantInfo
 import com.example.mannayoclient.mainmenulist.MainStoreActivity
 import kotlinx.coroutines.CoroutineScope

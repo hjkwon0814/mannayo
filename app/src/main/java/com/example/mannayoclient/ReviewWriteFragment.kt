@@ -26,6 +26,7 @@ import com.example.mannayoclient.databinding.ReviewwriteFragBinding
 import com.example.mannayoclient.databinding.SearchFragBinding
 import com.example.mannayoclient.dto.ReceiveOK
 import com.example.mannayoclient.dto.review
+import com.example.mannayoclient.mainmenulist.MainStoreActivity
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import okhttp3.MediaType
@@ -264,8 +265,8 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
     }
 
     fun onActivityChange() {
-        val intent = Intent(activity, SecondActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        val intent = Intent(activity, MainStoreActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
 

@@ -1,11 +1,6 @@
 package com.example.mannayoclient
 
-import com.example.mannayoclient.categorylist.restaurantImage
-import com.example.mannayoclient.categorylist.restaurantInfo
-import com.example.mannayoclient.dto.Board
-import com.example.mannayoclient.mainmenulist.menu
-import com.example.mannayoclient.mainmenulist.restaurantDetailInfo
-import com.example.mannayoclient.storereviewlist.ReviewList
+import com.example.mannayoclient.dto.*
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call

@@ -22,10 +22,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
-import com.example.mannayoclient.ReceiveOK
 import com.example.mannayoclient.SecondActivity
 import com.example.mannayoclient.databinding.WriteFragBinding
 import com.example.mannayoclient.dto.Board
+import com.example.mannayoclient.dto.ReceiveOK
 import com.example.mannayoclient.retrofitService
 import okhttp3.MediaType
 import okhttp3.MultipartBody
