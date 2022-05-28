@@ -4,10 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.categorylist.CategoryActivity
+import com.example.mannayoclient.categorylist.CategoryListFragment
 import com.example.mannayoclient.databinding.MainhomeFragBinding
+import com.example.mannayoclient.todaylist.TodayActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
@@ -32,6 +36,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
         binding.Hansik.setOnClickListener() {
+
             edit.putString("categorization", "HANSIK")
             edit.commit()
             startActivity(Intent(requireContext(), CategoryActivity::class.java))
@@ -90,11 +95,11 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
         binding.board.setOnClickListener() {
-            findNavController().navigate(R.id.action_mainHomeFragment_to_advertiseFragment)
+            startActivity(Intent(requireContext(),AdvertiseActivity::class.java))
         }
 
         binding.today.setOnClickListener() {
-            findNavController().navigate(R.id.action_mainHomeFragment_to_todayFragment)
+            startActivity(Intent(requireContext(),TodayActivity::class.java))
         }
 
 

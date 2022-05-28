@@ -74,6 +74,7 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
 
 
         binding.completion.setOnClickListener {
+            println(sharedPreferences.getString("id",null)?.toLong())
             val request = review(
                 memberId = sharedPreferences.getString("id", null)?.toLong(),
                 restaurantId = sharedPreferences.getString("restaurantId", null)?.toLong(),

@@ -39,7 +39,7 @@ class StoreReviewRVAdapter (val items : ArrayList<StoreReviewModel>) : RecyclerV
             val r_name = itemView.findViewById<TextView>(R.id.r_name)
             r_name.text = item.name
 
-            val r_date = itemView.findViewById<TextView>(R.id.r_date)
+            val r_date = itemView.findViewById<TextView>(R.id.reply_date)
             r_date.text = item.date
 
             val r_grade= itemView.findViewById<TextView>(R.id.r_grade)

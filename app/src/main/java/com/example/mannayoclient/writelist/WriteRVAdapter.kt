@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mannayoclient.R
+import com.example.mannayoclient.todaylist.today_detail.TodayVoteModel
 
-class WriteRVAdapter (val items : ArrayList<WriteModel>) : RecyclerView.Adapter<WriteRVAdapter.Viewholder>(){
+class WriteRVAdapter(val items: ArrayList<WriteModel>) : RecyclerView.Adapter<WriteRVAdapter.Viewholder>(){
 
     //아이템 가져오기
     override fun onCreateViewHolder(

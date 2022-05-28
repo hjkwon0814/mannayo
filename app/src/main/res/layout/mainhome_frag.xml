@@ -703,6 +703,7 @@
             app:layout_constraintEnd_toEndOf="@+id/imageView56"
             app:layout_constraintStart_toStartOf="@+id/imageView56" />
 
+
         <ImageView
             android:id="@+id/imageView25"
             android:layout_width="match_parent"
@@ -712,7 +713,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/rectangle_36" />
-
 
         <ImageView
             android:id="@+id/today"

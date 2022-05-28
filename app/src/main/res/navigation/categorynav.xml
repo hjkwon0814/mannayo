@@ -2,10 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav4"
-    app:startDestination="@id/categoryListFragment2">
+    app:startDestination="@id/categoryListFragment">
 
     <fragment
-        android:id="@+id/categoryListFragment2"
+        android:id="@+id/categoryListFragment"
         android:name="com.example.mannayoclient.categorylist.CategoryListFragment"
         android:label="CategoryListFragment" />
 </navigation>

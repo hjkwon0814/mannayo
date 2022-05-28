@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:background="#ffffff"
+        android:elevation="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView71"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/expand_left" />
+
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr"
+            android:gravity="center_horizontal"
+            android:text="홍보게시판"
+            android:textColor="#191919"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView71"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView71" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="74dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView69"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/component_92" />
+
+            <TextView
+                android:id="@+id/textView63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:lineSpacingExtra="6sp"
+                android:text="딸기크로플"
+                android:textColor="#191919"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/imageView69"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView64"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr"
+                android:lineSpacingExtra="8sp"
+                android:text="22.04.27 15:02"
+                android:textColor="#191919"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView69"
+                app:layout_constraintStart_toStartOf="@+id/textView63" />
+
+            <TextView
+                android:id="@+id/textView65"
+                android:layout_width="312dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_sans_kr"
+                android:lineSpacingExtra="7sp"
+                android:text="오늘 점심에 나랑 여기 갈사람! 예전부터 가보고싶었는데 혼자 가기 좀 그래서,, 같이 갈사람 구함
+(텍스트+투표 둘다 있는 경우)"
+                android:textColor="#191919"
+                android:textSize="13sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/imageView69"
+                app:layout_constraintTop_toBottomOf="@+id/textView64" />
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="23dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="48dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView63"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView63"
+                app:srcCompat="@drawable/delete" />
+
+            <ImageView
+                android:id="@+id/correction"
+                android:layout_width="23dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/delete"
+                app:layout_constraintEnd_toStartOf="@+id/delete"
+                app:srcCompat="@drawable/correction" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/vote_constraintLayout"
+                android:layout_width="312dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="16dp"
+                android:background="@drawable/vote_imagebox"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView65">
+
+                <TextView
+                    android:id="@+id/textView69"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:lineSpacingExtra="7sp"
+                    android:text="투표 제목"
+                    android:textColor="#191919"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/d_vote_recyclerView"
+                    android:layout_width="312dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView69" />
+
+                <ImageView
+                    android:id="@+id/imageView95"
+                    android:layout_width="264dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/d_vote_recyclerView"
+                    app:srcCompat="@drawable/rectangle_69" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr"
+                    android:gravity="center_horizontal"
+                    android:lineSpacingExtra="7sp"
+                    android:text="투표하기"
+                    android:textColor="#191919"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView95"
+                    app:layout_constraintStart_toStartOf="@+id/imageView95"
+                    app:layout_constraintTop_toTopOf="@+id/imageView95" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView69"
+                app:layout_constraintTop_toBottomOf="@+id/vote_constraintLayout"
+                app:srcCompat="@drawable/write_image" />
+
+            <ImageView
+                android:id="@+id/imageView88"
+                android:layout_width="70dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="46dp"
+                app:layout_constraintStart_toStartOf="@+id/imageView69"
+                app:layout_constraintTop_toBottomOf="@+id/imageview"
+                app:srcCompat="@drawable/johayo" />
+
+            <ImageView
+                android:id="@+id/imageView93"
+                android:layout_width="70dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView88"
+                app:layout_constraintTop_toTopOf="@+id/imageView88"
+                app:srcCompat="@drawable/share" />
+
+            <ImageView
+                android:id="@+id/singo"
+                android:layout_width="16dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView93"
+                app:layout_constraintStart_toEndOf="@+id/imageView93"
+                app:layout_constraintTop_toTopOf="@+id/imageView93"
+                app:srcCompat="@drawable/singo" />
+
+            <TextView
+                android:id="@+id/textView71"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_sans_kr"
+                android:text="댓글(0)"
+                android:textColor="#191919"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/imageView88"
+                app:layout_constraintTop_toBottomOf="@+id/imageView88" />
+
+            <View
+                android:id="@+id/view100"
+                android:layout_width="wrap_content"
+                android:layout_height="0.8dp"
+                android:background="#dbdbdb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView71" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reply_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view100" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

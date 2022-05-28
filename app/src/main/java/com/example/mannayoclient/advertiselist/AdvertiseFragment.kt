@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
@@ -36,12 +37,12 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
 
         rvAdapter.itemClick = object : AdvertiseRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                //findNavController().navigate(R.id.)
+                findNavController().navigate(R.id.action_advertiseFragment_to_advertiseDetailFragment)
             }
         }
 
         binding.write.setOnClickListener {
-            startActivity(Intent(requireContext(), WriteActivity::class.java))
+            startActivity(Intent(requireContext(), WriteActivity::class.java).putExtra("타입","ADVERTISE_BOARD"))
         }
 
 

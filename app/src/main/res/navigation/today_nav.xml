@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/today_nav.xml"
+    app:startDestination="@id/todayFragment">
+
+    <fragment
+        android:id="@+id/todayFragment"
+        android:name="com.example.mannayoclient.todaylist.TodayFragment"
+        android:label="TodayFragment" >
+        <action
+            android:id="@+id/action_todayFragment_to_todayDetailFragment"
+            app:destination="@id/todayDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todayDetailFragment"
+        android:name="com.example.mannayoclient.todaylist.today_detail.TodayDetailFragment"
+        android:label="TodayDetailFragment" />
+</navigation>
