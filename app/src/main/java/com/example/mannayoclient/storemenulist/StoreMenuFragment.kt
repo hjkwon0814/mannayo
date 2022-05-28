@@ -10,11 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
-import com.example.mannayoclient.ReceiveOK
 import com.example.mannayoclient.databinding.StoremenuFragBinding
+import com.example.mannayoclient.dto.ReceiveOK
+import com.example.mannayoclient.dto.menu
 import com.example.mannayoclient.mainmenulist.MainMenuModel
 import com.example.mannayoclient.mainmenulist.MainStoreActivity
-import com.example.mannayoclient.mainmenulist.menu
 import com.example.mannayoclient.retrofitService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

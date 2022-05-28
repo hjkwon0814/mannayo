@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.LoginFragBinding
+import com.example.mannayoclient.dto.ReceiveLoginOK
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
@@ -153,38 +154,3 @@ class LoginFragment : Fragment(R.layout.login_frag) {
             })
     }
 }
-
-data class SendLoginData(
-    @SerializedName("email")
-    @Expose
-    val email: String,
-    @SerializedName("password")
-    @Expose
-    val password: String
-)
-
-data class ReceiveLoginOK(
-    @SerializedName("success")
-    @Expose
-    val success: Boolean,
-
-    @SerializedName("code")
-    @Expose
-    val code: Int,
-
-    @SerializedName("msg")
-    @Expose
-    val response: String,
-
-    @SerializedName("data")
-    @Expose
-    val data: String,
-
-    @SerializedName("nickname")
-    @Expose
-    val nickname: String,
-
-    @SerializedName("id")
-    @Expose
-    val id: Long
-)

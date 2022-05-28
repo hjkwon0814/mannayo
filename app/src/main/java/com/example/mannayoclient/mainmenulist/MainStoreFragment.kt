@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 import com.example.mannayoclient.databinding.MainstoreFragBinding
+import com.example.mannayoclient.dto.menu
+import com.example.mannayoclient.dto.restaurantDetailInfo
 import com.example.mannayoclient.retrofitService
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -126,59 +128,3 @@ class MainStoreFragment : Fragment(R.layout.mainstore_frag) {
 
     }
 }
-
-data class restaurantDetailInfo(
-    @SerializedName("name")
-    @Expose
-    val name: String,
-
-    @SerializedName("number")
-    @Expose
-    val number: String,
-
-    @SerializedName("address")
-    @Expose
-    val address: String,
-
-    @SerializedName("start_time")
-    @Expose
-    val start_time: String,
-
-    @SerializedName("end_time")
-    @Expose
-    val end_time: String,
-
-    @SerializedName("jjimcount")
-    @Expose
-    val jjimcount: Int,
-
-    @SerializedName("owner")
-    @Expose
-    val owner: String,
-
-    @SerializedName("starPoint")
-    @Expose
-    val starPoint: Float
-)
-
-data class menu (
-    @SerializedName("id")
-    @Expose
-    val id : Long,
-
-    @SerializedName("name")
-    @Expose
-    val name : String,
-
-    @SerializedName("price")
-    @Expose
-    val price : Int,
-
-    @SerializedName("isbest")
-    @Expose
-    val isbest : Boolean,
-
-    @SerializedName("image")
-    @Expose
-    val image : String
-        )

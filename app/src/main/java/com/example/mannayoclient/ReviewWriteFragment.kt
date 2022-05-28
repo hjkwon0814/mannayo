@@ -24,6 +24,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.ReviewwriteFragBinding
 import com.example.mannayoclient.databinding.SearchFragBinding
+import com.example.mannayoclient.dto.ReceiveOK
+import com.example.mannayoclient.dto.review
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import okhttp3.MediaType
@@ -271,23 +273,5 @@ class ReviewWriteFragment : Fragment(R.layout.reviewwrite_frag) {
 
 
 }
-
-data class review(
-    @SerializedName("memberId")
-    @Expose
-    val memberId : Long?,
-
-    @SerializedName("restaurantId")
-    @Expose
-    val restaurantId : Long?,
-
-    @SerializedName("content")
-    @Expose
-    val content : String,
-
-    @SerializedName("starPoint")
-    @Expose
-    val starPoint : Float
-)
 
 

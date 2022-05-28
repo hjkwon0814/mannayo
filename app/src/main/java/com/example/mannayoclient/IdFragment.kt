@@ -13,6 +13,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.IdFragBinding
+import com.example.mannayoclient.dto.SendNicknameRequestData
+import com.example.mannayoclient.dto.SendPhoneNumberRequestData
+import com.example.mannayoclient.dto.resdata
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
@@ -136,25 +139,3 @@ class IdFragment : Fragment(R.layout.id_frag) {
     }
 
 }
-
-data class SendNicknameRequestData (
-    @SerializedName("nickName")
-    @Expose
-    val nickname: String,
-    @SerializedName("realName")
-    @Expose
-    val realname: String
-)
-data class SendPhoneNumberRequestData (
-    @SerializedName("phoneNumber")
-    @Expose
-    val phoneNumber: String,
-    @SerializedName("realName")
-    @Expose
-    val realname : String
-)
-data class resdata(
-    @SerializedName("email")
-    @Expose
-    val email : String
-)

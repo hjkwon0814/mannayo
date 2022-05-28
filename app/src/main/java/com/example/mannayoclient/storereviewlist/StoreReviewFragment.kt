@@ -18,6 +18,7 @@ import com.example.mannayoclient.R
 import com.example.mannayoclient.ReviewWriteActivity
 import com.example.mannayoclient.SecondActivity
 import com.example.mannayoclient.databinding.StorereviewFragBinding
+import com.example.mannayoclient.dto.ReviewList
 import com.example.mannayoclient.mainmenulist.MainStoreActivity
 import com.example.mannayoclient.retrofitService
 import com.google.gson.annotations.Expose
@@ -142,45 +143,3 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         startActivity(intent)
     }
 }
-
-data class ReviewList(
-    @SerializedName("id")
-    @Expose
-    val id: Long,
-
-    @SerializedName("memberId")
-    @Expose
-    val memberId: Long,
-
-    @SerializedName("content")
-    @Expose
-    val content: String,
-
-    @SerializedName("writeDate")
-    @Expose
-    val writeDate: String,
-
-    @SerializedName("image")
-    @Expose
-    val image: String,
-
-    @SerializedName("starPoint")
-    @Expose
-    val starPoint: Float,
-
-    @SerializedName("isDeleted")
-    @Expose
-    val isDeleted: Boolean,
-
-    @SerializedName("isModified")
-    @Expose
-    val isModified: Boolean,
-
-    @SerializedName("memberImage")
-    @Expose
-    val memberImage: String,
-
-    @SerializedName("memberNickname")
-    @Expose
-    val memberNickname: String
-)

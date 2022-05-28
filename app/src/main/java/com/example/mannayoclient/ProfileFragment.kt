@@ -31,6 +31,7 @@ import androidx.core.net.toFile
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.ProfileFragBinding
+import com.example.mannayoclient.dto.ReceiveOK
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import okhttp3.MediaType
@@ -357,17 +358,3 @@ class ProfileFragment : Fragment(R.layout.profile_frag) {
 
 
 }
-
-data class ReceiveOK (
-    @SerializedName("success")
-    @Expose
-    val success : Boolean,
-
-    @SerializedName("code")
-    @Expose
-    val code : Int,
-
-    @SerializedName("msg")
-    @Expose
-    val response: String,
-)
