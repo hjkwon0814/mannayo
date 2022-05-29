@@ -67,6 +67,9 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
         binding.reviewbutton.setOnClickListener {
              onActivityChange()
         }
+
+        //작성자 일 때 r_delete, r_update 보이게하기
+
         retrofitService.service.getReviewList(restaurantId)
             .enqueue(object : Callback<List<ReviewList>> {
                 override fun onResponse(
