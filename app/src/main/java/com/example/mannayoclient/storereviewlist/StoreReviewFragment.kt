@@ -101,6 +101,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                         image
                                                     )
                                                 )
+                                                items.sortByDescending { i.writeDate }
                                                 rv.adapter = rvAdapter
                                             }
                                         }
@@ -122,6 +123,7 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                         memberimage
                                     )
                                 )
+                                items.sortByDescending { i.writeDate }
                                 rv.adapter = rvAdapter
                             }
                         }
