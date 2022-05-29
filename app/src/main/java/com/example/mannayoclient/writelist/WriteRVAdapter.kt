@@ -12,6 +12,11 @@ import com.example.mannayoclient.todaylist.today_detail.TodayVoteModel
 
 class WriteRVAdapter(val items: ArrayList<WriteModel>) : RecyclerView.Adapter<WriteRVAdapter.Viewholder>(){
 
+    interface ItemClick {
+        fun onClick(view : View, position: Int)
+    }
+    var itemClick : ItemClick? = null
+
     //아이템 가져오기
     override fun onCreateViewHolder(
         parent: ViewGroup,

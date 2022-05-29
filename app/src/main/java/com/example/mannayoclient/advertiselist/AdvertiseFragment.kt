@@ -68,9 +68,6 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
             ) {
                 val receive = response.body() as List<BoardResponseDto>
                 for (b in receive) {
-                    println(receive.size)
-                    println(b.contents)
-                    println(b.nickname)
                     if (!b.image.isNullOrEmpty()) {
                         retrofitService.service.getBoardImage(b.boardId).enqueue(object :
                             Callback<ResponseBody> {

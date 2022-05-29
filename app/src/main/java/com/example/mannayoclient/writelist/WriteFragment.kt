@@ -12,8 +12,11 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -80,6 +83,24 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
         rv.layoutManager = LinearLayoutManager(requireContext())
 
+        rvAdapter.itemClick = object : WriteRVAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                view.findViewById<TextView>(R.id.choice).addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        println("작동중?")
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        println("작동중?")
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+                        println("작동중?")
+                        items[position].contents = view.findViewById<TextView>(R.id.choice).text.toString()
+                    }
+                })
+            }
+        }
 
 
 
@@ -112,7 +133,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
 
         binding.plus.setOnClickListener {
-            val plus = WriteModel()
+            val plus = WriteModel("입력")
             items.add(plus)
 
             binding.voteRecyclerView.adapter?.notifyDataSetChanged()
