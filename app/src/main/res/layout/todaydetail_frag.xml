@@ -7,6 +7,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+
+
     <ImageView
         android:id="@+id/imageView73"
         android:layout_width="match_parent"
@@ -137,28 +140,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView65">
 
-            <TextView
-                android:id="@+id/textView69"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/noto_sans_kr_medium"
-                android:lineSpacingExtra="7sp"
-                android:text="투표 제목"
-                android:textColor="#191919"
-                android:textSize="13sp"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/d_vote_recyclerView"
                 android:layout_width="312dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView69" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView95"
@@ -190,12 +179,13 @@
 
         <ImageView
             android:id="@+id/imageview"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="312dp"
+            android:layout_height="152dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="@+id/imageView69"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vote_constraintLayout"
-            app:srcCompat="@drawable/write_image" />
+            app:srcCompat="@drawable/big_image" />
 
         <ImageView
             android:id="@+id/imageView88"
@@ -256,8 +246,50 @@
             app:layout_constraintTop_toBottomOf="@+id/view100" />
 
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom2"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/reply_edit"
+            android:layout_width="312dp"
+            android:layout_height="48dp"
+            android:background="@drawable/rectangle_69"
+            android:ems="10"
+            android:fontFamily="@font/noto_sans_kr"
+            android:hint="댓글을 입력하세요."
+            android:inputType="textPersonName"
+            android:paddingStart="12dp"
+            android:textColor="#191919"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView86"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/reply_edit"
+            app:layout_constraintEnd_toEndOf="@+id/reply_edit"
+            app:layout_constraintTop_toTopOf="@+id/reply_edit"
+            app:srcCompat="@drawable/send" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

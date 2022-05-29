@@ -1,5 +1,7 @@
 package com.example.mannayoclient.writelist
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,11 @@ import com.example.mannayoclient.R
 import com.example.mannayoclient.todaylist.today_detail.TodayVoteModel
 
 class WriteRVAdapter(val items: ArrayList<WriteModel>) : RecyclerView.Adapter<WriteRVAdapter.Viewholder>(){
+
+    interface ItemClick {
+        fun onClick(view : View, position: Int)
+    }
+    var itemClick : ItemClick? = null
 
     //아이템 가져오기
     override fun onCreateViewHolder(
@@ -35,6 +42,8 @@ class WriteRVAdapter(val items: ArrayList<WriteModel>) : RecyclerView.Adapter<Wr
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         fun bindItems(item: WriteModel) {
+            val contents = itemView.findViewById<TextView>(R.id.vote1)
+            contents.text = item.contents
 
         }
 

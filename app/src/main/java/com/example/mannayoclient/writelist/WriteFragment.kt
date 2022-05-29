@@ -12,8 +12,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -22,7 +26,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
-import com.example.mannayoclient.SecondActivity
 import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.databinding.WriteFragBinding
 import com.example.mannayoclient.dto.Board
@@ -80,6 +83,24 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
         rv.layoutManager = LinearLayoutManager(requireContext())
 
+        rvAdapter.itemClick = object : WriteRVAdapter.ItemClick {
+            override fun onClick(view: View, position: Int) {
+                view.findViewById<TextView>(R.id.choice).addTextChangedListener(object : TextWatcher {
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        println("작동중?")
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        println("작동중?")
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+                        println("작동중?")
+                        items[position].contents = view.findViewById<TextView>(R.id.choice).text.toString()
+                    }
+                })
+            }
+        }
 
 
 
@@ -106,18 +127,17 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         }
 
         binding.wImage.setOnClickListener{
-            showDialg()
+            showDialog()
         }
 
 
 
         binding.plus.setOnClickListener {
-            val plus = WriteModel()
-            items.add(plus)
-
+            showDialog2()
+            //val plus = WriteModel("입력")
             binding.voteRecyclerView.adapter?.notifyDataSetChanged()
-
         }
+
 
         binding.ok.setOnClickListener {
 
@@ -192,7 +212,27 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
 
     }
-    private fun showDialg() {
+
+    private fun showDialog2() {
+        val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.vote_dialog, null)
+        val mBuilder = AlertDialog.Builder(requireContext())
+            .setView(mDialogView)
+
+        val alertDialog = mBuilder.show()
+
+        alertDialog.findViewById<View>(R.id.buttonOK)?.setOnClickListener {
+            val items = ArrayList<WriteModel>()
+            val task = WriteModel(alertDialog.findViewById<EditText>(R.id.vote_editText).toString())
+            items.add(task)
+            alertDialog.dismiss()
+
+        }
+
+    }
+
+
+
+    private fun showDialog() {
         val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.photo_dialog, null)
         val mBuilder = AlertDialog.Builder(requireContext())
             .setView(mDialogView)
