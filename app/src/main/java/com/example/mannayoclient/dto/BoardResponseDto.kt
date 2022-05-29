@@ -38,5 +38,13 @@ data class BoardResponseDto(
 
     @SerializedName("commentCount")
     @Expose
-    val chatCount : Long
+    val chatCount : Long,
+
+    @SerializedName("isVote")
+    @Expose
+    val isVote : Boolean,
+
+    @SerializedName("isProfile")
+    @Expose
+    val isProfile : Boolean
 )

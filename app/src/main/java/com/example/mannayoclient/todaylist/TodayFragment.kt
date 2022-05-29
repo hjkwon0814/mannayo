@@ -57,6 +57,8 @@ class TodayFragment : Fragment(R.layout.today_frag) {
 
         rvAdapter.itemClick = object : TodayRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
+                edit.putString("boardid",items[position].boardid.toString())
+                edit.commit()
                 findNavController().navigate(R.id.action_todayFragment_to_todayDetailFragment)
             }
         }
@@ -81,7 +83,8 @@ class TodayFragment : Fragment(R.layout.today_frag) {
                                         BitmapFactory.decodeStream(receive)
                                     }
                                     val image = deferredimage.await()
-                                    items.add(TodayModel(b.nickname,b.contents,b.date,image,b.likeCount, b.chatCount))
+                                    items.add(TodayModel(b.nickname,b.contents,b.date,image,b.likeCount, b.chatCount,b.boardId,b.memberId))
+                                    println(b.date)
                                     rvAdapter.notifyDataSetChanged()
                                 }
                             }
@@ -101,7 +104,7 @@ class TodayFragment : Fragment(R.layout.today_frag) {
                                     resources,
                                     R.drawable.image
                                 )
-                                items.add(TodayModel(b.nickname,b.contents,b.date,image,b.likeCount, b.chatCount))
+                                items.add(TodayModel(b.nickname,b.contents,b.date,image,b.likeCount, b.chatCount,b.boardId,b.memberId))
                                 rvAdapter.notifyDataSetChanged()
                             }
 

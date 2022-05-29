@@ -8,5 +8,7 @@ class AdvertiseModel (
     var date: String,
     var image: Bitmap,
     var like : Long,
-    var chat : Long
+    var chat : Long,
+    var boardid : Long,
+    val writerid : Long
         )

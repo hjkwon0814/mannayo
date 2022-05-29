@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 import com.example.mannayoclient.SecondActivity
+import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.databinding.WriteFragBinding
 import com.example.mannayoclient.dto.Board
 import com.example.mannayoclient.dto.ReceiveOK
@@ -94,6 +95,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         }
 
         binding.voteClear.setOnClickListener{
+            isVote = false
             binding.votetLayout.visibility = View.GONE
             binding.voteClear.visibility = View.GONE
         }
@@ -121,12 +123,9 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
             val request = Board(
                 memberId = sharedPreferences.getString("id",null)?.toLong(),
-//                title =  binding.title.text.toString(),
-                title = "test",
                 contents = binding.context.text.toString(),
                 isVote = isVote,
-//                type = getIntent().getStringExtra("타입").toString()
-                type = sharedPreferences.getString("boardType", null)
+                type = sharedPreferences.getString("boardtype", null)
             )
 
             retrofitService.service.setBoard(request).enqueue(object : Callback<ReceiveOK>{
@@ -150,7 +149,6 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                                             "글쓰기 완료",
                                             Toast.LENGTH_SHORT
                                         ).show()
-                                        onActivityChange()
                                     }
                                 }
 
@@ -160,9 +158,27 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
                             })
                         }
+                        if(isVote) {
+                            for(i in items) {
+                                retrofitService.service.setVote(receive.response.toLong(), i.contents).enqueue(object :Callback<ReceiveOK> {
+                                    override fun onResponse(
+                                        call: Call<ReceiveOK>,
+                                        response: Response<ReceiveOK>
+                                    ) {
+
+                                    }
+
+                                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                                    }
+
+                                })
+                            }
+                        }
                         onActivityChange()
                     }else{
                         Toast.makeText(writeActivity,"글쓰기 실패", Toast.LENGTH_SHORT).show()
+                        onActivityChange()
                     }
                 }
 
@@ -337,8 +353,8 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     }
 
     fun onActivityChange() {
-        val intent = Intent(activity, SecondActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        val intent = Intent(activity, AdvertiseActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
 }

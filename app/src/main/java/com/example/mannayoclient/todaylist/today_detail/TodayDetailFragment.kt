@@ -22,10 +22,6 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
 
         val items = ArrayList<TodayVoteModel>()
 
-        //test 용
-        items.add(TodayVoteModel("a"))
-        items.add(TodayVoteModel("b"))
-
 
         val rvAdapter = TodayVoteRVAdapter(items)
         rv.adapter = rvAdapter

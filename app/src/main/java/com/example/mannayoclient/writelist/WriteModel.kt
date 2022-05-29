@@ -1,4 +1,6 @@
 package com.example.mannayoclient.writelist
 
 
-class WriteModel ()
+class WriteModel (
+    var contents : String = ""
+        )

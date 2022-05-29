@@ -36,8 +36,6 @@ class WriteRVAdapter(val items: ArrayList<WriteModel>) : RecyclerView.Adapter<Wr
 
         fun bindItems(item: WriteModel) {
 
-
-
         }
 
     }

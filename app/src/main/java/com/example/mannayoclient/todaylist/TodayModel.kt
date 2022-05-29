@@ -8,5 +8,8 @@ class TodayModel  (
     var date: String,
     var image: Bitmap,
     var like : Long,
-    var chat : Long
+    var chat : Long,
+    var boardid : Long,
+    var writerid :Long
+
 )

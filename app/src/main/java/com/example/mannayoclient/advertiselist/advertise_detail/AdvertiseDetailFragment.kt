@@ -1,33 +1,56 @@
 package com.example.mannayoclient.advertiselist.advertise_detail
 
+import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
+import com.example.mannayoclient.advertiselist.AdvertiseActivity
+import com.example.mannayoclient.advertiselist.AdvertiseModel
 import com.example.mannayoclient.databinding.AdvertisedetailFragBinding
+import com.example.mannayoclient.dto.BoardResponseDto
+import com.example.mannayoclient.dto.VoteResponseDto
+import com.example.mannayoclient.dto.commentDto
+import com.example.mannayoclient.retrofitService
 import com.example.mannayoclient.todaylist.today_detail.TodayReplyModel
 import com.example.mannayoclient.todaylist.today_detail.TodayReplyRVAdapter
 import com.example.mannayoclient.todaylist.today_detail.TodayVoteModel
 import com.example.mannayoclient.todaylist.today_detail.TodayVoteRVAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
     lateinit var binding: AdvertisedetailFragBinding
+    lateinit var activity: AdvertiseActivity
+    val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
         binding = AdvertisedetailFragBinding
             .bind(view)
+        activity = context as AdvertiseActivity
+        val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val boardid = shared.getString("boardid", null)?.toLong()
+        val writeid = shared.getString("writerid",null)?.toLong()
+        val memberid = shared.getString("id", null)?.toLong()
+        val comment = shared.getString("commentCount", null)?.toLong()
 
+        println("boardid = " + boardid)
         val rv: RecyclerView = binding.dVoteRecyclerView
 
         val items = ArrayList<TodayVoteModel>()
 
-        //test 용
-        items.add(TodayVoteModel("a"))
-        items.add(TodayVoteModel("b"))
 
 
         val rvAdapter = TodayVoteRVAdapter(items)
@@ -42,19 +65,127 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
 
         val list = ArrayList<TodayReplyModel>()
 
-        //test 용
-        list.add(TodayReplyModel(TodayReplyModel.reply1,"a","a","a"))
-        list.add(TodayReplyModel(TodayReplyModel.reply2,"a","a","a"))
-        list.add(TodayReplyModel(TodayReplyModel.reply1,"a","a","a"))
-        list.add(TodayReplyModel(TodayReplyModel.reply2,"a","a","a"))
-        list.add(TodayReplyModel(TodayReplyModel.reply2,"a","a","a"))
-
-
 
         val adpater = TodayReplyRVAdapter(list)
         rv2.layoutManager = LinearLayoutManager(requireContext())
         rv2.adapter = adpater
 
+
+        retrofitService.service.getBoard(boardid).enqueue(object : Callback<BoardResponseDto> {
+            override fun onResponse(
+                call: Call<BoardResponseDto>,
+                response: Response<BoardResponseDto>
+            ) {
+                val receive = response.body() as BoardResponseDto
+                if(receive.isVote) {
+                    binding.voteConstraintLayout.visibility = View.VISIBLE
+                    retrofitService.service.getVote(receive.boardId,memberid).enqueue(object : Callback<List<VoteResponseDto>> {
+                        override fun onResponse(
+                            call: Call<List<VoteResponseDto>>,
+                            response: Response<List<VoteResponseDto>>
+                        ) {
+                            val receive = response.body() as List<VoteResponseDto>
+                            for(v : VoteResponseDto in receive) {
+                                items.add(TodayVoteModel(v.contents, v.count, v.amIVote))
+                                rvAdapter.notifyDataSetChanged()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<List<VoteResponseDto>>, t: Throwable) {
+                            TODO("Not yet implemented")
+                        }
+                    })
+                } else {
+                    binding.voteConstraintLayout.visibility = View.GONE
+                }
+
+                if(!receive.image.isNullOrEmpty()) {
+                    binding.imageview.visibility = View.VISIBLE
+                    retrofitService.service.getBoardImage(boardid).enqueue(object :
+                        Callback<ResponseBody> {
+                        override fun onResponse(
+                            call: Call<ResponseBody>,
+                            response: Response<ResponseBody>
+                        ) {
+                            val receive = response.body()?.byteStream()
+                            coroutineScope.launch {
+                                val deferredimage = coroutineScope.async(Dispatchers.IO) {
+                                    BitmapFactory.decodeStream(receive)
+                                }
+                                val image = deferredimage.await()
+                                binding.imageview.setImageBitmap(image);
+                            }
+                        }
+
+                        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                            Toast.makeText(activity,"받아오기 실패", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
+                }else {
+                    binding.imageview.visibility = View.GONE
+                }
+
+                binding.textView63.text = receive.nickname
+                binding.textView64.text = receive.date
+                binding.textView65.text = receive.contents
+                if(receive.isProfile) {
+                    retrofitService.service.getMyProfileImage(memberid).enqueue(object : Callback<ResponseBody> {
+                        override fun onResponse(
+                            call: Call<ResponseBody>,
+                            response: Response<ResponseBody>
+                        ) {
+                            val receive = response.body()?.byteStream()
+                            coroutineScope.launch {
+                                val deferredimage = coroutineScope.async(Dispatchers.IO) {
+                                    BitmapFactory.decodeStream(receive)
+                                }
+                                val image = deferredimage.await()
+                                binding.imageView69.setImageBitmap(image);
+                            }
+                        }
+
+                        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                            TODO("Not yet implemented")
+                        }
+                    })
+                }
+            }
+
+            override fun onFailure(call: Call<BoardResponseDto>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        if(comment!! > 0) {
+            retrofitService.service.getComment(boardid).enqueue(object : Callback<List<commentDto>> {
+                override fun onResponse(
+                    call: Call<List<commentDto>>,
+                    response: Response<List<commentDto>>
+                ) {
+                    val receive = response.body() as List<commentDto>
+                    for(c : commentDto in receive) {
+                        if(c.depth == 1) {
+                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents))
+                        }else {
+                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents))
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<commentDto>>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
+        }
+
+
+
+
+
+
+        retrofitService.service
 
         /*투포있으면 투표창 보이게 없으면 안보이게
         binding.voteConstraintLayout.visibility = View.VISIBLE //보이게

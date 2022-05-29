@@ -9,10 +9,6 @@ data class Board (
     @Expose
     val memberId: Long?,
 
-    @SerializedName("title")
-    @Expose
-    val title:String,
-
     @SerializedName("contents")
     @Expose
     val contents:String,

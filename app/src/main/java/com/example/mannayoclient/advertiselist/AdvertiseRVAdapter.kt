@@ -55,7 +55,7 @@ class AdvertiseRVAdapter(private val items: List<AdvertiseModel>) :
             mainText.text = item.mainText
 
             val image = itemView.findViewById<ImageView>(R.id.imageView74)
-            Glide.with(itemView).load(image).into(image)
+            Glide.with(itemView).load(item.image).into(image)
 
             val like = itemView.findViewById<TextView>(R.id.like)
             like.text = item.like.toString()

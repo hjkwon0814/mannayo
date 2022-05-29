@@ -3,6 +3,7 @@ package com.example.mannayoclient.todaylist.today_detail
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
@@ -34,7 +35,15 @@ class TodayVoteRVAdapter  (val items : ArrayList<TodayVoteModel>) : RecyclerView
         fun bindItems(item: TodayVoteModel) {
 
             val vote_title = itemView.findViewById<TextView>(R.id.choice)
-            vote_title.text = item.title
+            vote_title.text = item.contents
+
+            val vote_count = itemView.findViewById<TextView>(R.id.vote_count)
+            vote_count.text = item.count.toString() + "명"
+
+            val vote_check = itemView.findViewById<CheckBox>(R.id.checkBox5)
+            val amIVote = item.amIVote
+            vote_check.isChecked = amIVote
+
 
         }
 

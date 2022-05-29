@@ -85,4 +85,16 @@ interface mannayoService {
     @GET("/board/image/{boardId}")
     @Streaming
     fun getBoardImage(@Path("boardId") boardId: Long?) : Call<ResponseBody>
+
+    @GET("/board/{id}")
+    fun getBoard(@Path("id") boardId : Long?) : Call<BoardResponseDto>
+
+    @GET("/vote/{boardid}")
+    fun getVote(@Path("boardid") boardId: Long?, @Query("memberId") memberId: Long?) : Call<List<VoteResponseDto>>
+
+    @GET("/comment")
+    fun getComment(@Query("boardId") boardId: Long?) : Call<List<commentDto>>
+
+    @POST("/vote/{boardid}")
+    fun setVote(@Path("boardid") boardId: Long?, @Query("contents") contents: String) : Call<ReceiveOK>
 }

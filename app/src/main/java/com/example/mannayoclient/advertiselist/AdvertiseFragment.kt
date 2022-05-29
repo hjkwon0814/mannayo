@@ -41,7 +41,7 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
         activity = context as AdvertiseActivity
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val edit = shared.edit()
-        edit.putString("boardtype","ADVERTISE_BOARD")
+        edit.putString("boardtype", "ADVERTISE_BOARD")
         edit.commit()
 
         val type = shared.getString("boardtype", null)
@@ -53,6 +53,9 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
         rv.layoutManager = LinearLayoutManager(requireContext())
         rvAdapter.itemClick = object : AdvertiseRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
+                edit.putString("boardid", items[position].boardid.toString())
+                edit.putString("commentCount", items[position].chat.toString())
+                edit.commit()
                 findNavController().navigate(R.id.action_advertiseFragment_to_advertiseDetailFragment)
             }
         }
@@ -64,49 +67,62 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
                 response: Response<List<BoardResponseDto>>
             ) {
                 val receive = response.body() as List<BoardResponseDto>
-                for(b: BoardResponseDto in receive) {
-                    if(!b.image.isNullOrEmpty()) {
+                for (b in receive) {
+                    println(receive.size)
+                    println(b.contents)
+                    println(b.nickname)
+                    if (!b.image.isNullOrEmpty()) {
                         retrofitService.service.getBoardImage(b.boardId).enqueue(object :
                             Callback<ResponseBody> {
                             override fun onResponse(
                                 call: Call<ResponseBody>,
                                 response: Response<ResponseBody>
                             ) {
-                                val receive = response.body()?.byteStream()
+                                val receiveimage = response.body()?.byteStream()
                                 coroutineScope.launch {
                                     val deferredimage = coroutineScope.async(Dispatchers.IO) {
-                                        BitmapFactory.decodeStream(receive)
+                                        BitmapFactory.decodeStream(receiveimage)
                                     }
                                     val image = deferredimage.await()
-                                    items.add(AdvertiseModel(b.nickname,b.contents,b.date,image,b.likeCount, b.chatCount))
+                                    items.add(
+                                        AdvertiseModel(
+                                            b.nickname,
+                                            b.contents,
+                                            b.date,
+                                            image,
+                                            b.likeCount,
+                                            b.chatCount,
+                                            b.boardId,
+                                            b.memberId
+                                        )
+                                    )
                                     rvAdapter.notifyDataSetChanged()
                                 }
                             }
 
                             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                                Toast.makeText(activity,"받아오기 실패", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity, "받아오기 실패", Toast.LENGTH_SHORT).show()
                             }
                         })
-                    }else {
-                        retrofitService.service.getBoardImage(b.boardId).enqueue(object :
-                            Callback<ResponseBody> {
-                            override fun onResponse(
-                                call: Call<ResponseBody>,
-                                response: Response<ResponseBody>
-                            ) {
-                                val receive = response.body()?.byteStream()
-                                val image = BitmapFactory.decodeResource(
-                                    resources,
-                                    R.drawable.image
-                                )
-                                items.add(AdvertiseModel(b.nickname,b.contents,b.date,image,b.likeCount, b.chatCount))
-                                rvAdapter.notifyDataSetChanged()
-                            }
+                    } else {
+                        val image = BitmapFactory.decodeResource(
+                            resources,
+                            R.drawable.image
+                        )
+                        items.add(
+                            AdvertiseModel(
+                                b.nickname,
+                                b.contents,
+                                b.date,
+                                image,
+                                b.likeCount,
+                                b.chatCount,
+                                b.boardId,
+                                b.memberId
+                            )
+                        )
+                        rvAdapter.notifyDataSetChanged()
 
-                            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                                Toast.makeText(activity,"받아오기 실패", Toast.LENGTH_SHORT).show()
-                            }
-                        })
                     }
                 }
             }
@@ -119,7 +135,12 @@ class AdvertiseFragment : Fragment(R.layout.advertise_frag) {
 
 
         binding.write.setOnClickListener {
-            startActivity(Intent(requireContext(), WriteActivity::class.java).putExtra("타입","ADVERTISE_BOARD"))
+            startActivity(
+                Intent(requireContext(), WriteActivity::class.java).putExtra(
+                    "타입",
+                    "ADVERTISE_BOARD"
+                )
+            )
         }
 
 

@@ -1,5 +1,7 @@
 package com.example.mannayoclient.todaylist.today_detail
 
 class TodayVoteModel (
-        var title: String = "",
+        var contents: String = "",
+        var count: Long,
+        var amIVote : Boolean
         )
