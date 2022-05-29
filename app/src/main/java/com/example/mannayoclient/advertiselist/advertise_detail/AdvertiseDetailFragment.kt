@@ -46,13 +46,8 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
         val memberid = shared.getString("id", null)?.toLong()
         val comment = shared.getString("commentCount", null)?.toLong()
 
-        println("boardid = " + boardid)
         val rv: RecyclerView = binding.dVoteRecyclerView
-
         val items = ArrayList<TodayVoteModel>()
-
-
-
         val rvAdapter = TodayVoteRVAdapter(items)
         rv.adapter = rvAdapter
 
@@ -180,12 +175,6 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
             })
         }
 
-
-
-
-
-
-        retrofitService.service
 
         /*투포있으면 투표창 보이게 없으면 안보이게
         binding.voteConstraintLayout.visibility = View.VISIBLE //보이게

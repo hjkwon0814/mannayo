@@ -16,6 +16,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -48,8 +49,10 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     lateinit var binding: WriteFragBinding
     lateinit var writeActivity: WriteActivity
     val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
-    val STORAGE_PERMISSION = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE,
-        android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    val STORAGE_PERMISSION = arrayOf(
+        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
 
     val FLAG_PERM_CAMERA = 98
     val FLAG_PERM_STORAGE = 99
@@ -58,13 +61,13 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     val FLAG_REQ_GALLERY = 102
 
     var path: Uri? = null
-    var realPath : String? = null
+    var realPath: String? = null
     var file: File? = null
 
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var isVote:Boolean = false
+        var isVote: Boolean = false
 
         super.onViewCreated(view, savedInstanceState)
         binding = WriteFragBinding.bind(view)
@@ -85,48 +88,55 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
         rvAdapter.itemClick = object : WriteRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                view.findViewById<TextView>(R.id.choice).addTextChangedListener(object : TextWatcher {
-                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                        println("작동중?")
-                    }
+                view.findViewById<TextView>(R.id.choice)
+                    .addTextChangedListener(object : TextWatcher {
+                        override fun beforeTextChanged(
+                            p0: CharSequence?,
+                            p1: Int,
+                            p2: Int,
+                            p3: Int
+                        ) {
+                            println("작동중?")
+                        }
 
-                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                        println("작동중?")
-                    }
+                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                            println("작동중?")
+                        }
 
-                    override fun afterTextChanged(p0: Editable?) {
-                        println("작동중?")
-                        items[position].contents = view.findViewById<TextView>(R.id.choice).text.toString()
-                    }
-                })
+                        override fun afterTextChanged(p0: Editable?) {
+                            println("작동중?")
+                            items[position].contents =
+                                view.findViewById<TextView>(R.id.choice).text.toString()
+                        }
+                    })
             }
         }
 
 
 
-        binding.plusVote.setOnClickListener{
+        binding.plusVote.setOnClickListener {
             isVote = true
             binding.votetLayout.visibility = View.VISIBLE
             binding.voteClear.visibility = View.VISIBLE
         }
 
-        binding.plusImage.setOnClickListener{
+        binding.plusImage.setOnClickListener {
             binding.imageLayout.visibility = View.VISIBLE
             binding.imageClear.visibility = View.VISIBLE
         }
 
-        binding.voteClear.setOnClickListener{
+        binding.voteClear.setOnClickListener {
             isVote = false
             binding.votetLayout.visibility = View.GONE
             binding.voteClear.visibility = View.GONE
         }
 
-        binding.imageClear.setOnClickListener{
+        binding.imageClear.setOnClickListener {
             binding.imageLayout.visibility = View.GONE
             binding.imageClear.visibility = View.GONE
         }
 
-        binding.wImage.setOnClickListener{
+        binding.wImage.setOnClickListener {
             showDialog()
         }
 
@@ -135,6 +145,11 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         binding.plus.setOnClickListener {
             showDialog2()
             //val plus = WriteModel("입력")
+
+            val plus = WriteModel("입력")
+            items.add(plus)
+
+
             binding.voteRecyclerView.adapter?.notifyDataSetChanged()
         }
 
@@ -142,45 +157,54 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         binding.ok.setOnClickListener {
 
             val request = Board(
-                memberId = sharedPreferences.getString("id",null)?.toLong(),
+                memberId = sharedPreferences.getString("id", null)?.toLong(),
                 contents = binding.context.text.toString(),
                 isVote = isVote,
                 type = sharedPreferences.getString("boardtype", null)
             )
 
-            retrofitService.service.setBoard(request).enqueue(object : Callback<ReceiveOK>{
+            retrofitService.service.setBoard(request).enqueue(object : Callback<ReceiveOK> {
                 override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
                     val receive = response.body() as ReceiveOK
-                    if(response.isSuccessful && receive.success){
-                        if(realPath != null){
+                    if (response.isSuccessful && receive.success) {
+                        if (realPath != null) {
                             file = File(realPath)
                             println(realPath)
-                            var requestBody : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file)
-                            var body : MultipartBody.Part = MultipartBody.Part.createFormData("multipartFile",file?.name,requestBody)
-                            retrofitService.service.setBoardImage(receive.response.toLong(),body).enqueue(object : Callback<ReceiveOK>{
-                                override fun onResponse(
-                                    call: Call<ReceiveOK>,
-                                    response: Response<ReceiveOK>
-                                ) {
-                                    val receive = response.body() as ReceiveOK
-                                    if(response.isSuccessful && receive.success){
-                                        Toast.makeText(
-                                            writeActivity,
-                                            "글쓰기 완료",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
+                            var requestBody: RequestBody =
+                                RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                            var body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                                "multipartFile",
+                                file?.name,
+                                requestBody
+                            )
+                            retrofitService.service.setBoardImage(receive.response.toLong(), body)
+                                .enqueue(object : Callback<ReceiveOK> {
+                                    override fun onResponse(
+                                        call: Call<ReceiveOK>,
+                                        response: Response<ReceiveOK>
+                                    ) {
+                                        val receive = response.body() as ReceiveOK
+                                        if (response.isSuccessful && receive.success) {
+                                            Toast.makeText(
+                                                writeActivity,
+                                                "글쓰기 완료",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
                                     }
-                                }
 
-                                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
 
-                                }
+                                    }
 
-                            })
+                                })
                         }
-                        if(isVote) {
-                            for(i in items) {
-                                retrofitService.service.setVote(receive.response.toLong(), i.contents).enqueue(object :Callback<ReceiveOK> {
+                        if (isVote) {
+                            for (i in items) {
+                                retrofitService.service.setVote(
+                                    receive.response.toLong(),
+                                    i.contents
+                                ).enqueue(object : Callback<ReceiveOK> {
                                     override fun onResponse(
                                         call: Call<ReceiveOK>,
                                         response: Response<ReceiveOK>
@@ -196,19 +220,18 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                             }
                         }
                         onActivityChange()
-                    }else{
-                        Toast.makeText(writeActivity,"글쓰기 실패", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(writeActivity, "글쓰기 실패", Toast.LENGTH_SHORT).show()
                         onActivityChange()
                     }
                 }
 
                 override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
-                    Toast.makeText(writeActivity,"서버와 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(writeActivity, "서버와 연결이 끊어졌습니다.", Toast.LENGTH_SHORT).show()
                 }
 
             })
         }
-
 
 
     }
@@ -231,7 +254,6 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     }
 
 
-
     private fun showDialog() {
         val mDialogView = LayoutInflater.from(requireContext()).inflate(R.layout.photo_dialog, null)
         val mBuilder = AlertDialog.Builder(requireContext())
@@ -239,19 +261,27 @@ class WriteFragment : Fragment(R.layout.write_frag) {
             .setTitle("프로필 설정")
 
         val alertDialog = mBuilder.show()
-        alertDialog.findViewById<View>(R.id.camera)?.setOnClickListener{
-            if(isPermitted(CAMERA_PERMISSION)){
+        alertDialog.findViewById<View>(R.id.camera)?.setOnClickListener {
+            if (isPermitted(CAMERA_PERMISSION)) {
                 openCamera()
-            }else {
-                ActivityCompat.requestPermissions(requireActivity(), CAMERA_PERMISSION, FLAG_PERM_CAMERA)
+            } else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    CAMERA_PERMISSION,
+                    FLAG_PERM_CAMERA
+                )
             }
             alertDialog.dismiss()
         }
-        alertDialog.findViewById<View>(R.id.gallery)?.setOnClickListener{
-            if(isPermitted(STORAGE_PERMISSION)) {
+        alertDialog.findViewById<View>(R.id.gallery)?.setOnClickListener {
+            if (isPermitted(STORAGE_PERMISSION)) {
                 openCallery()
-            }else {
-                ActivityCompat.requestPermissions(requireActivity(), STORAGE_PERMISSION, FLAG_PERM_STORAGE)
+            } else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    STORAGE_PERMISSION,
+                    FLAG_PERM_STORAGE
+                )
             }
             alertDialog.dismiss()
         }
@@ -269,16 +299,19 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         startActivityForResult(intent, FLAG_REQ_CAMERA)
     }
 
-    fun saveImageFile(filename:String, mimeType:String, bitmap: Bitmap) : Uri? {
+    fun saveImageFile(filename: String, mimeType: String, bitmap: Bitmap): Uri? {
         var values = ContentValues()
         values.put(MediaStore.Images.Media.DISPLAY_NAME, filename)
         values.put(MediaStore.Images.Media.MIME_TYPE, mimeType)
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             values.put(MediaStore.Images.Media.IS_PENDING, 1)
         }
 
-        val uri = requireActivity().contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        val uri = requireActivity().contentResolver.insert(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            values
+        )
 
         try {
             if (uri != null) {
@@ -291,16 +324,16 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                     return uri
                 }
             }
-        } catch (e:Exception) {
+        } catch (e: Exception) {
 
         }
         return null
 
     }
 
-    fun newFileName() :String {
+    fun newFileName(): String {
         val sdf = SimpleDateFormat("yyyyMMdd_HHmmss")
-        val filename =sdf.format(System.currentTimeMillis())
+        val filename = sdf.format(System.currentTimeMillis())
         return filename
     }
 
@@ -314,7 +347,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
                         //val filename = newFileName()
                         //val uri = saveImageFile(filename, "image/jpg", bitmap)
-                        if(bitmap != null){
+                        if (bitmap != null) {
                             val imagePath = getImageUri(writeActivity, bitmap)
                             path = imagePath
                             realPath = getRealPathFromURI(path!!)
@@ -324,7 +357,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                     }
                 }
                 FLAG_REQ_GALLERY -> {
-                    val uri =data?.data
+                    val uri = data?.data
                     binding.wImage.setImageURI(uri)
                     realPath = getRealPathFromURI(uri!!)
                 }
@@ -332,7 +365,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         }
     }
 
-    private fun isPermitted(permissions:Array<String>): Boolean {
+    private fun isPermitted(permissions: Array<String>): Boolean {
 
         for (permission in permissions) {
             val result = ContextCompat.checkSelfPermission(
@@ -353,9 +386,9 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     ) {
         when (requestCode) {
             FLAG_PERM_CAMERA -> {
-                var checked =true
-                for(grant in grantResults) {
-                    if (grant != PackageManager.PERMISSION_GRANTED){
+                var checked = true
+                for (grant in grantResults) {
+                    if (grant != PackageManager.PERMISSION_GRANTED) {
                         checked = false
                         break
                     }
@@ -367,20 +400,26 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         }
     }
 
-    fun getImageUri(inContext : Context?, inImage: Bitmap?): Uri? {
+    fun getImageUri(inContext: Context?, inImage: Bitmap?): Uri? {
         val btyes = ByteArrayOutputStream()
-        if(inImage != null) {
+        if (inImage != null) {
             inImage.compress(Bitmap.CompressFormat.JPEG, 100, btyes)
         }
-        val path = MediaStore.Images.Media.insertImage(inContext?.contentResolver, inImage, "Title" + " - " + Calendar.getInstance().time,null)
+        val path = MediaStore.Images.Media.insertImage(
+            inContext?.contentResolver,
+            inImage,
+            "Title" + " - " + Calendar.getInstance().time,
+            null
+        )
         return Uri.parse(path)
     }
 
-    fun getRealPathFromURI(contentURI : Uri) : String? {
-        val result : String?
-        val cursor : Cursor? = requireActivity().contentResolver.query(contentURI,null,null,null,null)
+    fun getRealPathFromURI(contentURI: Uri): String? {
+        val result: String?
+        val cursor: Cursor? =
+            requireActivity().contentResolver.query(contentURI, null, null, null, null)
 
-        if(cursor == null) {
+        if (cursor == null) {
             result = contentURI?.path
         } else {
             cursor.moveToFirst()
