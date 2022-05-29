@@ -77,7 +77,6 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                     println(receive)
                     if (response.isSuccessful) {
                         for (i in receive) {
-                            println("c")
                             if (!i.image.isNullOrEmpty()) {
                                 retrofitService.service.getReviewImage(i.id)
                                     .enqueue(object : Callback<ResponseBody> {
@@ -101,7 +100,6 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                                         image
                                                     )
                                                 )
-                                                items.sortBy { i.writeDate }
                                                 rv.adapter = rvAdapter
                                             }
                                         }
@@ -123,7 +121,6 @@ class StoreReviewFragment : Fragment(R.layout.storereview_frag) {
                                         memberimage
                                     )
                                 )
-                                items.sortBy { i.writeDate }
                                 rv.adapter = rvAdapter
                             }
                         }
