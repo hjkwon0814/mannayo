@@ -16,8 +16,6 @@ import com.example.mannayoclient.dto.VoteResponseDto
 import com.example.mannayoclient.dto.commentDto
 import com.example.mannayoclient.retrofitService
 import com.example.mannayoclient.todaylist.TodayActivity
-import com.example.mannayoclient.writelist.WriteModel
-import com.example.mannayoclient.writelist.WriteRVAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

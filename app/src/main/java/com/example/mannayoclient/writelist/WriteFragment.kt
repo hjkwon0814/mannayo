@@ -1,5 +1,6 @@
 package com.example.mannayoclient.writelist
 
+import WriteRVAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
@@ -12,30 +13,23 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.databinding.WriteFragBinding
-import com.example.mannayoclient.dto.Board
-import com.example.mannayoclient.dto.ReceiveOK
-import com.example.mannayoclient.retrofitService
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -46,6 +40,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class WriteFragment : Fragment(R.layout.write_frag) {
+    private val viewModel: WriteModel by viewModels()
     lateinit var binding: WriteFragBinding
     lateinit var writeActivity: WriteActivity
     val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
@@ -76,17 +71,18 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
         val sharedPreferences = writeActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
 
-        val rv: RecyclerView = binding.voteRecyclerView
 
-        val items = ArrayList<WriteModel>()
+        val adapter = WriteRVAdapter(viewModel)
+        binding.voteRecyclerView.adapter = adapter
+        binding.voteRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.voteRecyclerView.setHasFixedSize(true)
+
+        viewModel.itemsLiveData.observe(requireActivity()) {
+            adapter.notifyDataSetChanged()
+        }
 
 
-        val rvAdapter = WriteRVAdapter(items)
-        rv.adapter = rvAdapter
-
-        rv.layoutManager = LinearLayoutManager(requireContext())
-
-        rvAdapter.itemClick = object : WriteRVAdapter.ItemClick {
+        /*rvAdapter.itemClick = object : WriteRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 view.findViewById<TextView>(R.id.choice)
                     .addTextChangedListener(object : TextWatcher {
@@ -110,7 +106,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                         }
                     })
             }
-        }
+        }*/
 
 
 
@@ -143,18 +139,15 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
 
         binding.plus.setOnClickListener {
-            showDialog2()
-            //val plus = WriteModel("입력")
 
-            val plus = WriteModel("입력")
-            items.add(plus)
-
-
-            binding.voteRecyclerView.adapter?.notifyDataSetChanged()
+            if (viewModel.itemsSize < 4)
+                showDialog2()
+            else
+                Toast.makeText(writeActivity, "투표 항목은 4개까지 입력 가능합니다!", Toast.LENGTH_SHORT).show()
         }
 
 
-        binding.ok.setOnClickListener {
+        /*binding.ok.setOnClickListener {
 
             val request = Board(
                 memberId = sharedPreferences.getString("id", null)?.toLong(),
@@ -231,7 +224,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                 }
 
             })
-        }
+        }*/
 
 
     }
@@ -244,9 +237,8 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<View>(R.id.buttonOK)?.setOnClickListener {
-            val items = ArrayList<WriteModel>()
-            val task = WriteModel(alertDialog.findViewById<EditText>(R.id.vote_editText).toString())
-            items.add(task)
+            val item = Item(alertDialog.findViewById<EditText>(R.id.vote_editText)?.text.toString())
+            viewModel.addItem(item)
             alertDialog.dismiss()
 
         }
