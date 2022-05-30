@@ -109,6 +109,10 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         }*/
 
 
+        binding.wBack.setOnClickListener{
+            // 뒤로가기
+        }
+
 
         binding.plusVote.setOnClickListener {
             isVote = true
