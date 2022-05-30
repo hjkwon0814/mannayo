@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Mannayoclient"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".InformationActivity2"
+            android:exported="false" />
+        <activity
             android:name=".advertiselist.AdvertiseActivity"
             android:exported="false" />
         <activity

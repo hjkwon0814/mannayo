@@ -95,4 +95,7 @@ class TextClear :AppCompatEditText, TextWatcher, View.OnTouchListener, View.OnFo
         super.setOnFocusChangeListener(this)
         addTextChangedListener(this)
     }
+
+
+
 }

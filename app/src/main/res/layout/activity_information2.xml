@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".InformationActivity2">
+
+    <ImageView
+        android:id="@+id/imageView83"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close_round" />
+
+    <ImageView
+        android:id="@+id/imageView65"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView83"
+        app:srcCompat="@drawable/information_pw" />
+
+    <ImageView
+        android:id="@+id/infor2_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="62dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView65"
+        app:srcCompat="@drawable/component_92" />
+
+    <TextView
+        android:id="@+id/textView67"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/noto_sans_kr"
+        android:lineSpacingExtra="8sp"
+        android:text="비밀번호 변경"
+        android:textColor="#191919"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/infor_pw"
+        app:layout_constraintTop_toBottomOf="@+id/infor2_photo" />
+
+    <com.example.mannayoclient.TextClear
+        android:id="@+id/infor_pw"
+        android:layout_width="264dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/information3"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#191919"
+        android:hint="새 비밀번호를 입력하세요."
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+
+    <ImageView
+        android:id="@+id/imageView_pw"
+        android:layout_width="200dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/infor_pw"
+        app:layout_constraintTop_toBottomOf="@+id/infor_pw"
+        app:srcCompat="@drawable/infor2" />
+
+    <TextView
+        android:id="@+id/textView68"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noto_sans_kr"
+        android:lineSpacingExtra="8sp"
+        android:text="비밀번호 재확인"
+        android:textColor="#191919"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/infor_pw2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_pw" />
+
+    <com.example.mannayoclient.TextClear
+        android:id="@+id/infor_pw2"
+        android:layout_width="264dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/information3"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#191919"
+        android:textSize="14sp"
+        android:hint="다시 한번 입력해주세요."
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView68" />
+
+    <ImageView
+        android:id="@+id/imageView_pw2"
+        android:layout_width="200dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:visibility="gone"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@+id/infor_pw2"
+        app:layout_constraintTop_toBottomOf="@+id/infor_pw2"
+        app:srcCompat="@drawable/infor3" />
+
+    <ImageView
+        android:id="@+id/infor_pw_button"
+        android:layout_width="130dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="71dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infor_pw2"
+        app:srcCompat="@drawable/information5" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,7 @@ class MypageFragment  : Fragment(R.layout.mypage_frag) {
         binding = MypageFragBinding.bind(view)
 
         binding.information.setOnClickListener {
-            startActivity(Intent(requireContext(), InformationActivity::class.java))
+            findNavController().navigate(R.id.action_mypageFragment_to_mypage2Fragment)
         }
 
 
