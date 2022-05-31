@@ -10,9 +10,13 @@ import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.categorylist.CategoryActivity
 import com.example.mannayoclient.categorylist.CategoryListFragment
 import com.example.mannayoclient.databinding.MainhomeFragBinding
+import com.example.mannayoclient.dto.ReceiveOK
 import com.example.mannayoclient.todaylist.TodayActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
     lateinit var binding: MainhomeFragBinding
@@ -31,6 +35,16 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         val edit = shared.edit()
         val nickname = shared.getString("nickname", "null")
         val id = shared.getString("id", "0")?.toLong()
+        val token = shared.getString("FCMtoken", null)
+
+        retrofitService.service.setFCMtoken(id, token).enqueue(object : Callback<ReceiveOK> {
+            override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+            }
+
+            override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+            }
+        })
+
         if (nickname.equals("null")) {
             activity.FragmentView()
         }

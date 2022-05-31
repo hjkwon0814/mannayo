@@ -30,6 +30,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.databinding.WriteFragBinding
+import com.example.mannayoclient.dto.Board
+import com.example.mannayoclient.dto.ReceiveOK
+import com.example.mannayoclient.retrofitService
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
@@ -82,33 +89,6 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         }
 
 
-        /*rvAdapter.itemClick = object : WriteRVAdapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-                view.findViewById<TextView>(R.id.choice)
-                    .addTextChangedListener(object : TextWatcher {
-                        override fun beforeTextChanged(
-                            p0: CharSequence?,
-                            p1: Int,
-                            p2: Int,
-                            p3: Int
-                        ) {
-                            println("작동중?")
-                        }
-
-                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                            println("작동중?")
-                        }
-
-                        override fun afterTextChanged(p0: Editable?) {
-                            println("작동중?")
-                            items[position].contents =
-                                view.findViewById<TextView>(R.id.choice).text.toString()
-                        }
-                    })
-            }
-        }*/
-
-
         binding.wBack.setOnClickListener{
             // 뒤로가기
         }
@@ -151,7 +131,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         }
 
 
-        /*binding.ok.setOnClickListener {
+        binding.ok.setOnClickListener {
 
             val request = Board(
                 memberId = sharedPreferences.getString("id", null)?.toLong(),
@@ -197,24 +177,24 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                                 })
                         }
                         if (isVote) {
-                            for (i in items) {
-                                retrofitService.service.setVote(
-                                    receive.response.toLong(),
-                                    i.contents
-                                ).enqueue(object : Callback<ReceiveOK> {
-                                    override fun onResponse(
-                                        call: Call<ReceiveOK>,
-                                        response: Response<ReceiveOK>
-                                    ) {
-
-                                    }
-
-                                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
-
-                                    }
-
-                                })
-                            }
+//                            for (i in items) {
+//                                retrofitService.service.setVote(
+//                                    receive.response.toLong(),
+//                                    i.contents
+//                                ).enqueue(object : Callback<ReceiveOK> {
+//                                    override fun onResponse(
+//                                        call: Call<ReceiveOK>,
+//                                        response: Response<ReceiveOK>
+//                                    ) {
+//
+//                                    }
+//
+//                                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+//
+//                                    }
+//
+//                                })
+//                            }
                         }
                         onActivityChange()
                     } else {
@@ -228,7 +208,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                 }
 
             })
-        }*/
+        }
 
 
     }
