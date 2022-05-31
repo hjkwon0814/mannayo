@@ -12,6 +12,9 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.mannayoclient.databinding.*
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.FirebaseMessagingService
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, SecondActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +49,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         getDebugHashKey()
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+
+            Log.d("FCM Token", it.result)
+        }
 
 
     }
@@ -75,6 +84,8 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
+
 
 
 }
