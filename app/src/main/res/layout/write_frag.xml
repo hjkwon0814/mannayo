@@ -20,7 +20,7 @@
     <EditText
         android:id="@+id/context"
         android:layout_width="312dp"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="#ffffff"
         android:ems="10"
@@ -43,39 +43,13 @@
             android:layout_width="312dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:paddingTop="16dp"
             android:visibility="gone"
             android:background="@drawable/votebox"
-            android:paddingBottom="20dp"
+            android:paddingBottom="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/context">
-
-            <com.example.mannayoclient.TextClear
-                android:id="@+id/vote_title"
-                android:layout_width="312dp"
-                android:layout_height="48dp"
-                android:background="@null"
-                android:ems="10"
-                android:fontFamily="@font/noto_sans_kr"
-                android:hint="투표 제목"
-                android:inputType="textEmailAddress"
-                android:lineSpacingExtra="7sp"
-                android:paddingLeft="12dp"
-                android:textColor="#191919"
-                android:textSize="13sp"
-                android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view12"
-                android:layout_width="312dp"
-                android:layout_height="0.8dp"
-                android:background="#dbdbdb"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vote_title" />
 
             <TextView
                 android:id="@+id/plus"
@@ -109,10 +83,9 @@
                 android:id="@+id/vote_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view12" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -129,10 +102,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/imageLayout"
+            android:visibility="gone"
             android:layout_width="312dp"
             android:layout_height="140dp"
             android:layout_marginTop="24dp"
-            android:visibility="gone"
             android:background="@drawable/vote_imagebox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +113,7 @@
 
 
             <EditText
-                android:id="@+id/editTextTextPersonName6"
+                android:id="@+id/infor_pw"
                 android:layout_width="162dp"
                 android:layout_height="120dp"
                 android:background="@null"
@@ -192,7 +165,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView65"
+            android:id="@+id/w_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginStart="24dp"
@@ -205,10 +178,10 @@
             android:id="@+id/imageView67"
             android:layout_width="70dp"
             android:layout_height="22dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView65"
+            app:layout_constraintBottom_toBottomOf="@+id/w_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView65"
+            app:layout_constraintTop_toTopOf="@+id/w_back"
             app:srcCompat="@drawable/write" />
 
         <ImageView
@@ -226,7 +199,13 @@
 
 
 
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom3"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
 
     <ImageView
@@ -247,6 +226,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/plus_image"
         app:layout_constraintStart_toEndOf="@+id/plus_image"
         app:srcCompat="@drawable/vote" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

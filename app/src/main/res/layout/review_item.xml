@@ -98,5 +98,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/r_update"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/r_delete"
+        app:layout_constraintEnd_toStartOf="@+id/r_delete"
+        app:layout_constraintTop_toTopOf="@+id/r_delete"
+        app:srcCompat="@drawable/edit_fill" />
+
+    <ImageView
+        android:id="@+id/r_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/reply_date"
+        app:layout_constraintEnd_toEndOf="@+id/r_content"
+        app:layout_constraintTop_toTopOf="@+id/reply_date"
+        app:srcCompat="@drawable/close_ring_duotone" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

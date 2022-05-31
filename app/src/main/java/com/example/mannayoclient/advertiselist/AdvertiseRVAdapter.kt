@@ -67,4 +67,6 @@ class AdvertiseRVAdapter(private val items: List<AdvertiseModel>) :
         }
 
     }
+
+
 }

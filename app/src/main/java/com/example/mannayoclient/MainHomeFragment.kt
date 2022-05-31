@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 
 class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
     lateinit var binding: MainhomeFragBinding
+    lateinit var binding2: CategoryListFragment
     lateinit var activity: SecondActivity
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
