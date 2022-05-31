@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.advertiselist.AdvertiseActivity
@@ -109,7 +108,8 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
         binding.map.setOnClickListener() {
-            findNavController().navigate(R.id.action_mainHomeFragment_to_mapFragment)
+//            findNavController().navigate(R.id.action_mainHomeFragment_to_mapFragment)
+            startActivity(Intent(requireContext(),MapActivity::class.java))
         }
 
         binding.mypage.setOnClickListener() {

@@ -1,16 +1,19 @@
 package com.example.mannayoclient
 
-import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.example.mannayoclient.databinding.*
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        getDebugHashKey()
+
 
     }
 
@@ -51,6 +56,24 @@ class MainActivity : AppCompatActivity() {
             getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         return true
+    }
+
+    private fun getDebugHashKey() {
+        var packageInfo: PackageInfo? = null
+        try {
+            packageInfo = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
+            if (packageInfo == null) Log.e("KeyHash", "KeyHash:null") else {
+                for (signature in packageInfo.signatures) {
+                    val md: MessageDigest = MessageDigest.getInstance("SHA")
+                    md.update(signature.toByteArray())
+                    Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+                }
+            }
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
     }
 
 
