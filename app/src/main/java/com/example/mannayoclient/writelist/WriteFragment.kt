@@ -66,10 +66,11 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     var realPath: String? = null
     var file: File? = null
 
+    var isVote: Boolean = false
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var isVote: Boolean = false
+
 
         super.onViewCreated(view, savedInstanceState)
         binding = WriteFragBinding.bind(view)
@@ -95,7 +96,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
 
 
         binding.plusVote.setOnClickListener {
-            isVote = true
+
             binding.votetLayout.visibility = View.VISIBLE
             binding.voteClear.visibility = View.VISIBLE
         }
@@ -177,24 +178,24 @@ class WriteFragment : Fragment(R.layout.write_frag) {
                                 })
                         }
                         if (isVote) {
-//                            for (i in items) {
-//                                retrofitService.service.setVote(
-//                                    receive.response.toLong(),
-//                                    i.contents
-//                                ).enqueue(object : Callback<ReceiveOK> {
-//                                    override fun onResponse(
-//                                        call: Call<ReceiveOK>,
-//                                        response: Response<ReceiveOK>
-//                                    ) {
-//
-//                                    }
-//
-//                                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
-//
-//                                    }
-//
-//                                })
-//                            }
+                            for (i in viewModel.itemsLiveData.value!!) {
+                                retrofitService.service.setVote(
+                                    receive.response.toLong(),
+                                    i.contents
+                                ).enqueue(object : Callback<ReceiveOK> {
+                                    override fun onResponse(
+                                        call: Call<ReceiveOK>,
+                                        response: Response<ReceiveOK>
+                                    ) {
+
+                                    }
+
+                                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                                    }
+
+                                })
+                            }
                         }
                         onActivityChange()
                     } else {
@@ -221,6 +222,7 @@ class WriteFragment : Fragment(R.layout.write_frag) {
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<View>(R.id.buttonOK)?.setOnClickListener {
+            isVote = true
             val item = Item(alertDialog.findViewById<EditText>(R.id.vote_editText)?.text.toString())
             viewModel.addItem(item)
             alertDialog.dismiss()

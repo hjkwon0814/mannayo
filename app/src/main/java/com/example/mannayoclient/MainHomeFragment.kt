@@ -7,6 +7,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.advertiselist.AdvertiseActivity
+import com.example.mannayoclient.alarmlist.AlarmActivity
 import com.example.mannayoclient.categorylist.CategoryActivity
 import com.example.mannayoclient.categorylist.CategoryListFragment
 import com.example.mannayoclient.databinding.MainhomeFragBinding
@@ -118,7 +119,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
 
         binding.alarm.setOnClickListener() {
-            findNavController().navigate(R.id.action_mainHomeFragment_to_alarmFragment)
+            startActivity(Intent(requireContext(),AlarmActivity::class.java))
         }
 
         binding.map.setOnClickListener() {

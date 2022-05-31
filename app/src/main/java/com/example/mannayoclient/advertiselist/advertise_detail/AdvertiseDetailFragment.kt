@@ -13,6 +13,7 @@ import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.advertiselist.AdvertiseModel
 import com.example.mannayoclient.databinding.AdvertisedetailFragBinding
 import com.example.mannayoclient.dto.BoardResponseDto
+import com.example.mannayoclient.dto.ReceiveOK
 import com.example.mannayoclient.dto.VoteResponseDto
 import com.example.mannayoclient.dto.commentDto
 import com.example.mannayoclient.retrofitService
@@ -53,8 +54,6 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
 
         rv.layoutManager = LinearLayoutManager(requireContext())
 
-
-
         //Reply
         val rv2: RecyclerView = binding.replyRecyclerView
 
@@ -65,6 +64,25 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
         rv2.layoutManager = LinearLayoutManager(requireContext())
         rv2.adapter = adpater
 
+        if(!(boardid==memberid)) {
+            binding.correction.visibility = View.GONE
+            binding.delete2.visibility = View.GONE
+        }
+
+        binding.imageView88.setOnClickListener {
+            retrofitService.service.setLike(memberid,boardid).enqueue(object : Callback<ReceiveOK> {
+                override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                    val receive = response.body() as ReceiveOK
+                    if(response.isSuccessful) {
+                        Toast.makeText(activity, receive.response, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                }
+            })
+        }
 
         retrofitService.service.getBoard(boardid).enqueue(object : Callback<BoardResponseDto> {
             override fun onResponse(
@@ -163,14 +181,35 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                     for(c : commentDto in receive) {
                         if(c.depth == 1) {
                             list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents))
+                            binding.textView71.text = "댓글(" + comment.toString() + ")"
+                            adpater.notifyDataSetChanged()
                         }else {
                             list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents))
+                            binding.textView71.text = "댓글(" + comment.toString() + ")"
+                            adpater.notifyDataSetChanged()
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<List<commentDto>>, t: Throwable) {
                     TODO("Not yet implemented")
+                }
+            })
+        }
+
+        binding.SendReply.setOnClickListener {
+            retrofitService.service.setReply1(memberid, boardid, binding.replyEdit.text.toString()).enqueue(object : Callback<ReceiveOK> {
+                override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                    if(response.isSuccessful) {
+                        activity.finish()
+                        activity.overridePendingTransition(0,0)
+                        val intent = activity.intent
+                        startActivity(intent)
+                        activity.overridePendingTransition(0,0)
+                    }
+                }
+
+                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
                 }
             })
         }

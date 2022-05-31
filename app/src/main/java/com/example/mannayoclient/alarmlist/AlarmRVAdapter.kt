@@ -35,10 +35,10 @@ class AlarmRVAdapter(val items: ArrayList<AlarmModel>) :
         fun bindItems(item: AlarmModel) {
 
             val alarm1 = itemView.findViewById<TextView>(R.id.alarm1)
-            alarm1.text = item.alarm1
+            alarm1.text = item.Title
 
             val alarm2 = itemView.findViewById<TextView>(R.id.alarm2)
-            alarm2.text = item.alarm2
+            alarm2.text = item.contents
 
             val date = itemView.findViewById<TextView>(R.id.date)
             date.text = item.date

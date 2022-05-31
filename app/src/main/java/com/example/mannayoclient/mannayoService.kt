@@ -4,6 +4,7 @@ import com.example.mannayoclient.dto.*
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface mannayoService {
@@ -100,4 +101,13 @@ interface mannayoService {
 
     @POST("/members/FCMtoken")
     fun setFCMtoken(@Query("id") memberId: Long?, @Query("token") token :String?) : Call<ReceiveOK>
+
+    @POST("/comment/inputReply")
+    fun setReply1(@Query("memberid") memberid : Long?, @Query("boardid") boardid : Long?, @Query("contents") contents: String) : Call<ReceiveOK>
+
+    @POST("/like")
+    fun setLike(@Query("memberid") memberid: Long?, @Query("boardid") boardId: Long?) : Call<ReceiveOK>
+
+    @GET("/notice")
+    fun getNoticeAll(@Query("memberid") memberid: Long?) : Call<List<NoticeDto>>
 }
