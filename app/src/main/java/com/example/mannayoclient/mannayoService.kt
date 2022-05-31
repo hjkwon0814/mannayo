@@ -97,4 +97,7 @@ interface mannayoService {
 
     @POST("/vote/{boardid}")
     fun setVote(@Path("boardid") boardId: Long?, @Query("contents") contents: String) : Call<ReceiveOK>
+
+    @POST("/members/FCMtoken")
+    fun setFCMtoken(@Query("id") memberId: Long?, @Query("token") token :String?) : Call<ReceiveOK>
 }

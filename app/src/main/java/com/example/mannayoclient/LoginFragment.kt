@@ -3,6 +3,7 @@ package com.example.mannayoclient
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.mannayoclient.databinding.LoginFragBinding
 import com.example.mannayoclient.dto.ReceiveLoginOK
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
@@ -41,10 +43,6 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
         val email = sharedPreferences.getString("email", null)
         val pass = sharedPreferences.getString("password", null)
-        println(email)
-        println(pass)
-        println(!email.isNullOrEmpty())
-        println(!pass.isNullOrEmpty())
 
         if (!email.isNullOrEmpty() && !pass.isNullOrEmpty()) {
             println("yyyy")
@@ -86,10 +84,6 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                     response: Response<ReceiveLoginOK>
                 ) {
                     val receive = response.body() as ReceiveLoginOK
-                    println(receive.code)
-                    println(receive.response)
-                    println(receive.success)
-                    println(receive.data)
                     if (response.isSuccessful && receive.success) {
                         if (binding.loginState.isChecked) {
                             editor.putString("email", binding.loginId.text.toString())
@@ -102,7 +96,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
 
                         if (receive.nickname.equals("null")) {
-                            // findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
+                            mainActivity.onActivityChange()
                         } else {
                             mainActivity.onActivityChange()
                         }
@@ -138,7 +132,6 @@ class LoginFragment : Fragment(R.layout.login_frag) {
                         editor.commit()
                         mainActivity.onActivityChange()
 
-                        //findNavController().navigate(R.id.action_loginFragment_to_profileFragment2)
                     } else {
                         mainActivity.onActivityChange()
                         Toast.makeText(mainActivity, "자동 로그인 성공!!", Toast.LENGTH_SHORT)

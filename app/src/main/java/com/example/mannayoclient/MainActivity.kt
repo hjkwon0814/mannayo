@@ -49,9 +49,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         getDebugHashKey()
+        val shared = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val edit = shared.edit()
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener {
-
+            edit.putString("FCMtoken", it.result)
+            edit.commit()
             Log.d("FCM Token", it.result)
         }
 
