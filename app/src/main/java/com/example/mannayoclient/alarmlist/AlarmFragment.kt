@@ -53,11 +53,39 @@ class AlarmFragment : Fragment(R.layout.alarm_frag) {
         binding.alarmImg.setOnClickListener {
             binding.alarmImg.setImageResource(R.drawable.alarm)
             binding.messageImg.setImageResource(R.drawable.message)
+            retrofitService.service.getNoticeAll(memberid).enqueue(object : Callback<List<NoticeDto>> {
+                override fun onResponse(call: Call<List<NoticeDto>>, response: Response<List<NoticeDto>>) {
+                    val receive = response.body() as List<NoticeDto>
+                    if(response.isSuccessful) {
+                        for(n in receive) {
+                            items.add(AlarmModel(n.title,n.contents,n.date))
+                            rvAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<NoticeDto>>, t: Throwable) {
+                }
+            })
         }
 
         binding.messageImg.setOnClickListener {
             binding.alarmImg.setImageResource(R.drawable.alarm2)
             binding.messageImg.setImageResource(R.drawable.message2)
+            retrofitService.service.getNoticeAll(memberid).enqueue(object : Callback<List<NoticeDto>> {
+                override fun onResponse(call: Call<List<NoticeDto>>, response: Response<List<NoticeDto>>) {
+                    val receive = response.body() as List<NoticeDto>
+                    if(response.isSuccessful) {
+                        for(n in receive) {
+                            items.add(AlarmModel(n.title,n.contents,n.date))
+                            rvAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<List<NoticeDto>>, t: Throwable) {
+                }
+            })
         }
 
 
