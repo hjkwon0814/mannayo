@@ -33,6 +33,8 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val edit = shared.edit()
+        edit.putString("Genesis","Genesis")
+        edit.commit()
         val nickname = shared.getString("nickname", "null")
         val id = shared.getString("id", "0")?.toLong()
         val token = shared.getString("FCMtoken", null)
