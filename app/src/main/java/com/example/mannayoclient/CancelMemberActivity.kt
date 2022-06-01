@@ -43,6 +43,7 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled= true
             alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
                 binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_1).text
+                binding.memButton.setImageResource(R.drawable.member7)
                 alertDialog.dismiss()
             }
             }
@@ -57,6 +58,7 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
             alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
                 binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_2).text
+                binding.memButton.setImageResource(R.drawable.member7)
                 alertDialog.dismiss()
             }
         }
@@ -71,6 +73,7 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
             alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
                 binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_3).text
+                binding.memButton.setImageResource(R.drawable.member7)
                 alertDialog.dismiss()
             }
         }
@@ -84,6 +87,7 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
             alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
                 binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_4).text
+                binding.memButton.setImageResource(R.drawable.member7)
                 alertDialog.dismiss()
             }
         }
@@ -97,6 +101,7 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
             alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
                 binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_5).text
+                binding.memButton.setImageResource(R.drawable.member7)
                 alertDialog.dismiss()
             }
         }

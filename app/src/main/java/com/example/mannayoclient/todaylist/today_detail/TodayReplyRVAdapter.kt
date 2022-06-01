@@ -22,6 +22,7 @@ class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.A
     //아이템 클릭
     interface ItemClick {
         fun onChatClick(view :View, position: Int)
+        fun onNickClick(view :View, position: Int)
     }
     var itemClick : ItemClick? = null
 
@@ -96,6 +97,9 @@ class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.A
                                     .setBackgroundColor(
                                         Color.parseColor("#ffffff"))
                             }
+                        }
+                        holder.itemView.findViewById<TextView>(R.id.reply_name).setOnClickListener{
+                                v -> itemClick?.onNickClick(v, position)
                         }
                     }
                 }

@@ -84,4 +84,14 @@
         app:layout_constraintEnd_toEndOf="@+id/reason"
         app:layout_constraintTop_toTopOf="@+id/reason"
         app:srcCompat="@drawable/member5" />
+
+    <ImageView
+        android:id="@+id/mem_button"
+        android:layout_width="210dp"
+        android:layout_height="82dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/member6" />
 </androidx.constraintlayout.widget.ConstraintLayout>
