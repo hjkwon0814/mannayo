@@ -67,16 +67,12 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                                 v -> itemClick?.onChatClick(v, position)
                         }
                     }
-
-
                 }
                 TodayReplyModel.reply2 -> {
                     (holder as Reply2ViewHolder).reply2_name.setText(obj.name)
                     holder.reply2_date.setText(obj.date)
                     holder.reply2.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
-
-
                 }
 
             }
