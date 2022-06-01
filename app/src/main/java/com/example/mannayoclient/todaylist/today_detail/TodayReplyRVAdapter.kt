@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 
 
-class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+    private var mSelectedItem = -1
 
     //아이템 클릭
     interface ItemClick {
@@ -53,6 +55,12 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
         return list.size
     }
 
+    fun setItem(item: ArrayList<TodayReplyModel>) {
+        list = item
+        mSelectedItem = -1
+        notifyDataSetChanged()
+    }
+
     //아이템 연결
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             val obj = list[position]
@@ -63,17 +71,15 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                     holder.reply.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
 
-                    //쪽지보내기로 이동
                     if (itemClick != null) {
                         holder.itemView.findViewById<ImageView>(R.id.chat_send).setOnClickListener {
                                 v -> itemClick?.onChatClick(v, position)
-                            if(!obj.isClicked) {
-                                obj.isClicked = true
+                            obj.isClicked = position == mSelectedItem
+                            if(obj.isClicked) {
                                 holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
                                     .setBackgroundColor(
                                         Color.parseColor("#FDF4F4"))
                             } else {
-                                obj.isClicked = false
                                 holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
                                     .setBackgroundColor(
                                         Color.parseColor("#ffffff"))
