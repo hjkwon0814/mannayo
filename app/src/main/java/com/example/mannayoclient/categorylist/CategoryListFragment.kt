@@ -49,6 +49,23 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
 
 
         val categorization = shared.getString("categorization", null)
+        if(categorization.equals("HANSIK")){
+            binding.type.text="한식"
+        }else if (categorization.equals("BUNSIK")) {
+            binding.type.text="분식"
+        }else if (categorization.equals("ILSIK")) {
+            binding.type.text="일식"
+        } else if (categorization.equals("JUNGSIK")) {
+            binding.type.text="중식"
+        }else if (categorization.equals("YANGSIK")) {
+            binding.type.text="양식"
+        }else if (categorization.equals("FASTFOOD")) {
+            binding.type.text="패스트푸드"
+        }else if (categorization.equals("CAFE_DESSERT")) {
+            binding.type.text="디저트"
+        }else if (categorization.equals("SULJIP")) {
+            binding.type.text="술집"
+        }
         val items = ArrayList<CategoryModel>()
 
 

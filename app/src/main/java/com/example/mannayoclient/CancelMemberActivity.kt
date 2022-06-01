@@ -41,6 +41,10 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<TextView>(R.id.text_5).setTextColor(Color.parseColor("#767676"))
             alertDialog.findViewById<ImageView>(R.id.member_ok).setImageResource(R.drawable.ok_fill)
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled= true
+            alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
+                binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_1).text
+                alertDialog.dismiss()
+            }
             }
 
         alertDialog.findViewById<TextView>(R.id.text_2)?.setOnClickListener{
@@ -51,6 +55,10 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<TextView>(R.id.text_5).setTextColor(Color.parseColor("#767676"))
             alertDialog.findViewById<ImageView>(R.id.member_ok).setImageResource(R.drawable.ok_fill)
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
+            alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
+                binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_2).text
+                alertDialog.dismiss()
+            }
         }
 
         alertDialog.findViewById<TextView>(R.id.text_3)?.setOnClickListener{
@@ -61,6 +69,10 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<TextView>(R.id.text_5).setTextColor(Color.parseColor("#767676"))
             alertDialog.findViewById<ImageView>(R.id.member_ok).setImageResource(R.drawable.ok_fill)
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
+            alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
+                binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_3).text
+                alertDialog.dismiss()
+            }
         }
         alertDialog.findViewById<TextView>(R.id.text_4)?.setOnClickListener{
             alertDialog.findViewById<TextView>(R.id.text_1).setTextColor(Color.parseColor("#767676"))
@@ -70,6 +82,10 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<TextView>(R.id.text_5).setTextColor(Color.parseColor("#767676"))
             alertDialog.findViewById<ImageView>(R.id.member_ok).setImageResource(R.drawable.ok_fill)
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
+            alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
+                binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_4).text
+                alertDialog.dismiss()
+            }
         }
         alertDialog.findViewById<TextView>(R.id.text_5)?.setOnClickListener{
             alertDialog.findViewById<TextView>(R.id.text_1).setTextColor(Color.parseColor("#767676"))
@@ -79,6 +95,14 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<TextView>(R.id.text_5).setTextColor(Color.parseColor("#ff8b83"))
             alertDialog.findViewById<ImageView>(R.id.member_ok).setImageResource(R.drawable.ok_fill)
             alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
+            alertDialog.findViewById<ImageView>(R.id.member_ok)?.setOnClickListener{
+                binding.reason.text = alertDialog.findViewById<TextView>(R.id.text_5).text
+                alertDialog.dismiss()
+            }
+        }
+
+        alertDialog.findViewById<ImageView>(R.id.member_out)?.setOnClickListener{
+            alertDialog.dismiss()
         }
         }
 }

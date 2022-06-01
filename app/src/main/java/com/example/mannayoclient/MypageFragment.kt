@@ -37,6 +37,10 @@ class MypageFragment : Fragment(R.layout.mypage_frag) {
             startActivity(Intent(requireContext(), CancelMemberActivity::class.java))
         }
 
+        binding.imageView105.setOnClickListener {
+            startActivity(Intent(requireContext(), CancelMemberActivity::class.java))
+        }
+
         binding.textView61.setOnClickListener {
             retrofitService.service.signout(memberid).enqueue(object : Callback<ReceiveOK> {
                 override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
