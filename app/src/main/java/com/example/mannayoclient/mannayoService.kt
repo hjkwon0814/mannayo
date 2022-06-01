@@ -110,4 +110,7 @@ interface mannayoService {
 
     @GET("/notice")
     fun getNoticeAll(@Query("memberid") memberid: Long?) : Call<List<NoticeDto>>
+
+    @POST("/signout")
+    fun signout(@Query("memberid") memberid: Long?) : Call<ReceiveOK>
 }
