@@ -12,6 +12,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginTop="12dp"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="@+id/reply"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/component_92" />

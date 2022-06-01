@@ -10,7 +10,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        //splash화면 3초간 띄우기
+        //splash화면 2초간 띄우기
         Handler().postDelayed({
             startActivity(Intent(this, SplashActivity2::class.java))
             finish()

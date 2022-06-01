@@ -37,11 +37,24 @@
         app:layout_constraintTop_toTopOf="@+id/imageView89"
         app:srcCompat="@drawable/send_chat_button" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="초코라떼"
+        android:textColor="#ff8b83"
+        android:textSize="17sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView102"
+        app:layout_constraintStart_toEndOf="@+id/imageView102"
+        app:layout_constraintTop_toTopOf="@+id/imageView102" />
+
     <EditText
         android:id="@+id/chat_edittext"
         android:layout_width="312dp"
         android:layout_height="400dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="18dp"
         android:background="#ffffff"
         android:ems="10"
         android:fontFamily="@font/noto_sans_kr"
@@ -53,6 +66,15 @@
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView89" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView102" />
+
+    <ImageView
+        android:id="@+id/imageView102"
+        android:layout_width="26dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="@+id/chat_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/imageView87"
+        app:srcCompat="@drawable/to" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

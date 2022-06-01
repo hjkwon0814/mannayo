@@ -63,8 +63,12 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
             override fun onCheckBoxClick(view: View, todayVoteModel: TodayVoteModel) {
                 TODO("Not yet implemented")
             }
-
         })
+
+        //투표하기 버튼
+        binding.voteGo.setOnClickListener{
+            binding.tVoteGoText.text = "투표 완료"
+        }
 
 
 
@@ -79,7 +83,7 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
         rv2.adapter = adpater
 
 
-        //쪽지보내기로 이동
+
         adpater.itemClick = object : TodayReplyRVAdapter.ItemClick {
             override fun onChatClick(view: View, position: Int) {
                 TODO("Not yet implemented")
