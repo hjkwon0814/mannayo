@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.categorylist.CategoryActivity
 import com.example.mannayoclient.databinding.MypageFragBinding
 import com.example.mannayoclient.databinding.Pw3FragBinding
 
@@ -18,6 +19,10 @@ class MypageFragment  : Fragment(R.layout.mypage_frag) {
 
         binding.information.setOnClickListener {
             findNavController().navigate(R.id.action_mypageFragment_to_mypage2Fragment)
+        }
+
+        binding.member.setOnClickListener{
+            startActivity(Intent(requireContext(), CancelMemberActivity::class.java))
         }
 
 
