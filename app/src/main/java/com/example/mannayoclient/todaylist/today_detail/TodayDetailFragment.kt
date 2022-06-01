@@ -185,9 +185,9 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
                     val receive = response.body() as List<commentDto>
                     for(c : commentDto in receive) {
                         if(c.depth == 1) {
-                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id))
+                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id,false,0L))
                         }else {
-                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id))
+                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id,false,0L))
                         }
                     }
                 }

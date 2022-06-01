@@ -105,6 +105,9 @@ interface mannayoService {
     @POST("/comment/inputReply")
     fun setReply1(@Query("memberid") memberid : Long?, @Query("boardid") boardid : Long?, @Query("contents") contents: String) : Call<ReceiveOK>
 
+    @POST("/comment/inputReplyOfReply")
+    fun setReply2(@Query("memberid") memberid : Long?, @Query("commentid") commentid : Long?, @Query("contents") contents: String) : Call<ReceiveOK>
+
     @POST("/like")
     fun setLike(@Query("memberid") memberid: Long?, @Query("boardid") boardId: Long?) : Call<ReceiveOK>
 

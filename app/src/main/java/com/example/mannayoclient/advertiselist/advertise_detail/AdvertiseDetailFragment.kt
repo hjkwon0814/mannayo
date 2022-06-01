@@ -52,6 +52,7 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
         val writeid = shared.getString("writerid",null)?.toLong()
         val memberid = shared.getString("id", null)?.toLong()
         val comment = shared.getString("commentCount", null)?.toLong()
+        var commentid : Long? = 0
 
         val rv: RecyclerView = binding.dVoteRecyclerView
         val items = ArrayList<TodayVoteModel>()
@@ -74,12 +75,28 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
             override fun onChatClick(view: View, position: Int) {
 
                 if(list[position].isClicked) {
-                    binding.replyEdit.hint = "댓글을 입력하세요."
-                }else {
-                    editor.putString("depth", "2")
+                    println(1)
+                    editor.putString("depth", "1")
                     editor.putString("commentid", list[position].id.toString())
                     editor.commit()
-                    binding.replyEdit.hint = "대댓글을 입력하세요."
+                    commentid = shared.getString("commentid",null)?.toLong()
+                    Toast.makeText(activity,commentid.toString(),Toast.LENGTH_SHORT).show()
+                    binding.replyEdit.hint = "댓글을 입력하세요."
+                }else {
+                    if(list[position].count >= 1) {
+                        println(2)
+                        commentid = shared.getString("commentid", null)?.toLong()
+                        Toast.makeText(activity, commentid.toString(), Toast.LENGTH_SHORT).show()
+                        binding.replyEdit.hint = "대댓글을 입력하세요."
+                    }else {
+                        println(3)
+                        editor.putString("depth", "2")
+                        editor.putString("commentid", list[position].id.toString())
+                        editor.commit()
+                        commentid = shared.getString("commentid", null)?.toLong()
+                        Toast.makeText(activity, commentid.toString(), Toast.LENGTH_SHORT).show()
+                        binding.replyEdit.hint = "대댓글을 입력하세요."
+                    }
                 }
             }
         }
@@ -200,11 +217,11 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                     val receive = response.body() as List<commentDto>
                     for(c : commentDto in receive) {
                         if(c.depth == 1) {
-                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id))
+                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id,false,0L))
                             binding.textView71.text = "댓글(" + comment.toString() + ")"
                             adpater.notifyDataSetChanged()
                         }else {
-                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id))
+                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id,false,0L))
                             binding.textView71.text = "댓글(" + comment.toString() + ")"
                             adpater.notifyDataSetChanged()
                         }
@@ -219,20 +236,41 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
 
         binding.SendReply.setOnClickListener {
             depth = shared.getString("depth", null)?.toLong()
-            retrofitService.service.setReply1(memberid, boardid, binding.replyEdit.text.toString()).enqueue(object : Callback<ReceiveOK> {
-                override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
-                    if(response.isSuccessful) {
-                        activity.finish()
-                        activity.overridePendingTransition(0,0)
-                        val intent = activity.intent
-                        startActivity(intent)
-                        activity.overridePendingTransition(0,0)
+            println("depth = " + depth)
+            if(depth == 1L) {
+                retrofitService.service.setReply1(memberid,
+                    boardid,
+                    binding.replyEdit.text.toString()).enqueue(object : Callback<ReceiveOK> {
+                    override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                        if (response.isSuccessful) {
+                            activity.finish()
+                            activity.overridePendingTransition(0, 0)
+                            val intent = activity.intent
+                            startActivity(intent)
+                            activity.overridePendingTransition(0, 0)
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
-                }
-            })
+                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                    }
+                })
+            }else if(depth == 2L) {
+                retrofitService.service.setReply2(memberid,commentid,binding.replyEdit.text.toString()).enqueue(object : Callback<ReceiveOK> {
+                    override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                        if(response.isSuccessful) {
+                            activity.finish()
+                            activity.overridePendingTransition(0, 0)
+                            val intent = activity.intent
+                            startActivity(intent)
+                            activity.overridePendingTransition(0, 0)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+                })
+            }
         }
 
 
