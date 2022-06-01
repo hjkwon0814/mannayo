@@ -214,7 +214,6 @@ class JoinFragment : Fragment(R.layout.join_frag) {
                 binding.view3.visibility = View.GONE
                 binding.textView8.visibility = View.GONE
 
-
             }else  {
                 binding.view2.visibility = View.GONE
                 binding.textView6.visibility = View.GONE
@@ -264,6 +263,7 @@ class JoinFragment : Fragment(R.layout.join_frag) {
 
                 binding.view3.visibility = View.GONE
                 binding.textView8.visibility = View.GONE
+
                 retrofitService.service.signUp(request).enqueue(object : Callback<resSignUpData> {
 
                     override fun onResponse(

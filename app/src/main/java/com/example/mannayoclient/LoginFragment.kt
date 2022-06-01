@@ -71,7 +71,6 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
         binding.loginSubmit.setOnClickListener {
             login(retrofitService.service)
-
         }
 
     }

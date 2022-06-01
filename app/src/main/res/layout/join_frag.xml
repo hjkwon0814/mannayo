@@ -175,14 +175,14 @@
 
         <ImageView
             android:id="@+id/join_submit"
-            android:layout_width="314dp"
-            android:layout_height="57dp"
+            android:layout_width="300dp"
+            android:layout_height="82dp"
             android:layout_marginTop="40dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextNumber"
-            app:srcCompat="@drawable/component_49" />
+            app:srcCompat="@drawable/join_false" />
 
         <ImageView
             android:id="@+id/dateclick"

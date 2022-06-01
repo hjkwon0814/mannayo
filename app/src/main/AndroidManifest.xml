@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mannayoclient"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".AlarmSetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CancelMemberActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SendChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MypageActivity"
+            android:exported="false" />
         <activity
             android:name=".MapActivity"
             android:exported="false" />
@@ -58,19 +82,14 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true"></activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <service android:name=".MyFirebaseMessagingService"
+        <service
+            android:name=".MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 

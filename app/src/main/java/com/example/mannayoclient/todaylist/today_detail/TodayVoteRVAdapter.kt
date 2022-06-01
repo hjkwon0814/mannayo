@@ -10,6 +10,7 @@ import com.example.mannayoclient.R
 
 class TodayVoteRVAdapter  (val items : ArrayList<TodayVoteModel>) : RecyclerView.Adapter<TodayVoteRVAdapter.Viewholder>(){
 
+
     //아이템 가져오기
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -21,7 +22,6 @@ class TodayVoteRVAdapter  (val items : ArrayList<TodayVoteModel>) : RecyclerView
 
     //아이템 연결
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
-
         holder.bindItems(items[position])
     }
 

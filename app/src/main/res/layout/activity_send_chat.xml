@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_height="match_parent"
+    tools:context=".SendChatActivity">
+
+    <ImageView
+        android:id="@+id/imageView87"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close_round" />
+
+    <ImageView
+        android:id="@+id/imageView89"
+        android:layout_width="108dp"
+        android:layout_height="22dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView87"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView87"
+        app:srcCompat="@drawable/send_chat_title" />
+
+    <ImageView
+        android:id="@+id/chat_button"
+        android:layout_width="66dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView89"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView89"
+        app:srcCompat="@drawable/send_chat_button" />
+
+    <EditText
+        android:id="@+id/chat_edittext"
+        android:layout_width="312dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="50dp"
+        android:background="#ffffff"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr"
+        android:gravity="top"
+        android:hint="내용을 입력하세요. (최대 20줄까지 작성 가능)"
+        android:inputType="textMultiLine"
+        android:textColor="#191919"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView89" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
