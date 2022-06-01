@@ -77,22 +77,23 @@ class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.A
                                 v -> itemClick?.onChatClick(v, position)
                             var count = 0
                             for(i in list) {
+                                i.count = 0
                                 if(i.isClicked) {
                                     count +=1
                                 }
                             }
+                            println(4)
                             if(count >= 1) {
-                                list[position].isClicked = true
-                                list[position].count = count.toLong()
+                                for(i in list) {
+                                    i.count = 1
+                                }
                             }
-
-                            if(!obj.isClicked) {
-                                obj.isClicked = true
+                            println(5)
+                            if(obj.isClicked) {
                                 holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
                                     .setBackgroundColor(
                                         Color.parseColor("#FDF4F4"))
                             } else {
-                                obj.isClicked = false
                                 holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
                                     .setBackgroundColor(
                                         Color.parseColor("#ffffff"))
