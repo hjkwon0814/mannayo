@@ -55,6 +55,17 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
 
         rv.layoutManager = LinearLayoutManager(requireContext())
 
+        // set item
+        rvAdapter.setItem(ArrayList())
+
+        // click listener
+        rvAdapter.setItemClickListener(object :TodayVoteRVAdapter.ItemClick {
+            override fun onCheckBoxClick(view: View, todayVoteModel: TodayVoteModel) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
 
 
         //Reply
