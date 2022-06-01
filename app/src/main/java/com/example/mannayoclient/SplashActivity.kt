@@ -14,10 +14,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+
         sharedPreferences = this.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val genesis = sharedPreferences.getString("Genesis",null)
         if(!genesis.equals("Genesis")) {
-            //splash화면 3초간 띄우기
+            //splash화면 2초간 띄우기
             Handler().postDelayed({
                 startActivity(Intent(this, SplashActivity2::class.java))
                 finish()
@@ -28,5 +29,6 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }, 2000)
         }
+
     }
 }

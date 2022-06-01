@@ -61,6 +61,24 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
 
         rv.layoutManager = LinearLayoutManager(requireContext())
 
+        // set item
+        rvAdapter.setItem(ArrayList())
+
+        // click listener
+        rvAdapter.setItemClickListener(object :TodayVoteRVAdapter.ItemClick {
+            override fun onCheckBoxClick(view: View, todayVoteModel: TodayVoteModel) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        //투표하기 버튼
+        binding.voteGo.setOnClickListener{
+            binding.voteGoText.text = "투표 완료"
+        }
+
+
+
         //Reply
         val rv2: RecyclerView = binding.replyRecyclerView
 
