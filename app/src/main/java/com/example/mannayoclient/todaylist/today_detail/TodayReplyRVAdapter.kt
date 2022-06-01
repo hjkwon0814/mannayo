@@ -74,13 +74,6 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                     holder.reply2.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
 
-                    //쪽지보내기로 이동
-                    if (itemClick != null) {
-                        holder.itemView.findViewById<ImageView>(R.id.chat_send2).setOnClickListener {
-                                v -> itemClick?.oncChatClick(v, position)
-                        }
-                    }
-
 
                 }
 

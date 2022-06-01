@@ -6,7 +6,8 @@ data class TodayReplyModel (
         val type: Int,
         val name: String?,
         val date: String?,
-        val reply: String?
+        val reply: String?,
+        val id : Long
         //val image: Bitmap,
 ) {
         companion object {

@@ -71,7 +71,7 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
         //쪽지보내기로 이동
         adpater.itemClick = object : TodayReplyRVAdapter.ItemClick {
             override fun oncChatClick(view: View, position: Int) {
-                startActivity(Intent(requireContext(), SendChatActivity::class.java))
+
             }
         }
 
@@ -173,9 +173,9 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
                     val receive = response.body() as List<commentDto>
                     for(c : commentDto in receive) {
                         if(c.depth == 1) {
-                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents))
+                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id))
                         }else {
-                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents))
+                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id))
                         }
                     }
                 }

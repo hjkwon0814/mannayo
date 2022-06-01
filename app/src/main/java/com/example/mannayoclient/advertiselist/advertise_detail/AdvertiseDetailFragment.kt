@@ -2,9 +2,11 @@ package com.example.mannayoclient.advertiselist.advertise_detail
 
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,6 +44,10 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
             .bind(view)
         activity = context as AdvertiseActivity
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val editor = shared.edit()
+        editor.putString("depth","1")
+        editor.commit()
+        val depth = shared.getString("depth", null)?.toLong()
         val boardid = shared.getString("boardid", null)?.toLong()
         val writeid = shared.getString("writerid",null)?.toLong()
         val memberid = shared.getString("id", null)?.toLong()
@@ -63,6 +69,15 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
         val adpater = TodayReplyRVAdapter(list)
         rv2.layoutManager = LinearLayoutManager(requireContext())
         rv2.adapter = adpater
+
+        adpater.itemClick = object : TodayReplyRVAdapter.ItemClick {
+            override fun oncChatClick(view: View, position: Int) {
+                editor.putString("depth", "2")
+                editor.putString("commentid", list[position].id.toString())
+                editor.commit()
+                view.findViewById<ConstraintLayout>(R.id.replyconst).setBackgroundColor(Color.parseColor("#80fdf4f4"))
+            }
+        }
 
         if(!(boardid==memberid)) {
             binding.correction.visibility = View.GONE
@@ -180,11 +195,11 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                     val receive = response.body() as List<commentDto>
                     for(c : commentDto in receive) {
                         if(c.depth == 1) {
-                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents))
+                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id))
                             binding.textView71.text = "댓글(" + comment.toString() + ")"
                             adpater.notifyDataSetChanged()
                         }else {
-                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents))
+                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id))
                             binding.textView71.text = "댓글(" + comment.toString() + ")"
                             adpater.notifyDataSetChanged()
                         }
