@@ -47,7 +47,7 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
         val editor = shared.edit()
         editor.putString("depth","1")
         editor.commit()
-        val depth = shared.getString("depth", null)?.toLong()
+        var depth = shared.getString("depth", null)?.toLong()
         val boardid = shared.getString("boardid", null)?.toLong()
         val writeid = shared.getString("writerid",null)?.toLong()
         val memberid = shared.getString("id", null)?.toLong()
@@ -218,6 +218,7 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
         }
 
         binding.SendReply.setOnClickListener {
+            depth = shared.getString("depth", null)?.toLong()
             retrofitService.service.setReply1(memberid, boardid, binding.replyEdit.text.toString()).enqueue(object : Callback<ReceiveOK> {
                 override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
                     if(response.isSuccessful) {
