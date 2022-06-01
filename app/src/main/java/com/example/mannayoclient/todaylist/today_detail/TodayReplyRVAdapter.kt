@@ -67,8 +67,16 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                     if (itemClick != null) {
                         holder.itemView.findViewById<ImageView>(R.id.chat_send).setOnClickListener {
                                 v -> itemClick?.onChatClick(v, position)
-                            holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst).setBackgroundColor(
-                                Color.parseColor("#80fdf4f4"))
+                            if(!obj.isClicked) {
+                                obj.isClicked = true
+                                holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
+                                    .setBackgroundColor(
+                                        Color.parseColor("#80fdf4f4"))
+                            } else {
+                                holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
+                                    .setBackgroundColor(
+                                        Color.parseColor("#ffffff"))
+                            }
                         }
                     }
 
