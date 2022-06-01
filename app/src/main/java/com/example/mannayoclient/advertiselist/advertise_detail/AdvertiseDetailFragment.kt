@@ -76,6 +76,7 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
 
                 if(list[position].isClicked) {
                     println(1)
+                    list[position].isClicked = false
                     editor.putString("depth", "1")
                     editor.putString("commentid", list[position].id.toString())
                     editor.commit()
@@ -90,6 +91,7 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                         binding.replyEdit.hint = "대댓글을 입력하세요."
                     }else {
                         println(3)
+                        list[position].isClicked = true
                         editor.putString("depth", "2")
                         editor.putString("commentid", list[position].id.toString())
                         editor.commit()
