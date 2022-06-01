@@ -71,7 +71,7 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
         rv2.adapter = adpater
 
         adpater.itemClick = object : TodayReplyRVAdapter.ItemClick {
-            override fun oncChatClick(view: View, position: Int) {
+            override fun onChatClick(view: View, position: Int) {
                 editor.putString("depth", "2")
                 editor.putString("commentid", list[position].id.toString())
                 editor.commit()
