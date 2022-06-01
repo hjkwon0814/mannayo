@@ -48,15 +48,17 @@
         android:layout_width="312dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/noto_sans_kr"
+        android:text="소시지 오므라이스 맛있어요!!"
         android:textColor="#191919"
         android:textSize="13sp"
+        android:paddingEnd="25dp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reply_name"
-        android:text="소시지 오므라이스 맛있어요!!" />
+        app:layout_constraintTop_toBottomOf="@+id/reply_name" />
 
     <View
+        android:id="@+id/view14"
         android:layout_width="wrap_content"
         android:layout_height="0.8dp"
         android:layout_marginTop="8dp"
@@ -64,5 +66,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reply" />
+
+    <ImageView
+        android:id="@+id/chat_send"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="9dp"
+        app:layout_constraintBottom_toBottomOf="@+id/reply_date"
+        app:layout_constraintEnd_toStartOf="@+id/reply_date"
+        app:layout_constraintTop_toTopOf="@+id/reply_date"
+        app:srcCompat="@drawable/chat_alt_add" />
+
+    <ImageView
+        android:id="@+id/chat_delete"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/reply"
+        app:layout_constraintEnd_toEndOf="@+id/reply"
+        app:layout_constraintTop_toTopOf="@+id/reply"
+        app:srcCompat="@drawable/close_ring_duotone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

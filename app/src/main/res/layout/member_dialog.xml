@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView102"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="49dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView104"
+        app:layout_constraintEnd_toStartOf="@+id/imageView104"
+        app:srcCompat="@drawable/close_round" />
+
+    <ImageView
+        android:id="@+id/imageView104"
+        android:layout_width="110dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/member_select" />
+
+    <View
+        android:id="@+id/view21"
+        android:layout_width="wrap_content"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="19dp"
+        android:background="#dbdbdb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView104" />
+
+    <TextView
+        android:id="@+id/textView70"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="자주 사용하지 않아서"
+        android:textColor="#767676"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/imageView102"
+        app:layout_constraintTop_toBottomOf="@+id/view21" />
+
+
+    <TextView
+        android:id="@+id/textView72"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:text="앱 용량이 커서"
+        android:textColor="#767676"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/textView70"
+        app:layout_constraintTop_toBottomOf="@+id/textView70" />
+
+    <TextView
+        android:id="@+id/textView73"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:text="개인정보가 걱정되어서"
+        android:textColor="#767676"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/textView72"
+        app:layout_constraintTop_toBottomOf="@+id/textView72" />
+
+    <TextView
+        android:id="@+id/textView74"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:text="UI/UX가 불편해서"
+        android:textColor="#767676"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/textView73"
+        app:layout_constraintTop_toBottomOf="@+id/textView73" />
+
+    <TextView
+        android:id="@+id/textView75"
+        android:layout_width="258dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr"
+        android:text="광고메세지 또는 알림이 많이 와서"
+        android:textColor="#767676"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/textView74"
+        app:layout_constraintTop_toBottomOf="@+id/textView74" />
+
+    <ImageView
+        android:id="@+id/imageView105"
+        android:layout_width="24dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView104"
+        app:layout_constraintTop_toBottomOf="@+id/textView75"
+        app:srcCompat="@drawable/ok" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

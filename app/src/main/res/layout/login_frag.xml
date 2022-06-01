@@ -155,14 +155,14 @@
 
     <ImageView
         android:id="@+id/login_submit"
-        android:layout_width="314dp"
-        android:layout_height="57dp"
-        android:scaleType="centerCrop"
+        android:layout_width="318dp"
+        android:layout_height="82dp"
         android:layout_marginTop="30dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_state"
-        app:srcCompat="@drawable/component_11" />
+        app:srcCompat="@drawable/main_login" />
 
     <ImageView
         android:id="@+id/google_text"

@@ -35,7 +35,7 @@
         android:gravity="center"
         android:padding="3dp"
         android:text="비밀번호 찾기"
-        android:textColor="#ffa463"
+        android:textColor="#ff8b83"
         android:textSize="14sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,14 +44,14 @@
 
     <ImageView
         android:id="@+id/login_bt"
-        android:layout_width="314dp"
-        android:layout_height="57dp"
+        android:layout_width="318dp"
+        android:layout_height="82dp"
         android:layout_marginTop="40dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView60"
-        app:srcCompat="@drawable/component_36" />
+        app:srcCompat="@drawable/login_go" />
 
     <ImageView
         android:id="@+id/imageView60"

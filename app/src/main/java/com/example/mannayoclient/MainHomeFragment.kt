@@ -21,7 +21,6 @@ import retrofit2.Response
 
 class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
     lateinit var binding: MainhomeFragBinding
-    lateinit var binding2: CategoryListFragment
     lateinit var activity: SecondActivity
     val coroutineScope = CoroutineScope(Dispatchers.Main)
 
@@ -128,7 +127,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
         binding.mypage.setOnClickListener() {
-            findNavController().navigate(R.id.action_mainHomeFragment_to_mypageFragment)
+            startActivity(Intent(requireContext(),MypageActivity::class.java))
         }
 
     }

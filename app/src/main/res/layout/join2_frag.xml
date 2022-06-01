@@ -29,13 +29,13 @@
 
     <ImageView
         android:id="@+id/join_sumbit"
-        android:layout_width="313dp"
-        android:layout_height="57dp"
+        android:layout_width="318dp"
+        android:layout_height="82dp"
         android:layout_marginTop="32dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/join_comment"
-        app:srcCompat="@drawable/component_7" />
+        app:srcCompat="@drawable/login_go" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@
         android:fontFamily="@font/noto_sans_kr_medium"
         android:textStyle="normal"
         android:textSize="14sp"
-        android:textColor="#ffa463"
+        android:textColor="#ff8b83"
         android:gravity="center"
         android:padding="3dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/pwbutton"
@@ -83,14 +83,14 @@
 
     <ImageView
         android:id="@+id/join_sumbit"
-        android:layout_width="314dp"
-        android:layout_height="57dp"
+        android:layout_width="318dp"
+        android:layout_height="82dp"
         android:layout_marginTop="32dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginEmail"
-        app:srcCompat="@drawable/component_7" />
+        app:srcCompat="@drawable/login_go" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

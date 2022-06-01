@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,14 @@ import com.example.mannayoclient.R
 
 
 class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+    //아이템 클릭
+    interface ItemClick {
+        fun oncChatClick(view :View, position: Int)
+    }
+    var itemClick : ItemClick? = null
+
+
 
     //아이템 가져오기
     override fun onCreateViewHolder(
@@ -50,6 +59,13 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                     holder.reply.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
 
+                    //쪽지보내기로 이동
+                    if (itemClick != null) {
+                        holder.itemView.findViewById<ImageView>(R.id.chat_send).setOnClickListener {
+                                v -> itemClick?.oncChatClick(v, position)
+                        }
+                    }
+
 
                 }
                 TodayReplyModel.reply2 -> {
@@ -57,6 +73,13 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                     holder.reply2_date.setText(obj.date)
                     holder.reply2.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
+
+                    //쪽지보내기로 이동
+                    if (itemClick != null) {
+                        holder.itemView.findViewById<ImageView>(R.id.chat_send2).setOnClickListener {
+                                v -> itemClick?.oncChatClick(v, position)
+                        }
+                    }
 
 
                 }

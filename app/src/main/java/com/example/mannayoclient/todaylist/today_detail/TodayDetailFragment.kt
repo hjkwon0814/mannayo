@@ -1,6 +1,7 @@
 package com.example.mannayoclient.todaylist.today_detail
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
@@ -9,11 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
+import com.example.mannayoclient.SendChatActivity
 import com.example.mannayoclient.advertiselist.AdvertiseActivity
+import com.example.mannayoclient.categorylist.CategoryRVAdapter
 import com.example.mannayoclient.databinding.TodaydetailFragBinding
 import com.example.mannayoclient.dto.BoardResponseDto
 import com.example.mannayoclient.dto.VoteResponseDto
 import com.example.mannayoclient.dto.commentDto
+import com.example.mannayoclient.mainmenulist.MainStoreActivity
 import com.example.mannayoclient.retrofitService
 import com.example.mannayoclient.todaylist.TodayActivity
 import kotlinx.coroutines.CoroutineScope
@@ -62,6 +66,14 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
         val adpater = TodayReplyRVAdapter(list)
         rv2.layoutManager = LinearLayoutManager(requireContext())
         rv2.adapter = adpater
+
+
+        //쪽지보내기로 이동
+        adpater.itemClick = object : TodayReplyRVAdapter.ItemClick {
+            override fun oncChatClick(view: View, position: Int) {
+                startActivity(Intent(requireContext(), SendChatActivity::class.java))
+            }
+        }
 
         retrofitService.service.getBoard(boardid).enqueue(object : Callback<BoardResponseDto> {
             override fun onResponse(

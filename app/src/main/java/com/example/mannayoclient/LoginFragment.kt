@@ -33,8 +33,6 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         binding = LoginFragBinding.bind(view)
 
 
-
-
         sharedPreferences = mainActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
@@ -71,7 +69,6 @@ class LoginFragment : Fragment(R.layout.login_frag) {
 
         binding.loginSubmit.setOnClickListener {
             login(retrofitService.service)
-
         }
 
     }
@@ -81,7 +78,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
             .enqueue(object : Callback<ReceiveLoginOK> {
                 override fun onResponse(
                     call: Call<ReceiveLoginOK>,
-                    response: Response<ReceiveLoginOK>
+                    response: Response<ReceiveLoginOK>,
                 ) {
                     val receive = response.body() as ReceiveLoginOK
                     if (response.isSuccessful && receive.success) {
@@ -123,7 +120,7 @@ class LoginFragment : Fragment(R.layout.login_frag) {
             .enqueue(object : Callback<ReceiveLoginOK> {
                 override fun onResponse(
                     call: Call<ReceiveLoginOK>,
-                    response: Response<ReceiveLoginOK>
+                    response: Response<ReceiveLoginOK>,
                 ) {
                     val receive = response.body() as ReceiveLoginOK
                     if (response.isSuccessful && receive.success) {
