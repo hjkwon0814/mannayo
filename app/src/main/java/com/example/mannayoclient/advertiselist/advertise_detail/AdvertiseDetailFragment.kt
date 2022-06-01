@@ -119,6 +119,10 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                     }
                 }
             }
+
+            override fun onNickClick(view: View, position: Int) {
+                TODO("Not yet implemented")
+            }
         }
 
         if(!(boardid==memberid)) {

@@ -89,6 +89,10 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
                 TODO("Not yet implemented")
             }
 
+            override fun onNickClick(view: View, position: Int) {
+                TODO("Not yet implemented")
+            }
+
         }
 
         retrofitService.service.getBoard(boardid).enqueue(object : Callback<BoardResponseDto> {
