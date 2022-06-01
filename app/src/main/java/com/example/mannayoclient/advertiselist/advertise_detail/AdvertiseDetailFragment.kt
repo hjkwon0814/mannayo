@@ -75,7 +75,6 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                 editor.putString("depth", "2")
                 editor.putString("commentid", list[position].id.toString())
                 editor.commit()
-                view.findViewById<ConstraintLayout>(R.id.replyconst).setBackgroundColor(Color.parseColor("#80fdf4f4"))
             }
         }
 
