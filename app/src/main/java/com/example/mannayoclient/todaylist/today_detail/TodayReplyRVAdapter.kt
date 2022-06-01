@@ -71,7 +71,7 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                                 obj.isClicked = true
                                 holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
                                     .setBackgroundColor(
-                                        Color.parseColor("#80fdf4f4"))
+                                        Color.parseColor("#FDF4F4"))
                             } else {
                                 obj.isClicked = false
                                 holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
