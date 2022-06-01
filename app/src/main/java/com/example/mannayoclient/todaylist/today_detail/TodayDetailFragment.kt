@@ -70,8 +70,9 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
 
         //쪽지보내기로 이동
         adpater.itemClick = object : TodayReplyRVAdapter.ItemClick {
-            override fun oncChatClick(view: View, position: Int) {
-                startActivity(Intent(requireContext(), SendChatActivity::class.java))
+            override fun onChatClick(view: View, position: Int) {
+
+
             }
         }
 

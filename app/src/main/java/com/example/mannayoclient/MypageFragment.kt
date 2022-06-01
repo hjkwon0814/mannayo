@@ -7,9 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.mannayoclient.categorylist.CategoryActivity
 import com.example.mannayoclient.databinding.MypageFragBinding
-import com.example.mannayoclient.databinding.Pw3FragBinding
 import com.example.mannayoclient.dto.ReceiveOK
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,6 +47,7 @@ class MypageFragment : Fragment(R.layout.mypage_frag) {
                         editor.putString("id", null)
                         editor.putString("nickname", null)
                         editor.commit()
+                        startActivity(Intent(requireContext(), MainActivity::class.java))
                         Toast.makeText(activity, receive.response, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -59,7 +58,6 @@ class MypageFragment : Fragment(R.layout.mypage_frag) {
             })
 
         }
-
 
     }
 }

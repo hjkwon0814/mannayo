@@ -40,7 +40,7 @@ class CancelMemberActivity : AppCompatActivity() {
             alertDialog.findViewById<TextView>(R.id.text_4).setTextColor(Color.parseColor("#767676"))
             alertDialog.findViewById<TextView>(R.id.text_5).setTextColor(Color.parseColor("#767676"))
             alertDialog.findViewById<ImageView>(R.id.member_ok).setImageResource(R.drawable.ok_fill)
-            alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled=true
+            alertDialog.findViewById<ImageView>(R.id.member_ok).isEnabled= true
             }
 
         alertDialog.findViewById<TextView>(R.id.text_2)?.setOnClickListener{

@@ -77,16 +77,6 @@
         app:srcCompat="@drawable/reply" />
 
     <ImageView
-        android:id="@+id/chat_send2"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="9dp"
-        app:layout_constraintBottom_toBottomOf="@+id/reply2_date"
-        app:layout_constraintEnd_toStartOf="@+id/reply2_date"
-        app:layout_constraintTop_toTopOf="@+id/reply2_date"
-        app:srcCompat="@drawable/chat_alt_add" />
-
-    <ImageView
         android:id="@+id/chat_delete2"
         android:layout_width="20dp"
         android:layout_height="20dp"
