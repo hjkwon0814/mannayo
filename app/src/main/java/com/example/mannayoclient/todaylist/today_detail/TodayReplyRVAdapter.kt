@@ -1,12 +1,14 @@
 package com.example.mannayoclient.todaylist.today_detail
 
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.Constraints
 import androidx.recyclerview.widget.RecyclerView
@@ -65,6 +67,16 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                     if (itemClick != null) {
                         holder.itemView.findViewById<ImageView>(R.id.chat_send).setOnClickListener {
                                 v -> itemClick?.onChatClick(v, position)
+                            if(!obj.isClicked) {
+                                obj.isClicked = true
+                                holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
+                                    .setBackgroundColor(
+                                        Color.parseColor("#80fdf4f4"))
+                            } else {
+                                holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
+                                    .setBackgroundColor(
+                                        Color.parseColor("#ffffff"))
+                            }
                         }
                     }
                 }
