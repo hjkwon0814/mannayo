@@ -57,7 +57,7 @@ class MainHomeFragment : Fragment(R.layout.mainhome_frag) {
         }
 
         binding.Bunsik.setOnClickListener() {
-            edit.putString("categorizion", "BUNSIK")
+            edit.putString("categorization", "BUNSIK")
             edit.commit()
             startActivity(Intent(requireContext(),CategoryActivity::class.java))
         }
