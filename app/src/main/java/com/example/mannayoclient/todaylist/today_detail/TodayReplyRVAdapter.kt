@@ -71,7 +71,7 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                                 obj.isClicked = true
                                 holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
                                     .setBackgroundColor(
-                                        Color.parseColor("#80fdf4f4"))
+                                        Color.parseColor("#FDF4F4"))
                             } else {
                                 obj.isClicked = false
                                 holder.itemView.findViewById<ConstraintLayout>(R.id.replyconst)
@@ -80,16 +80,12 @@ class TodayReplyRVAdapter(private val list: ArrayList<TodayReplyModel>) : Recycl
                             }
                         }
                     }
-
-
                 }
                 TodayReplyModel.reply2 -> {
                     (holder as Reply2ViewHolder).reply2_name.setText(obj.name)
                     holder.reply2_date.setText(obj.date)
                     holder.reply2.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
-
-
                 }
 
             }
