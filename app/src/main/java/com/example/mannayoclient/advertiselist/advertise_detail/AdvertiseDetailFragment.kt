@@ -72,9 +72,15 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
 
         adpater.itemClick = object : TodayReplyRVAdapter.ItemClick {
             override fun onChatClick(view: View, position: Int) {
-                editor.putString("depth", "2")
-                editor.putString("commentid", list[position].id.toString())
-                editor.commit()
+
+                if(list[position].isClicked) {
+                    binding.replyEdit.hint = "댓글을 입력하세요."
+                }else {
+                    editor.putString("depth", "2")
+                    editor.putString("commentid", list[position].id.toString())
+                    editor.commit()
+                    binding.replyEdit.hint = "대댓글을 입력하세요."
+                }
             }
         }
 
