@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mannayoclient.categorylist.CategoryActivity
 import com.example.mannayoclient.databinding.MypageFragBinding
 import com.example.mannayoclient.databinding.Pw3FragBinding
 import com.example.mannayoclient.dto.ReceiveOK
@@ -14,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MypageFragment  : Fragment(R.layout.mypage_frag) {
+class MypageFragment : Fragment(R.layout.mypage_frag) {
     lateinit var binding: MypageFragBinding
     lateinit var activity: MypageActivity
 
@@ -33,11 +34,16 @@ class MypageFragment  : Fragment(R.layout.mypage_frag) {
             findNavController().navigate(R.id.action_mypageFragment_to_mypage2Fragment)
         }
 
+
+        binding.member.setOnClickListener {
+            startActivity(Intent(requireContext(), CancelMemberActivity::class.java))
+        }
+
         binding.textView61.setOnClickListener {
             retrofitService.service.signout(memberid).enqueue(object : Callback<ReceiveOK> {
                 override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
                     val receive = response.body() as ReceiveOK
-                    if(response.isSuccessful) {
+                    if (response.isSuccessful) {
                         editor.putString("email", null)
                         editor.putString("password", null)
                         editor.putString("id", null)
@@ -51,6 +57,7 @@ class MypageFragment  : Fragment(R.layout.mypage_frag) {
 
                 }
             })
+
         }
 
 

@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.*
@@ -39,6 +40,7 @@ class CategoryListFragment : Fragment(R.layout.category_list_frag) {
         binding = CategoryListFragBinding.bind(view)
 
         activity = context as CategoryActivity
+
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val edit = shared.edit()
