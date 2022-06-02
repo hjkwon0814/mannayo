@@ -58,7 +58,7 @@ class MapActivity : AppCompatActivity() {
         startTracking(mapView)
 
 //        requestSearch(uLongitude!!.toDouble(), uLatitude!!.toDouble(),count,mapView)
-
+        // 어차피 최대 45개 한페이지 15개이므로 3개로 설정 while로 설정하면 무한루프에 걸리는듯 한데 이유를 잘 모르겠음
         while(count<=3){
             var tmp = requestSearch(uLongitude!!.toDouble(), uLatitude!!.toDouble(), count,mapView)
             if(tmp){
