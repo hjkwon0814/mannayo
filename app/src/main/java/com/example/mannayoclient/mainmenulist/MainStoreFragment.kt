@@ -38,34 +38,65 @@ class MainStoreFragment : Fragment(R.layout.mainstore_frag) {
         activity = context as MainStoreActivity
 
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val editor = shared.edit()
         val id = shared.getString("restaurantId", null)?.toLong()
         val check = shared.getString("Jjim", null)?.toBoolean()
+        val map = shared.getString("map",null)
+        val name = shared.getString("restname",null)
         if(check!!) {
             binding.checkBox.isChecked = check
         }
 
-        println(id)
-        retrofitService.service.getRestaurantDatailInfo(id)
-            .enqueue(object : Callback<restaurantDetailInfo> {
-                override fun onResponse(
-                    call: Call<restaurantDetailInfo>,
-                    response: Response<restaurantDetailInfo>
-                ) {
-                    val receive = response.body() as restaurantDetailInfo
-                    if (response.isSuccessful) {
-                        binding.restaurantName.text = receive.name
-                        binding.textView34.text = receive.starPoint.toString()
-                        binding.restaurantAddress.text = receive.address
-                        binding.restaurantTime.text = receive.start_time + " ~ " + receive.end_time
-                        binding.restaurantNumber.text = receive.number
+        if(map.equals("map")) {
+            retrofitService.service.getRestaurantDatailInfoByMap(name)
+                .enqueue(object : Callback<restaurantDetailInfo> {
+                    override fun onResponse(
+                        call: Call<restaurantDetailInfo>,
+                        response: Response<restaurantDetailInfo>
+                    ) {
+                        val receive = response.body() as restaurantDetailInfo
+                        if (response.isSuccessful) {
+                            binding.restaurantName.text = receive.name
+                            binding.textView34.text = receive.starPoint.toString()
+                            binding.restaurantAddress.text = receive.address
+                            binding.restaurantTime.text = receive.start_time + " ~ " + receive.end_time
+                            binding.restaurantNumber.text = receive.number
+                        }
+
                     }
-                }
 
-                override fun onFailure(call: Call<restaurantDetailInfo>, t: Throwable) {
-                    TODO("Not yet implemented")
-                }
+                    override fun onFailure(call: Call<restaurantDetailInfo>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
 
-            })
+                })
+            editor.putString("map","")
+            editor.commit()
+        }else {
+            retrofitService.service.getRestaurantDatailInfo(id)
+                .enqueue(object : Callback<restaurantDetailInfo> {
+                    override fun onResponse(
+                        call: Call<restaurantDetailInfo>,
+                        response: Response<restaurantDetailInfo>
+                    ) {
+                        val receive = response.body() as restaurantDetailInfo
+                        if (response.isSuccessful) {
+                            binding.restaurantName.text = receive.name
+                            binding.textView34.text = receive.starPoint.toString()
+                            binding.restaurantAddress.text = receive.address
+                            binding.restaurantTime.text = receive.start_time + " ~ " + receive.end_time
+                            binding.restaurantNumber.text = receive.number
+                        }
+                    }
+
+                    override fun onFailure(call: Call<restaurantDetailInfo>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+        }
+
+
 
         val rv: RecyclerView = binding.mainmenurv
 
