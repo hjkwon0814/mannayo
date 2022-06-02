@@ -55,6 +55,7 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
         val memberid = shared.getString("id", null)?.toLong()
         val comment = shared.getString("commentCount", null)?.toLong()
         var commentid : Long? = 0
+        var voteid : Long? = shared.getString("voteid","0")?.toLong()
 
         val rv: RecyclerView = binding.dVoteRecyclerView
         val items = ArrayList<TodayVoteModel>()
@@ -68,15 +69,33 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
 
         // click listener
         rvAdapter.setItemClickListener(object :TodayVoteRVAdapter.ItemClick {
-            override fun onCheckBoxClick(view: View, todayVoteModel: TodayVoteModel) {
-                TODO("Not yet implemented")
+            override fun onCheckBoxClick(view: View, position: Int) {
+                editor.putString("voteid", items[position].id.toString())
+                editor.commit()
             }
 
         })
 
         //투표하기 버튼
         binding.voteGo.setOnClickListener{
-            binding.voteGoText.text = "투표 완료"
+            voteid = shared.getString("voteid",null)?.toLong()
+            if(!voteid?.equals(0L)!!) {
+                retrofitService.service.setToVote(memberid,voteid).enqueue(object : Callback<ReceiveOK> {
+                    override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                        if(response.isSuccessful) {
+                            Toast.makeText(activity, "투표가 완료되었습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                        Toast.makeText(activity, "서버와의 연결을 확인해 주세요.", Toast.LENGTH_SHORT).show()
+                    }
+                })
+                binding.voteGoText.text = "투표 완료"
+                binding.voteGo.isClickable = false
+            }else {
+                Toast.makeText(activity, "하나를 선택하세요!", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -167,7 +186,11 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                                 println(v.contents)
                                 println(v.count)
                                 println(v.amIVote)
-                                items.add(TodayVoteModel(v.contents, v.count, v.amIVote))
+                                items.add(TodayVoteModel(v.contents, v.count, v.amIVote,v.id))
+                                if(v.amIVote) {
+                                    binding.voteGoText.text = "투표 완료"
+                                    binding.voteGo.isClickable = false
+                                }
                             }
                             rvAdapter.notifyDataSetChanged()
                         }

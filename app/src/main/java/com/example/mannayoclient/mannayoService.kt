@@ -34,6 +34,9 @@ interface mannayoService {
     @GET("/restaurant/detailmap/{restaurantname}")
     fun getRestaurantDatailInfoByMap(@Path("restaurantname") name :String?) : Call<restaurantDetailInfo>
 
+    @GET("/restaurant/summarymap/{restaurantname}")
+    fun getRestaurantSummaryInfoByMap(@Path("restaurantname") name: String?) : Call<restaurantSummaryInfo>
+
     @POST("/members/inputnickname")
     fun setNickname(@Query("id") id: Long?, @Query("nickname") nickname:String) : Call<ReceiveOK>
 
@@ -95,6 +98,9 @@ interface mannayoService {
 
     @GET("/vote/{boardid}")
     fun getVote(@Path("boardid") boardId: Long?, @Query("memberId") memberId: Long?) : Call<List<VoteResponseDto>>
+
+    @POST("/vote/tovote")
+    fun setToVote(@Query("memberid") memberid: Long?, @Query("voteid") voteid: Long?) : Call<ReceiveOK>
 
     @GET("/comment")
     fun getComment(@Query("boardId") boardId: Long?) : Call<List<commentDto>>

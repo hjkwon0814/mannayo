@@ -14,5 +14,9 @@ data class VoteResponseDto(
 
     @SerializedName("amIVote")
     @Expose
-    val amIVote : Boolean
+    val amIVote : Boolean,
+
+    @SerializedName("id")
+    @Expose
+    val id : Long
 )
