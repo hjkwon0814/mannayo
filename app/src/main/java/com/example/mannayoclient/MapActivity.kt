@@ -65,9 +65,8 @@ class MapActivity : AppCompatActivity() {
         startTracking(mapView)
         val shared = this.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val editor = shared.edit()
-        editor.putString("map","map")
-        editor.commit()
         binding.goStore.setOnClickListener {
+            editor.putString("map","map")
             editor.putString("restname",binding.textView46.text.toString())
             editor.commit()
             startActivity(Intent(this,MainStoreActivity::class.java))
