@@ -14,7 +14,7 @@ class TodayVoteRVAdapter  (var items : ArrayList<TodayVoteModel>) : RecyclerView
     private var mSelectedItem = -1
 
     interface ItemClick {
-        fun onCheckBoxClick(view :View, todayVoteModel: TodayVoteModel)
+        fun onCheckBoxClick(view :View, position: Int)
     }
     var itemClickListner : ItemClick? = null
 
@@ -60,12 +60,17 @@ class TodayVoteRVAdapter  (var items : ArrayList<TodayVoteModel>) : RecyclerView
 
             val vote_check = itemView.findViewById<CheckBox>(R.id.checkBox5)
             val amIVote = item.amIVote
-            vote_check.isChecked = amIVote
+            val voteid = item.id
             vote_check.isChecked = position == mSelectedItem
-
+            if(amIVote) {
+                vote_check.isChecked = amIVote
+            }
             vote_check.setOnClickListener {
                 mSelectedItem = position
-                itemClickListner?.onCheckBoxClick(it,item)
+                if(amIVote) {
+                    mSelectedItem = -1
+                }
+                itemClickListner?.onCheckBoxClick(it,position)
                 notifyItemRangeChanged(0, items.size)
             }
 

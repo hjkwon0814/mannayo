@@ -99,6 +99,9 @@ interface mannayoService {
     @GET("/vote/{boardid}")
     fun getVote(@Path("boardid") boardId: Long?, @Query("memberId") memberId: Long?) : Call<List<VoteResponseDto>>
 
+    @POST("/vote/tovote")
+    fun setToVote(@Query("memberid") memberid: Long?, @Query("voteid") voteid: Long?) : Call<ReceiveOK>
+
     @GET("/comment")
     fun getComment(@Query("boardId") boardId: Long?) : Call<List<commentDto>>
 
