@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
+import com.example.mannayoclient.ReplyDialogFragment
 import com.example.mannayoclient.SendChatActivity
 import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.categorylist.CategoryRVAdapter
@@ -118,7 +119,8 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
             }
 
             override fun onNickClick(view: View, position: Int) {
-                TODO("Not yet implemented")
+                val bottomSheet = ReplyDialogFragment()
+                bottomSheet.show(activity.supportFragmentManager, bottomSheet.tag)
             }
 
             override fun onDeleteClick(view: View, position: Int) {

@@ -1,16 +1,14 @@
 package com.example.mannayoclient.todaylist.today_detail
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.constraintlayout.widget.Constraints
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 
@@ -118,6 +116,11 @@ class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.A
                     holder.reply2_date.setText(obj.date)
                     holder.reply2.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
+                    if(itemClick != null){
+                        holder.itemView.findViewById<TextView>(R.id.reply2_name).setOnClickListener{
+                                v -> itemClick?.onNickClick(v, position)
+                        }
+                    }
                 }
 
             }
