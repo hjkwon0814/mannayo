@@ -9,7 +9,9 @@ data class TodayReplyModel (
         val reply: String?,
         val id : Long,
         var isClicked : Boolean = false,
-        var count : Long
+        var count : Long,
+        var writerid : Long,
+        var memberid : Long?
         //val image: Bitmap,
 ) {
         companion object {

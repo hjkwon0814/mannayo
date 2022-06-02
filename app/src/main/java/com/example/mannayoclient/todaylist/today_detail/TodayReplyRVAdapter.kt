@@ -23,6 +23,7 @@ class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.A
     interface ItemClick {
         fun onChatClick(view :View, position: Int)
         fun onNickClick(view :View, position: Int)
+        fun onDeleteClick(view: View, position: Int)
     }
     var itemClick : ItemClick? = null
 
@@ -72,6 +73,10 @@ class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.A
                     holder.reply.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
 
+                    if(list[position].writerid != list[position].memberid) {
+                        holder.itemView.findViewById<ImageView>(R.id.delete).visibility = View.GONE
+                    }
+
                     if (itemClick != null) {
                         holder.itemView.findViewById<ImageView>(R.id.chat_send).setOnClickListener {
                                 v -> itemClick?.onChatClick(v, position)
@@ -102,6 +107,10 @@ class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.A
                         holder.itemView.findViewById<TextView>(R.id.reply_name).setOnClickListener{
                                 v -> itemClick?.onNickClick(v, position)
                         }
+                        holder.itemView.findViewById<ImageView>(R.id.chat_delete).setOnClickListener {
+                            v -> itemClick?.onDeleteClick(v, position)
+                        }
+
                     }
                 }
                 TodayReplyModel.reply2 -> {

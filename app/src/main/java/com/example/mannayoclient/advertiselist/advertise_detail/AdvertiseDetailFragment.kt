@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -99,13 +100,11 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                     editor.putString("commentid", list[position].id.toString())
                     editor.commit()
                     commentid = shared.getString("commentid",null)?.toLong()
-                    Toast.makeText(activity,commentid.toString(),Toast.LENGTH_SHORT).show()
                     binding.replyEdit.hint = "댓글을 입력하세요."
                 }else {
                     if(list[position].count >= 1) {
                         println(2)
                         commentid = shared.getString("commentid", null)?.toLong()
-                        Toast.makeText(activity, commentid.toString(), Toast.LENGTH_SHORT).show()
                         binding.replyEdit.hint = "대댓글을 입력하세요."
                     }else {
                         println(3)
@@ -114,7 +113,6 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                         editor.putString("commentid", list[position].id.toString())
                         editor.commit()
                         commentid = shared.getString("commentid", null)?.toLong()
-                        Toast.makeText(activity, commentid.toString(), Toast.LENGTH_SHORT).show()
                         binding.replyEdit.hint = "대댓글을 입력하세요."
                     }
                 }
@@ -122,6 +120,10 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
 
             override fun onNickClick(view: View, position: Int) {
                 TODO("Not yet implemented")
+            }
+
+            override fun onDeleteClick(view: View, position: Int) {
+
             }
         }
 
@@ -241,11 +243,11 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                     val receive = response.body() as List<commentDto>
                     for(c : commentDto in receive) {
                         if(c.depth == 1) {
-                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id,false,0L))
+                            list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id,false,0L,c.writerid, memberid))
                             binding.textView71.text = "댓글(" + comment.toString() + ")"
                             adpater.notifyDataSetChanged()
                         }else {
-                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id,false,0L))
+                            list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id,false,0L,c.writerid, memberid))
                             binding.textView71.text = "댓글(" + comment.toString() + ")"
                             adpater.notifyDataSetChanged()
                         }
