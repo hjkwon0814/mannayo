@@ -92,6 +92,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
         <TextView
+            android:id="@+id/textOpen"
             android:layout_width="176dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_kr"

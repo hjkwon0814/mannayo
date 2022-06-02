@@ -94,13 +94,14 @@
         <TextView
             android:layout_width="176dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
             android:fontFamily="@font/noto_sans_kr"
             android:lineSpacingExtra="8sp"
             android:text="월 - 일 11:30 - 20:00 15:00 - 17:00 브레이크타임"
             android:textColor="#191919"
             android:textSize="12sp"
             android:textStyle="normal"
-            android:layout_marginTop="-10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView47"
             app:layout_constraintTop_toBottomOf="@+id/textView47" />
 

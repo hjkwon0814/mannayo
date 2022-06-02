@@ -34,6 +34,9 @@ interface mannayoService {
     @GET("/restaurant/detailmap/{restaurantname}")
     fun getRestaurantDatailInfoByMap(@Path("restaurantname") name :String?) : Call<restaurantDetailInfo>
 
+    @GET("/restaurant/summarymap/{restaurantname}")
+    fun getRestaurantSummaryInfoByMap(@Path("restaurantname") name: String?) : Call<restaurantSummaryInfo>
+
     @POST("/members/inputnickname")
     fun setNickname(@Query("id") id: Long?, @Query("nickname") nickname:String) : Call<ReceiveOK>
 

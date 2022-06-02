@@ -24,6 +24,7 @@ import com.example.mannayoclient.databinding.ActivityMapBinding
 import com.example.mannayoclient.dto.CategoryResult
 import com.example.mannayoclient.dto.Document
 import com.example.mannayoclient.dto.restaurantDetailInfo
+import com.example.mannayoclient.dto.restaurantSummaryInfo
 import com.example.mannayoclient.mainmenulist.MainStoreActivity
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
@@ -242,6 +243,26 @@ class MapActivity : AppCompatActivity() {
             val act = activity
             act.binding.goStore.visibility = View.VISIBLE
             act.binding.textView46.text = name
+            retrofitService.service.getRestaurantSummaryInfoByMap(name).enqueue(object : Callback<restaurantSummaryInfo> {
+                override fun onResponse(
+                    call: Call<restaurantSummaryInfo>,
+                    response: Response<restaurantSummaryInfo>,
+                ) {
+                    val receive = response.body() as restaurantSummaryInfo
+                    if(response.isSuccessful && receive.isExist) {
+                        act.binding.textView47.text = receive.address
+                        act.binding.textOpen.text = receive.open + " ~ " + receive.close
+                    }else {
+                        act.binding.textView47.text = receive.address
+                        act.binding.textOpen.text = ""
+                        act.binding.goStore.visibility = View.GONE
+                    }
+                }
+
+                override fun onFailure(call: Call<restaurantSummaryInfo>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
         }
 
         override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {
