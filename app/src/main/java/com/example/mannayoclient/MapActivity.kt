@@ -57,10 +57,12 @@ class MapActivity : AppCompatActivity() {
         mapViewContainer.addView(mapView)
         startTracking(mapView)
 
+
 //        requestSearch(uLongitude!!.toDouble(), uLatitude!!.toDouble(),count,mapView)
         // 어차피 최대 45개 한페이지 15개이므로 3개로 설정 while로 설정하면 무한루프에 걸리는듯 한데 이유를 잘 모르겠음
         while(count<=3){
-            var tmp = requestSearch(uLongitude!!.toDouble(), uLatitude!!.toDouble(), count,mapView)
+//            var tmp = requestSearch(uLongitude!!.toDouble(), uLatitude!!.toDouble(), count,mapView)
+            var tmp = requestSearch(127.00975338747156, 37.582313829023306, count,mapView)
             if(tmp){
                 break
             }
@@ -73,7 +75,9 @@ class MapActivity : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     private fun startTracking(mapView: MapView) {
-        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+//        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+
+        mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(37.58227777797896, 127.00988923952167), true)
 
         val lm: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         val userNowLocation : Location? = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
@@ -82,7 +86,9 @@ class MapActivity : AppCompatActivity() {
         val uLongitude = userNowLocation?.longitude
         Log.d("hello",uLatitude.toString())
         Log.d("hello",uLongitude.toString())
-        val uNowPosition = MapPoint.mapPointWithGeoCoord(uLatitude!!,uLongitude!!)
+//        val uNowPosition = MapPoint.mapPointWithGeoCoord(uLatitude!!,uLongitude!!)
+
+        val uNowPosition = MapPoint.mapPointWithGeoCoord(37.582313829023306,127.00975338747156)
 
         val marker = MapPOIItem()
         marker.itemName = "현 위치"
