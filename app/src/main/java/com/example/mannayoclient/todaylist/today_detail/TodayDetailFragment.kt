@@ -15,6 +15,7 @@ import com.example.mannayoclient.advertiselist.AdvertiseActivity
 import com.example.mannayoclient.categorylist.CategoryRVAdapter
 import com.example.mannayoclient.databinding.TodaydetailFragBinding
 import com.example.mannayoclient.dto.BoardResponseDto
+import com.example.mannayoclient.dto.ReceiveOK
 import com.example.mannayoclient.dto.VoteResponseDto
 import com.example.mannayoclient.dto.commentDto
 import com.example.mannayoclient.mainmenulist.MainStoreActivity
@@ -42,10 +43,15 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
 
         activity = context as TodayActivity
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val editor = shared.edit()
+        editor.putString("depth","1")
+        editor.commit()
+        var depth = shared.getString("depth", null)?.toLong()
         val boardid = shared.getString("boardid", null)?.toLong()
         val writeid = shared.getString("writerid",null)?.toLong()
         val memberid = shared.getString("id", null)?.toLong()
         val comment = shared.getString("commentCount", null)?.toLong()
+        var commentid : Long? = 0
 
 
         val rv: RecyclerView = binding.dVoteRecyclerView
@@ -86,13 +92,58 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
 
         adpater.itemClick = object : TodayReplyRVAdapter.ItemClick {
             override fun onChatClick(view: View, position: Int) {
-                TODO("Not yet implemented")
+                if(list[position].isClicked) {
+                    println(1)
+                    list[position].isClicked = false
+                    editor.putString("depth", "1")
+                    editor.putString("commentid", list[position].id.toString())
+                    editor.commit()
+                    commentid = shared.getString("commentid",null)?.toLong()
+                    Toast.makeText(activity,commentid.toString(),Toast.LENGTH_SHORT).show()
+                    binding.replyEdit.hint = "댓글을 입력하세요."
+                }else {
+                    if(list[position].count >= 1) {
+                        println(2)
+                        commentid = shared.getString("commentid", null)?.toLong()
+                        Toast.makeText(activity, commentid.toString(), Toast.LENGTH_SHORT).show()
+                        binding.replyEdit.hint = "대댓글을 입력하세요."
+                    }else {
+                        println(3)
+                        list[position].isClicked = true
+                        editor.putString("depth", "2")
+                        editor.putString("commentid", list[position].id.toString())
+                        editor.commit()
+                        commentid = shared.getString("commentid", null)?.toLong()
+                        Toast.makeText(activity, commentid.toString(), Toast.LENGTH_SHORT).show()
+                        binding.replyEdit.hint = "대댓글을 입력하세요."
+                    }
+                }
             }
 
             override fun onNickClick(view: View, position: Int) {
                 TODO("Not yet implemented")
             }
 
+        }
+
+        if(!(boardid==memberid)) {
+            binding.correction.visibility = View.GONE
+            binding.delete.visibility = View.GONE
+        }
+
+        binding.imageView88.setOnClickListener {
+            retrofitService.service.setLike(memberid,boardid).enqueue(object : Callback<ReceiveOK> {
+                override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                    val receive = response.body() as ReceiveOK
+                    if(response.isSuccessful) {
+                        Toast.makeText(activity, receive.response, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+
+                }
+            })
         }
 
         retrofitService.service.getBoard(boardid).enqueue(object : Callback<BoardResponseDto> {
@@ -194,8 +245,12 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
                     for(c : commentDto in receive) {
                         if(c.depth == 1) {
                             list.add(TodayReplyModel(TodayReplyModel.reply1,c.nickname, c.date, c.contents, c.id,false,0L))
+                            binding.textView71.text = "댓글(" + comment.toString() + ")"
+                            adpater.notifyDataSetChanged()
                         }else {
                             list.add(TodayReplyModel(TodayReplyModel.reply2,c.nickname, c.date,c.contents, c.id,false,0L))
+                            binding.textView71.text = "댓글(" + comment.toString() + ")"
+                            adpater.notifyDataSetChanged()
                         }
                     }
                 }
@@ -204,6 +259,45 @@ class TodayDetailFragment : Fragment(R.layout.todaydetail_frag) {
                     TODO("Not yet implemented")
                 }
             })
+        }
+
+        binding.imageView86.setOnClickListener {
+            depth = shared.getString("depth", null)?.toLong()
+            println("depth = " + depth)
+            if(depth == 1L) {
+                retrofitService.service.setReply1(memberid,
+                    boardid,
+                    binding.replyEdit.text.toString()).enqueue(object : Callback<ReceiveOK> {
+                    override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                        if (response.isSuccessful) {
+                            activity.finish()
+                            activity.overridePendingTransition(0, 0)
+                            val intent = activity.intent
+                            startActivity(intent)
+                            activity.overridePendingTransition(0, 0)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                    }
+                })
+            }else if(depth == 2L) {
+                retrofitService.service.setReply2(memberid,commentid,binding.replyEdit.text.toString()).enqueue(object : Callback<ReceiveOK> {
+                    override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                        if(response.isSuccessful) {
+                            activity.finish()
+                            activity.overridePendingTransition(0, 0)
+                            val intent = activity.intent
+                            startActivity(intent)
+                            activity.overridePendingTransition(0, 0)
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+                })
+            }
         }
 
         /*투포있으면 투표창 보이게 없으면 안보이게
