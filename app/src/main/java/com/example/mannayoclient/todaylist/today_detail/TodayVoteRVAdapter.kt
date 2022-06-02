@@ -13,6 +13,8 @@ class TodayVoteRVAdapter  (var items : ArrayList<TodayVoteModel>) : RecyclerView
 
     private var mSelectedItem = -1
 
+    private var Aiv = false
+
     interface ItemClick {
         fun onCheckBoxClick(view :View, position: Int)
     }
@@ -64,10 +66,12 @@ class TodayVoteRVAdapter  (var items : ArrayList<TodayVoteModel>) : RecyclerView
             vote_check.isChecked = position == mSelectedItem
             if(amIVote) {
                 vote_check.isChecked = amIVote
+                Aiv = true
             }
+            println(1)
             vote_check.setOnClickListener {
                 mSelectedItem = position
-                if(amIVote) {
+                if(Aiv) {
                     mSelectedItem = -1
                 }
                 itemClickListner?.onCheckBoxClick(it,position)
