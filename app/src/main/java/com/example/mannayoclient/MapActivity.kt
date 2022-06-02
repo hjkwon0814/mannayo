@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -22,6 +23,8 @@ import com.example.mannayoclient.apiClient.ApiClient
 import com.example.mannayoclient.databinding.ActivityMapBinding
 import com.example.mannayoclient.dto.CategoryResult
 import com.example.mannayoclient.dto.Document
+import com.example.mannayoclient.dto.restaurantDetailInfo
+import com.example.mannayoclient.mainmenulist.MainStoreActivity
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
@@ -35,10 +38,13 @@ class MapActivity : AppCompatActivity() {
     private val ACCESS_FINE_LOCATION = 1000
     var restaurantList: ArrayList<Document> = ArrayList() // 음식점 FD6
     var count = 1
+    private val eventListener = MarkerEventListener(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.goStore.visibility = View.GONE
 
         if(checkLocationService()){
             permissionCheck()
@@ -55,7 +61,17 @@ class MapActivity : AppCompatActivity() {
         var mapView = MapView(this)
         var mapViewContainer = binding.KakaoMapView as ViewGroup
         mapViewContainer.addView(mapView)
+        mapView.setPOIItemEventListener(eventListener)
         startTracking(mapView)
+        val shared = this.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val editor = shared.edit()
+        editor.putString("map","map")
+        editor.commit()
+        binding.goStore.setOnClickListener {
+            editor.putString("restname",binding.textView46.text.toString())
+            editor.commit()
+            startActivity(Intent(this,MainStoreActivity::class.java))
+        }
 
 
 //        requestSearch(uLongitude!!.toDouble(), uLatitude!!.toDouble(),count,mapView)
@@ -164,7 +180,7 @@ class MapActivity : AppCompatActivity() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
 
-    //내 위치 반경 1km안의 음식점 찾아내기
+    //내 위치 반경 500m안의 음식점 찾아내기
     private fun requestSearch(x:Double, y:Double,count:Int,mapView: MapView) :Boolean {
         var tmp: Boolean = false
         restaurantList.clear()
@@ -217,6 +233,33 @@ class MapActivity : AppCompatActivity() {
             marker.selectedMarkerType = MapPOIItem.MarkerType.RedPin
 
             mapView.addPOIItem(marker)
+        }
+    }
+
+    class MarkerEventListener(val activity: MapActivity) : MapView.POIItemEventListener {
+        override fun onPOIItemSelected(p0: MapView?, p1: MapPOIItem?) {
+            // 마커 클릭시
+            val name = p1?.itemName
+            val act = activity
+            act.binding.goStore.visibility = View.VISIBLE
+            act.binding.textView46.text = name
+        }
+
+        override fun onCalloutBalloonOfPOIItemTouched(p0: MapView?, p1: MapPOIItem?) {
+            // 말풍선 클릭 시 (Deprecated)
+            // 이함수도 작동은 하나 아래 함수 사용 추촌
+        }
+
+        override fun onCalloutBalloonOfPOIItemTouched(
+            // 말풍선 클릭 시
+            p0: MapView?,
+            p1: MapPOIItem?,
+            p2: MapPOIItem.CalloutBalloonButtonType?,
+        ) {
+        }
+
+        override fun onDraggablePOIItemMoved(p0: MapView?, p1: MapPOIItem?, p2: MapPoint?) {
+            // 마커의 속성 중 isDraggable = true 일 때 마커를 이동시켰을 경우
         }
     }
 }

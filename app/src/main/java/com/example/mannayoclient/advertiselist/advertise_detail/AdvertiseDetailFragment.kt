@@ -162,13 +162,16 @@ class AdvertiseDetailFragment : Fragment(R.layout.advertisedetail_frag) {
                         ) {
                             val receive = response.body() as List<VoteResponseDto>
                             for(v : VoteResponseDto in receive) {
+                                println(v.contents)
+                                println(v.count)
+                                println(v.amIVote)
                                 items.add(TodayVoteModel(v.contents, v.count, v.amIVote))
-                                rvAdapter.notifyDataSetChanged()
                             }
+                            rvAdapter.notifyDataSetChanged()
                         }
 
                         override fun onFailure(call: Call<List<VoteResponseDto>>, t: Throwable) {
-                            TODO("Not yet implemented")
+
                         }
                     })
                 } else {

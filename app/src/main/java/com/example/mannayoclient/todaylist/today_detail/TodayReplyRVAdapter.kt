@@ -73,9 +73,9 @@ class TodayReplyRVAdapter(var list: ArrayList<TodayReplyModel>) : RecyclerView.A
                     holder.reply.setText(obj.reply)
                     //holder.reply_image.setImageBitmap(obj.image)
 
-                    if(list[position].writerid != list[position].memberid) {
-                        holder.itemView.findViewById<ImageView>(R.id.delete).visibility = View.GONE
-                    }
+//                    if(list[position].writerid != list[position].memberid) {
+//                        holder.itemView.findViewById<ImageView>(R.id.delete).visibility = View.GONE
+//                    }
 
                     if (itemClick != null) {
                         holder.itemView.findViewById<ImageView>(R.id.chat_send).setOnClickListener {
