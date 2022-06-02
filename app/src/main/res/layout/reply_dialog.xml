@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView70" />
 
     <TextView
-        android:id="@+id/textView72"
+        android:id="@+id/rd_text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -66,7 +66,7 @@
         android:background="#dbdbdb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView72" />
+        app:layout_constraintTop_toBottomOf="@+id/rd_text1" />
 
     <TextView
         android:layout_width="match_parent"
@@ -79,7 +79,7 @@
         android:textStyle="normal"
         app:layout_constraintTop_toBottomOf="@+id/view23"
         tools:layout_editor_absoluteX="26dp"
-        tools:text="신고하기" />
+        android:text="신고하기" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
