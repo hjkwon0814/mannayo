@@ -23,6 +23,10 @@ data class restaurantSummaryInfo(
 
     @SerializedName("isExist")
     @Expose
-    val isExist : Boolean
+    val isExist : Boolean,
+
+    @SerializedName("id")
+    @Expose
+    val id : Long
 
 )

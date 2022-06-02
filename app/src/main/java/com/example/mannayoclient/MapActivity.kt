@@ -241,6 +241,8 @@ class MapActivity : AppCompatActivity() {
             // 마커 클릭시
             val name = p1?.itemName
             val act = activity
+            val shared = act.getSharedPreferences("Pref",Context.MODE_PRIVATE)
+            val editor = shared.edit()
             act.binding.goStore.visibility = View.VISIBLE
             act.binding.textView46.text = name
             retrofitService.service.getRestaurantSummaryInfoByMap(name).enqueue(object : Callback<restaurantSummaryInfo> {
@@ -252,6 +254,8 @@ class MapActivity : AppCompatActivity() {
                     if(response.isSuccessful && receive.isExist) {
                         act.binding.textView47.text = receive.address
                         act.binding.textOpen.text = receive.open + " ~ " + receive.close
+                        editor.putString("restaurantId", receive.id.toString())
+                        editor.commit()
                     }else {
                         act.binding.textView47.text = receive.address
                         act.binding.textOpen.text = ""
