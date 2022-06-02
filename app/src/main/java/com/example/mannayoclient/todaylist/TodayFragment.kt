@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mannayoclient.R
 import com.example.mannayoclient.advertiselist.AdvertiseActivity
+import com.example.mannayoclient.advertiselist.AdvertiseModel
 import com.example.mannayoclient.writelist.WriteActivity
 import com.example.mannayoclient.databinding.TodayFragBinding
 import com.example.mannayoclient.dto.Board
@@ -94,24 +95,23 @@ class TodayFragment : Fragment(R.layout.today_frag) {
                             }
                         })
                     }else {
-                        retrofitService.service.getBoardImage(b.boardId).enqueue(object : Callback<ResponseBody> {
-                            override fun onResponse(
-                                call: Call<ResponseBody>,
-                                response: Response<ResponseBody>
-                            ) {
-                                val receive = response.body()?.byteStream()
-                                val image = BitmapFactory.decodeResource(
-                                    resources,
-                                    R.drawable.image
-                                )
-                                items.add(TodayModel(b.nickname,b.contents,b.date,image,b.likeCount, b.chatCount,b.boardId,b.memberId))
-                                rvAdapter.notifyDataSetChanged()
-                            }
-
-                            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                                Toast.makeText(activity,"받아오기 실패",Toast.LENGTH_SHORT).show()
-                            }
-                        })
+                        val image = BitmapFactory.decodeResource(
+                            resources,
+                            R.drawable.image
+                        )
+                        items.add(
+                            TodayModel(
+                                b.nickname,
+                                b.contents,
+                                b.date,
+                                image,
+                                b.likeCount,
+                                b.chatCount,
+                                b.boardId,
+                                b.memberId
+                            )
+                        )
+                        rvAdapter.notifyDataSetChanged()
                     }
                 }
             }

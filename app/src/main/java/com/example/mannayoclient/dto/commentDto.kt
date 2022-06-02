@@ -22,5 +22,9 @@ data class commentDto(
 
     @SerializedName("depth")
     @Expose
-    val depth : Int
+    val depth : Int,
+
+    @SerializedName("writerid")
+    @Expose
+    val writerid : Long
 )

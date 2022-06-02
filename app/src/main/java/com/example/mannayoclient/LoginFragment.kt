@@ -36,6 +36,8 @@ class LoginFragment : Fragment(R.layout.login_frag) {
         sharedPreferences = mainActivity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
+        editor.putString("map","")
+        editor.commit()
         val title = mainActivity.findViewById<TextView>(R.id.textview)
         title.setText("로그인")
 

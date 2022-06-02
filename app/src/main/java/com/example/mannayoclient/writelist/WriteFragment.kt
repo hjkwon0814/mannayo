@@ -33,6 +33,7 @@ import com.example.mannayoclient.databinding.WriteFragBinding
 import com.example.mannayoclient.dto.Board
 import com.example.mannayoclient.dto.ReceiveOK
 import com.example.mannayoclient.retrofitService
+import com.example.mannayoclient.todaylist.TodayActivity
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -410,8 +411,17 @@ class WriteFragment : Fragment(R.layout.write_frag) {
     }
 
     fun onActivityChange() {
-        val intent = Intent(activity, AdvertiseActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        startActivity(intent)
+        val shared = writeActivity.getSharedPreferences("Pref",Context.MODE_PRIVATE)
+        val type = shared.getString("boardtype", null)
+        if(type.equals("ADVERTISE_BOARD")) {
+            val intent = Intent(activity, AdvertiseActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }else if(type.equals("TODAT_EAT_BOARD")) {
+            val intent = Intent(activity, TodayActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
+
     }
 }
