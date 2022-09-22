@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.mannayoclient.databinding.MypageFragBinding
 import com.example.mannayoclient.dto.ReceiveOK
 import retrofit2.Call
@@ -27,6 +28,9 @@ class MypageFragment : Fragment(R.layout.mypage_frag) {
         val shared = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val editor = shared.edit()
         val memberid = shared.getString("id", null)?.toLong()
+
+        val imageUrl = "https://t1.daumcdn.net/cfile/tistory/1342A5564DB8D02102"
+        Glide.with(this).load(imageUrl).into(binding.imageView81)
 
         binding.information.setOnClickListener {
             findNavController().navigate(R.id.action_mypageFragment_to_mypage2Fragment)
