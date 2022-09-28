@@ -29,8 +29,8 @@ class MypageFragment : Fragment(R.layout.mypage_frag) {
         val editor = shared.edit()
         val memberid = shared.getString("id", null)?.toLong()
 
-        val imageUrl = "https://t1.daumcdn.net/cfile/tistory/1342A5564DB8D02102"
-        Glide.with(this).load(imageUrl).into(binding.imageView81)
+//        val imageUrl = "https://t1.daumcdn.net/cfile/tistory/1342A5564DB8D02102"
+//        Glide.with(this).load(imageUrl).into(binding.imageView81)
 
         binding.information.setOnClickListener {
             findNavController().navigate(R.id.action_mypageFragment_to_mypage2Fragment)

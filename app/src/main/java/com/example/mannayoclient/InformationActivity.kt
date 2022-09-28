@@ -1,9 +1,12 @@
 package com.example.mannayoclient
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,12 +14,24 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import com.example.mannayoclient.databinding.ActivityInformationBinding
+import com.example.mannayoclient.dto.ReceiveOK
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.util.*
 
 class InformationActivity : AppCompatActivity() {
     lateinit var binding: ActivityInformationBinding
@@ -27,6 +42,9 @@ class InformationActivity : AppCompatActivity() {
         android.Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
 
+    var path: Uri? = null
+    var realPath : String? = null
+    var file: File? = null
     val FLAG_PERM_CAMERA = 98
     val FLAG_PERM_STORAGE = 99
 
@@ -37,6 +55,11 @@ class InformationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInformationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        val shared = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val memberId = shared.getString("id", null)?.toLong()
+        val editor = shared.edit()
 
         binding.inforButton.setOnClickListener {
             showDialg()
@@ -80,6 +103,34 @@ class InformationActivity : AppCompatActivity() {
             }
 
 
+        }
+
+
+        binding.nickButton.setOnClickListener {
+            println(realPath)
+            //creating a file
+            if(realPath != null) {
+                println("add image")
+                file = File(realPath)
+                if(!binding.inforNick.text.isNullOrEmpty()) {
+                    sendNickNameAndImage(memberId, realPath)
+                    editor.putString("nickname", binding.inforNick.text.toString())
+                    editor.commit()
+                    onActivityChange()
+                }else {
+                    Toast.makeText(this, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                println("only nickname")
+                if(!binding.inforNick.text.isNullOrEmpty()) {
+                    sendNickNameOnly(memberId, binding.inforNick.text.toString())
+                    editor.putString("nickname", binding.inforNick.text.toString())
+                    editor.commit()
+                    onActivityChange()
+                }else {
+                    Toast.makeText(this, "닉네임을 입력해주세요", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
     }
@@ -128,19 +179,50 @@ class InformationActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 FLAG_REQ_CAMERA -> {
-                    if (data?.extras?.get("data") != null) {
-                        val bitmap = data?.extras?.get("data") as Bitmap
-
-
-                        binding.inforPhoto.setImageBitmap(bitmap)
+                    val myBitmap = data?.extras?.get("data") as Bitmap
+                    if(myBitmap != null) {
+                        val imagePath = getImageUri(this, myBitmap)
+                        path = imagePath
+                        realPath = getRealPathFromURI(path!!)
+                        binding.inforPhoto.setImageBitmap(myBitmap)
                     }
                 }
                 FLAG_REQ_GALLERY -> {
                     val uri = data?.data
-                    binding.inforPhoto.setImageURI(uri)
+                    // 이미지 뷰에 선택한 이미지 출력
+                    val imageview: ImageView = binding.inforPhoto
+                    imageview.setImageURI(uri)
+                    realPath = getRealPathFromURI(uri!!)
                 }
             }
+        }else if(resultCode == Activity.RESULT_CANCELED) {
+            Toast.makeText(this,"사진 선택 취소", Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun getImageUri(inContext : Context?, inImage: Bitmap?): Uri? {
+        val btyes = ByteArrayOutputStream()
+        if(inImage != null) {
+            inImage.compress(Bitmap.CompressFormat.JPEG, 100, btyes)
+        }
+        val path = MediaStore.Images.Media.insertImage(inContext?.contentResolver, inImage, "Title" + " - " + Calendar.getInstance().time,null)
+        return Uri.parse(path)
+    }
+
+    fun getRealPathFromURI(contentURI : Uri) : String? {
+        val result : String?
+        val cursor : Cursor? = contentResolver.query(contentURI,null,null,null,null)
+
+        if(cursor == null) {
+            result = contentURI?.path
+        } else {
+            cursor.moveToFirst()
+            val idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+            result = cursor.getString(idx)
+            cursor.close()
+        }
+
+        return result
     }
 
     private fun isPermitted(permissions: Array<String>): Boolean {
@@ -155,6 +237,57 @@ class InformationActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+    fun sendNickNameAndImage(id : Long? ,path : String?) {
+        var requestBody : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file)
+        var body : MultipartBody.Part = MultipartBody.Part.createFormData("multipartFile",file?.name,requestBody)
+
+        retrofitService.service.setNickname(id ,binding.inforNick.text.toString()).enqueue(object :
+            Callback<ReceiveOK> {
+            override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                if(response.isSuccessful) {
+                    println("닉네임등록 성공")
+                    retrofitService.service.setMyProfileImage(id, body).enqueue(object :
+                        Callback<ReceiveOK> {
+                        override fun onResponse(
+                            call: Call<ReceiveOK>,
+                            response: Response<ReceiveOK>
+                        ) {
+                            val receive = response.body() as ReceiveOK
+                            if(response.isSuccessful) {
+                                onActivityChange()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                            println("프로필등록 실패")
+                        }
+
+                    })
+                }
+            }
+
+            override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                println("닉네임등록 실패")
+            }
+
+        })
+    }
+
+    fun sendNickNameOnly(id : Long?, nickname : String) {
+        retrofitService.service.setNickname(id ,binding.inforNick.text.toString()).enqueue(object : Callback<ReceiveOK> {
+            override fun onResponse(call: Call<ReceiveOK>, response: Response<ReceiveOK>) {
+                if(response.isSuccessful) {
+                    println("닉네임등록 성공")
+                }
+            }
+
+            override fun onFailure(call: Call<ReceiveOK>, t: Throwable) {
+                println("닉네임등록 실패")
+            }
+
+        })
     }
 
     override fun onRequestPermissionsResult(
@@ -177,5 +310,11 @@ class InformationActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun onActivityChange() {
+        val intent = Intent(this, MypageActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 }
