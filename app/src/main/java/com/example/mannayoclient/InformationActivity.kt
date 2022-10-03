@@ -90,9 +90,6 @@ class InformationActivity : AppCompatActivity() {
                 binding.imageViewNick.visibility = View.GONE
                 binding.inforNick.setBackgroundResource(R.drawable.information6)
                 binding.nickButton.setImageResource(R.drawable.information7)
-                binding.nickButton.setOnClickListener {
-                    //어디로 이동할지
-                }
             }
 
             //입력은 했지만 7자 초과
@@ -107,7 +104,7 @@ class InformationActivity : AppCompatActivity() {
 
 
         binding.nickButton.setOnClickListener {
-            println(realPath)
+            Toast.makeText(this, "check?", Toast.LENGTH_SHORT).show()
             //creating a file
             if(realPath != null) {
                 println("add image")
