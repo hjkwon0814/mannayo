@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,11 +22,17 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import com.bumptech.glide.Glide
 import com.example.mannayoclient.databinding.ActivityInformationBinding
 import com.example.mannayoclient.dto.ReceiveOK
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +42,7 @@ import java.util.*
 
 class InformationActivity : AppCompatActivity() {
     lateinit var binding: ActivityInformationBinding
+
 
     val CAMERA_PERMISSION = arrayOf(android.Manifest.permission.CAMERA)
     val STORAGE_PERMISSION = arrayOf(
@@ -60,6 +68,9 @@ class InformationActivity : AppCompatActivity() {
         val shared = getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val memberId = shared.getString("id", null)?.toLong()
         val editor = shared.edit()
+
+
+
 
         binding.inforButton.setOnClickListener {
             showDialg()

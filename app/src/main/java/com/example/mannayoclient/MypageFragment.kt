@@ -2,6 +2,8 @@ package com.example.mannayoclient
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -10,6 +12,11 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.mannayoclient.databinding.MypageFragBinding
 import com.example.mannayoclient.dto.ReceiveOK
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +24,8 @@ import retrofit2.Response
 class MypageFragment : Fragment(R.layout.mypage_frag) {
     lateinit var binding: MypageFragBinding
     lateinit var activity: MypageActivity
+    lateinit var memberimage: Bitmap
+    val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -31,6 +40,26 @@ class MypageFragment : Fragment(R.layout.mypage_frag) {
 
 //        val imageUrl = "https://t1.daumcdn.net/cfile/tistory/1342A5564DB8D02102"
 //        Glide.with(this).load(imageUrl).into(binding.imageView81)
+
+        retrofitService.service.getMyProfileImage(memberid).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                val receive = response.body()?.byteStream()
+                coroutineScope.launch {
+                    val originalDeferred =
+                        coroutineScope.async(Dispatchers.IO) {
+                            BitmapFactory.decodeStream(receive)
+                        }
+                    memberimage = originalDeferred.await()
+                    binding.imageView81.setImageBitmap(memberimage)
+                }
+
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
         binding.information.setOnClickListener {
             findNavController().navigate(R.id.action_mypageFragment_to_mypage2Fragment)
